@@ -7,8 +7,106 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 	/// </summary>
 	public class AffixUtility
 	{
+		/// <summary>
+		///     Initializes a new instance of the class
+		/// </summary>
 		public AffixUtility()
 		{
+		}
+
+		/// <summary>
+		///     Adds a prefix to a word
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         The word to add the prefix to
+		///     </para>
+		/// </param>
+		/// <param name="rule" type="NetSpell.SpellChecker.Dictionary.Affix.AffixRule">
+		///     <para>
+		///         The AffixRule to use when adding the prefix
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The word with the prefix added
+		/// </returns>
+		public static string AddPrefix(string word, AffixRule rule)
+		{
+			foreach (AffixEntry entry in rule.AffixEntries)
+			{
+				// check that this entry is valid
+				if (word.Length >= entry.ConditionCount)
+				{
+					int passCount = 0;
+					for (int i = 0;  i < entry.ConditionCount; i++) 
+					{
+						int charCode = (int)word[i];
+						if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
+						{
+							passCount++;
+						}
+						else 
+						{
+							break;
+						}
+					}
+					if (passCount == entry.ConditionCount)
+					{
+						string tempWord = word.Substring(entry.StripCharacters.Length);
+						tempWord += entry.AddCharacters;
+						return tempWord;
+					}
+				}
+			}
+			return word;
+		}
+
+		/// <summary>
+		///     Adds a suffix to a word
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         The word to get the suffix added to
+		///     </para>
+		/// </param>
+		/// <param name="rule" type="NetSpell.SpellChecker.Dictionary.Affix.AffixRule">
+		///     <para>
+		///         The AffixRule to use when adding the suffix
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The word with the suffix added
+		/// </returns>
+		public static string AddSuffix(string word, AffixRule rule)
+		{
+			foreach (AffixEntry entry in rule.AffixEntries)
+			{
+				// check that this entry is valid
+				if (word.Length >= entry.ConditionCount)
+				{
+					int passCount = 0;
+					for (int i = 0;  i < entry.ConditionCount; i++) 
+					{
+						int charCode = (int)word[word.Length - (entry.ConditionCount - i)];
+						if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
+						{
+							passCount++;
+						}
+						else 
+						{
+							break;
+						}
+					}
+					if (passCount == entry.ConditionCount)
+					{
+						int tempLen = word.Length - entry.StripCharacters.Length;
+						string tempWord = word.Substring(0, tempLen);
+						tempWord += entry.AddCharacters;
+						return tempWord;
+					}
+				}
+			}
+			return word;
 		}
 
 		/// <summary>
@@ -134,54 +232,6 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 		}
 
 		/// <summary>
-		///     Removes the affix suffix rule entry for the word if valid
-		/// </summary>
-		/// <param name="word" type="string">
-		///     <para>
-		///         The word to be modified
-		///     </para>
-		/// </param>
-		/// <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
-		///     <para>
-		///         The affix rule entry to use
-		///     </para>
-		/// </param>
-		/// <returns>
-		///     The word after affix removed.  Will be the same word if affix could not be removed.
-		/// </returns>
-		/// <remarks>
-		///		This method does not verify that the returned word is a valid word, only that the affix can be removed
-		/// </remarks>
-		public static string RemoveSuffix(string word, AffixEntry entry)
-		{
-			int tempLength = word.Length - entry.AddCharacters.Length;
-			if ((tempLength > 0)  
-				&&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount)
-				&& (word.EndsWith(entry.AddCharacters)))
-			{
-				// word with out affix
-				string tempWord = word.Substring(0, tempLength);
-				// add back strip chars
-				tempWord += entry.StripCharacters;
-				// check that this is valid
-				int passCount = 0;
-				for (int i = 0;  i < entry.ConditionCount; i++) 
-				{
-					int charCode = (int)tempWord[tempWord.Length - (entry.ConditionCount - i)];
-					if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
-					{
-						passCount++;
-					}
-				}
-				if (passCount == entry.ConditionCount)
-				{
-					return tempWord;
-				}
-			}
-			return word;
-		}
-
-		/// <summary>
 		///     Removes the affix prefix rule entry for the word if valid
 		/// </summary>
 		/// <param name="word" type="string">
@@ -227,6 +277,53 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 					return tempWord;
 				}
 				
+			}
+			return word;
+		}
+		/// <summary>
+		///     Removes the affix suffix rule entry for the word if valid
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         The word to be modified
+		///     </para>
+		/// </param>
+		/// <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
+		///     <para>
+		///         The affix rule entry to use
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The word after affix removed.  Will be the same word if affix could not be removed.
+		/// </returns>
+		/// <remarks>
+		///		This method does not verify that the returned word is a valid word, only that the affix can be removed
+		/// </remarks>
+		public static string RemoveSuffix(string word, AffixEntry entry)
+		{
+			int tempLength = word.Length - entry.AddCharacters.Length;
+			if ((tempLength > 0)  
+				&&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount)
+				&& (word.EndsWith(entry.AddCharacters)))
+			{
+				// word with out affix
+				string tempWord = word.Substring(0, tempLength);
+				// add back strip chars
+				tempWord += entry.StripCharacters;
+				// check that this is valid
+				int passCount = 0;
+				for (int i = 0;  i < entry.ConditionCount; i++) 
+				{
+					int charCode = (int)tempWord[tempWord.Length - (entry.ConditionCount - i)];
+					if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
+					{
+						passCount++;
+					}
+				}
+				if (passCount == entry.ConditionCount)
+				{
+					return tempWord;
+				}
 			}
 			return word;
 		}

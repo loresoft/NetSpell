@@ -1198,12 +1198,12 @@
                 Calculates the minimum number of change, inserts or deletes
                 required to change firstWord into secondWord
             </summary>
-            <param name="firstWord" type="string">
+            <param name="source" type="string">
                 <para>
                     The first word to calculate
                 </para>
             </param>
-            <param name="secondWord" type="string">
+            <param name="target" type="string">
                 <para>
                     The second word to calculate
                 </para>
