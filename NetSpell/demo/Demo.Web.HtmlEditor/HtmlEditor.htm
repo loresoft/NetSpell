@@ -6,11 +6,11 @@
         <script language="JavaScript" type="text/javascript">
         <!--
             function button_onmouseover(element) { element.className = "tbButtonMouseOverUp"; }
-    
+
             function button_onmousedown(element) { element.className = "tbButtonMouseOverDown"; }
-            
+
             function button_onmouseout(element) { element.className = "tbButton"; }
-            
+
             function saveData()
             {
                 if (document.all.chkHtmlSource.checked == false)
@@ -18,7 +18,7 @@
                 else
                     document.all.tbSourceElement.value = tbContentElement.document.body.innerText;
             }
-            
+
             function readData()
             {
                 if (document.all.chkHtmlSource.checked == false)
@@ -26,18 +26,18 @@
                 else
                     tbContentElement.document.body.innerText = document.all.tbSourceElement.value;
             }
-            
+
             function doCommand(cmd,	opt)
             {
-                if (document.all.chkHtmlSource.checked == false) 
+                if (document.all.chkHtmlSource.checked == false)
                 {
                     var display = false;
                     if(cmd == "InsertImage") display = true;
                     tbContentElement.document.execCommand(cmd, display, opt);
-                    tbContentElement.focus();	
-                } 
+                    tbContentElement.focus();
+                }
             }
-            
+
             function changeMode(element)
             {
                 if (element.checked == true) {
@@ -51,11 +51,10 @@
                     document.all.toolbars.style.display = "block";
                 }
             }
-            
+
             function spellCheck()
             {
-                var oElement = tbContentElement.document.body;
-                checkElementSpelling(oElement);
+                checkSpellingById("tbContentElement");
             }
         //-->
         </script>
@@ -69,7 +68,7 @@
 							<!-- Toolbars -->
 							<div id="toolbars">
 								<span class="tbToolbar" id="FontToolbar">&nbsp;
-				                    <select unselectable="On" id="ParagraphStyle" class="tbGeneral" style="width: 90;" title="Paragraph Format" 
+				                    <select unselectable="On" id="ParagraphStyle" class="tbGeneral" style="width: 90;" title="Paragraph Format"
                                         language="javascript" onchange="doCommand('FormatBlock',this.options[this.selectedIndex].value);this.selectedIndex=0;">
 										<option value="" selected="">Paragraph</option>
 										<option value="Normal">Normal</option>
@@ -127,7 +126,7 @@
 										<option value="BurlyWood" style="background-color: burlywood">BurlyWood</option>
 										<option value="Beige" style="background-color: beige">Beige</option>
 									</select>
-				                    <select unselectable="On" id="BackColor" class="tbGeneral" style="width:120" title="Font Size" 
+				                    <select unselectable="On" id="BackColor" class="tbGeneral" style="width:120" title="Font Size"
                                         language="javascript" onchange="doCommand('BackColor',this.options[this.selectedIndex].value);this.selectedIndex=0;">
 										<option value="" selected="">Background</option>
 										<option value="Black" style="background-color: black">Black</option>
@@ -151,7 +150,7 @@
 										<option value="Brown" style="background-color: brown">Brown</option>
 										<option value="BurlyWood" style="background-color: burlywood">BurlyWood</option>
 										<option value="Beige" style="background-color: beige">Beige</option>
-									</select> 
+									</select>
                                 </span><br />
 								<span class="tbToolbar" id="StandardToolbar">
 				                    <span class="tbButton" unselectable="On" id="DECMD_CUT" title="Cut" language="javascript"
@@ -186,69 +185,69 @@
 										<img src="images/redo.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
                                     <span class="tbSeparator"></span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_BOLD" title="Bold" language="javascript" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_BOLD" title="Bold" language="javascript"
                                         onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('Bold');">
 										<img src="images/bold.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_ITALIC" title="Italic" language="javascript" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_ITALIC" title="Italic" language="javascript"
                                         onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('Italic');">
 										<img src="images/italic.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_UNDERLINE" title="Underline" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_UNDERLINE" title="Underline"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('Underline');">
 										<img src="images/underline.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
-									</span>                                    
-                                    <span class="tbButton" unselectable="On" id="DECMD_STRIKETHROUGH" title="Strikethrough" 
+									</span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_STRIKETHROUGH" title="Strikethrough"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('StrikeThrough');">
 										<img src="images/strikethrough.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-                                    <span class="tbButton" unselectable="On" id="DECMD_SUPERSCRIPT" title="Superscript" 
+                                    <span class="tbButton" unselectable="On" id="DECMD_SUPERSCRIPT" title="Superscript"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('Superscript');">
 										<img src="images/superscript.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-                                    <span class="tbButton" unselectable="On" id="DECMD_SUBSCRIPT" title="Subscript" 
+                                    <span class="tbButton" unselectable="On" id="DECMD_SUBSCRIPT" title="Subscript"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('Subscript');">
 										<img src="images/subscript.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
                                     <span class="tbSeparator"></span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYLEFT" title="Align Left" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYLEFT" title="Align Left"
 										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
 										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
 										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyLeft');">
 										<img src="images/justifyleft.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYCENTER" title="Center" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYCENTER" title="Center"
 										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
 										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
 										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyCenter');">
 										<img src="images/justifycenter.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYRIGHT" title="Align Right" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYRIGHT" title="Align Right"
 										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
 										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
 										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyRight');">
 										<img src="images/justifyright.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
-									</span>                                    
-                                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYFULL" title="Justify" 
+									</span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYFULL" title="Justify"
 										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
 										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
 										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyFull');">
 										<img src="images/justifyfull.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
-									</span>                                    
+									</span>
                                     <span class="tbSeparator"></span>
-				                    <span class="tbButton" unselectable="On" id="DECMD_ORDERLIST" title="Numbered List" 
+				                    <span class="tbButton" unselectable="On" id="DECMD_ORDERLIST" title="Numbered List"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('InsertOrderedList');">
@@ -304,7 +303,7 @@
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
 										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
 										onclick="doCommand('InsertHorizontalRule');">
-                                        <img src="images/InsertRule.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">										
+                                        <img src="images/InsertRule.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
 									</span>
 				                    <span class="tbButton" unselectable="On" id="DECMD_SPELLCHECK" title="Spell Check"
 										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
@@ -325,7 +324,7 @@
 					</tr>
 				</tbody>
 			</table>
-            <script language="JavaScript" type="text/javascript">    
+            <script language="JavaScript" type="text/javascript">
                 function document.onreadystatechange()
                 {
                     tbContentElement.document.designMode = "On";

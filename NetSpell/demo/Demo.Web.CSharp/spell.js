@@ -28,8 +28,15 @@ function getText(index)
 			break;
         case "IFRAME" :
             var oFrame = eval(oElement.id);
-            sText = oFrame.document.body.innerHTML;
-    }
+			if(oFrame.contentDocument)
+			{
+				 sText = oFrame.contentDocument.body.innerHTML;
+			}
+			else
+			{
+				 sText = oFrame.document.body.innerHTML;
+			}
+	}
 
     return sText;
 }
@@ -50,7 +57,14 @@ function setText(index, text)
 			break;
         case "IFRAME" :
             var oFrame = eval(oElement.id);
-            oFrame.document.body.innerHTML = text;
+            if(oFrame.contentDocument)
+			{
+				oFrame.contentDocument.body.innerHTML = text;
+			}
+			else
+			{
+				oFrame.document.body.innerHTML = text;
+			}
             break;
     }
 }
