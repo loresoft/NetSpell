@@ -1,0 +1,10 @@
+Setting up the NetSpell Web Demo
+
+In order to run the NetSpell web demo, you need to create two IIS virtual folders. The first virtual is for the visual studio project, the second is for the dictionaries.
+
+Steps ...
+1) Create a virtual for the dictionaries.  The path for the dictionary is "%root%\NetSpell\dic"*.  The Virtual should be named dic.
+
+2) Create a virtual for the vs.net project.  The path for the project is "%root%\NetSpell\src\NetSpell.Demo.Web"*.  The virtual should be named NetSpell.
+
+* %root% = the path on your computer to the NetSpell folder
