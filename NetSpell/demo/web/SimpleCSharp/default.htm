@@ -1,39 +1,59 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
+
 <head>
-    <title>NetSpell Web Demo</title>
-    <link href="spell.css" type="text/css" rel="stylesheet" />
-    <meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR" />
-    <meta content="VisualStudio.HTML" name="ProgId" />
-    <meta content="Microsoft Visual Studio .NET 7.1" name="Originator" />
-    <script language="JavaScript" src="spell.js">
-		</script>
+<title>NetSpell Web Demo</title>
+<script language="JavaScript" src="spell.js" type="text/javascript"></script>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+function btnSpellCheck_onclick()
+{
+    var spellURL = "frame.html";
+    if (window.showModalDialog) 
+    {
+        var result = window.showModalDialog(spellURL + "?ModalFrame=true", window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:Yes; status:No; scroll: No");    
+    }
+    else
+    {
+        var newWindow = window.open(spellURL, "newWindow", "height=320,width=400,scrollbars=0,resizable=0,toolbars=0");
+    }
+}
+
+//-->
+</SCRIPT>
 </head>
+
+
 <body>
-    <form>
-        <table id="Table1" cellspacing="0" cellpadding="5" bgcolor="white" border="1">
-            <tbody>
-                <tr>
-                    <td align="middle" bgcolor="#dadada">
-                        <font face="Arial" size="4"><b>NetSpell Web Demo</b></font> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea id="strText" name="strText" rows="13" wrap="VIRTUAL" cols="40">Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.</textarea>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <input id="Reset1" type="reset" value="Reset" name="Reset1" />
-                        <input id="Button1" onclick="checkDocument()" type="button" value="Check Spelling" name="Button1" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-    <p>&nbsp;
-    </p>
+<form name="frmDemo">
+	<p><font face="Arial" size="4"><b>NetSpell Web Demo</b></font></p>
+	<table border="0" width="100%" id="table1">
+		<tr>
+			<td width="80" align="right" valign="top"><b><font face="Arial">From:</font></b></td>
+			<td>
+			<input type="text" name="txtFrom" size="54" value="me@user.com" /></td>
+		</tr>
+		<tr>
+			<td width="80" align="right" valign="top"><b><font face="Arial">To:</font></b></td>
+			<td>
+			<input type="text" name="txtTo" size="54" value="you@user.com" /></td>
+		</tr>
+		<tr>
+			<td width="80" align="right" valign="top"><b><font face="Arial">Subject:</font></b></td>
+			<td>
+			<input type="text" name="txtSubject" size="54" value="Bad speled emal subjct" /></td>
+		</tr>
+		<tr>
+			<td width="80" align="right" valign="top"><b><font face="Arial">Message:</font></b></td>
+			<td>
+			<textarea id="strText" name="txtMessage" rows="13" wrap="VIRTUAL" cols="43">Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.</textarea></td>
+		</tr>
+		<tr>
+			<td width="80" align="right" valign="top">&nbsp;</td>
+			<td><input type="button" value="Spell Check" name="btnSpellCheck" onClick="btnSpellCheck_onclick()" /></td>
+		</tr>
+	</table>
+</form>
 </body>
+
 </html>

@@ -57,7 +57,7 @@ function checkSpelling()
 {
     if (window.showModalDialog) 
     {
-        var result = window.showModalDialog(spellURL, window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:Yes; status:No; scroll: No");    
+        var result = window.showModalDialog(spellURL + "?ModalFrame=true", window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:Yes; status:No; scroll: No");    
     }
     else
     {
