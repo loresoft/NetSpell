@@ -21,6 +21,42 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_00B585FEDFC84CAF9F074D4987558DA0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_00C5BD24C44C41B0852636B65E243AE1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0138DB0BF8574C51A9747B383B94A14A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_01E340BEED9A48CA9EA0FA5686ED0FB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_02F743C8743344F2874209ACE174F357"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0328E01CCAF74F749B26C8A0BCF5A27F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_03B02D8F23AE42A7B99F0F368BCBD866"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,13 +81,37 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_07423C0483EB4C57AEFC319F4B8DA78C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_085B18A12085448D9D9F8D85D7B61580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_0ABF8D1B25904B45BCF7911B7C003243"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0C0DF345DBA147DA9362F68D2E77A02C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0E03E1D2B0C64A72A8DB023DBC0F303E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0E78D4DAF1544030BBCAC7BFD25A714B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,6 +153,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_144327790A3442A9B478F1C6F6D2271A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_150E6BA876F14257AD5F3221838C8AC2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_18B7E24612B6404FBC615D43A93252C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1989EC9D66E54019B40AD32358C19844"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,13 +189,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_202B6FB3B70410FA36735A718C14B418"
+        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_21719D88DBB748E2A8ED752B573F5F74"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_222CA4F2E82140E1AE6F994CDD0E8544"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_226730DFAF40457F92F6AF446BF70B01"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_22ACDB184E514508BBD92CA2390CDF37"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_245FDCA4B47E4B4CA5C5D72B96C3C426"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2541C2527FD54D51A9232F7BC589EF0F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -177,6 +285,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2E4F42DDFA7B49E7A972C5ED08E34B16"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2E639566BFF44C47AA2C809107B7F1BB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -184,6 +298,12 @@
         "Entry"
         {
         "MsmKey" = "8:_2F0AB723B4B342B2B243ECB4F4DA61B2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2FE1B077EBE8438CBF2DF2D5EA7E7377"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -213,6 +333,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_33C559D8ED7141AA841DEF0CA8D2AA05"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_35171C98CAB240448FE3F258F352EF1D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -220,6 +346,12 @@
         "Entry"
         {
         "MsmKey" = "8:_36A9F16C97D546E0971E87AA2AB4738B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_36D5862F64D2423EB7F3280849DDA7C0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -237,7 +369,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3AB6519DFAC54C7FAAD35D898A4E23DD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3C4DAB9C96804FD682EBBC9BCA489A0A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3F0F7232E02246529840143E7EC02F44"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -297,6 +441,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_49794FF79975402E977C1D9D41C2EA08"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4D28DCC7AF154031909B0CF152FD5A87"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -321,7 +471,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_531D812CA966410588DE4B4BCA1598C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_53AB85D7D1B74142AA762CEE181F6AA7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_54922EB677634DC8B620E4C3228D75D2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -333,13 +495,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_570CCE21C0654DEA98E4197A005F3751"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_58360E4EB3704CF7B52A0D7069816360"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_59B4A822138E4F7998095DC0D0C6D470"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5D765C59F2C54AD1A6AB151C38A53CC9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F4023B03E50449EB7A28E878E579E6F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6295D8886EAD40F18EC562EC2CEB206B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_639CAEA1AD8B466AAA6A0B5BEA01BBD5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -375,6 +567,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_68C86C49ECE84EEC9784D3091DF00D51"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -405,7 +603,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6FC96FF82CF644C9AD3194BE7B4147B9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7087C09A84234F42BC40ED07F3FCBFD0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_715C45A1D8C54292B19C29F29B7AC203"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_72C70E416FB145BE89CB6ED553AB6003"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -423,6 +639,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_74138A38D52A46C8A9119DAE0CD1B252"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_74F859FE8A72440D96594267AC6F972B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -430,6 +652,18 @@
         "Entry"
         {
         "MsmKey" = "8:_75B9AE3CBE4B4EF3890E3449457F481F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_78428F7728EF4C73A1060C8AC2671BB8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7883E8B3BA2D40569E6EC2D6FE057DF8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -495,6 +729,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8A010C2B33F04A5AA2DE4CCC6169469F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8BC63F5D650E43E6B409E565288EF05F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -537,6 +777,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_928C2AB1AF35439E96B7D4BEF16C8DD3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_92FC9E8EB6AA45C1B9E50A78B48FF474"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -549,7 +795,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_93E669E9156C4F988A63D6180D2BF291"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9433B9394C44450D81040E003F5CD3D0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9444A3EECC114BF8BE5AE745C5A4A83D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -567,7 +825,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_97C13B935A8F497B8A517E7D53D21794"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_98607324D4CC41CAA75AC9B0000B7840"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9872232D5FA849C988B1C28C85340058"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -579,32 +849,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9899DC0D141B4158A418E897E4E97230"
+        "MsmKey" = "8:_988F69261582427D8F8B75F6248ABB70"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9926187F5A7F48E8AD47248C5E7EA2B1"
-        "OwnerKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
+        "MsmKey" = "8:_9892ACDC5337457F90CE6C492D63E485"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9926187F5A7F48E8AD47248C5E7EA2B1"
-        "OwnerKey" = "8:_F42EAE68D9EA0303B772828A50BD12D0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9926187F5A7F48E8AD47248C5E7EA2B1"
-        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9926187F5A7F48E8AD47248C5E7EA2B1"
-        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
+        "MsmKey" = "8:_9899DC0D141B4158A418E897E4E97230"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -616,6 +874,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9C08608EE2B14316B0F021FE1ECA52CA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9C94A1FFC30A4EFD9C04B4C643306A04"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -645,7 +909,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9F5DA11420D34614BE62721B37395BFF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9FBA78C00F8347E9A8A2DB908EF056E6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A0B67A270FBA479AADA76B7C79A1BC5B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -663,7 +939,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A1985F6330C84A2295FA86FDDAC77971"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A4BF37C985CC41B188DE0679BA6FDDE3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A77492616E084B27B3676E14DCEFA59E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AC35952988E441178B990D9CEB922750"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AC6C54EC398946CBAA8E88BA1EB27F20"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE30E9A44FB446748C3943417D787BAE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AF4B91FD09694800B4BBD9C2619BF7EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -687,7 +999,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B4E529B107844FF0848ACF0329E0139A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B692635690954016B062C9174C1F7345"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B6943C2405724603865B347C6DB7A70C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -705,6 +1029,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B9513913DBEA40808C2E5FD64D408A30"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B9E9C1F95B06488B88D65DEA31BF5696"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD0F3FBCCFA94353844D2F622F4EB3F7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BE359E46F56F4DDEA099762710630340"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -717,7 +1059,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C05E964A8B1A42C6993AD40B29F5D716"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C10D82DAB3474A8E89D694A8E0B8BD64"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C1BD1EE2884C424FB568B60176687BF1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C23E61A3A42347BF9CE38A54A723AC09"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C3F7BC3385AB4A49B1D1C7A3A571F31E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C79A24D590D745BB97F8C3123B309A23"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA598E4F8DA847F78AEDE967D127F37F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -737,6 +1115,42 @@
         {
         "MsmKey" = "8:_CB78F4B70B0F403792C43B05DC5E437A"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_3AB6519DFAC54C7FAAD35D898A4E23DD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_FFFE0271E77A43019DABA855D61A78A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_202B6FB3B70410FA36735A718C14B418"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
+        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -777,6 +1191,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D9B3BADC27BD4BE8BFA6CB69F73B6A80"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D9F068B210834B10B31A6688957EE0E1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D9FE90EA647C424F9C40073C890387FE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -784,6 +1210,18 @@
         "Entry"
         {
         "MsmKey" = "8:_DA1801C1ED334EC2B78D6A75A0132A16"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DE228BDD44984765B508093D502EA54E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DF8C02A6F7A9438A9FA9BF2B7178E0C2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -825,7 +1263,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E9611E540B974B5CA5510EDEAD264837"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E9B2162F33A04B95BF6442362B8A6754"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EB794097918A4DDAA5D9158964F80E14"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ECD74B950A014090AC56428A8E135B20"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -843,13 +1299,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F42EAE68D9EA0303B772828A50BD12D0"
-        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
+        "MsmKey" = "8:_F3E61E33D83F42A5B8C4ED6DDF5C3774"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F46BFAFAF8BC4DAF88B6EB3CD2D6E94A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F6C9653AC7DB44FEB46FE664BC2212E5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F79608856828480588C3BBE20B48CD4B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F9544798EB5D4E458AA2A7B384D1008B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FB4BE94F2C9D4CC3A8B14D45DEBA0746"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -868,6 +1348,12 @@
         "Entry"
         {
         "MsmKey" = "8:_FDAEBDF58F374CDAAA6310A5E6121C25"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FFFE0271E77A43019DABA855D61A78A6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -998,6 +1484,126 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_00B585FEDFC84CAF9F074D4987558DA0"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\spell.js"
+            "TargetName" = "8:spell.js"
+            "Tag" = "8:"
+            "Folder" = "8:_79534C458AF74424ABA6D603E414767E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_00C5BD24C44C41B0852636B65E243AE1"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\copy.gif"
+            "TargetName" = "8:copy.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_0138DB0BF8574C51A9747B383B94A14A"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\cut.gif"
+            "TargetName" = "8:cut.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_01E340BEED9A48CA9EA0FA5686ED0FB0"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\spellcheck.gif"
+            "TargetName" = "8:spellcheck.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_02F743C8743344F2874209ACE174F357"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\strikethrough.gif"
+            "TargetName" = "8:strikethrough.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_0328E01CCAF74F749B26C8A0BCF5A27F"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\redo.gif"
+            "TargetName" = "8:redo.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_03B02D8F23AE42A7B99F0F368BCBD866"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SpellingForm.cs"
@@ -1078,6 +1684,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_07423C0483EB4C57AEFC319F4B8DA78C"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\inserttablecolumn.gif"
+            "TargetName" = "8:inserttablecolumn.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_085B18A12085448D9D9F8D85D7B61580"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\spell.js"
@@ -1098,12 +1724,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_0ABF8D1B25904B45BCF7911B7C003243"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\paste.gif"
+            "TargetName" = "8:paste.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_0C0DF345DBA147DA9362F68D2E77A02C"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\undo.gif"
             "TargetName" = "8:undo.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_0E03E1D2B0C64A72A8DB023DBC0F303E"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\justifyright.gif"
+            "TargetName" = "8:justifyright.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_0E78D4DAF1544030BBCAC7BFD25A714B"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\separator.vertical.gif"
+            "TargetName" = "8:separator.vertical.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1238,6 +1924,66 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_144327790A3442A9B478F1C6F6D2271A"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\unlink.gif"
+            "TargetName" = "8:unlink.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_150E6BA876F14257AD5F3221838C8AC2"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\justifyleft.gif"
+            "TargetName" = "8:justifyleft.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_18B7E24612B6404FBC615D43A93252C2"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\numberedlist.gif"
+            "TargetName" = "8:numberedlist.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_1989EC9D66E54019B40AD32358C19844"
             {
             "SourcePath" = "8:..\\..\\dic\\en-CA.dic"
@@ -1298,6 +2044,57 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{FB480208-1853-44D0-9ABD-A3B734C3FAAA}:_202B6FB3B70410FA36735A718C14B418"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.6.31985, Culture=neutral, PublicKeyToken=318b389f0db66e46"
+                "ScatterAssemblies"
+                {
+                    "_202B6FB3B70410FA36735A718C14B418"
+                    {
+                    "Name" = "8:NetSpell.SpellChecker.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NetSpell.SpellChecker.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AAC41B5B395945F08BE81359E1BAC741"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_21719D88DBB748E2A8ED752B573F5F74"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\fontbackcolorpicker.gif"
+            "TargetName" = "8:fontbackcolorpicker.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_222CA4F2E82140E1AE6F994CDD0E8544"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\italic.gif"
@@ -1318,12 +2115,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_226730DFAF40457F92F6AF446BF70B01"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\justifycenter.gif"
+            "TargetName" = "8:justifycenter.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_22ACDB184E514508BBD92CA2390CDF37"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\insertrule.gif"
             "TargetName" = "8:insertrule.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_245FDCA4B47E4B4CA5C5D72B96C3C426"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\justifyfull.gif"
+            "TargetName" = "8:justifyfull.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_2541C2527FD54D51A9232F7BC589EF0F"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\print.gif"
+            "TargetName" = "8:print.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1518,6 +2375,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_2E4F42DDFA7B49E7A972C5ED08E34B16"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\es-ES.xml"
+            "TargetName" = "8:es-ES.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_2E639566BFF44C47AA2C809107B7F1BB"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.TextEditor\\DocumentForm.cs"
@@ -1544,6 +2421,26 @@
             "TargetName" = "8:PerformanceTest.cs"
             "Tag" = "8:"
             "Folder" = "8:_8E6606DE50064E82850656D1FC6D67B3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_2FE1B077EBE8438CBF2DF2D5EA7E7377"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\Languages.xml"
+            "TargetName" = "8:Languages.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1638,6 +2535,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_33C559D8ED7141AA841DEF0CA8D2AA05"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\italic.gif"
+            "TargetName" = "8:italic.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_35171C98CAB240448FE3F258F352EF1D"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SpellingForm.resx"
@@ -1664,6 +2581,26 @@
             "TargetName" = "8:OptionsForm.cs"
             "Tag" = "8:"
             "Folder" = "8:_7C8A93EB6C8F41009C3D0F815FC594E8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_36D5862F64D2423EB7F3280849DDA7C0"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\underline.gif"
+            "TargetName" = "8:underline.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1718,12 +2655,63 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{FB480208-1853-44D0-9ABD-A3B734C3FAAA}:_3AB6519DFAC54C7FAAD35D898A4E23DD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.6.31985, Culture=neutral, PublicKeyToken=318b389f0db66e46"
+                "ScatterAssemblies"
+                {
+                    "_3AB6519DFAC54C7FAAD35D898A4E23DD"
+                    {
+                    "Name" = "8:NetSpell.SpellChecker.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\bin\\NetSpell.SpellChecker.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BA416E85EF8A41029821970D8C8366B1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_3C4DAB9C96804FD682EBBC9BCA489A0A"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\justifyright.gif"
             "TargetName" = "8:justifyright.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_3F0F7232E02246529840143E7EC02F44"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\fontforecolorpicker.gif"
+            "TargetName" = "8:fontforecolorpicker.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1918,6 +2906,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_49794FF79975402E977C1D9D41C2EA08"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\default.aspx"
+            "TargetName" = "8:default.aspx"
+            "Tag" = "8:"
+            "Folder" = "8:_79534C458AF74424ABA6D603E414767E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_4D28DCC7AF154031909B0CF152FD5A87"
             {
             "SourcePath" = "8:..\\NetSpell.DictionaryBuild\\DictionaryForm.resx"
@@ -2009,12 +3017,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_531D812CA966410588DE4B4BCA1598C2"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\inserttime.gif"
+            "TargetName" = "8:inserttime.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_53AB85D7D1B74142AA762CEE181F6AA7"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\doc\\NetSpell.ndoc"
             "TargetName" = "8:NetSpell.ndoc"
             "Tag" = "8:"
             "Folder" = "8:_514E97E1792E4F23A0D01179FB3BD5AD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_54922EB677634DC8B620E4C3228D75D2"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\insertimagefromgallery.gif"
+            "TargetName" = "8:insertimagefromgallery.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2049,6 +3097,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_570CCE21C0654DEA98E4197A005F3751"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\zh-cn.xml"
+            "TargetName" = "8:zh-cn.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_58360E4EB3704CF7B52A0D7069816360"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.TextEditor\\TextEditor.sln"
@@ -2069,12 +3137,92 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_59B4A822138E4F7998095DC0D0C6D470"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\superscript.gif"
+            "TargetName" = "8:superscript.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_5D765C59F2C54AD1A6AB151C38A53CC9"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\underline.gif"
             "TargetName" = "8:underline.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_5F4023B03E50449EB7A28E878E579E6F"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\web.config"
+            "TargetName" = "8:web.config"
+            "Tag" = "8:"
+            "Folder" = "8:_79534C458AF74424ABA6D603E414767E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_6295D8886EAD40F18EC562EC2CEB206B"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\nl-NL.xml"
+            "TargetName" = "8:nl-NL.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_639CAEA1AD8B466AAA6A0B5BEA01BBD5"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\en-en.xml"
+            "TargetName" = "8:en-en.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2189,6 +3337,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_68C86C49ECE84EEC9784D3091DF00D51"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\csharp.gif"
+            "TargetName" = "8:csharp.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_6B5FE88CD8F44537B2DBE7ED53029B3F"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Spelling.cs"
@@ -2269,12 +3437,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_6FC96FF82CF644C9AD3194BE7B4147B9"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.horizontal.background.gif"
+            "TargetName" = "8:toolbar.horizontal.background.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_7087C09A84234F42BC40ED07F3FCBFD0"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\justifyleft.gif"
             "TargetName" = "8:justifyleft.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_715C45A1D8C54292B19C29F29B7AC203"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\pt-pt.xml"
+            "TargetName" = "8:pt-pt.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_72C70E416FB145BE89CB6ED553AB6003"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.vertical.start.gif"
+            "TargetName" = "8:toolbar.vertical.start.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2329,6 +3557,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_74138A38D52A46C8A9119DAE0CD1B252"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\mode.html.gif"
+            "TargetName" = "8:mode.html.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_74F859FE8A72440D96594267AC6F972B"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.WinForm.VBnet\\Demo.WinForm.VBnet.sln"
@@ -2355,6 +3603,46 @@
             "TargetName" = "8:DictionaryTest.cs"
             "Tag" = "8:"
             "Folder" = "8:_8E6606DE50064E82850656D1FC6D67B3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_78428F7728EF4C73A1060C8AC2671BB8"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\insertimage.gif"
+            "TargetName" = "8:insertimage.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_7883E8B3BA2D40569E6EC2D6FE057DF8"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\NetSpell.WinForm.Test.csproj"
+            "TargetName" = "8:NetSpell.WinForm.Test.csproj"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2569,6 +3857,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_8A010C2B33F04A5AA2DE4CCC6169469F"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbarbutton.down.gif"
+            "TargetName" = "8:toolbarbutton.down.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_8BC63F5D650E43E6B409E565288EF05F"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\unlink.gif"
@@ -2709,6 +4017,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_928C2AB1AF35439E96B7D4BEF16C8DD3"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\wordclean.gif"
+            "TargetName" = "8:wordclean.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_92FC9E8EB6AA45C1B9E50A78B48FF474"
             {
             "SourcePath" = "8:..\\..\\doc\\NetSpell.chm"
@@ -2749,12 +4077,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_93E669E9156C4F988A63D6180D2BF291"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\de-de.xml"
+            "TargetName" = "8:de-de.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_9433B9394C44450D81040E003F5CD3D0"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\NetSpell.SpellChecker.csproj"
             "TargetName" = "8:NetSpell.SpellChecker.csproj"
             "Tag" = "8:"
             "Folder" = "8:_42B138EE563344B2962E26214EEF5CE0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_9444A3EECC114BF8BE5AE745C5A4A83D"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\deletetablerow.gif"
+            "TargetName" = "8:deletetablerow.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2809,6 +4177,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_97C13B935A8F497B8A517E7D53D21794"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\dic\\en-US.dic"
+            "TargetName" = "8:en-US.dic"
+            "Tag" = "8:"
+            "Folder" = "8:_D93DAEE580AF44DC805B56A7CDCC46F6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_98607324D4CC41CAA75AC9B0000B7840"
             {
             "SourcePath" = "8:..\\..\\web.config"
@@ -2829,12 +4217,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_9872232D5FA849C988B1C28C85340058"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\inserttable.gif"
+            "TargetName" = "8:inserttable.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_98888197520D4C42B811A647E88D3AAA"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Dictionary\\Phonetic\\PhoneticRuleCollection.cs"
             "TargetName" = "8:PhoneticRuleCollection.cs"
             "Tag" = "8:"
             "Folder" = "8:_ACD5B32445C34EAE860D57AFFA17493E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_988F69261582427D8F8B75F6248ABB70"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\outdent.gif"
+            "TargetName" = "8:outdent.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_9892ACDC5337457F90CE6C492D63E485"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\wordcount.gif"
+            "TargetName" = "8:wordcount.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2895,6 +4343,26 @@
             "TargetName" = "8:app.config"
             "Tag" = "8:"
             "Folder" = "8:_339A168FC3FB4A4B805CE835461DAA31"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_9C94A1FFC30A4EFD9C04B4C643306A04"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\subscript.gif"
+            "TargetName" = "8:subscript.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2989,12 +4457,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_9F5DA11420D34614BE62721B37395BFF"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\ja-JP.xml"
+            "TargetName" = "8:ja-JP.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_9FBA78C00F8347E9A8A2DB908EF056E6"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.TextEditor\\Documents\\demo.xml"
             "TargetName" = "8:demo.xml"
             "Tag" = "8:"
             "Folder" = "8:_9D16849B9DAD4343AF4391935EB726CE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_A0B67A270FBA479AADA76B7C79A1BC5B"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\indent.gif"
+            "TargetName" = "8:indent.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3049,12 +4557,132 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_A1985F6330C84A2295FA86FDDAC77971"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.horizontal.end.gif"
+            "TargetName" = "8:toolbar.horizontal.end.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_A4BF37C985CC41B188DE0679BA6FDDE3"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\fr-FR.xml"
+            "TargetName" = "8:fr-FR.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_A77492616E084B27B3676E14DCEFA59E"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\ReplaceWordEventArgs.cs"
             "TargetName" = "8:ReplaceWordEventArgs.cs"
             "Tag" = "8:"
             "Folder" = "8:_42B138EE563344B2962E26214EEF5CE0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_AC35952988E441178B990D9CEB922750"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbarbutton.over.gif"
+            "TargetName" = "8:toolbarbutton.over.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_AC6C54EC398946CBAA8E88BA1EB27F20"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\separator.horizontal.gif"
+            "TargetName" = "8:separator.horizontal.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_AE30E9A44FB446748C3943417D787BAE"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\insertdate.gif"
+            "TargetName" = "8:insertdate.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_AF4B91FD09694800B4BBD9C2619BF7EA"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\removeformat.gif"
+            "TargetName" = "8:removeformat.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3129,12 +4757,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_B4E529B107844FF0848ACF0329E0139A"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\delete.gif"
+            "TargetName" = "8:delete.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_B692635690954016B062C9174C1F7345"
             {
             "SourcePath" = "8:..\\..\\doc\\NetSpell.html"
             "TargetName" = "8:NetSpell.html"
             "Tag" = "8:"
             "Folder" = "8:_ADF6B662847E4A2AA7C4677D03E8A9E5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_B6943C2405724603865B347C6DB7A70C"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\deletetablecolumn.gif"
+            "TargetName" = "8:deletetablecolumn.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3189,6 +4857,66 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_B9513913DBEA40808C2E5FD64D408A30"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\App.ico"
+            "TargetName" = "8:App.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_B9E9C1F95B06488B88D65DEA31BF5696"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\spell.css"
+            "TargetName" = "8:spell.css"
+            "Tag" = "8:"
+            "Folder" = "8:_79534C458AF74424ABA6D603E414767E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_BD0F3FBCCFA94353844D2F622F4EB3F7"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\mode.design.gif"
+            "TargetName" = "8:mode.design.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_BE359E46F56F4DDEA099762710630340"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.WinForm.VBnet\\DemoForm.resx"
@@ -3229,12 +4957,132 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C05E964A8B1A42C6993AD40B29F5D716"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\save.gif"
+            "TargetName" = "8:save.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C10D82DAB3474A8E89D694A8E0B8BD64"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\bold.gif"
+            "TargetName" = "8:bold.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C1BD1EE2884C424FB568B60176687BF1"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\SpellCheck.aspx"
+            "TargetName" = "8:SpellCheck.aspx"
+            "Tag" = "8:"
+            "Folder" = "8:_79534C458AF74424ABA6D603E414767E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C23E61A3A42347BF9CE38A54A723AC09"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\DemoForm.cs"
+            "TargetName" = "8:DemoForm.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C3F7BC3385AB4A49B1D1C7A3A571F31E"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.horizontal.start.gif"
+            "TargetName" = "8:toolbar.horizontal.start.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_C79A24D590D745BB97F8C3123B309A23"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.HtmlEditor\\images\\subscript.gif"
             "TargetName" = "8:subscript.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_CA598E4F8DA847F78AEDE967D127F37F"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\bulletedlist.gif"
+            "TargetName" = "8:bulletedlist.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3429,6 +5277,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_D9B3BADC27BD4BE8BFA6CB69F73B6A80"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\undo.gif"
+            "TargetName" = "8:undo.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_D9F068B210834B10B31A6688957EE0E1"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\app.config"
+            "TargetName" = "8:app.config"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_D9FE90EA647C424F9C40073C890387FE"
             {
             "SourcePath" = "8:..\\NetSpell.build"
@@ -3455,6 +5343,46 @@
             "TargetName" = "8:redo.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_DE228BDD44984765B508093D502EA54E"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\createlink.gif"
+            "TargetName" = "8:createlink.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_DF8C02A6F7A9438A9FA9BF2B7178E0C2"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\FreeTextBox-ToolbarItemsScript.js"
+            "TargetName" = "8:FreeTextBox-ToolbarItemsScript.js"
+            "Tag" = "8:"
+            "Folder" = "8:_F9E5677BED714FE5A94D8A9C974F7342"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3589,12 +5517,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_E9611E540B974B5CA5510EDEAD264837"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\AssemblyInfo.cs"
+            "TargetName" = "8:AssemblyInfo.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_E9B2162F33A04B95BF6442362B8A6754"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Dictionary\\Affix\\AffixUtility.cs"
             "TargetName" = "8:AffixUtility.cs"
             "Tag" = "8:"
             "Folder" = "8:_76EEC2B07535424482B7BC665566340F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_EB794097918A4DDAA5D9158964F80E14"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\insertrule.gif"
+            "TargetName" = "8:insertrule.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_ECD74B950A014090AC56428A8E135B20"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\Languages\\ko-kr.xml"
+            "TargetName" = "8:ko-kr.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_860467968FB94B448E85817D6C731436"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3633,7 +5621,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NetSpell.DictionaryBuild, Version=2.0.1465.37916, Culture=neutral"
+            "AssemblyAsmDisplayName" = "8:NetSpell.DictionaryBuild, Version=2.1.1545.31986, Culture=neutral"
                 "ScatterAssemblies"
                 {
                     "_F3E099D359B940D597176BA1DB77210F"
@@ -3660,23 +5648,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{FB480208-1853-44D0-9ABD-A3B734C3FAAA}:_F42EAE68D9EA0303B772828A50BD12D0"
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_F3E61E33D83F42A5B8C4ED6DDF5C3774"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.4.37915, Culture=neutral, PublicKeyToken=318b389f0db66e46"
-                "ScatterAssemblies"
-                {
-                    "_F42EAE68D9EA0303B772828A50BD12D0"
-                    {
-                    "Name" = "8:NetSpell.SpellChecker.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:NetSpell.SpellChecker.DLL"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.vertical.end.gif"
+            "TargetName" = "8:toolbar.vertical.end.gif"
             "Tag" = "8:"
-            "Folder" = "8:_AAC41B5B395945F08BE81359E1BAC741"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3688,7 +5665,67 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_F46BFAFAF8BC4DAF88B6EB3CD2D6E94A"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\toolbar.vertical.background.gif"
+            "TargetName" = "8:toolbar.vertical.background.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_F6C9653AC7DB44FEB46FE664BC2212E5"
+            {
+            "SourcePath" = "8:..\\NetSpell.WinForm.Test\\DemoForm.resx"
+            "TargetName" = "8:DemoForm.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_F79608856828480588C3BBE20B48CD4B"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\inserttablerow.gif"
+            "TargetName" = "8:inserttablerow.gif"
+            "Tag" = "8:"
+            "Folder" = "8:_66E3E9E8D0C241EF98E8F611DA3783F9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_F9544798EB5D4E458AA2A7B384D1008B"
@@ -3697,6 +5734,26 @@
             "TargetName" = "8:DemoForm.cs"
             "Tag" = "8:"
             "Folder" = "8:_339A168FC3FB4A4B805CE835461DAA31"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_FB4BE94F2C9D4CC3A8B14D45DEBA0746"
+            {
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\FreeTextBox-MainScript.js"
+            "TargetName" = "8:FreeTextBox-MainScript.js"
+            "Tag" = "8:"
+            "Folder" = "8:_F9E5677BED714FE5A94D8A9C974F7342"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3757,6 +5814,37 @@
             "TargetName" = "8:NetSpell.Tests.csproj"
             "Tag" = "8:"
             "Folder" = "8:_8E6606DE50064E82850656D1FC6D67B3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{FB480208-1853-44D0-9ABD-A3B734C3FAAA}:_FFFE0271E77A43019DABA855D61A78A6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:FreeTextBox, Version=2.0.5000.3, Culture=neutral, PublicKeyToken=5962a4e684a48b87"
+                "ScatterAssemblies"
+                {
+                    "_FFFE0271E77A43019DABA855D61A78A6"
+                    {
+                    "Name" = "8:FreeTextBox.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\bin\\FreeTextBox.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BA416E85EF8A41029821970D8C8366B1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3838,6 +5926,83 @@
                             "Property" = "8:_BA283AE43C5B44F6B53A9F61516266E5"
                                 "Folders"
                                 {
+                                }
+                            }
+                            "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_79534C458AF74424ABA6D603E414767E"
+                            {
+                            "Name" = "8:Demo.Web.FreeTextBox"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_E9FC9D1FBCB9485DB9E7EEEAD7DE5C8A"
+                                "Folders"
+                                {
+                                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_AF4233D8160243BC8FE3A658AC5E0BE3"
+                                    {
+                                    "Name" = "8:aspnet_client"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_FAE776ABB79946FBA3D956B3AD716497"
+                                        "Folders"
+                                        {
+                                            "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_F9E5677BED714FE5A94D8A9C974F7342"
+                                            {
+                                            "Name" = "8:FreeTextBox"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_6BC1B736981942F48F8510BD59986F29"
+                                                "Folders"
+                                                {
+                                                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_66E3E9E8D0C241EF98E8F611DA3783F9"
+                                                    {
+                                                    "Name" = "8:images"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "Property" = "8:_11EBDE42E861453B98F10A31A03C8738"
+                                                        "Folders"
+                                                        {
+                                                        }
+                                                    }
+                                                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_860467968FB94B448E85817D6C731436"
+                                                    {
+                                                    "Name" = "8:Languages"
+                                                    "AlwaysCreate" = "11:FALSE"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "Property" = "8:_1EEC0D57DB474A12B61C946DBB542BF3"
+                                                        "Folders"
+                                                        {
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_BA416E85EF8A41029821970D8C8366B1"
+                                    {
+                                    "Name" = "8:bin"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_CC31C8DB3E6343288E49756244A937C0"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_D93DAEE580AF44DC805B56A7CDCC46F6"
+                                    {
+                                    "Name" = "8:dic"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_96503DFF06814280B767B0404633C005"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
                                 }
                             }
                             "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_80EAF33E002145479E72E0D776EADC06"
@@ -3928,6 +6093,17 @@
                     "Property" = "8:_19F447DE755B4A6D9613B79B1B5BF95D"
                         "Folders"
                         {
+                            "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_3221DA8DB328413B843A0558B6057311"
+                            {
+                            "Name" = "8:NetSpell.WinForm.Test"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_CA3B3474E7BB4E488A5DAEC624086693"
+                                "Folders"
+                                {
+                                }
+                            }
                             "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_42B138EE563344B2962E26214EEF5CE0"
                             {
                             "Name" = "8:NetSpell.SpellChecker"
@@ -4088,7 +6264,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NetSpell"
         "ProductCode" = "8:{C0E2C644-F015-4356-9D37-A20356A70033}"
-        "PackageCode" = "8:{502EF89E-D228-462B-BDF2-C5F169C330A0}"
+        "PackageCode" = "8:{E577525B-83D4-4B2D-8E5F-03C08EE8B790}"
         "UpgradeCode" = "8:{E30E2359-6E76-4A86-9723-851D719D55B0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -4841,7 +7017,7 @@
         }
         "MergeModule"
         {
-            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_9926187F5A7F48E8AD47248C5E7EA2B1"
+            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_CCEBDE88FE1D4CBF9BD35688074926F6"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
