@@ -15,6 +15,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using System;
+using System.Collections;
 using NUnit.Framework;
 using NetSpell.SpellChecker;
 
@@ -49,6 +50,7 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void AttachEvents()
 		{
+			_SpellChecker.ShowDialog = false;
 			_SpellChecker.MisspelledWord += new Spelling.MisspelledWordEventHandler(MisspelledWord);
 			_SpellChecker.DoubledWord += new Spelling.DoubledWordEventHandler(DoubleWord);
 			_SpellChecker.EndOfText += new Spelling.EndOfTextEventHandler(EndOfText);
@@ -106,6 +108,22 @@ namespace NetSpell.Tests
 			Assertion.AssertEquals("Incorrect WordOffset", 7, _SpellChecker.WordIndex);
 			Assertion.AssertEquals("Incorrect CurrentWord", "errr", _SpellChecker.CurrentWord);
 			
+		}
+
+		/// <summary>
+		///		NUnit Test Function
+		/// </summary>
+		[Test]
+		public void BadChar()
+		{
+			_SpellChecker.Text = "this is a tst of a tst errr";
+
+			_SpellChecker.SpellCheck();
+			
+			ArrayList tempSuggestion = new ArrayList();
+
+			_SpellChecker.BadChar(ref tempSuggestion);
+
 		}
 
 		/// <summary>

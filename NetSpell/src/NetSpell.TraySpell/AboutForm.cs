@@ -46,6 +46,7 @@ namespace NetSpell.TraySpell
 		internal System.Windows.Forms.Label lblTitle;
 		internal System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.Button okButton;
+		private System.Windows.Forms.Label lblCompany;
 		internal System.Windows.Forms.PictureBox pbIcon;
 
 		private void AboutForm_Load(object sender, System.EventArgs e)
@@ -67,7 +68,8 @@ namespace NetSpell.TraySpell
 				this.lblVersion.Text = String.Format("Version {0}", aInfo.Version);
 				this.lblCopyright.Text = aInfo.Copyright;
 				this.lblDescription.Text = aInfo.Description;
-				
+				this.lblCompany.Text = aInfo.Company;
+
 				assembliesListView.Items.Clear();
 
 				// Get all modules
@@ -161,12 +163,13 @@ namespace NetSpell.TraySpell
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.pbIcon = new System.Windows.Forms.PictureBox();
+			this.lblCompany = new System.Windows.Forms.Label();
 			this.VersionGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// okButton
 			// 
-			this.okButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right);
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.okButton.Location = new System.Drawing.Point(328, 288);
@@ -176,13 +179,12 @@ namespace NetSpell.TraySpell
 			// 
 			// VersionGroup
 			// 
-			this.VersionGroup.Controls.AddRange(new System.Windows.Forms.Control[] {
-																					   this.assembliesListView});
+			this.VersionGroup.Controls.Add(this.assembliesListView);
 			this.VersionGroup.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.VersionGroup.ForeColor = System.Drawing.SystemColors.Highlight;
-			this.VersionGroup.Location = new System.Drawing.Point(8, 120);
+			this.VersionGroup.Location = new System.Drawing.Point(8, 136);
 			this.VersionGroup.Name = "VersionGroup";
-			this.VersionGroup.Size = new System.Drawing.Size(400, 160);
+			this.VersionGroup.Size = new System.Drawing.Size(400, 144);
 			this.VersionGroup.TabIndex = 9;
 			this.VersionGroup.TabStop = false;
 			this.VersionGroup.Text = "Version Information";
@@ -196,7 +198,7 @@ namespace NetSpell.TraySpell
 			this.assembliesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.assembliesListView.Location = new System.Drawing.Point(8, 16);
 			this.assembliesListView.Name = "assembliesListView";
-			this.assembliesListView.Size = new System.Drawing.Size(384, 136);
+			this.assembliesListView.Size = new System.Drawing.Size(384, 120);
 			this.assembliesListView.TabIndex = 9;
 			this.assembliesListView.View = System.Windows.Forms.View.Details;
 			// 
@@ -229,7 +231,7 @@ namespace NetSpell.TraySpell
 			this.lblDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl;
 			this.lblDescription.Location = new System.Drawing.Point(72, 80);
 			this.lblDescription.Name = "lblDescription";
-			this.lblDescription.Size = new System.Drawing.Size(328, 40);
+			this.lblDescription.Size = new System.Drawing.Size(328, 32);
 			this.lblDescription.TabIndex = 13;
 			this.lblDescription.Text = "Application Description";
 			// 
@@ -261,20 +263,28 @@ namespace NetSpell.TraySpell
 			this.pbIcon.TabIndex = 10;
 			this.pbIcon.TabStop = false;
 			// 
+			// lblCompany
+			// 
+			this.lblCompany.Location = new System.Drawing.Point(72, 112);
+			this.lblCompany.Name = "lblCompany";
+			this.lblCompany.Size = new System.Drawing.Size(328, 23);
+			this.lblCompany.TabIndex = 15;
+			this.lblCompany.Text = "Application Company";
+			// 
 			// AboutForm
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.okButton;
 			this.ClientSize = new System.Drawing.Size(418, 320);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																		  this.lblCopyright,
-																		  this.lblDescription,
-																		  this.lblVersion,
-																		  this.lblTitle,
-																		  this.pbIcon,
-																		  this.VersionGroup,
-																		  this.okButton});
+			this.Controls.Add(this.lblCompany);
+			this.Controls.Add(this.lblCopyright);
+			this.Controls.Add(this.lblDescription);
+			this.Controls.Add(this.lblVersion);
+			this.Controls.Add(this.lblTitle);
+			this.Controls.Add(this.pbIcon);
+			this.Controls.Add(this.VersionGroup);
+			this.Controls.Add(this.okButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

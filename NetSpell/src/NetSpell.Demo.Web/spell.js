@@ -1,22 +1,18 @@
 /***********************************************************
  * launches the spell checker
  ***********************************************************/
-var pubForm
-var pubBody
-var pubURL
+var pubBody = "";
+var pubURL = "";
    
-function checkSpelling(objForm, strBody, strURL) {
+function checkSpelling(strBody, strURL) {
 	
 	if (navigator.appVersion.indexOf("MSIE 3")==-1) {
-		pubForm = objForm;
 		pubBody = strBody;
 		pubURL = strURL;
 		
-		for (i = 0; i < pubForm.length; i++) {
-			if (pubForm.elements[i].name == pubBody) {
-				var strTextArea = pubForm.elements[i].value;
-			}
-		}
+		var strTextArea = "";
+		var oElement = document.getElementById(pubBody);
+		if (oElement) strTextArea = oElement.value;
 		
 		var newWindow = window.open("","newWindow","height=320,width=400");
 		
@@ -49,11 +45,8 @@ function checkSpelling(objForm, strBody, strURL) {
  ***********************************************************/
 function updateForm(strReturnText) 
 {
-	for (i = 0; i < pubForm.length; i++) {
-		if (pubForm.elements[i].name == pubBody) {
-			pubForm.elements[i].value = strReturnText;
-		}
-	}
+	var oElement = document.getElementById(pubBody);
+	if (oElement) oElement.value = strReturnText;
 }
 
 /***********************************************************

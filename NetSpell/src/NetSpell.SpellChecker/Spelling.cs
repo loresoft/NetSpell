@@ -20,6 +20,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows.Forms.Design;
+using System.Drawing.Design;
 
 namespace NetSpell.SpellChecker
 {
@@ -30,39 +32,57 @@ namespace NetSpell.SpellChecker
 	public class Spelling : System.ComponentModel.Component
 	{
 
-
+		private string _CurrentWord = "";
+		private DictionaryCollection _Dictionaries = new DictionaryCollection();
 		
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
-		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex("\\b\\w+\\b", RegexOptions.Compiled);
 		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
-
-		private MatchCollection _words;
-		private DoubleMetaphone _meta = new DoubleMetaphone();
-		private int _mainDictionaryId = -1;
-		private int _userDictionaryId = -1;
-
-		private string _CurrentWord = "";
-		private DictionaryCollection _Dictionaries = new DictionaryCollection();
+		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
+		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
+		
 		private bool _IgnoreAllCapsWords = true;
 		private ArrayList _IgnoreList = new ArrayList();
 		private bool _IgnoreWordsWithDigits = false;
+		private int _mainDictionaryId = -1;
 		private int _MaxSuggestions = 25;
+		private DoubleMetaphone _meta = new DoubleMetaphone();
 		private Hashtable _ReplaceList = new Hashtable();
 		private string _ReplacementWord = "";
 		private bool _ShowDialog = true;
 		private SpellingForm _spellingForm;
 		private ArrayList _Suggestions = new ArrayList();
 		private StringBuilder _Text = new StringBuilder();
+		private int _userDictionaryId = -1;
 		private int _WordCount = 0;
 		private int _WordIndex = 0;
 
-		
+		private MatchCollection _words;
+
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
+
+		// subsitution chars for suggetions
+		private char[] tryme = new char[] {'e', 's', 'i', 'a', 'n', 'r', 't', 'o', 'l',
+			'c', 'd', 'u', 'g', 'm', 'p', 'h', 'b', 'y', 'f', 'v', 'k', 'w'};
+		
+		// common spelling errors
+		private string[] replacementChars = new string[] {"a ei", "ei a", "a ey", "ey a", 
+			"ai ie", "ie ai", "are air", "are ear", "are eir", "air are", "air ere", 
+			"ere air", "ere ear", "ere eir", "ear are", "ear air", "ear ere", 
+			"eir are", "eir ere", "ch te", "te ch", "ch ti", "ti ch", "ch tu", 
+			"tu ch", "ch s", "s ch", "ch k", "k ch", "f ph", "ph f", "gh f", 
+			"f gh", "i igh", "igh i", "i uy", "uy i", "i ee", "ee i", "j di", 
+			"di j", "j gg", "gg j", "j ge", "ge j", "s ti", "ti s", "s ci", 
+			"ci s", "k cc", "cc k", "k qu", "qu k", "kw qu", "o eau", "eau o", 
+			"o ew", "ew o", "oo ew", "ew oo", "ew ui", "ui ew", "oo ui", "ui oo", 
+			"ew u", "u ew", "oo u", "u oo", "u oe", "oe u", "u ieu", "ieu u", 
+			"ue ew", "ew ue", "uff ough", "oo ieu", "ieu oo", "ier ear", "ear ier", 
+			"ear air", "air ear", "w qu", "qu w", "z ss", "ss z", "shun tion", 
+			"shun sion", "shun cion"};
+
 
 		/// <summary>
 		///     This event is fired when word is detected two times in a row
@@ -203,11 +223,6 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Required for Windows.Forms Class Composition Designer support
 		/// </summary>
-		/// <param name="container" type="System.ComponentModel.IContainer">
-		///     <para>
-		///         
-		///     </para>
-		/// </param>
 		public Spelling(System.ComponentModel.IContainer container)
 		{
 			container.Add(this);
@@ -346,12 +361,14 @@ namespace NetSpell.SpellChecker
 				}
 				_Text.Insert(index, _ReplacementWord);
 			}
-			else if (_Text.ToString().Substring(index-1, 2) == "  ")
+			else if (index > 0) 
 			{
-				//removing double space
-				_Text.Remove(index, 1);
+				if (_Text.ToString().Substring(index-1, 2) == "  ")
+				{
+					//removing double space
+					_Text.Remove(index, 1);
+				}
 			}
-
 			this.CalculateWords();
 		}
 
@@ -594,7 +611,7 @@ namespace NetSpell.SpellChecker
 			string priSearch = string.Concat("|", _meta.PrimaryCode, "|");
 			string sndSearch = string.Concat("|", _meta.SecondaryCode, "|");
 
-			// get suggestions
+			// get suggestions by sound
 			foreach (Dictionary dic in _Dictionaries)
 			{
 				foreach (string word in dic.WordList)
@@ -608,12 +625,39 @@ namespace NetSpell.SpellChecker
 				} 
 			} 
 			
+			// suggestions for a typical fault of spelling, that
+			// differs with more, than 1 letter from the right form.
+			this.ReplaceChars(ref tempSuggestion);
+
+			// swap out each char one by one and try all the tryme
+			// chars in its place to see if that makes a good word
+			this.BadChar(ref tempSuggestion);
+
+			// try omitting one char of word at a time
+			this.ExtraChar(ref tempSuggestion);
+
+			// try inserting a tryme character before every letter
+			this.ForgotChar(ref tempSuggestion);
+
+			// split the string into two pieces after every char
+			// if both pieces are good words make them a suggestion
+			this.TwoWords(ref tempSuggestion);
+
+			// try swapping adjacent chars one by one
+			this.SwapChar(ref tempSuggestion);
+
 			tempSuggestion.Sort();  // sorts by word sim score
 			_Suggestions.Clear(); 
 
+			string lastWord = "";
+
 			for (int i = 0; i < tempSuggestion.Count && i < _MaxSuggestions; i++)
 			{
-				_Suggestions.Add(((WordSuggestion)tempSuggestion[i]).Word);
+				if (((WordSuggestion)tempSuggestion[i]).Word != lastWord)
+				{
+					_Suggestions.Add(((WordSuggestion)tempSuggestion[i]).Word);
+				}
+				lastWord = ((WordSuggestion)tempSuggestion[i]).Word;
 			}
 
 		} // suggest
@@ -803,6 +847,7 @@ namespace NetSpell.SpellChecker
 		[DefaultValue("")]
 		[CategoryAttribute("Dictionary")]
 		[Description("The file name for the main dictionary")]
+		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
 		public string MainDictionary
 		{
 			get 
@@ -927,6 +972,7 @@ namespace NetSpell.SpellChecker
 		[DefaultValue("")]
 		[CategoryAttribute("Dictionary")]
 		[Description("The file name for the user dictionary")]
+		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
 		public string UserDictionary
 		{
 			get 
@@ -1003,6 +1049,155 @@ namespace NetSpell.SpellChecker
 			}
 
 		}
+#region ISpell Suggetion Helper functions
+
+		/// <summary>
+		///		swap out each char one by one and try all the tryme
+		///		chars in its place to see if that makes a good word
+		/// </summary>
+		public void BadChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				for (int x = 0; x < tryme.Length; x++)
+				{
+					tempWord[i] = tryme[x];
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+						tempSuggestion.Add(ws);
+					}
+				}				 
+			}
+		}
+
+		/// <summary>
+		///     try omitting one char of word at a time
+		/// </summary>
+		private void ExtraChar(ref ArrayList tempSuggestion)
+		{
+			if (_CurrentWord.Length > 1) 
+			{
+				for (int i = 0; i < _CurrentWord.Length; i++)
+				{
+					StringBuilder tempWord = new StringBuilder(_CurrentWord);
+					tempWord.Remove(i, 1);
+
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+				
+						tempSuggestion.Add(ws);
+					}
+								 
+				}
+			}
+		}
+
+		/// <summary>
+		///     try inserting a tryme character before every letter
+		/// </summary>
+		private void ForgotChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				for (int x = 0; x < tryme.Length; x++)
+				{
+					StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				
+					tempWord.Insert(i, tryme[x]);
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+						tempSuggestion.Add(ws);
+					}
+				}				 
+			}
+		}
+
+		/// <summary>
+		///     suggestions for a typical fault of spelling, that
+		///		differs with more, than 1 letter from the right form.
+		/// </summary>
+		private void ReplaceChars(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < replacementChars.Length; i++)
+			{
+				int split = replacementChars[i].IndexOf(' ');
+				string key = replacementChars[i].Substring(0, split);
+				string replacement = replacementChars[i].Substring(split+1);
+
+				int pos = _CurrentWord.IndexOf(key);
+				while (pos > -1)
+				{
+					string tempWord = _CurrentWord.Substring(0, pos);
+					tempWord += replacement;
+					tempWord += _CurrentWord.Substring(pos + key.Length);
+
+					if (this.TestWord(tempWord))
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord));
+					
+						tempSuggestion.Add(ws);
+					}
+					pos = _CurrentWord.IndexOf(key, pos+1);
+				}
+			}
+		}
+
+		/// <summary>
+		///     try swapping adjacent chars one by one
+		/// </summary>
+		private void SwapChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length - 1; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				
+				char swap = tempWord[i];
+				tempWord[i] = tempWord[i+1];
+				tempWord[i+1] = swap;
+
+				if (this.TestWord(tempWord.ToString())) 
+				{
+					WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+						WordSimilarity(_CurrentWord, tempWord.ToString()));
+				
+					tempSuggestion.Add(ws);
+				}	 
+			}
+		}
+		
+		/// <summary>
+		///     split the string into two pieces after every char
+		///		if both pieces are good words make them a suggestion
+		/// </summary>
+		private void TwoWords(ref ArrayList tempSuggestion)
+		{
+			for (int i = 1; i < _CurrentWord.Length - 1; i++)
+			{
+				string firstWord = _CurrentWord.Substring(0,i);
+				string secondWord = _CurrentWord.Substring(i);
+				
+				if (this.TestWord(firstWord) && this.TestWord(secondWord)) 
+				{
+					string tempWord = firstWord + " " + secondWord;
+					WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
+						WordSimilarity(_CurrentWord, tempWord));
+				
+					tempSuggestion.Add(ws);
+				}	 
+			}
+		}
+
+#endregion
 
 #region Component Designer generated code
 		/// <summary>

@@ -4,6 +4,61 @@
         <name>NetSpell.SpellChecker</name>
     </assembly>
     <members>
+        <member name="T:AssemblyInfo">
+            <summary>
+                AssemblyInfo class
+            </summary>
+        </member>
+        <member name="M:AssemblyInfo.#ctor(System.Type)">
+            <summary>
+                Initialized the AssemblyInfo class with the given type
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.CodeBase">
+            <summary>
+            CodeBase of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Company">
+            <summary>
+            Company of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Copyright">
+            <summary>
+            Copyright of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Description">
+            <summary>
+            Description of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.FullName">
+            <summary>
+            	FullName of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Name">
+            <summary>
+            Name of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Product">
+            <summary>
+            Product of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Title">
+            <summary>
+            Title of Assembly
+            </summary>
+        </member>
+        <member name="P:AssemblyInfo.Version">
+            <summary>
+            Version of Assembly
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary">
             <summary>
             	The Dictionary class encapsulates all functions associated 
@@ -94,20 +149,20 @@
                 Initializes a new instance of 'DictionaryCollection'.
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor(NetSpell.SpellChecker.DictionaryCollection)">
-            <summary>
-                Initializes a new instance of 'DictionaryCollection' based on an already existing instance.
-            </summary>
-            <param name='dicValue'>
-                A 'DictionaryCollection' from which the contents is copied
-            </param>
-        </member>
         <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor(NetSpell.SpellChecker.Dictionary[])">
             <summary>
                 Initializes a new instance of 'DictionaryCollection' with an array of 'Dictionary' objects.
             </summary>
             <param name='dicValue'>
                 An array of 'Dictionary' objects with which to initialize the collection
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor(NetSpell.SpellChecker.DictionaryCollection)">
+            <summary>
+                Initializes a new instance of 'DictionaryCollection' based on an already existing instance.
+            </summary>
+            <param name='dicValue'>
+                A 'DictionaryCollection' from which the contents is copied
             </param>
         </member>
         <member name="M:NetSpell.SpellChecker.DictionaryCollection.Add(NetSpell.SpellChecker.Dictionary)">
@@ -160,6 +215,12 @@
                 The index in the array where copying begins.
             </param>
         </member>
+        <member name="M:NetSpell.SpellChecker.DictionaryCollection.GetEnumerator">
+            <summary>
+                Returns an enumerator that can be used to iterate through
+                the 'DictionaryCollection'.
+            </summary>
+        </member>
         <member name="M:NetSpell.SpellChecker.DictionaryCollection.IndexOf(NetSpell.SpellChecker.Dictionary)">
             <summary>
                 Returns the index of a 'Dictionary' object in the collection.
@@ -181,12 +242,6 @@
             <param name='dicValue'>
                 The item to insert.
             </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.GetEnumerator">
-            <summary>
-                Returns an enumerator that can be used to iterate through
-                the 'DictionaryCollection'.
-            </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.DictionaryCollection.Remove(NetSpell.SpellChecker.Dictionary)">
             <summary>
@@ -217,12 +272,17 @@
                 Enumerator constructor
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.MoveNext">
+        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#MoveNext">
             <summary>
                 Advances the enumerator to the next element of the collection
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#MoveNext">
+        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.MoveNext">
             <summary>
                 Advances the enumerator to the next element of the collection
             </summary>
@@ -232,19 +292,14 @@
                 Sets the enumerator to the first element in the collection
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Reset">
+        <member name="P:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Current">
             <summary>
-                Sets the enumerator to the first element in the collection
+                Gets the current element from the collection
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.Current">
             <summary>
                 Gets the current element from the collection (strongly typed)
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Current">
-            <summary>
-                Gets the current element from the collection
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.DoubleMetaphone">
@@ -308,12 +363,7 @@
         </member>
         <member name="T:NetSpell.SpellChecker.OptionForm">
             <summary>
-            Summary description for OptionForm.
-            </summary>
-        </member>
-        <member name="F:NetSpell.SpellChecker.OptionForm.components">
-            <summary>
-            Required designer variable.
+            	The OptionForm is an internal form for setting the spell checker options
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.OptionForm.#ctor(NetSpell.SpellChecker.Spelling@)">
@@ -330,56 +380,6 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.AssemblyInfo">
-            <summary>
-            Summary description 
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.CodeBase">
-            <summary>
-            CodeBase of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Company">
-            <summary>
-            Company of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Copyright">
-            <summary>
-            Copyright of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Description">
-            <summary>
-            Description of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.FullName">
-            <summary>
-            	FullName of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Name">
-            <summary>
-            Name of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Product">
-            <summary>
-            Product of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Title">
-            <summary>
-            Title of Assembly
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Version">
-            <summary>
-            Version of Assembly
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Spelling">
@@ -465,11 +465,6 @@
             <summary>
                 Required for Windows.Forms Class Composition Designer support
             </summary>
-            <param name="container" type="System.ComponentModel.IContainer">
-                <para>
-                    
-                </para>
-            </param>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.CalculateWords">
             <summary>
@@ -706,6 +701,39 @@
                 receivers that the event occurred
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.BadChar(System.Collections.ArrayList@)">
+            <summary>
+            	swap out each char one by one and try all the tryme
+            	chars in its place to see if that makes a good word
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ExtraChar(System.Collections.ArrayList@)">
+            <summary>
+                try omitting one char of word at a time
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ForgotChar(System.Collections.ArrayList@)">
+            <summary>
+                try inserting a tryme character before every letter
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ReplaceChars(System.Collections.ArrayList@)">
+            <summary>
+                suggestions for a typical fault of spelling, that
+            	differs with more, than 1 letter from the right form.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.SwapChar(System.Collections.ArrayList@)">
+            <summary>
+                try swapping adjacent chars one by one
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.TwoWords(System.Collections.ArrayList@)">
+            <summary>
+                split the string into two pieces after every char
+            	if both pieces are good words make them a suggestion
+            </summary>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
@@ -883,7 +911,7 @@
         </member>
         <member name="T:NetSpell.SpellChecker.SpellingForm">
             <summary>
-            Summary description for SpellingForm.
+            The SpellingForm is used to display suggestions when there is a misspelled word
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.SpellingForm.#ctor(NetSpell.SpellChecker.Spelling)">

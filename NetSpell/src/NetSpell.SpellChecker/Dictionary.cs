@@ -25,7 +25,7 @@ using System.ComponentModel;
 namespace NetSpell.SpellChecker
 {
 
-#region Dictionary Object
+	#region Dictionary Object
 
 	/// <summary>
 	///		The Dictionary class encapsulates all functions associated 
@@ -163,6 +163,6 @@ namespace NetSpell.SpellChecker
 
 	}
 
-#endregion //Dictionary Object
+	#endregion //Dictionary Object
 
 }

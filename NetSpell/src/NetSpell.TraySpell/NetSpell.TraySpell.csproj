@@ -109,48 +109,32 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "app.config"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "AppSettingsWriter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "HotKeyFormLib.cs"
+                    RelPath = "HotkeyForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "HotKeyFormLib.resx"
-                    DependentUpon = "HotKeyFormLib.cs"
+                    RelPath = "HotkeyForm.resx"
+                    DependentUpon = "HotkeyForm.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "OptionsForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "OptionsForm.resx"
-                    DependentUpon = "OptionsForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Settings.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
                 />
                 <File
                     RelPath = "spellchk.ico"
                     BuildAction = "Content"
-                />
-                <File
-                    RelPath = "SpellingForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "SpellingForm.resx"
-                    DependentUpon = "SpellingForm.cs"
-                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "StartupForm.cs"

@@ -20,7 +20,7 @@ using System.Runtime.Serialization;
 
 namespace NetSpell.SpellChecker
 {
-#region "'DictionaryCollection' strongly typed collection class"
+	#region "'DictionaryCollection' strongly typed collection class"
 
 	/// <summary>
 	///     A collection that stores 'Dictionary' objects.
@@ -37,17 +37,6 @@ namespace NetSpell.SpellChecker
 		}
     
 		/// <summary>
-		///     Initializes a new instance of 'DictionaryCollection' based on an already existing instance.
-		/// </summary>
-		/// <param name='dicValue'>
-		///     A 'DictionaryCollection' from which the contents is copied
-		/// </param>
-		public DictionaryCollection(DictionaryCollection dicValue) 
-		{
-			this.AddRange(dicValue);
-		}
-    
-		/// <summary>
 		///     Initializes a new instance of 'DictionaryCollection' with an array of 'Dictionary' objects.
 		/// </summary>
 		/// <param name='dicValue'>
@@ -59,24 +48,14 @@ namespace NetSpell.SpellChecker
 		}
     
 		/// <summary>
-		///     Represents the 'Dictionary' item at the specified index position.
+		///     Initializes a new instance of 'DictionaryCollection' based on an already existing instance.
 		/// </summary>
-		/// <param name='intIndex'>
-		///     The zero-based index of the entry to locate in the collection.
+		/// <param name='dicValue'>
+		///     A 'DictionaryCollection' from which the contents is copied
 		/// </param>
-		/// <value>
-		///     The entry at the specified index of the collection.
-		/// </value>
-		public Dictionary this[int intIndex] 
+		public DictionaryCollection(DictionaryCollection dicValue) 
 		{
-			get 
-			{
-				return ((Dictionary)(List[intIndex]));
-			}
-			set 
-			{
-				List[intIndex] = value;
-			}
+			this.AddRange(dicValue);
 		}
     
 		/// <summary>
@@ -151,6 +130,15 @@ namespace NetSpell.SpellChecker
 		}
     
 		/// <summary>
+		///     Returns an enumerator that can be used to iterate through
+		///     the 'DictionaryCollection'.
+		/// </summary>
+		public new DictionaryEnumerator GetEnumerator() 
+		{
+			return new DictionaryEnumerator(this);
+		}
+    
+		/// <summary>
 		///     Returns the index of a 'Dictionary' object in the collection.
 		/// </summary>
 		/// <param name='dicValue'>
@@ -179,15 +167,6 @@ namespace NetSpell.SpellChecker
 		}
     
 		/// <summary>
-		///     Returns an enumerator that can be used to iterate through
-		///     the 'DictionaryCollection'.
-		/// </summary>
-		public new DictionaryEnumerator GetEnumerator() 
-		{
-			return new DictionaryEnumerator(this);
-		}
-    
-		/// <summary>
 		///     Removes a specific item from the 'DictionaryCollection'.
 		/// </summary>
 		/// <param name='dicValue'>
@@ -196,6 +175,27 @@ namespace NetSpell.SpellChecker
 		public void Remove(Dictionary dicValue) 
 		{
 			List.Remove(dicValue);
+		}
+    
+		/// <summary>
+		///     Represents the 'Dictionary' item at the specified index position.
+		/// </summary>
+		/// <param name='intIndex'>
+		///     The zero-based index of the entry to locate in the collection.
+		/// </param>
+		/// <value>
+		///     The entry at the specified index of the collection.
+		/// </value>
+		public Dictionary this[int intIndex] 
+		{
+			get 
+			{
+				return ((Dictionary)(List[intIndex]));
+			}
+			set 
+			{
+				List[intIndex] = value;
+			}
 		}
     
 		/// <summary>
@@ -218,14 +218,35 @@ namespace NetSpell.SpellChecker
 			}
         
 			/// <summary>
-			///     Gets the current element from the collection (strongly typed)
+			///     Advances the enumerator to the next element of the collection
 			/// </summary>
-			public Dictionary Current 
+			bool System.Collections.IEnumerator.MoveNext() 
 			{
-				get 
-				{
-					return ((Dictionary)(iEnBase.Current));
-				}
+				return iEnBase.MoveNext();
+			}
+        
+			/// <summary>
+			///     Sets the enumerator to the first element in the collection
+			/// </summary>
+			void System.Collections.IEnumerator.Reset() 
+			{
+				iEnBase.Reset();
+			}
+        
+			/// <summary>
+			///     Advances the enumerator to the next element of the collection
+			/// </summary>
+			public bool MoveNext() 
+			{
+				return iEnBase.MoveNext();
+			}
+        
+			/// <summary>
+			///     Sets the enumerator to the first element in the collection
+			/// </summary>
+			public void Reset() 
+			{
+				iEnBase.Reset();
 			}
         
 			/// <summary>
@@ -240,38 +261,17 @@ namespace NetSpell.SpellChecker
 			}
         
 			/// <summary>
-			///     Advances the enumerator to the next element of the collection
+			///     Gets the current element from the collection (strongly typed)
 			/// </summary>
-			public bool MoveNext() 
+			public Dictionary Current 
 			{
-				return iEnBase.MoveNext();
-			}
-        
-			/// <summary>
-			///     Advances the enumerator to the next element of the collection
-			/// </summary>
-			bool System.Collections.IEnumerator.MoveNext() 
-			{
-				return iEnBase.MoveNext();
-			}
-        
-			/// <summary>
-			///     Sets the enumerator to the first element in the collection
-			/// </summary>
-			public void Reset() 
-			{
-				iEnBase.Reset();
-			}
-        
-			/// <summary>
-			///     Sets the enumerator to the first element in the collection
-			/// </summary>
-			void System.Collections.IEnumerator.Reset() 
-			{
-				iEnBase.Reset();
+				get 
+				{
+					return ((Dictionary)(iEnBase.Current));
+				}
 			}
 		}
 	}
 
-#endregion //('DictionaryCollection' strongly typed collection class)
+	#endregion //('DictionaryCollection' strongly typed collection class)
 }

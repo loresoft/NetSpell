@@ -233,7 +233,7 @@ namespace NetSpell.SpellChecker
 									|| StringAt((current - 1), 5, new string[] {"UCCEE", "UCCES"}))
 									MetaphAdd("KS");
 
-								//"bacci", "bertucci", other italian
+									//"bacci", "bertucci", other italian
 								else 
 									MetaphAdd("X");
 								current += 3;
@@ -273,7 +273,7 @@ namespace NetSpell.SpellChecker
 						if(StringAt((current + 1), 2, new string[] {" C", " Q", " G"})) 
 							current += 3;
 						else if(StringAt((current + 1), 1, new string[] {"C", "K", "Q"}) 
-								&& !StringAt((current + 1), 2, new string[] {"CE", "CI"}))
+							&& !StringAt((current + 1), 2, new string[] {"CE", "CI"}))
 							current += 2;
 						else
 							current += 1;
@@ -367,7 +367,7 @@ namespace NetSpell.SpellChecker
 								}
 								else
 									if((current > 0) && word.Substring(current - 1, 1) != "I")
-										MetaphAdd("K");
+									MetaphAdd("K");
 
 								current += 2;
 								break;
@@ -381,7 +381,7 @@ namespace NetSpell.SpellChecker
 							{
 								MetaphAdd("KN", "N");
 							}
-							//not e.g. "cagney"
+								//not e.g. "cagney"
 							else if(!StringAt((current + 2), 2, new string[] {"EY"}) 
 								&& (word.Substring(current + 1, 1) != "Y") && !SlavoGermanic())
 							{
@@ -430,7 +430,7 @@ namespace NetSpell.SpellChecker
 							if((StringAt(0, 4, new string[] {"VAN ", "VON "}) || StringAt(0, 3, new string[] {"SCH"}))
 								|| StringAt((current + 1), 2, new string[] {"ET"}))
 								MetaphAdd("K");
-							//always soft if french ending
+								//always soft if french ending
 							else if(StringAt((current + 1), 4, new string[] {"IER "}))
 								MetaphAdd("J");
 							else
@@ -475,7 +475,7 @@ namespace NetSpell.SpellChecker
 
 						if((current == 0) && !StringAt(current, 4, new string[] {"JOSE"}))
 							MetaphAdd("J", "A");//Yankelovich/Jankelowicz
-						//spanish pron. of e.g. "bajador"
+							//spanish pron. of e.g. "bajador"
 						else if(IsVowel(current - 1) 
 							&& !SlavoGermanic()
 							&& ((word.Substring(current + 1, 1) == "A") || (word.Substring(current + 1, 1) == "O")))

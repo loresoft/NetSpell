@@ -26,40 +26,35 @@ using System.IO;
 namespace NetSpell.SpellChecker
 {
 	/// <summary>
-	/// Summary description for OptionForm.
+	///		The OptionForm is an internal form for setting the spell checker options
 	/// </summary>
-	public class OptionForm : System.Windows.Forms.Form
+	internal class OptionForm : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.TabPage aboutTab;
+		private System.Windows.Forms.ListView assembliesListView;
+		private System.Windows.Forms.ColumnHeader assemblyColumnHeader;
 		private System.Windows.Forms.Button CancelBtn;
-
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
 		private System.ComponentModel.Container components = null;
+		private System.Windows.Forms.ColumnHeader dateColumnHeader;
 		private System.Windows.Forms.ListView DictionaryList;
 		private System.Windows.Forms.TabPage dictionaryTab;
 		private System.Windows.Forms.TabPage generalTab;
 		private System.Windows.Forms.CheckBox IgnoreDigitsCheck;
 		private System.Windows.Forms.CheckBox IgnoreUpperCheck;
+		private System.Windows.Forms.Label lblCompany;
+		private System.Windows.Forms.Label lblCopyright;
+		private System.Windows.Forms.Label lblDescription;
 		private System.Windows.Forms.Label lbllabel1;
+		private System.Windows.Forms.Label lblTitle;
+		private System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.TextBox MaxSuggestions;
 		private System.Windows.Forms.ColumnHeader nameColumn;
 		private System.Windows.Forms.Button OkButton;
 		private System.Windows.Forms.TabControl optionsTabControl;
-
+		private System.Windows.Forms.PictureBox pbIcon;
 		private NetSpell.SpellChecker.Spelling SpellChecker;
-		private System.Windows.Forms.TabPage versionsTab;
-		internal System.Windows.Forms.Label lblCopyright;
-		internal System.Windows.Forms.Label lblDescription;
-		internal System.Windows.Forms.Label lblVersion;
-		internal System.Windows.Forms.Label lblTitle;
-		internal System.Windows.Forms.PictureBox pbIcon;
-		private System.Windows.Forms.ListView assembliesListView;
-		private System.Windows.Forms.ColumnHeader assemblyColumnHeader;
 		private System.Windows.Forms.ColumnHeader versionColumnHeader;
-		private System.Windows.Forms.ColumnHeader dateColumnHeader;
-		private System.Windows.Forms.Label lblCompany;
+		private System.Windows.Forms.TabPage versionsTab;
 		private System.Windows.Forms.ColumnHeader wordsColumn;
 
 		/// <summary>
@@ -71,78 +66,93 @@ namespace NetSpell.SpellChecker
 			InitializeComponent();
 		}
 
-		private void aboutTab_Click(object sender, System.EventArgs e)
+		private void OkButton_Click(object sender, System.EventArgs e)
 		{
-		
+			try
+			{
+
+				this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
+				this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
+				this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
+				this.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}", ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void OptionForm_Load(object sender, System.EventArgs e)
 		{
-			this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
-			this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
-			this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
-
-			// set dictionary info
-			foreach (Dictionary dic in this.SpellChecker.Dictionaries)
+			try
 			{
-				ListViewItem item = new ListViewItem();
-				item.Text = dic.FileName;
-				item.SubItems.Add(dic.WordList.Count.ToString());
-				DictionaryList.Items.Add(item);
-			}
+				this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
+				this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
+				this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
 
-			// set about info
-			this.pbIcon.Image = this.Owner.Icon.ToBitmap();
-
-			AssemblyInfo aInfo = new AssemblyInfo();
-			this.lblTitle.Text = aInfo.Title;
-			this.lblVersion.Text = string.Format("Version {0}", aInfo.Version);
-			this.lblCopyright.Text = aInfo.Copyright;
-			this.lblDescription.Text = aInfo.Description;
-			this.lblCompany.Text = aInfo.Company;
-
-			// Get all modules
-			ArrayList localItems = new ArrayList();
-			foreach (ProcessModule module in Process.GetCurrentProcess().Modules)
-			{
-				ListViewItem item = new ListViewItem();
-				item.Text = module.ModuleName;
-
-				// Get version info
-				FileVersionInfo verInfo = module.FileVersionInfo;
-				string versionStr = String.Format("{0}.{1}.{2}.{3}", 
-					verInfo.FileMajorPart,
-					verInfo.FileMinorPart,
-					verInfo.FileBuildPart,
-					verInfo.FilePrivatePart);
-				item.SubItems.Add(versionStr);
-
-				// Get file date info
-				DateTime lastWriteDate = File.GetLastWriteTime(module.FileName);
-				string dateStr = lastWriteDate.ToString("MMM dd, yyyy");
-				item.SubItems.Add(dateStr);
-
-				assembliesListView.Items.Add(item);
-
-				// Stash assemply related list view items for later
-				if (module.ModuleName.ToLower().StartsWith("netspell"))
+				// set dictionary info
+				foreach (Dictionary dic in this.SpellChecker.Dictionaries)
 				{
-					localItems.Add(item);
+					ListViewItem item = new ListViewItem();
+					item.Text = dic.FileName;
+					item.SubItems.Add(dic.WordList.Count.ToString());
+					DictionaryList.Items.Add(item);
+				}
+
+				// set about info
+				this.pbIcon.Image = this.Owner.Icon.ToBitmap();
+
+				AssemblyInfo aInfo = new AssemblyInfo(typeof(OptionForm));
+				this.lblTitle.Text = aInfo.Title;
+				this.lblVersion.Text = string.Format("Version {0}", aInfo.Version);
+				this.lblCopyright.Text = aInfo.Copyright;
+				this.lblDescription.Text = aInfo.Description;
+				this.lblCompany.Text = aInfo.Company;
+
+				// Get all modules
+				ArrayList localItems = new ArrayList();
+				foreach (ProcessModule module in Process.GetCurrentProcess().Modules)
+				{
+					ListViewItem item = new ListViewItem();
+					item.Text = module.ModuleName;
+
+					// Get version info
+					FileVersionInfo verInfo = module.FileVersionInfo;
+					string versionStr = String.Format("{0}.{1}.{2}.{3}", 
+						verInfo.FileMajorPart,
+						verInfo.FileMinorPart,
+						verInfo.FileBuildPart,
+						verInfo.FilePrivatePart);
+					item.SubItems.Add(versionStr);
+
+					// Get file date info
+					DateTime lastWriteDate = File.GetLastWriteTime(module.FileName);
+					string dateStr = lastWriteDate.ToString("MMM dd, yyyy");
+					item.SubItems.Add(dateStr);
+
+					assembliesListView.Items.Add(item);
+
+					// Stash assemply related list view items for later
+					if (module.ModuleName.ToLower().StartsWith("netspell"))
+					{
+						localItems.Add(item);
+					}
+				}
+
+				// Extract the assemply related modules and move them to the top
+				for (int i = localItems.Count; i > 0; i--)
+				{
+					ListViewItem localItem = (ListViewItem)localItems[i-1];
+					assembliesListView.Items.Remove(localItem);
+					assembliesListView.Items.Insert(0, localItem);
 				}
 			}
-
-			// Extract the assemply related modules and move them to the top
-			for (int i = localItems.Count; i > 0; i--)
+			catch (Exception ex)
 			{
-				ListViewItem localItem = (ListViewItem)localItems[i-1];
-				assembliesListView.Items.Remove(localItem);
-				assembliesListView.Items.Insert(0, localItem);
+				MessageBox.Show(string.Format("{0}\n\n{1}", ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-
-		private void optionsTabControl_SelectedIndexChanged(object sender, System.EventArgs e)
-		{
-		
 		}
 
 		/// <summary>
@@ -212,7 +222,6 @@ namespace NetSpell.SpellChecker
 			this.optionsTabControl.SelectedIndex = 0;
 			this.optionsTabControl.Size = new System.Drawing.Size(386, 184);
 			this.optionsTabControl.TabIndex = 0;
-			this.optionsTabControl.SelectedIndexChanged += new System.EventHandler(this.optionsTabControl_SelectedIndexChanged);
 			// 
 			// generalTab
 			// 
@@ -231,7 +240,7 @@ namespace NetSpell.SpellChecker
 			this.lbllabel1.Location = new System.Drawing.Point(48, 88);
 			this.lbllabel1.Name = "lbllabel1";
 			this.lbllabel1.Size = new System.Drawing.Size(264, 16);
-			this.lbllabel1.TabIndex = 7;
+			this.lbllabel1.TabIndex = 8;
 			this.lbllabel1.Text = "Maximum &Suggestion Count";
 			// 
 			// MaxSuggestions
@@ -315,7 +324,7 @@ namespace NetSpell.SpellChecker
 			this.assembliesListView.Location = new System.Drawing.Point(0, 0);
 			this.assembliesListView.Name = "assembliesListView";
 			this.assembliesListView.Size = new System.Drawing.Size(378, 158);
-			this.assembliesListView.TabIndex = 10;
+			this.assembliesListView.TabIndex = 5;
 			this.assembliesListView.View = System.Windows.Forms.View.Details;
 			// 
 			// assemblyColumnHeader
@@ -352,7 +361,7 @@ namespace NetSpell.SpellChecker
 			this.lblCompany.Location = new System.Drawing.Point(64, 128);
 			this.lblCompany.Name = "lblCompany";
 			this.lblCompany.Size = new System.Drawing.Size(296, 23);
-			this.lblCompany.TabIndex = 20;
+			this.lblCompany.TabIndex = 13;
 			this.lblCompany.Text = "Application Company";
 			// 
 			// lblCopyright
@@ -361,7 +370,7 @@ namespace NetSpell.SpellChecker
 			this.lblCopyright.Location = new System.Drawing.Point(64, 64);
 			this.lblCopyright.Name = "lblCopyright";
 			this.lblCopyright.Size = new System.Drawing.Size(296, 23);
-			this.lblCopyright.TabIndex = 19;
+			this.lblCopyright.TabIndex = 12;
 			this.lblCopyright.Text = "Application Copyright";
 			// 
 			// lblDescription
@@ -370,7 +379,7 @@ namespace NetSpell.SpellChecker
 			this.lblDescription.Location = new System.Drawing.Point(64, 88);
 			this.lblDescription.Name = "lblDescription";
 			this.lblDescription.Size = new System.Drawing.Size(296, 40);
-			this.lblDescription.TabIndex = 18;
+			this.lblDescription.TabIndex = 11;
 			this.lblDescription.Text = "Application Description";
 			// 
 			// lblVersion
@@ -379,7 +388,7 @@ namespace NetSpell.SpellChecker
 			this.lblVersion.Location = new System.Drawing.Point(64, 40);
 			this.lblVersion.Name = "lblVersion";
 			this.lblVersion.Size = new System.Drawing.Size(296, 23);
-			this.lblVersion.TabIndex = 17;
+			this.lblVersion.TabIndex = 10;
 			this.lblVersion.Text = "Application Version";
 			// 
 			// lblTitle
@@ -388,7 +397,7 @@ namespace NetSpell.SpellChecker
 			this.lblTitle.Location = new System.Drawing.Point(64, 16);
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Size = new System.Drawing.Size(296, 24);
-			this.lblTitle.TabIndex = 16;
+			this.lblTitle.TabIndex = 9;
 			this.lblTitle.Text = "Application Title";
 			// 
 			// pbIcon
@@ -407,7 +416,7 @@ namespace NetSpell.SpellChecker
 			this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.OkButton.Location = new System.Drawing.Point(226, 200);
 			this.OkButton.Name = "OkButton";
-			this.OkButton.TabIndex = 5;
+			this.OkButton.TabIndex = 6;
 			this.OkButton.Text = "&OK";
 			this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
 			// 
@@ -417,7 +426,7 @@ namespace NetSpell.SpellChecker
 			this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.CancelBtn.Location = new System.Drawing.Point(314, 200);
 			this.CancelBtn.Name = "CancelBtn";
-			this.CancelBtn.TabIndex = 6;
+			this.CancelBtn.TabIndex = 7;
 			this.CancelBtn.Text = "&Cancel";
 			// 
 			// OptionForm
@@ -446,121 +455,5 @@ namespace NetSpell.SpellChecker
 
 		}
 #endregion
-
-		private void OkButton_Click(object sender, System.EventArgs e)
-		{
-			this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
-			this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
-			this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
-			this.Close();
-		}
-
-
-	}
-
-
-	/// <summary>
-	/// Summary description 
-	/// </summary>
-	public class AssemblyInfo
-	{
-		private Type myType = typeof(OptionForm);
-
-		/// <summary>
-		/// CodeBase of Assembly
-		/// </summary>
-		public string CodeBase
-		{
-			get {return myType.Assembly.CodeBase.ToString();}
-		}
-
-		/// <summary>
-		/// Company of Assembly
-		/// </summary>
-		public string Company
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-				AssemblyCompanyAttribute ct = (AssemblyCompanyAttribute)r[0];
-				return ct.Company;
-			}
-		}
-	
-		/// <summary>
-		/// Copyright of Assembly
-		/// </summary>
-		public string Copyright
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-				AssemblyCopyrightAttribute ct = (AssemblyCopyrightAttribute)r[0];
-				return ct.Copyright;
-			}
-		}
-
-		/// <summary>
-		/// Description of Assembly
-		/// </summary>
-		public string Description
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-				AssemblyDescriptionAttribute ct = (AssemblyDescriptionAttribute)r[0];
-				return ct.Description;
-			}
-		}
-
-		/// <summary>
-		///		FullName of Assembly
-		/// </summary>
-		public string FullName
-		{
-			get {return myType.Assembly.GetName().FullName.ToString();}
-		}
-
-		/// <summary>
-		/// Name of Assembly
-		/// </summary>
-		public string Name
-		{
-			get	{return myType.Assembly.GetName().Name.ToString();}
-		}
-
-		/// <summary>
-		/// Product of Assembly
-		/// </summary>
-		public string Product
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-				AssemblyProductAttribute ct = (AssemblyProductAttribute)r[0];
-				return ct.Product;
-			}
-		}
-
-		/// <summary>
-		/// Title of Assembly
-		/// </summary>
-		public string Title
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-				AssemblyTitleAttribute ct = (AssemblyTitleAttribute)r[0];
-				return ct.Title;
-			}
-		}
-
-		/// <summary>
-		/// Version of Assembly
-		/// </summary>
-		public string Version
-		{
-			get { return myType.Assembly.GetName().Version.ToString(); }
-		}
 	}
 }

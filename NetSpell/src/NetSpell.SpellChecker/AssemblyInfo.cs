@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -56,3 +57,118 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
+/// <summary>
+///     AssemblyInfo class
+/// </summary>
+public class AssemblyInfo
+{
+
+	private Type myType;
+
+	/// <summary>
+	///     Initialized the AssemblyInfo class with the given type
+	/// </summary>
+	public AssemblyInfo(Type aType)
+	{
+		this.myType = aType;
+	}
+
+	/// <summary>
+	/// CodeBase of Assembly
+	/// </summary>
+	public string CodeBase
+	{
+		get {return myType.Assembly.CodeBase.ToString();}
+	}
+
+	/// <summary>
+	/// Company of Assembly
+	/// </summary>
+	public string Company
+	{
+		get
+		{
+			Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+			AssemblyCompanyAttribute ct = (AssemblyCompanyAttribute)r[0];
+			return ct.Company;
+		}
+	}
+
+	/// <summary>
+	/// Copyright of Assembly
+	/// </summary>
+	public string Copyright
+	{
+		get
+		{
+			Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+			AssemblyCopyrightAttribute ct = (AssemblyCopyrightAttribute)r[0];
+			return ct.Copyright;
+		}
+	}
+
+	/// <summary>
+	/// Description of Assembly
+	/// </summary>
+	public string Description
+	{
+		get
+		{
+			Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+			AssemblyDescriptionAttribute ct = (AssemblyDescriptionAttribute)r[0];
+			return ct.Description;
+		}
+	}
+
+	/// <summary>
+	///		FullName of Assembly
+	/// </summary>
+	public string FullName
+	{
+		get {return myType.Assembly.GetName().FullName.ToString();}
+	}
+
+	/// <summary>
+	/// Name of Assembly
+	/// </summary>
+	public string Name
+	{
+		get	{return myType.Assembly.GetName().Name.ToString();}
+	}
+
+	/// <summary>
+	/// Product of Assembly
+	/// </summary>
+	public string Product
+	{
+		get
+		{
+			Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+			AssemblyProductAttribute ct = (AssemblyProductAttribute)r[0];
+			return ct.Product;
+		}
+	}
+
+	/// <summary>
+	/// Title of Assembly
+	/// </summary>
+	public string Title
+	{
+		get
+		{
+			Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+			AssemblyTitleAttribute ct = (AssemblyTitleAttribute)r[0];
+			return ct.Title;
+		}
+	}
+
+	/// <summary>
+	/// Version of Assembly
+	/// </summary>
+	public string Version
+	{
+		get { return myType.Assembly.GetName().Version.ToString(); }
+	}
+}
+
+
