@@ -61,7 +61,8 @@
                 <excludes name="**\*.suo" />
                 <excludes name="**\*j.user" />
                 <excludes name="src\**\bin\**" />
-                <excludes name="demo\**\bin\**" />
+                <excludes name="demo\*WinForm*\bin\**" />
+                <excludes name="demo\*TextEditor*\bin\**" />
                 <excludes name="**\obj\**" />
             </fileset>
         </zip>
