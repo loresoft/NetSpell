@@ -15,9 +15,9 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 		/// <summary>
 		///     Enumerator constructor
 		/// </summary>
-		public PhoneticRuleEnumerator(PhoneticRuleCollection Mappings) 
+		public PhoneticRuleEnumerator(PhoneticRuleCollection mappings) 
 		{
-			this.Local = ((System.Collections.IEnumerable)(Mappings));
+			this.Local = ((System.Collections.IEnumerable)(mappings));
 			this.Base = Local.GetEnumerator();
 		}
     

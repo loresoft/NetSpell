@@ -62,7 +62,8 @@ namespace NetSpell.Demo.Windows
 		private System.Drawing.Printing.PrintDocument printDocument;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
 		private System.Windows.Forms.SaveFileDialog saveDialog;
-		internal NetSpell.SpellChecker.Controls.SpellTextBox Document;
+		
+		internal System.Windows.Forms.RichTextBox Document;
 		internal NetSpell.SpellChecker.Spelling SpellChecker;
 
 		public DocumentForm()
@@ -141,8 +142,8 @@ namespace NetSpell.Demo.Windows
 			{
 				MainForm main = (MainForm)this.MdiParent;
 				this.SpellChecker = main.SpellChecker;
-				this.Document.SpellChecker = main.SpellChecker;
 				this.SpellChecker.ReplacedWord += new NetSpell.SpellChecker.Spelling.ReplacedWordEventHandler(this.SpellChecker_ReplacedWord);
+				this.SpellChecker.DeletedWord += new NetSpell.SpellChecker.Spelling.DeletedWordEventHandler(this.SpellChecker_DeletedWord);
 			}
 		}
 
@@ -312,9 +313,39 @@ namespace NetSpell.Demo.Windows
 
 		}
 
-		private void SpellChecker_ReplacedWord(object sender, System.EventArgs args)
+		private void SpellChecker_DeletedWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
 		{
-			this.Document.Text = this.SpellChecker.Text;
+			int start = this.Document.SelectionStart;
+			int length = this.Document.SelectionLength;
+
+			this.Document.Select(args.TextIndex, args.Word.Length);
+			this.Document.SelectedText = "";
+
+			if(start > this.Document.Text.Length)
+				start = this.Document.Text.Length;
+
+			if((start + length) > this.Document.Text.Length)
+				length = 0;
+
+			this.Document.Select(start, length);
+		}
+
+		private void SpellChecker_ReplacedWord(object sender, NetSpell.SpellChecker.ReplaceWordEventArgs args)
+		{
+			int start = this.Document.SelectionStart;
+			int length = this.Document.SelectionLength;
+
+			this.Document.Select(args.TextIndex, args.Word.Length);
+			this.Document.SelectedText = args.ReplacementWord;
+
+			if(start > this.Document.Text.Length)
+				start = this.Document.Text.Length;
+
+			if((start + length) > this.Document.Text.Length)
+				length = 0;
+
+			this.Document.Select(start, length);
+
 		}
 
 		/// <summary>
@@ -494,7 +525,6 @@ namespace NetSpell.Demo.Windows
 				this.Text = Path.GetFileName(_FileName);
 			}
 		}
-
 #region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -535,7 +565,7 @@ namespace NetSpell.Demo.Windows
 			this.printDialog = new System.Windows.Forms.PrintDialog();
 			this.printDocument = new System.Drawing.Printing.PrintDocument();
 			this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-			this.Document = new NetSpell.SpellChecker.Controls.SpellTextBox();
+			this.Document = new System.Windows.Forms.RichTextBox();
 			this.contextMenu = new System.Windows.Forms.ContextMenu();
 			this.contextMenuUndo = new System.Windows.Forms.MenuItem();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
@@ -790,11 +820,10 @@ namespace NetSpell.Demo.Windows
 			this.Document.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
 			this.Document.ShowSelectionMargin = true;
 			this.Document.Size = new System.Drawing.Size(520, 446);
-			this.Document.SpellChecker = this.SpellChecker;
 			this.Document.TabIndex = 0;
 			this.Document.Text = "";
-			this.Document.SelectionChanged += new System.EventHandler(this.Document_SelectionChanged);
 			this.Document.TextChanged += new System.EventHandler(this.Document_TextChanged);
+			this.Document.SelectionChanged += new System.EventHandler(this.Document_SelectionChanged);
 			// 
 			// contextMenu
 			// 
@@ -904,9 +933,6 @@ namespace NetSpell.Demo.Windows
 		
 		[DllImport("USER32.dll")]
 		private static extern IntPtr SendMessage (IntPtr hWnd , int msg , IntPtr wp, IntPtr lp);
-
-
-
 
 
 		[StructLayout(LayoutKind.Sequential)]

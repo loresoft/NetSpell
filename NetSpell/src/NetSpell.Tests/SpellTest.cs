@@ -62,7 +62,7 @@ namespace NetSpell.Tests
 			Assertion.AssertEquals("Incorrect CurrentWord", "is", _SpellChecker.CurrentWord);
 
 			_SpellChecker.DeleteWord();
-			Assertion.AssertEquals("Incorrect Text", "this is  a test", _SpellChecker.Text);
+			Assertion.AssertEquals("Incorrect Text", "this is a test", _SpellChecker.Text);
 			
 		}
 
@@ -129,6 +129,8 @@ namespace NetSpell.Tests
 		public void ReplaceAllWord()
 		{
 			_SpellChecker.Text = "this is a tst of a tst errr";
+			_SpellChecker.IgnoreList.Clear();
+			_SpellChecker.ReplaceList.Clear();
 
 			_SpellChecker.SpellCheck();
 			Assertion.AssertEquals("Incorrect WordOffset", 3, _SpellChecker.WordIndex);

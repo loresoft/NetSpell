@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.IO;
 using NetSpell.SpellChecker;
+using System.Globalization;
 
 namespace NetSpell.SpellChecker.Forms
 {
@@ -59,7 +60,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
 			this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
 			this.SpellChecker.IgnoreHtml = this.IgnoreHtmlCheck.Checked;
-			this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
+			this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text, CultureInfo.CurrentUICulture);
 			this.Close();
 		}
 
@@ -68,7 +69,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
 			this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
 			this.IgnoreHtmlCheck.Checked = this.SpellChecker.IgnoreHtml;
-			this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
+			this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString(CultureInfo.CurrentUICulture);
 
 			// set dictionary info
 			this.txtCopyright.Text = this.SpellChecker.Dictionary.Copyright;
@@ -101,7 +102,7 @@ namespace NetSpell.SpellChecker.Forms
 
 				// Get file date info
 				DateTime lastWriteDate = File.GetLastWriteTime(module.FileName);
-				string dateStr = lastWriteDate.ToString("MMM dd, yyyy");
+				string dateStr = lastWriteDate.ToString("MMM dd, yyyy", CultureInfo.CurrentUICulture);
 				item.SubItems.Add(dateStr);
 
 				assembliesListView.Items.Add(item);

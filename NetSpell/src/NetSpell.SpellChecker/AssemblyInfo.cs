@@ -4,6 +4,8 @@
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Globalization;
 
 //
 // General Information about an assembly is controlled through the following 
@@ -30,7 +32,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("2.0.3.*")]
+[assembly: AssemblyVersion("2.1.4.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
@@ -62,6 +64,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyKeyName("")]
 
 [assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
 
 namespace NetSpell.SpellChecker
 {
@@ -76,9 +79,9 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Initialized the AssemblyInfo class with the given type
 		/// </summary>
-		public AssemblyInfo(Type aType)
+		public AssemblyInfo(Type type)
 		{
-			this.myType = aType;
+			this.myType = type;
 		}
 
 		/// <summary>
@@ -86,7 +89,7 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public string CodeBase
 		{
-			get {return myType.Assembly.CodeBase.ToString();}
+			get {return myType.Assembly.CodeBase.ToString(CultureInfo.CurrentUICulture);}
 		}
 
 		/// <summary>
@@ -133,7 +136,7 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public string FullName
 		{
-			get {return myType.Assembly.GetName().FullName.ToString();}
+			get {return myType.Assembly.GetName().FullName.ToString(CultureInfo.CurrentUICulture);}
 		}
 
 		/// <summary>
@@ -141,7 +144,7 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public string Name
 		{
-			get	{return myType.Assembly.GetName().Name.ToString();}
+			get	{return myType.Assembly.GetName().Name.ToString(CultureInfo.CurrentUICulture);}
 		}
 
 		/// <summary>

@@ -10,6 +10,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using System.Text;
+using System.Globalization;
+
 using NetSpell.SpellChecker;
 
 namespace NetSpell.SpellChecker.Forms
@@ -358,17 +360,17 @@ namespace NetSpell.SpellChecker.Forms
 
 #region Spelling Events
 
-		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
 		{
-			this.UpdateDisplay(this.SpellChecker.Text, args.Word, 
-				args.WordIndex, args.TextIndex);
+			this.UpdateDisplay(this.SpellChecker.Text, e.Word, 
+				e.WordIndex, e.TextIndex);
 
 			//turn off ignore all option on double word
 			this.IgnoreAllButton.Enabled = false;
 			this.ReplaceAllButton.Enabled = false;
 			this.AddButton.Enabled = false;
 		}
-		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
+		private void SpellChecker_EndOfText(object sender, System.EventArgs e)
 		{
 			this.UpdateDisplay(this.SpellChecker.Text, "", 0, 0);
 
@@ -379,10 +381,10 @@ namespace NetSpell.SpellChecker.Forms
 			if (this.Owner != null) this.Owner.Activate();
 		}
 
-		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
 		{
-			this.UpdateDisplay(this.SpellChecker.Text, args.Word, 
-				args.WordIndex, args.TextIndex);
+			this.UpdateDisplay(this.SpellChecker.Text, e.Word, 
+				e.WordIndex, e.TextIndex);
 
 			//turn on ignore all option
 			this.IgnoreAllButton.Enabled = true;
@@ -428,7 +430,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.statusPaneWord.Text = word;
 			wordIndex++;  //WordIndex is 0 base, display is 1 based
 			this.statusPaneCount.Text = string.Format("Word: {0} of {1}", 
-				wordIndex.ToString(), this.SpellChecker.WordCount.ToString());
+				wordIndex.ToString(), this.SpellChecker.WordCount.ToString(CultureInfo.CurrentUICulture));
 			this.statusPaneIndex.Text = string.Format("Index: {0}", textIndex.ToString());
 
 			//display suggestions

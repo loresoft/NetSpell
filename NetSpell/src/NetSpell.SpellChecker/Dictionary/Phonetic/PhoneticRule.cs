@@ -39,7 +39,6 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 		public int[] Condition
 		{
 			get {return _Condition;}
-			set {_Condition = value;}
 		}
 
 		/// <summary>

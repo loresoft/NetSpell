@@ -15,9 +15,9 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 		/// <summary>
 		///     Enumerator constructor
 		/// </summary>
-		public AffixEntryEnumerator(AffixEntryCollection Mappings) 
+		public AffixEntryEnumerator(AffixEntryCollection mappings) 
 		{
-			this.Local = ((System.Collections.IEnumerable)(Mappings));
+			this.Local = ((System.Collections.IEnumerable)(mappings));
 			this.Base = Local.GetEnumerator();
 		}
     

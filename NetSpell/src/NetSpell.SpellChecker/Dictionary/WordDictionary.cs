@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Drawing;
 using System.Drawing.Design;
+using System.Globalization;
 
 using NetSpell.SpellChecker;
 using NetSpell.SpellChecker.Dictionary.Affix;
@@ -202,12 +203,14 @@ namespace NetSpell.SpellChecker.Dictionary
 			// Step 1 Search UserWords
 			if (_UserWords.Contains(word)) 
 			{
+				TraceWriter.TraceVerbose("Word Found in User Dictionary: {0}", word);
 				return true;  // word found
 			}
 
 			// Step 2 Search BaseWords
 			if (_BaseWords.Contains(word)) 
 			{
+				TraceWriter.TraceVerbose("Word Found in Base Words: {0}", word);
 				return true; // word found
 			}
 
@@ -229,6 +232,7 @@ namespace NetSpell.SpellChecker.Dictionary
 						{
 							if(this.VerifyAffixKey(tempWord, rule.Name[0]))
 							{
+								TraceWriter.TraceVerbose("Word Found With Base Words: {0}; Suffix Key: {1}", tempWord, rule.Name[0]);
 								return true; // word found
 							}
 						}
@@ -263,6 +267,7 @@ namespace NetSpell.SpellChecker.Dictionary
 							{
 								if(this.VerifyAffixKey(tempWord, rule.Name[0]))
 								{
+									TraceWriter.TraceVerbose("Word Found With Base Words: {0}; Prefix Key: {1}", tempWord, rule.Name[0]);
 									return true; // word found
 								}
 							}
@@ -274,7 +279,7 @@ namespace NetSpell.SpellChecker.Dictionary
 				} // prefix rule entry
 			} // prefix rule
 			// word not found 
-
+			TraceWriter.TraceVerbose("Possible Base Words: {0}", _PossibleBaseWords.Count);
 			return false;
 		}
 
@@ -301,9 +306,9 @@ namespace NetSpell.SpellChecker.Dictionary
 			// check suffix keys first
 			foreach(char key in word.AffixKeys)
 			{
-				if (_SuffixRules.ContainsKey(key.ToString()))
+				if (_SuffixRules.ContainsKey(key.ToString(CultureInfo.CurrentUICulture)))
 				{
-					AffixRule rule = _SuffixRules[key.ToString()];
+					AffixRule rule = _SuffixRules[key.ToString(CultureInfo.CurrentUICulture)];
 					string tempWord = AffixUtility.AddSuffix(word.Value, rule);
 					if (tempWord != word.Value)
 					{
@@ -317,16 +322,16 @@ namespace NetSpell.SpellChecker.Dictionary
 						}
 					}
 				}
-				else if (_PrefixRules.ContainsKey(key.ToString()))
+				else if (_PrefixRules.ContainsKey(key.ToString(CultureInfo.CurrentUICulture)))
 				{
-					prefixKeys += key.ToString();
+					prefixKeys += key.ToString(CultureInfo.CurrentUICulture);
 				}
 			}
 
 			// apply prefixes
 			foreach(char key in prefixKeys)
 			{
-				AffixRule rule = _PrefixRules[key.ToString()];
+				AffixRule rule = _PrefixRules[key.ToString(CultureInfo.CurrentUICulture)];
 				// apply prefix to all suffix words
 				foreach (string suffixWord in suffixWords)
 				{
@@ -339,6 +344,8 @@ namespace NetSpell.SpellChecker.Dictionary
 			}
 
 			words.AddRange(suffixWords);
+
+			TraceWriter.TraceVerbose("Word Expanded: {0}; Child Words: {1}", word.Value, words.Count);
 			return words;
 		}
 
@@ -483,7 +490,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			sr.Close();
 			fs.Close();
 
-			TraceWriter.TraceInfo("Dictionary Loaded; BaseWords:{0}; PrefixRules:{1}; SuffixRules:{2}; PhoneticRules:{3}",
+			TraceWriter.TraceInfo("Dictionary Loaded BaseWords:{0}; PrefixRules:{1}; SuffixRules:{2}; PhoneticRules:{3}",
 				this.BaseWords.Count, this.PrefixRules.Count, this.SuffixRules.Count, this.PhoneticRules.Count);
 
 			this.LoadUserFile();
@@ -678,7 +685,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public PhoneticRuleCollection PhoneticRules
 		{
 			get {return _PhoneticRules;}
-			set {_PhoneticRules = value;}
 		}
 
 
@@ -690,7 +696,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public AffixRuleCollection PrefixRules
 		{
 			get {return _PrefixRules;}
-			set {_PrefixRules = value;}
 		}
 
 		/// <summary>
@@ -701,7 +706,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public ArrayList ReplaceCharacters
 		{
 			get {return _ReplaceCharacters;}
-			set {_ReplaceCharacters = value;}
 		}
 
 
@@ -713,7 +717,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public AffixRuleCollection SuffixRules
 		{
 			get {return _SuffixRules;}
-			set {_SuffixRules = value;}
 		}
 
 		/// <summary>

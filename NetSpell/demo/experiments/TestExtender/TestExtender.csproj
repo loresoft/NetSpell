@@ -1,15 +1,15 @@
 <VisualStudioProject>
     <CSHARP
-        ProjectType = "Web"
+        ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{5164D9BB-C23F-409D-878B-46C4A0835E7A}"
+        ProjectGuid = "{154F5BC4-82C8-4F48-9D83-89A1C6BDF702}"
     >
         <Build>
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "NetSpell.Demo.Web"
+                AssemblyName = "ClassLibrary2"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -18,7 +18,7 @@
                 OutputType = "Library"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "NetSpell.Demo.Web"
+                RootNamespace = "TestExtender"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -36,7 +36,7 @@
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
-                    OutputPath = "bin\"
+                    OutputPath = "bin\Debug\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -56,7 +56,7 @@
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "true"
-                    OutputPath = "bin\"
+                    OutputPath = "bin\Release\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -70,19 +70,9 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
                 />
                 <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
-                />
-                <Reference
                     Name = "System.Data"
                     AssemblyName = "System.Data"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Web"
-                    AssemblyName = "System.Web"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.dll"
                 />
                 <Reference
                     Name = "System.XML"
@@ -90,9 +80,14 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "NetSpell.SpellChecker"
-                    Project = "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
             </References>
         </Build>
@@ -104,36 +99,19 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "default.htm"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "spell.aspx"
-                    SubType = "Form"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "spell.aspx.cs"
-                    DependentUpon = "spell.aspx"
-                    SubType = "ASPXCodeBehind"
+                    RelPath = "TextBoxExtender.cs"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "spell.aspx.resx"
-                    DependentUpon = "spell.aspx.cs"
+                    RelPath = "TextBoxExtender.resx"
+                    DependentUpon = "TextBoxExtender.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "spell.css"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "spell.js"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "Web.config"
-                    BuildAction = "Content"
+                    RelPath = "TextState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
                 />
             </Include>
         </Files>

@@ -197,7 +197,51 @@ namespace NetSpell.SpellChecker.Controls
 			}
 		}
 
-	
+		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+		{
+		
+			int currentPosition = base.SelectionStart;
+
+			// get indexs
+			int previousWordIndex = _SpellChecker.GetWordIndexFromTextIndex(currentPosition - 1);
+			CurrentWordIndex = _SpellChecker.GetWordIndexFromTextIndex(currentPosition);
+
+			// set current word to spell check
+			_SpellChecker.WordIndex = previousWordIndex;
+
+			if(_SpellChecker.CurrentWord.Length > 0)
+			{
+				Point start = base.GetPositionFromCharIndex(_SpellChecker.TextIndex);
+				Point end = base.GetPositionFromCharIndex(_SpellChecker.TextIndex + _SpellChecker.CurrentWord.Length);
+				this.DrawUnderline(e.Graphics, start, end);
+			}
+			base.OnPaint (e);
+		}
+
+		private void DrawUnderline(Graphics g, Point start, Point end)
+		{
+			Pen pen = new Pen(Color.Red, 1F);
+
+			if ((end.X - start.X) > 4)
+			{
+				int num1 = start.X;
+				while ((num1 <= (end.X - 2)))
+				{
+					g.DrawLine(pen, num1, start.Y, (num1 + 2), (start.Y + 2));
+					num1 = (num1 + 4);
+  
+				}
+				for (int num2 = (start.X + 2); (num2 <= (end.X - 2)); num2 = (num2 + 4))
+				{
+					g.DrawLine(pen, num2, (start.Y + 2), (num2 + 2), start.Y);  
+				}
+				return;
+ 
+			}
+			g.DrawLine(pen, start, end);
+			return;
+		}
+
 		protected override void OnTextChanged(EventArgs e)
 		{
 			// get change size

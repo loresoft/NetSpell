@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace NetSpell.SpellChecker.Dictionary.Phonetic
 {
@@ -10,7 +11,7 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 		/// <summary>
 		///     Initializes a new instance of the class
 		/// </summary>
-		public PhoneticUtility()
+		private PhoneticUtility()
 		{
 		}
 
@@ -73,7 +74,7 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 					case '7' :
 					case '8' :
 					case '9' :
-						rule.Priority = int.Parse(cond.ToString());
+						rule.Priority = int.Parse(cond.ToString(CultureInfo.CurrentUICulture));
 						break;
 					default :
 						if (group)

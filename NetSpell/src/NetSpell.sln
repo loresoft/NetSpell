@@ -3,6 +3,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.SpellChecker", "Ne
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Tests", "NetSpell.Tests\NetSpell.Tests.csproj", "{FA92DDBE-81AD-4F8A-9941-300839C15727}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild", "NetSpell.DictionaryBuild\NetSpell.DictionaryBuild.csproj", "{1A1420D4-99BA-4755-9D54-F920BA435D64}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
@@ -17,6 +21,10 @@ Global
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.Build.0 = Debug|.NET
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.ActiveCfg = Release|.NET
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.Build.0 = Release|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.ActiveCfg = Debug|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.Build.0 = Debug|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.ActiveCfg = Release|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.Build.0 = Release|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.ActiveCfg = Debug|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.Build.0 = Debug|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.ActiveCfg = Release|.NET

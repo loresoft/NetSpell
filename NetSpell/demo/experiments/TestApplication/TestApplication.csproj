@@ -3,13 +3,13 @@
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{1A1420D4-99BA-4755-9D54-F920BA435D64}"
+        ProjectGuid = "{3DDE12E5-4BE2-4DF4-959A-DCBE9F5AE7F5}"
     >
         <Build>
             <Settings
-                ApplicationIcon = "BOOK01A.ICO"
+                ApplicationIcon = "App.ico"
                 AssemblyKeyContainerName = ""
-                AssemblyName = "NetSpell.DictionaryBuild"
+                AssemblyName = "WindowsApplication1"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -18,7 +18,7 @@
                 OutputType = "WinExe"
                 PreBuildEvent = ""
                 PostBuildEvent = ""
-                RootNamespace = "NetSpell.DictionaryBuild"
+                RootNamespace = "TestApplication"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
@@ -32,7 +32,7 @@
                     DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
-                    IncrementalBuild = "true"
+                    IncrementalBuild = "false"
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
@@ -90,8 +90,8 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "NetSpell.SpellChecker"
-                    Project = "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
+                    Name = "TestExtender"
+                    Project = "{154F5BC4-82C8-4F48-9D83-89A1C6BDF702}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
@@ -99,18 +99,8 @@
         <Files>
             <Include>
                 <File
-                    RelPath = "AboutForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AboutForm.resx"
-                    DependentUpon = "AboutForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "app.config"
-                    BuildAction = "None"
+                    RelPath = "App.ico"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "AssemblyInfo.cs"
@@ -118,27 +108,13 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "BOOK01A.ICO"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "DictionaryForm.cs"
+                    RelPath = "TestForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DictionaryForm.resx"
-                    DependentUpon = "DictionaryForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "MainForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "MainForm.resx"
-                    DependentUpon = "MainForm.cs"
+                    RelPath = "TestForm.resx"
+                    DependentUpon = "TestForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>
