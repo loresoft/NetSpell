@@ -97,179 +97,839 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SuggestionList.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="&gt;&gt;statusPaneWord.Name">
+    <value>statusPaneWord</value>
   </data>
-  <data name="SuggestionList.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="IgnoreAllButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="$this.AutoScroll" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="SuggestionList.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="statusPaneIndex.ToolTipText">
+    <value />
   </data>
-  <data name="ReplacementWord.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="SuggestionList.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
-  <data name="ReplacementWord.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="OptionsButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
-  <data name="ReplacementWord.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="ReplaceLabel.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
   </data>
-  <data name="ReplaceLabel.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="IgnoreButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
   </data>
-  <data name="ReplaceLabel.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="IgnoreButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
   </data>
-  <data name="ReplaceLabel.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="ReplacementWord.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
-  <data name="SuggestionsLabel.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="ReplacementWord.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
-  <data name="SuggestionsLabel.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="&gt;&gt;IgnoreAllButton.Parent">
+    <value>$this</value>
   </data>
-  <data name="SuggestionsLabel.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="TextLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
   </data>
-  <data name="IgnoreButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="SuggestionList.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>4</value>
   </data>
-  <data name="IgnoreButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="spellStatus.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
-  <data name="IgnoreButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="SuggestionList.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </data>
-  <data name="ReplaceButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="ReplacementWord.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
   </data>
-  <data name="ReplaceButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="&gt;&gt;TextBeingChecked.Parent">
+    <value>$this</value>
   </data>
-  <data name="ReplaceButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="AddButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
   </data>
-  <data name="ReplaceAllButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="IgnoreAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
   </data>
-  <data name="ReplaceAllButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="&gt;&gt;IgnoreButton.ZOrder">
+    <value>12</value>
   </data>
-  <data name="ReplaceAllButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="IgnoreButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
-  <data name="IgnoreAllButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="IgnoreAllButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="IgnoreAllButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="CancelBtn.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="CancelBtn.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="CancelBtn.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="TextBeingChecked.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="TextBeingChecked.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="TextBeingChecked.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="TextLabel.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="TextLabel.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="TextLabel.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="spellStatus.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="spellStatus.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="spellStatus.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneWord.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneWord.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneCount.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneCount.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneIndex.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="statusPaneIndex.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="OptionsButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="OptionsButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="OptionsButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="AddButton.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="AddButton.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="AddButton.Modifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
-  </data>
-  <data name="$this.Locked" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </data>
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>(Default)</value>
-  </data>
-  <data name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <data name="SuggestionsLabel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>70, 16</value>
   </data>
   <data name="$this.Localizable" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="IgnoreAllButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;TextLabel.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IgnoreButton.Name">
+    <value>IgnoreButton</value>
+  </data>
+  <data name="OptionsButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplaceLabel.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;OptionsButton.ZOrder">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;CancelBtn.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="IgnoreAllButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.Text">
+    <value>S&amp;uggestions:</value>
+  </data>
+  <data name="&gt;&gt;ReplaceLabel.Name">
+    <value>ReplaceLabel</value>
+  </data>
+  <data name="statusPaneIndex.Text">
+    <value>Index: 0</value>
+  </data>
+  <data name="ReplaceButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="spellStatus.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplaceAllButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;CancelBtn.Name">
+    <value>CancelBtn</value>
+  </data>
+  <data name="ReplacementWord.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 20</value>
+  </data>
+  <data name="CancelBtn.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceLabel.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreAllButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="ReplaceAllButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="ReplaceAllButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;ReplaceLabel.ZOrder">
+    <value>5</value>
+  </data>
+  <data name="ReplaceLabel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1</value>
+  </data>
+  <data name="TextLabel.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;ReplaceButton.Name">
+    <value>ReplaceButton</value>
+  </data>
+  <data name="$this.AutoScrollMargin" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;ReplaceAllButton.Parent">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SuggestionList.Parent">
+    <value>$this</value>
+  </data>
+  <data name="ReplaceButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 136</value>
+  </data>
+  <data name="&gt;&gt;ReplaceAllButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SuggestionsLabel.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="&gt;&gt;ReplaceLabel.Parent">
+    <value>$this</value>
+  </data>
+  <data name="TextBeingChecked.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplacementWord.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="statusPaneCount.Width" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>100</value>
+  </data>
+  <data name="ReplaceAllButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="SuggestionList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;ReplacementWord.Parent">
+    <value>$this</value>
+  </data>
+  <data name="SuggestionList.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="statusPaneIndex.Alignment" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="OptionsButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;TextLabel.Name">
+    <value>TextLabel</value>
+  </data>
+  <data name="CancelBtn.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceAllButton.Text">
+    <value>Replace A&amp;ll</value>
+  </data>
+  <data name="ReplaceAllButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="TextBeingChecked.ScrollBars" type="System.Windows.Forms.RichTextBoxScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Both</value>
+  </data>
+  <data name="ReplacementWord.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="CancelBtn.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="$this.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="AddButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionList.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 176</value>
+  </data>
+  <data name="AddButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="TextBeingChecked.BulletIndent" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="OptionsButton.Text">
+    <value>&amp;Options</value>
+  </data>
+  <data name="OptionsButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CancelBtn.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="&gt;&gt;statusPaneIndex.Type">
+    <value>System.Windows.Forms.StatusBarPanel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SuggestionList.ScrollAlwaysVisible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </data>
-  <data name="$this.GridSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>8, 8</value>
+  <data name="IgnoreAllButton.Text">
+    <value>I&amp;gnore All</value>
   </data>
-  <data name="$this.DrawGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="ReplaceAllButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;ReplacementWord.Name">
+    <value>ReplacementWord</value>
+  </data>
+  <data name="SuggestionsLabel.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextBeingChecked.ZoomFactor" type="System.Single, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1</value>
+  </data>
+  <data name="TextBeingChecked.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 72</value>
+  </data>
+  <data name="TextLabel.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="SuggestionsLabel.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="TextBeingChecked.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1</value>
+  </data>
+  <data name="SuggestionsLabel.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="statusPaneCount.ToolTipText">
+    <value />
+  </data>
+  <data name="$this.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="spellStatus.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>450, 16</value>
+  </data>
+  <data name="ReplaceAllButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextBeingChecked.WordWrap" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="OptionsButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="spellStatus.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;OptionsButton.Parent">
+    <value>$this</value>
+  </data>
+  <data name="ReplacementWord.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;TextLabel.ZOrder">
+    <value>3</value>
+  </data>
+  <data name="SuggestionsLabel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>3</value>
+  </data>
+  <data name="AddButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>7</value>
+  </data>
+  <data name="ReplaceButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="ReplacementWord.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplacementWord.PasswordChar" type="System.Char, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreAllButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SuggestionList.Name">
+    <value>SuggestionList</value>
+  </data>
+  <data name="SuggestionList.IntegralHeight" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;IgnoreAllButton.Name">
+    <value>IgnoreAllButton</value>
+  </data>
+  <data name="AddButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextBeingChecked.RightMargin" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;IgnoreAllButton.ZOrder">
+    <value>10</value>
+  </data>
+  <data name="IgnoreAllButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>6</value>
+  </data>
+  <data name="statusPaneCount.Icon" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>109, 16</value>
+  </data>
+  <data name="&gt;&gt;spellStatus.Type">
+    <value>System.Windows.Forms.StatusBar, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusPaneCount.Type">
+    <value>System.Windows.Forms.StatusBarPanel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReplaceAllButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 168</value>
+  </data>
+  <data name="&gt;&gt;IgnoreButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ReplacementWord.ZOrder">
+    <value>6</value>
+  </data>
+  <data name="ReplaceAllButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="OptionsButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="OptionsButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="statusPaneWord.MinWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>10</value>
+  </data>
+  <data name="spellStatus.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="spellStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="CancelBtn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="AddButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="AddButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="AddButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplaceLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;statusPaneWord.Type">
+    <value>System.Windows.Forms.StatusBarPanel, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReplacementWord.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="TextLabel.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="SuggestionsLabel.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="AddButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionList.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>336, 95</value>
+  </data>
+  <data name="ReplacementWord.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="AddButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="spellStatus.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="spellStatus.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextBeingChecked.Text">
+    <value />
+  </data>
+  <data name="&gt;&gt;IgnoreButton.Parent">
+    <value>$this</value>
+  </data>
+  <data name="CancelBtn.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>11</value>
+  </data>
+  <data name="SuggestionList.ItemHeight" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>13</value>
+  </data>
+  <data name="ReplaceLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="SuggestionsLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>TopLeft</value>
+  </data>
+  <data name="&gt;&gt;AddButton.Parent">
+    <value>$this</value>
+  </data>
+  <data name="ReplaceButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;ReplaceButton.ZOrder">
+    <value>11</value>
+  </data>
+  <data name="ReplaceAllButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="ReplaceAllButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>9</value>
+  </data>
+  <data name="ReplacementWord.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplacementWord.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>2</value>
+  </data>
+  <data name="ReplaceButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="AddButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 24</value>
+  </data>
+  <data name="statusPaneIndex.Width" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>80</value>
   </data>
-  <data name="$this.Name">
-    <value>SpellingForm</value>
+  <data name="AddButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
   </data>
-  <data name="$this.SnapToGrid" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="OptionsButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceAllButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceLabel.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </data>
-  <data name="$this.DefaultModifiers" type="System.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>Private</value>
+  <data name="ReplaceButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>8</value>
+  </data>
+  <data name="SuggestionList.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplacementWord.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="statusPaneWord.Alignment" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="SuggestionList.HorizontalScrollbar" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;$this.Type">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReplaceButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="CancelBtn.Text">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="ReplaceButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="AddButton.Image" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="CancelBtn.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;CancelBtn.Parent">
+    <value>$this</value>
+  </data>
+  <data name="CancelBtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="ReplaceButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="SuggestionsLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="IgnoreButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreAllButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="SuggestionsLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="$this.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;OptionsButton.Name">
+    <value>OptionsButton</value>
+  </data>
+  <data name="ReplaceAllButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="$this.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>5, 13</value>
+  </data>
+  <data name="TextBeingChecked.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 24</value>
+  </data>
+  <data name="&gt;&gt;SuggestionList.ZOrder">
+    <value>13</value>
+  </data>
+  <data name="IgnoreButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="IgnoreButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="OptionsButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="SuggestionList.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="IgnoreButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;TextBeingChecked.Type">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReplaceLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>TopLeft</value>
+  </data>
+  <data name="IgnoreAllButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="IgnoreButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="ReplaceAllButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="OptionsButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextLabel.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="spellStatus.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>14</value>
+  </data>
+  <data name="TextLabel.Text">
+    <value>Text Being Checked:</value>
+  </data>
+  <data name="&gt;&gt;TextBeingChecked.ZOrder">
+    <value>7</value>
+  </data>
+  <data name="IgnoreButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreAllButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 56</value>
+  </data>
+  <data name="&gt;&gt;SuggestionList.Type">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddButton.ZOrder">
+    <value>0</value>
+  </data>
+  <data name="CancelBtn.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 160</value>
+  </data>
+  <data name="IgnoreButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="SuggestionList.HorizontalExtent" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ReplaceButton.Parent">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;AddButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddButton.Text">
+    <value>&amp;Add</value>
+  </data>
+  <data name="&gt;&gt;statusPaneIndex.Name">
+    <value>statusPaneIndex</value>
+  </data>
+  <data name="ReplaceLabel.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;TextLabel.Parent">
+    <value>$this</value>
+  </data>
+  <data name="TextBeingChecked.Multiline" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="IgnoreButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextBeingChecked.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;SuggestionsLabel.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="statusPaneCount.Alignment" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Left</value>
+  </data>
+  <data name="TextBeingChecked.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplaceButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="AddButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 96</value>
+  </data>
+  <data name="OptionsButton.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 208</value>
+  </data>
+  <data name="&gt;&gt;spellStatus.Parent">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OptionsButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReplacementWord.Text">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="CancelBtn.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="SuggestionList.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;SuggestionsLabel.Name">
+    <value>SuggestionsLabel</value>
+  </data>
+  <data name="CancelBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="ReplacementWord.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="CancelBtn.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 248</value>
+  </data>
+  <data name="ReplaceLabel.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>72, 16</value>
+  </data>
+  <data name="$this.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="ReplaceAllButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;ReplaceLabel.Type">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SuggestionList.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceLabel.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="CancelBtn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="ReplaceButton.Text">
+    <value>&amp;Replace</value>
+  </data>
+  <data name="statusPaneWord.ToolTipText">
+    <value />
+  </data>
+  <data name="ReplaceButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="ReplacementWord.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreAllButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="SuggestionList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="IgnoreButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplacementWord.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextLabel.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="TextLabel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 8</value>
+  </data>
+  <data name="&gt;&gt;ReplaceAllButton.Name">
+    <value>ReplaceAllButton</value>
+  </data>
+  <data name="statusPaneWord.Text">
+    <value />
+  </data>
+  <data name="OptionsButton.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplaceButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="OptionsButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="spellStatus.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="OptionsButton.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -280,5 +940,263 @@
         AAAAAAAAAAAAAAAAAAD8////+H////B////gP///wx///+ef////z////+f////z///U4f//1Vz//8Te
         ///VX///7Of/////////////
 </value>
+  </data>
+  <data name="statusPaneIndex.Icon" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextBeingChecked.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>2147483647</value>
+  </data>
+  <data name="IgnoreAllButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="OptionsButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Standard</value>
+  </data>
+  <data name="AddButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplacementWord.MaxLength" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32767</value>
+  </data>
+  <data name="&gt;&gt;ReplacementWord.Type">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TextLabel.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="IgnoreAllButton.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="spellStatus.Text">
+    <value />
+  </data>
+  <data name="ReplaceButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;TextBeingChecked.Name">
+    <value>TextBeingChecked</value>
+  </data>
+  <data name="IgnoreAllButton.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="spellStatus.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Bottom</value>
+  </data>
+  <data name="IgnoreButton.Text">
+    <value>&amp;Ignore</value>
+  </data>
+  <data name="TextBeingChecked.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Top, Left</value>
+  </data>
+  <data name="&gt;&gt;statusPaneCount.Name">
+    <value>statusPaneCount</value>
+  </data>
+  <data name="ReplaceButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="TextLabel.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="statusPaneWord.Icon" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;SuggestionsLabel.ZOrder">
+    <value>4</value>
+  </data>
+  <data name="OptionsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>5</value>
+  </data>
+  <data name="spellStatus.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 288</value>
+  </data>
+  <data name="&gt;&gt;ReplaceButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SuggestionList.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplaceLabel.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>CenterScreen</value>
+  </data>
+  <data name="ReplaceAllButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>450, 304</value>
+  </data>
+  <data name="AddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="ReplaceButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="ReplaceLabel.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="&gt;&gt;ReplaceAllButton.ZOrder">
+    <value>9</value>
+  </data>
+  <data name="TextBeingChecked.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="TextBeingChecked.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="CancelBtn.AccessibleName" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="CancelBtn.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="ReplaceLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;spellStatus.Name">
+    <value>spellStatus</value>
+  </data>
+  <data name="IgnoreAllButton.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SuggestionsLabel.Parent">
+    <value>$this</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </data>
+  <data name="TextLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="CancelBtn.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="TextLabel.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="TextBeingChecked.Font" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="statusPaneCount.MinWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>10</value>
+  </data>
+  <data name="OptionsButton.TabIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;$this.Name">
+    <value>SpellingForm</value>
+  </data>
+  <data name="ReplaceAllButton.BackgroundImage" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="TextBeingChecked.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;CancelBtn.ZOrder">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;spellStatus.ZOrder">
+    <value>2</value>
+  </data>
+  <data name="ReplaceLabel.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="IgnoreAllButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="ReplaceLabel.Text">
+    <value>Replace &amp;with:</value>
+  </data>
+  <data name="statusPaneCount.Text">
+    <value>Word: 0 of 0</value>
+  </data>
+  <data name="TextBeingChecked.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>None</value>
+  </data>
+  <data name="$this.Text">
+    <value>Spell Check</value>
+  </data>
+  <data name="&gt;&gt;IgnoreAllButton.Type">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CancelBtn.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="ReplaceButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="statusPaneIndex.MinWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>10</value>
+  </data>
+  <data name="statusPaneWord.Width" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>254</value>
+  </data>
+  <data name="SuggestionsLabel.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="SuggestionsLabel.Visible" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="SuggestionList.ColumnWidth" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0</value>
+  </data>
+  <data name="IgnoreAllButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>NoControl</value>
+  </data>
+  <data name="TextLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>TopLeft</value>
+  </data>
+  <data name="spellStatus.AccessibleDescription" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </data>
+  <data name="ReplacementWord.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 128</value>
+  </data>
+  <data name="TextBeingChecked.AutoSize" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </data>
+  <data name="$this.Name">
+    <value>SpellingForm</value>
+  </data>
+  <data name="AddButton.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="TextBeingChecked.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="IgnoreAllButton.ImageIndex" type="System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>-1</value>
+  </data>
+  <data name="CancelBtn.Size" type="System.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>75, 23</value>
+  </data>
+  <data name="ReplaceAllButton.Enabled" type="System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </data>
+  <data name="ReplacementWord.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="ReplaceLabel.Location" type="System.Drawing.Point, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>8, 112</value>
+  </data>
+  <data name="IgnoreButton.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>Inherit</value>
+  </data>
+  <data name="&gt;&gt;AddButton.Name">
+    <value>AddButton</value>
+  </data>
+  <data name="OptionsButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>MiddleCenter</value>
   </data>
 </root>
