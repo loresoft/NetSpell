@@ -30,23 +30,23 @@ function openSpellChecker()
 /****************************************************
 * Spell Checker Suggestion Window JavaScript Code
 ****************************************************/
-var iFormIndex = 0;
+
+//html tags to check
+var tagGroup = new Array("INPUT", "TEXTAREA", "DIV", "SPAN", "IFRAME");
+var iTagGoupIndex = 0;
 var iElementIndex = -1;
 var parentWindow;
 
 function initialize()
 {
-
-    var spellMode = document.getElementById("SpellMode").value;
-
     try
     {
-        iFormIndex = parseInt(document.getElementById("FormIndex").value);
+        iTagGoupIndex = parseInt(document.getElementById("TagGroupIndex").value);
         iElementIndex = parseInt(document.getElementById("ElementIndex").value);
     }
     catch(e)
     {
-        iFormIndex = 0;
+        iTagGoupIndex = 0;
         iElementIndex = -1;
     }
 
@@ -55,6 +55,8 @@ function initialize()
     else if (top.opener)
         parentWindow = top.opener;
 
+    var spellMode = document.getElementById("SpellMode").value;
+    
     switch (spellMode)
     {
         case "start" :
@@ -90,8 +92,8 @@ function loadText()
     // check if there is an element id to spell check
     if (parentWindow.checkElementID && parentWindow.checkElementID.length > 0)
     {
-    	var newText = oDocument.getElementById(parentWindow.checkElementID).value
-		if (newText.length > 0 && iFormIndex == 0)
+    	var newText = getElementText(oDocument.getElementById(parentWindow.checkElementID));
+		if (newText.length > 0 && iTagGoupIndex == 0)
 		{
 			updateSettings(newText, 0, -1, -1, "start");
 			document.getElementById("StatusText").innerText = "Checking " + parentWindow.checkElementID;
@@ -100,24 +102,20 @@ function loadText()
 		return false;
     }
 
-    //loop through all forms on parent document starting with last form index
-    for (iFormIndex; iFormIndex < oDocument.forms.length; iFormIndex++)
+    //loop through all tag groups on parent document starting with last tag index
+    for (iTagGoupIndex; iTagGoupIndex < tagGroup.length; iTagGoupIndex++)
     {
-        var oForm = oDocument.forms[iFormIndex];
+        var sTagName = tagGroup[iTagGoupIndex];
+        var oElements = oDocument.getElementsByTagName(sTagName);
+        
         //loop through all elements starting with last element index +1
-        for(++iElementIndex; iElementIndex < oForm.elements.length; iElementIndex++)
-        {
-            var sTagName = oForm.elements[iElementIndex].tagName;
-            var newText = "";
-
-            //look for input or textarea elements
-            if ((sTagName == "INPUT" && oForm.elements[iElementIndex].type == "text") || sTagName == "TEXTAREA")
-                newText = oForm.elements[iElementIndex].value;
-
+        for(++iElementIndex; iElementIndex < oElements.length; iElementIndex++)
+        {            
+            var newText = getElementText(oElements[iElementIndex]);
             if (newText.length > 0)
             {
-                updateSettings(newText, 0, iFormIndex, iElementIndex, "start");
-                document.getElementById("StatusText").innerText = "Checking " + oForm.elements[iElementIndex].name;
+                updateSettings(newText, 0, iTagGoupIndex, iElementIndex, "start");
+                document.getElementById("StatusText").innerText = "Checking " + oElements[iElementIndex].name;
                 return true;
             }
         }
@@ -126,11 +124,27 @@ function loadText()
     return false;
 }
 
-function updateSettings(currentText, wordIndex, formIndex, elementIndex, mode)
+function getElementText(oElement)
+{
+    var sTagName = oElement.tagName;
+    var newText = "";
+    
+    //look for input or textarea elements
+    if ((sTagName == "INPUT" && oElement.type == "text") || sTagName == "TEXTAREA")
+        newText = oElement.value;
+    else if (oElement.isContentEditable && (sTagName == "DIV" || sTagName == "SPAN"))
+        newText = oElement.innerHTML;
+    else if (oElement.isContentEditable && sTagName == "IFRAME")
+        newText = oElement.document.body.innerHTML;
+    
+    return newText;
+}
+
+function updateSettings(currentText, wordIndex, tagGroupIndex, elementIndex, mode)
 {
     document.getElementById("CurrentText").value = currentText;
     document.getElementById("WordIndex").value = wordIndex;
-    document.getElementById("FormIndex").value = formIndex;
+    document.getElementById("TagGroupIndex").value = tagGroupIndex;
     document.getElementById("ElementIndex").value = elementIndex;
     document.getElementById("SpellMode").value = mode;
 }
@@ -143,13 +157,32 @@ function updateText()
 	var oDocument = parentWindow.document;
 	var newText = document.getElementById("CurrentText").value;
 	var oElement;
-
+    
 	if (parentWindow.checkElementID && parentWindow.checkElementID.length > 0)
+	{
 		oElement = oDocument.getElementById(parentWindow.checkElementID);
-    else
-		oElement = oDocument.forms[iFormIndex].elements[iElementIndex];
-
-    oElement.value = newText;
+	}
+    else 
+    {
+    	var sTagName = tagGroup[iTagGoupIndex];
+        var oElements = oDocument.getElementsByTagName(sTagName);
+        oElement = oElements[iElementIndex];
+	}
+    
+	switch (oElement.tagName)
+	{
+		case "INPUT" :
+        case "TEXTAREA" :
+			oElement.value = newText;
+			break;
+		case "DIV" :
+		case "SPAN" :
+			oElement.innerHTML = newText;
+			break;
+		case "IFRAME" :
+			oElement.document.body.innerHTML = newText;
+			break;
+    }
 }
 
 function endCheck()

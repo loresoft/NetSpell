@@ -1,4 +1,4 @@
-<%@ Page Language="VB" ClassName="PopUpSpell" Explicit="True" Strict="True" %>
+<%@ Page Language="VB" ClassName="PopUpSpell" Explicit="True" Strict="True" ValidateRequest="False" %>
 <%@ import Namespace="System.IO" %>
 <%@ import Namespace="NetSpell.SpellChecker" %>
 <%@ import Namespace="NetSpell.SpellChecker.Dictionary" %>
@@ -234,7 +234,7 @@
         <input id="IgnoreList" type="hidden" name="IgnoreList" runat="server" />
         <input id="ReplaceKeyList" type="hidden" name="ReplaceKeyList" runat="server" />
         <input id="ReplaceValueList" type="hidden" name="ReplaceValueList" runat="server" />
-        <input id="FormIndex" type="hidden" value="0" name="FormIndex" runat="server" />
+        <input id="TagGroupIndex" type="hidden" value="0" name="TagGroupIndex" runat="server" />
         <input id="ElementIndex" type="hidden" value="-1" name="ElementIndex" runat="server" />
         <input id="SpellMode" type="hidden" value="load" name="SpellMode" runat="server" />
         <asp:panel id="ModalFrame" runat="server" enableviewstate="False" visible="False">
