@@ -844,8 +844,10 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The WordDictionary object to use when spell checking
 		/// </summary>
+		[Browsable(true)]
 		[CategoryAttribute("Dictionary")]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+		[Description("The WordDictionary object to use when spell checking")]
 		public WordDictionary Dictionary
 		{
 			get {return _Dictionary;}

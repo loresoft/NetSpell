@@ -133,6 +133,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Dictionary\WordDictionaryConverter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Dictionary\WordEnumerator.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
