@@ -1,3 +1,9 @@
+NetSpell 1.0 Stable Release 
+* More improvements to Visual Studio designer
+* Replace word bug fix
+* Improved suggestions by using Ispell's near miss strategy
+* Misc bug fixes
+
 NetSpell beta 0.9
 
 * Added MainDictionary property to spelling object

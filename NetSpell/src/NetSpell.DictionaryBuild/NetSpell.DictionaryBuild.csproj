@@ -132,9 +132,21 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Large Dictionary File List.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Medium Dictionary File List.xml"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "PerformanceTimer.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Small Dictionary File List.xml"
+                    BuildAction = "Content"
                 />
                 <Folder RelPath = "Dictionaries\" />
             </Include>

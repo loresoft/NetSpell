@@ -48,18 +48,26 @@ namespace NetSpell.TraySpell
 
 		private void Hotkey_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if(e.KeyCode != Keys.ControlKey && e.KeyCode != Keys.ShiftKey 
-				&& e.KeyCode != Keys.Alt && e.KeyCode != Keys.Menu 
-				&& e.KeyCode != Keys.LWin && e.KeyCode != Keys.RWin)
+			try
 			{
-				this.ControlModifier = e.Control;
-				this.ShiftModifier = e.Shift;
-				this.AltModifier = e.Alt;
-				this.HotKey = e.KeyCode;
-			}
+				if(e.KeyCode != Keys.ControlKey && e.KeyCode != Keys.ShiftKey 
+					&& e.KeyCode != Keys.Alt && e.KeyCode != Keys.Menu 
+					&& e.KeyCode != Keys.LWin && e.KeyCode != Keys.RWin)
+				{
+					this.ControlModifier = e.Control;
+					this.ShiftModifier = e.Shift;
+					this.AltModifier = e.Alt;
+					this.HotKey = e.KeyCode;
+				}
 
-			if(sender is TextBox)
-				((TextBox)sender).Text = this.DisplayHotkey();
+				if(sender is TextBox)
+					((TextBox)sender).Text = this.DisplayHotkey();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 
 		}
 
@@ -87,25 +95,33 @@ namespace NetSpell.TraySpell
 		{
 			string sHotKey = "";
 			
-			if (this.ControlModifier)
+			try
 			{
-				if (sHotKey.Length!=0) sHotKey += " + ";
-				sHotKey += "Ctrl";
-			}     
-			if (this.AltModifier)
-			{
-				if (sHotKey.Length!=0) sHotKey += " + ";
-				sHotKey += "Shift";
+				if (this.ControlModifier)
+				{
+					if (sHotKey.Length!=0) sHotKey += " + ";
+					sHotKey += "Ctrl";
+				}     
+				if (this.AltModifier)
+				{
+					if (sHotKey.Length!=0) sHotKey += " + ";
+					sHotKey += "Shift";
+				}
+				if (this.ShiftModifier)
+				{
+					if (sHotKey.Length!=0) sHotKey += " + ";
+					sHotKey += "Alt";
+				}
+				if (sHotKey.Length!=0) 
+				{
+					sHotKey += " + ";
+					sHotKey += this.HotKey.ToString();
+				}
 			}
-			if (this.ShiftModifier)
+			catch (Exception ex)
 			{
-				if (sHotKey.Length!=0) sHotKey += " + ";
-				sHotKey += "Alt";
-			}
-			if (sHotKey.Length!=0) 
-			{
-				sHotKey += " + ";
-				sHotKey += this.HotKey.ToString();
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 			return sHotKey;
@@ -113,22 +129,38 @@ namespace NetSpell.TraySpell
 
 		public void LoadHotkeyConfig()
 		{
-			AppSettingsReader configReader = new AppSettingsReader();
+			try
+			{
+				AppSettingsReader configReader = new AppSettingsReader();
 
-			this.ControlModifier = ((bool)(configReader.GetValue("ControlModifier", typeof(bool))));
-			this.AltModifier = ((bool)(configReader.GetValue("AltModifier", typeof(bool))));
-			this.ShiftModifier = ((bool)(configReader.GetValue("ShiftModifier", typeof(bool))));
-			this.HotKey = ((Keys)(configReader.GetValue("Hotkey", typeof(int))));
+				this.ControlModifier = ((bool)(configReader.GetValue("ControlModifier", typeof(bool))));
+				this.AltModifier = ((bool)(configReader.GetValue("AltModifier", typeof(bool))));
+				this.ShiftModifier = ((bool)(configReader.GetValue("ShiftModifier", typeof(bool))));
+				this.HotKey = ((Keys)(configReader.GetValue("Hotkey", typeof(int))));
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		public void SaveHotkeyConfig()
 		{
-			AppSettingsWriter configWriter = new AppSettingsWriter();
+			try
+			{
+				AppSettingsWriter configWriter = new AppSettingsWriter();
 
-			configWriter.SetValue("ControlModifier", this.ControlModifier.ToString());
-			configWriter.SetValue("AltModifier", this.AltModifier.ToString());
-			configWriter.SetValue("ShiftModifier", this.ShiftModifier.ToString());
-			configWriter.SetValue("Hotkey", ((int)this.HotKey).ToString());
+				configWriter.SetValue("ControlModifier", this.ControlModifier.ToString());
+				configWriter.SetValue("AltModifier", this.AltModifier.ToString());
+				configWriter.SetValue("ShiftModifier", this.ShiftModifier.ToString());
+				configWriter.SetValue("Hotkey", ((int)this.HotKey).ToString());
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		/// <summary>
@@ -170,7 +202,7 @@ namespace NetSpell.TraySpell
 			set {_ShiftModifier = value;}
 		}
 
-#region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -256,7 +288,7 @@ namespace NetSpell.TraySpell
 			this.ResumeLayout(false);
 
 		}
-#endregion
+		#endregion
 
 	}
 }

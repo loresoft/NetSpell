@@ -133,6 +133,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "readme.txt"
+                    BuildAction = "Content"
+                />
+                <File
                     RelPath = "spellchk.ico"
                     BuildAction = "Content"
                 />

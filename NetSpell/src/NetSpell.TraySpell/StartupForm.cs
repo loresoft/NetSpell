@@ -79,63 +79,121 @@ namespace NetSpell.TraySpell
 
 		private void menuBuffer_Click(object sender, System.EventArgs e)
 		{
-			MenuItem menu = (MenuItem)sender;
-			string tempData = (string)clipboardHistory[menu.Index];
-			Clipboard.SetDataObject(tempData, true);
+			try
+			{
+
+				MenuItem menu = (MenuItem)sender;
+				string tempData = (string)clipboardHistory[menu.Index];
+				Clipboard.SetDataObject(tempData, true);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void menuExit_Click(object sender, System.EventArgs e)
 		{
-			trayIcon.Visible = false;
+			try
+			{
+				trayIcon.Visible = false;
 
-			// clean up api calls
-			Win32.ChangeClipboardChain(this.Handle, this.NextClipboard);
-			Win32.UnregisterHotKey(this.Handle, (Int32)AtomID);
-			Win32.GlobalDeleteAtom(AtomID);
+				// clean up api calls
+				Win32.ChangeClipboardChain(this.Handle, this.NextClipboard);
+				Win32.UnregisterHotKey(this.Handle, (Int32)AtomID);
+				Win32.GlobalDeleteAtom(AtomID);			
+			}
+			finally
+			{
+				Application.Exit();
+			}
 
-			Application.Exit();
 		}
 
 		private void menuOptions_Click(object sender, System.EventArgs e)
 		{
-			hotKeyForm.ShowDialog(this);
-			if (hotKeyForm.DialogResult == DialogResult.OK) this.SetHotkey();
+			try
+			{
+				hotKeyForm.ShowDialog(this);
+				if (hotKeyForm.DialogResult == DialogResult.OK) this.SetHotkey();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+
 		}
 
 		private void menuSpellCheck_Click(object sender, System.EventArgs e)
 		{
-			IDataObject iData = Clipboard.GetDataObject();
-			if(iData.GetDataPresent(DataFormats.Text)) 
+			try
 			{
-				string tempText = (String)iData.GetData(DataFormats.Text); 
-				this.spelling.Text = tempText.Replace("\r", "");
-				this.spelling.SpellCheck();
+				IDataObject iData = Clipboard.GetDataObject();
+				if(iData.GetDataPresent(DataFormats.Text)) 
+				{
+					this.spelling.Text = (string)iData.GetData(DataFormats.Text); 
+					this.spelling.SpellCheck();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
 		private void spelling_EndOfText(object sender, System.EventArgs args)
 		{
-			Clipboard.SetDataObject(this.spelling.Text, true);
+			try
+			{
+				Clipboard.SetDataObject(this.spelling.Text, true);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void SetHotkey()
 		{
-			int modifiers = 0;
+			try
+			{
 
-			if(hotKeyForm.ControlModifier) modifiers |= Win32.MOD_CONTROL;
-			if(hotKeyForm.ShiftModifier) modifiers |= Win32.MOD_SHIFT;
-			if(hotKeyForm.AltModifier) modifiers |= Win32.MOD_ALT;
+				int modifiers = 0;
+
+				if(hotKeyForm.ControlModifier) modifiers |= Win32.MOD_CONTROL;
+				if(hotKeyForm.ShiftModifier) modifiers |= Win32.MOD_SHIFT;
+				if(hotKeyForm.AltModifier) modifiers |= Win32.MOD_ALT;
 			
-			Win32.RegisterHotKey(this.Handle, (Int32)AtomID, 
-				modifiers, (Int32)hotKeyForm.HotKey);
+				int result = Win32.RegisterHotKey(this.Handle, (Int32)AtomID, 
+					modifiers, (Int32)hotKeyForm.HotKey);
+				if(result == 0) throw new Win32Exception();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void StartupForm_Load(object sender, System.EventArgs e)
 		{
-			this.Hide();
-			this.NextClipboard = Win32.SetClipboardViewer(this.Handle);
-			AtomID = Win32.GlobalAddAtom(DateTime.Now.ToString());
-			this.SetHotkey();
+			try
+			{
+				this.Hide();
+				this.NextClipboard = Win32.SetClipboardViewer(this.Handle);
+				AtomID = Win32.GlobalAddAtom(DateTime.Now.ToString());
+				if(AtomID == 0) throw new Win32Exception();
+				this.SetHotkey();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void trayIcon_DoubleClick(object sender, System.EventArgs e)
@@ -145,20 +203,28 @@ namespace NetSpell.TraySpell
 
 		private void trayMenu_Popup(object sender, System.EventArgs e)
 		{
-			menuHistory.Enabled = false;
-			menuHistory.MenuItems.Clear();
-			for (int i = 0; i < clipboardHistory.Count; i++)
+			try
 			{
-				string tempText = (string)clipboardHistory[i]; 
-				if (tempText.Length > 30) 
+				menuHistory.Enabled = false;
+				menuHistory.MenuItems.Clear();
+				for (int i = 0; i < clipboardHistory.Count; i++)
 				{
-					int pos = tempText.LastIndexOf(" ", 30);
-					if (pos < 1) pos = 26;
-					tempText = tempText.Substring(0, pos) + " ...";
+					string tempText = (string)clipboardHistory[i]; 
+					if (tempText.Length > 30) 
+					{
+						int pos = tempText.LastIndexOf(" ", 30);
+						if (pos < 1) pos = 26;
+						tempText = tempText.Substring(0, pos) + " ...";
+					}
+					menuHistory.MenuItems.Add(tempText, new System.EventHandler(this.menuBuffer_Click));
 				}
-				menuHistory.MenuItems.Add(tempText, new System.EventHandler(this.menuBuffer_Click));
+				menuHistory.Enabled = true;
 			}
-			menuHistory.Enabled = true;
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		/// <summary>
@@ -179,62 +245,70 @@ namespace NetSpell.TraySpell
 
 		protected override void WndProc(ref System.Windows.Forms.Message m)
 		{
-			switch (m.Msg)
+			try
 			{
-				case Win32.WM_CHANGECBCHAIN :
-					Debug.WriteLine("Another clipboard viewer closed");
+				switch (m.Msg)
+				{
+					case Win32.WM_CHANGECBCHAIN :
+						Debug.WriteLine("Another clipboard viewer closed");
 					
-					// update clipboard chain
-					if (this.NextClipboard == m.WParam) this.NextClipboard = m.LParam;
-					else Win32.SendMessage(this.NextClipboard, m.Msg, m.WParam, m.LParam);
+						// update clipboard chain
+						if (this.NextClipboard == m.WParam) this.NextClipboard = m.LParam;
+						else Win32.SendMessage(this.NextClipboard, m.Msg, m.WParam, m.LParam);
 
-					break;
-				case Win32.WM_HOTKEY :
-					Debug.WriteLine("Hotkey Pressed");
+						break;
+					case Win32.WM_HOTKEY :
+						Debug.WriteLine("Hotkey Pressed");
 
-					if (AtomID == (Int16)m.WParam)
-					{
-						this.menuSpellCheck_Click(this, new EventArgs());
-					}
-					break;
-				case Win32.WM_DRAWCLIPBOARD :
+						if (AtomID == (Int16)m.WParam)
+						{
+							this.menuSpellCheck_Click(this, new EventArgs());
+						}
+						break;
+					case Win32.WM_DRAWCLIPBOARD :
 					
-					// add data object to history
-					IDataObject iData = Clipboard.GetDataObject();
-					if(iData.GetDataPresent(DataFormats.Text)) 
-					{
-						string tempData = (String)iData.GetData(DataFormats.Text);
-						string lastData = "";
+						// add data object to history
+						IDataObject iData = Clipboard.GetDataObject();
+						if(iData.GetDataPresent(DataFormats.Text)) 
+						{
+							string tempData = (String)iData.GetData(DataFormats.Text);
+							string lastData = "";
 
-						Debug.WriteLine(string.Format("Clipboard Changed: {0}", tempData));
+							Debug.WriteLine(string.Format("Clipboard Changed: {0}", tempData));
 						
-						if(clipboardHistory.Count > 0) 
-						{
-							lastData = (string)clipboardHistory[0];
-						}
+							if(clipboardHistory.Count > 0) 
+							{
+								lastData = (string)clipboardHistory[0];
+							}
 
-						if(tempData != lastData) 
-						{
-							clipboardHistory.Insert(0, tempData);
-						}
+							if(tempData != lastData) 
+							{
+								clipboardHistory.Insert(0, tempData);
+							}
 
-						if(clipboardHistory.Count > 10)
-						{
-							clipboardHistory.RemoveRange(10, clipboardHistory.Count - 10);
+							if(clipboardHistory.Count > 10)
+							{
+								clipboardHistory.RemoveRange(10, clipboardHistory.Count - 10);
+							}
 						}
-					}
 					
-					//sending message to next clipboard viewer
-					Win32.SendMessage(this.NextClipboard, m.Msg, m.WParam, m.LParam);
+						//sending message to next clipboard viewer
+						Win32.SendMessage(this.NextClipboard, m.Msg, m.WParam, m.LParam);
 
-					break;
-				default :
-					base.WndProc(ref m);
-					break;
+						break;
+					default :
+						base.WndProc(ref m);
+						break;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
+					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
-#region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -337,7 +411,7 @@ namespace NetSpell.TraySpell
 			this.Load += new System.EventHandler(this.StartupForm_Load);
 
 		}
-#endregion
+		#endregion
 
 	}
 

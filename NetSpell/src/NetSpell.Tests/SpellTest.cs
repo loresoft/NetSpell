@@ -111,22 +111,6 @@ namespace NetSpell.Tests
 		}
 
 		/// <summary>
-		///		NUnit Test Function
-		/// </summary>
-		[Test]
-		public void BadChar()
-		{
-			_SpellChecker.Text = "this is a tst of a tst errr";
-
-			_SpellChecker.SpellCheck();
-			
-			ArrayList tempSuggestion = new ArrayList();
-
-			_SpellChecker.BadChar(ref tempSuggestion);
-
-		}
-
-		/// <summary>
 		///		NUnit Test Function for ReplaceWord
 		/// </summary>
 		[Test]

@@ -221,17 +221,6 @@ internal sealed class Win32
 
 #endregion //Windows Message Constants
 
-#region FormatMessage Constants
-	internal const int FORMAT_MESSAGE_ALLOCATE_BUFFER	= 0x100;
-	internal const int FORMAT_MESSAGE_IGNORE_INSERTS	= 0x200;
-	internal const int FORMAT_MESSAGE_FROM_STRING		= 0x400;
-	internal const int FORMAT_MESSAGE_FROM_HMODULE		= 0x800;
-	internal const int FORMAT_MESSAGE_FROM_SYSTEM		= 0x1000;
-	internal const int FORMAT_MESSAGE_ARGUMENT_ARRAY	= 0x2000;
-	internal const int FORMAT_MESSAGE_MAX_WIDTH_MASK	= 0xFF;
-
-#endregion //FormatMessage Constants
-
 #region HotKey Constants
 	internal const int MOD_ALT		= 0x0001;
 	internal const int MOD_CONTROL	= 0x0002;
@@ -243,19 +232,6 @@ internal sealed class Win32
 	internal static extern bool ChangeClipboardChain ( 
 		IntPtr hwnd,
 		IntPtr hWndNext);
-
-	[DllImport("kernel32.dll", EntryPoint="FormatMessageA", SetLastError=true)]
-	internal static extern Int32 FormatMessage ( 
-		Int32 dwFlags,
-		IntPtr lpSource,
-		Int32 dwMessageId,
-		Int32 dwLanguageId,
-		string lpBuffer,
-		Int32 nSize,
-		Int32 Arguments);
-
-	[DllImport("kernel32.dll", SetLastError=true)]
-	internal static extern Int32 GetTickCount();
 
 	[DllImport("kernel32.dll", EntryPoint="GlobalAddAtomA", SetLastError=true)]
 	internal static extern Int16 GlobalAddAtom ( 

@@ -253,7 +253,7 @@ namespace NetSpell.SpellChecker
 			base.Dispose( disposing );
 		}
 
-		#region Windows Form Designer generated code
+#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -361,6 +361,7 @@ namespace NetSpell.SpellChecker
 			// TextBeingChecked
 			// 
 			this.TextBeingChecked.BackColor = System.Drawing.SystemColors.Window;
+			this.TextBeingChecked.DetectUrls = false;
 			this.TextBeingChecked.Location = new System.Drawing.Point(8, 24);
 			this.TextBeingChecked.Name = "TextBeingChecked";
 			this.TextBeingChecked.ReadOnly = true;
@@ -456,50 +457,21 @@ namespace NetSpell.SpellChecker
 			this.ResumeLayout(false);
 
 		}
-		#endregion
+#endregion
 
-		#region Spelling Events
+#region Spelling Events
 
 		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
 		{
 			try
 			{
+				this.UpdateDisplay(this.SpellChecker.Text, args.Word, 
+					args.WordIndex, args.TextIndex);
 
-				//display form
-				if (!this.Visible) this.Show();
-				this.Activate();
-
-				this.TextBeingChecked.Text = SpellChecker.Text;
 				//turn off ignore all option on double word
 				this.IgnoreAllButton.Enabled = false;
 				this.ReplaceAllButton.Enabled = false;
 				this.AddButton.Enabled = false;
-
-				//reset text to black
-				this.TextBeingChecked.SelectAll();
-				this.TextBeingChecked.SelectionColor = Color.Black;
-				//highlight current word
-				this.TextBeingChecked.Select(args.TextIndex, args.Word.Length);
-				this.TextBeingChecked.SelectionColor = Color.Red;
-				//set caret and scroll window
-				this.TextBeingChecked.Select(args.TextIndex, 0);
-				this.TextBeingChecked.Focus();
-				this.TextBeingChecked.ScrollToCaret();
-				//update status bar
-				this.statusPaneWord.Text = args.Word;
-				this.statusPaneCount.Text = string.Format("Word: {0} of {1}", 
-					args.WordIndex.ToString(),SpellChecker.WordCount.ToString());
-				this.statusPaneIndex.Text = string.Format("Index: {0}", 
-					args.TextIndex.ToString());
-			
-				//display suggestions
-				this.SuggestionList.BeginUpdate();
-				this.SuggestionList.SelectedIndex = -1;
-				this.SuggestionList.Items.Clear();
-				this.SuggestionList.EndUpdate();
-				//reset replacement word
-				this.ReplacementWord.Text = string.Empty;
-				this.ReplacementWord.Focus();
 			}
 			catch (Exception ex)
 			{
@@ -507,32 +479,11 @@ namespace NetSpell.SpellChecker
 					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
 		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
 		{
 			try
 			{
-				//display form
-				if (!this.Visible) this.Show();
-				this.Activate();
-			
-				this.TextBeingChecked.Text = SpellChecker.Text;
-			
-				//reset text to black
-				this.TextBeingChecked.SelectAll();
-				this.TextBeingChecked.SelectionColor = Color.Black;
-
-				//update status bar
-				this.statusPaneWord.Text = "";
-				this.statusPaneCount.Text = string.Format("Word:{0} of {1}", "0", SpellChecker.WordCount.ToString());
-				this.statusPaneIndex.Text = "Index: " + 0;
-				//display suggestions
-				this.SuggestionList.BeginUpdate();
-				this.SuggestionList.SelectedIndex = -1;
-				this.SuggestionList.Items.Clear();
-				this.SuggestionList.EndUpdate();
-				//reset replacement word
-				this.ReplacementWord.Text = string.Empty;
+				this.UpdateDisplay(this.SpellChecker.Text, "", 0, 0);
 
 				MessageBox.Show(this, "Spell Check Complete.", "Spell Check", 
 					MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -550,56 +501,81 @@ namespace NetSpell.SpellChecker
 		{
 			try
 			{
+				this.UpdateDisplay(this.SpellChecker.Text, args.Word, 
+					args.WordIndex, args.TextIndex);
 
-				//display form
-				if (!this.Visible) this.Show();
-				this.Activate();
-
-				this.TextBeingChecked.Text = SpellChecker.Text;
 				//turn on ignore all option
 				this.IgnoreAllButton.Enabled = true;
 				this.ReplaceAllButton.Enabled = true;
-				if (this.SpellChecker.UserDictionary.Length > 0)
-				{
-					this.AddButton.Enabled = true;
-				}
-				else 
-				{
-					this.AddButton.Enabled = false;
-				}
-
-				//reset text to black
-				this.TextBeingChecked.SelectAll();
-				this.TextBeingChecked.SelectionColor = Color.Black;
-
-				//highlight current word
-				this.TextBeingChecked.Select(args.TextIndex, args.Word.Length);
-				this.TextBeingChecked.SelectionColor = Color.Red;
-				//set caret and scroll window
-				this.TextBeingChecked.Select(args.TextIndex, 0);
-				this.TextBeingChecked.Focus();
-				this.TextBeingChecked.ScrollToCaret();
-				//update status bar
-				this.statusPaneWord.Text = args.Word;
-				this.statusPaneCount.Text = string.Format("Word:{0} of {1}", args.WordIndex.ToString(),SpellChecker.WordCount.ToString());
-				this.statusPaneIndex.Text = "Index: " + args.TextIndex.ToString();
+				
 				//generate suggestions
 				SpellChecker.Suggest();
+
 				//display suggestions
-				this.SuggestionList.BeginUpdate();
-				this.SuggestionList.SelectedIndex = -1;
-				this.SuggestionList.Items.Clear();
 				this.SuggestionList.Items.AddRange((string[])SpellChecker.Suggestions.ToArray(typeof(string)));
-				this.SuggestionList.EndUpdate();
-				//reset replacement word
-				this.ReplacementWord.Text = string.Empty;
-				this.ReplacementWord.Focus();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(string.Format("{0}\n\n{1}" ,ex.Message, ex.ToString()), 
 					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		private void UpdateDisplay(string text, string word, int wordIndex, int textIndex)
+		{
+			//display form
+			if (!this.Visible) this.Show();
+			this.Activate();
+
+			//add button
+			if (this.SpellChecker.UserDictionary.Length > 0)
+			{
+				this.AddButton.Enabled = true;
+			}
+			else 
+			{
+				this.AddButton.Enabled = false;
+			}
+
+			//set text context
+			this.TextBeingChecked.ResetText();
+			this.TextBeingChecked.SelectionColor = Color.Black;
+			
+			if(word.Length > 0) 
+			{
+				//highlight current word
+				this.TextBeingChecked.AppendText(text.Substring(0, textIndex));
+				this.TextBeingChecked.SelectionColor = Color.Red;
+				this.TextBeingChecked.AppendText(word);
+				this.TextBeingChecked.SelectionColor = Color.Black;
+				this.TextBeingChecked.AppendText(text.Substring(textIndex + word.Length));
+			
+				//set caret and scroll window
+				this.TextBeingChecked.Select(textIndex, 0);
+				this.TextBeingChecked.Focus();
+				this.TextBeingChecked.ScrollToCaret();
+			}
+			else
+			{
+				this.TextBeingChecked.AppendText(text);
+			}
+
+			//update status bar
+			this.statusPaneWord.Text = word;
+			wordIndex++;  //WordIndex is 0 base, display is 1 based
+			this.statusPaneCount.Text = string.Format("Word: {0} of {1}", 
+				wordIndex.ToString(), this.SpellChecker.WordCount.ToString());
+			this.statusPaneIndex.Text = string.Format("Index: {0}", textIndex.ToString());
+
+			//display suggestions
+			this.SuggestionList.BeginUpdate();
+			this.SuggestionList.SelectedIndex = -1;
+			this.SuggestionList.Items.Clear();
+			this.SuggestionList.EndUpdate();
+
+			//reset replacement word
+			this.ReplacementWord.Text = string.Empty;
+			this.ReplacementWord.Focus();
 		}
 
 		/// <summary>
@@ -625,7 +601,7 @@ namespace NetSpell.SpellChecker
 			SpellChecker.DoubledWord -= new Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
 			SpellChecker.EndOfText -= new Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
 		}
-		#endregion
+#endregion
 
 	}
 }

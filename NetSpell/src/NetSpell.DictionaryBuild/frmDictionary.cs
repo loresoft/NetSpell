@@ -490,7 +490,6 @@ namespace NetSpell.DictionaryBuild
 			// 
 			// saveFileDialog1
 			// 
-			this.saveFileDialog1.FileName = "doc1";
 			this.saveFileDialog1.Filter = "XML Files (*.xml)|*.xml|Dictionary files (*.dic)|*.dic|Text files (*.txt)|*.txt|A" +
 				"ll files (*.*)|*.*";
 			this.saveFileDialog1.FilterIndex = 2;

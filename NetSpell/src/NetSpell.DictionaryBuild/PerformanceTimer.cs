@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+
 /// <summary>
 ///		Use this class to profile your code and any other operation
 ///		typically with a precision greater than 1 millionth of a second
