@@ -704,7 +704,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.AlertComplete">
             <summary>
-                The WordDictionary object to use when spell checking
+                Display the 'Spell Check Complete' alert.
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.CurrentWord">

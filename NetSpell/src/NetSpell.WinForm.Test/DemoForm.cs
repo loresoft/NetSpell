@@ -82,7 +82,7 @@ namespace NetSpell.WinForm.Test
 			this.demoRichText.ShowSelectionMargin = true;
 			this.demoRichText.Size = new System.Drawing.Size(408, 344);
 			this.demoRichText.TabIndex = 2;
-			this.demoRichText.Text = "Becuase people are realy bad spelers, ths produc was desinged to prevent speling " +
+			this.demoRichText.Text = "Becuase people are realy bad spelers, \nths produc was desinged to prevent speling " +
 				"erors in a text area like ths.";
 			// 
 			// spelling

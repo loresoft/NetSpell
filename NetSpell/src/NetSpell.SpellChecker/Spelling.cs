@@ -496,7 +496,7 @@ namespace NetSpell.SpellChecker
 				return;
 			}
 
-			int index = _words[this.WordIndex].Index;
+            int index = _words[this.WordIndex].Index;
 			int length = _words[this.WordIndex].Length;
 			
 			if (_Text[index + length] == ' ') 
@@ -738,13 +738,15 @@ namespace NetSpell.SpellChecker
 				this.DeleteWord();
 				return;
 			}
+            string replacedWord = this.CurrentWord;
+            int replacedWordIndex = this.WordIndex;
 
-			int index = _words[this.WordIndex].Index;
-			int length = _words[this.WordIndex].Length;
-			
+			int index = _words[replacedWordIndex].Index;
+			int length = _words[replacedWordIndex].Length;
+            
 			_Text.Remove(index, length);
 			// if first letter upper case, match case for replacement word
-			if (char.IsUpper(_words[this.WordIndex].ToString(), 0))
+			if (char.IsUpper(_words[replacedWordIndex].ToString(), 0))
 			{
 				_ReplacementWord = _ReplacementWord.Substring(0,1).ToUpper(CultureInfo.CurrentUICulture) 
 					+ _ReplacementWord.Substring(1);
@@ -755,8 +757,8 @@ namespace NetSpell.SpellChecker
 
 			this.OnReplacedWord(new ReplaceWordEventArgs(
 				_ReplacementWord, 
-				this.CurrentWord, 
-				this.WordIndex, 
+				replacedWord, 
+				replacedWordIndex, 
 				index));
 		}
 
@@ -1146,7 +1148,7 @@ namespace NetSpell.SpellChecker
 
 
 		/// <summary>
-		///     The WordDictionary object to use when spell checking
+		///     Display the 'Spell Check Complete' alert.
 		/// </summary>
 		[Browsable(true)]
 		[DefaultValue(true)]
