@@ -138,6 +138,26 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Controls\CheckAsYouType.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Controls\CheckAsYouType.resx"
+                    DependentUpon = "CheckAsYouType.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Controls\CheckAsYouTypeState.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Controls\NativeMethods.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Dictionary\Dictionary.bmp"
                     BuildAction = "EmbeddedResource"
                 />
