@@ -203,26 +203,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Forms\SpellingForm.de.resx"
-                    DependentUpon = "SpellingForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Forms\SpellingForm.es.resx"
-                    DependentUpon = "SpellingForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Forms\SpellingForm.fr.resx"
-                    DependentUpon = "SpellingForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Forms\SpellingForm.it.resx"
-                    DependentUpon = "SpellingForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Forms\SpellingForm.resx"
                     DependentUpon = "SpellingForm.cs"
                     BuildAction = "EmbeddedResource"

@@ -694,7 +694,52 @@
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule">
             <summary>
-            Summary description for Rule.
+            	This class hold the settings for a phonetic rule
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.BeginningOnly">
+            <summary>
+                True if this rule should be applied to the beginning only
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.Condition">
+            <summary>
+                The ascii condition array
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.ConditionCount">
+            <summary>
+                The number of conditions
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.ConsumeCount">
+            <summary>
+                The number of chars to consume with this rule
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.EndOnly">
+            <summary>
+                True if this rule should be applied to the end only
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.Priority">
+            <summary>
+                The priority of this rule
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.ReplaceMode">
+            <summary>
+                True if this rule should run in replace mode
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule.ReplaceString">
+            <summary>
+                The string to use when replacing
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRuleCollection">
@@ -862,8 +907,28 @@
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticUtility">
             <summary>
-            Summary description for PhoneticUtility.
+            	This class holds helper methods for phonetic encoding
             </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticUtility.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticUtility.EncodeRule(System.String,NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule@)">
+            <summary>
+                Converts the rule text in to a PhoneticRule class
+            </summary>
+            <param name="ruleText" type="string">
+                <para>
+                    The text to convert
+                </para>
+            </param>
+            <param name="rule" type="ref NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule">
+                <para>
+                    The object that will hold the conversion data
+                </para>
+            </param>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Word">
             <summary>
@@ -977,6 +1042,19 @@
                 Initializes a new instance of the class
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.LoadUserFile">
+            <summary>
+                Loads the user dictionary file
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.SaveUserFile">
+            <summary>
+                Saves the user dictionary file
+            </summary>
+            <remarks>
+            	If the file does not exist, it will be created
+            </remarks>
+        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String)">
             <summary>
                 Adds a word to the user list
@@ -1081,6 +1159,15 @@
                 Folder containing the dictionaries
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.EnableUserFile">
+            <summary>
+                Set this to true to automaticly create a user dictionary when
+                a word is added.
+            </summary>
+            <remarks>
+            	This should be set to false in a web environment
+            </remarks>
+        </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialized">
             <summary>
                 True if the dictionary has been initialized
@@ -1114,11 +1201,6 @@
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserFile">
             <summary>
                 The file name for the user word list for this dictionary
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserFolder">
-            <summary>
-                The folder where the User dictionary will be saved
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserWords">
@@ -1594,11 +1676,6 @@
         <member name="P:NetSpell.SpellChecker.Spelling.MaxSuggestions">
             <summary>
                 The maximum number of suggestions to generate
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Spelling.PhoneticLevel">
-            <summary>
-                Determines how close the suggestion words need to sound
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ReplaceList">
