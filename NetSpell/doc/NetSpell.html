@@ -23,26 +23,27 @@ Author:      Paul Welter
 Email:       pwelter@loresoft.com
 Environment: C#, ASP.NET, XP, W2K, Win2003, .NET 1.1, .NET 1.0, NT4
 Keywords:    Spell Checker, Control
-Level:       Intermediate&quot;
+Level:       Intermediate
 Description: The NetSpell project is a spell checking engine written entirely in managed C# .net code.
 Section      C# Controls
 SubSection   General
 </pre>
 <ul class="download">
-	<li><a href="http://sourceforge.net/projects/netspell/">Download source - 3.33 
+	<li><a href="http://sourceforge.net/project/showfiles.php?group_id=76171">Download source - 3.33 
 	MB</a></li>
 </ul>
 <p><img src="netspell.JPG" alt="NetSpell" width="456" height="336"></p>
 <h2>Introduction</h2>
 <p>The NetSpell project is a spell checking engine written entirely in managed 
-C# .net code. Package includes an English dictionary with dictionaries for other 
-languages available for download on the project web site. NetSpell&#39;s suggestions 
-for misspelled words are generated using phonetic (sounds like) matching and ranked 
-by a typographical score (looks like). Also supports &quot;ignore all&quot; and &quot;replace all&quot; 
-misspelled-word handling. Project also includes a dictionary build tool to build 
-custom dictionaries.</p>
-<p><i>TODO: Write better intro, include that it uses affix compression and supports 
-multiple languages...</i></p>
+C# .net code.&nbsp; NetSpell&#39;s suggestions 
+for a misspelled word are generated using phonetic (sounds like) matching and ranked 
+by a typographical score (looks like).&nbsp; NetSpell supports multiple 
+languages and the dictionaries are based on the OpenOffice Affix compression 
+format. The library can be used in Windows or Web Form projects. The download 
+includes an English dictionary with dictionaries for other languages available 
+for download on the project web site. NetSpell also supports user added words 
+and automatic creation of user dictionaries. The package includes a dictionary 
+build tool to build custom dictionaries. </p>
 <h2>The Dictionary</h2>
 <p>The root of all spell checkers is a word list, aka the dictionary.&nbsp; The 
 dictionary contains a list of all possible correctly spelled words for a 
@@ -124,6 +125,11 @@ keys and phonetic code portions are optional.&nbsp; The affix keys portion
 indicates which affix rules apply to this word.&nbsp; The phonetic code portion 
 is a cache of the phonetic code for this word and is used by the phonetic 
 suggestion strategy&nbsp; </p>
+<p>Another important thing to know about dictionaries is that they are named to 
+match the .net framework CultureInfo.Name property.&nbsp; For example the US 
+English dictionary is named &quot;en-US.dic&quot;.&nbsp; The en-US match the 
+CultureInfo.Name property.&nbsp; This allows the NetSpell library to default to 
+the dictionary corresponding to the computers regional settings.</p>
 <h2>Spell Checking Text</h2>
 <p>Spell checking is normally done by searching the dictionary for the given 
 word.&nbsp; Now that we've implemented affix compression, searching for the word 
@@ -159,9 +165,9 @@ A phonetic code is a rough approximation of how the word sounds.&nbsp; Each
 character in the code represents a sound.&nbsp; Its important to also understand 
 that the phonetic code does not indicate how to pronounce the word, its only a 
 representation of how it sounds.</p>
-<p>&nbsp;The phonetic strategy is simply comparing the phonetic code of the 
-misspelled word to all the words in the word list.&nbsp; If the phonetic codes 
-match, then the word is added to the suggestion list.&nbsp; </p>
+<p>The phonetic strategy is comparing the phonetic code of the misspelled word 
+to all the words in the word list.&nbsp; If the phonetic codes match, then the 
+word is added to the suggestion list.</p>
 <p>While that process may sound strait forward, it becomes much more complicated 
 when affix compression is introduced.&nbsp; An affix compressed word list only 
 contains base words.&nbsp; We can't just compare the phonetic code of the 
@@ -184,18 +190,77 @@ the suggestion list.</p>
 most likely to be the correct spelling. My research into the best way to go 
 about this turned up the Edit Distance Algorithm.&nbsp; The edit distance is 
 defined as the smallest number of insertions, deletions, and substitutions 
-required to change one string into another. </p>
+required to change one string into another. The NetSpell Edit Distance Algorithm 
+implementation has one slight modification in that it adds an extra edit 
+distance if the first character and last character don't match.&nbsp; The 
+rational behind this is that people generally can get the first character and 
+last character correct when trying to spell a word.</p>
 <h2>Using the Library</h2>
-<p>&nbsp;</p>
+<p>To use the NetSpell Library in your project you simply add a reference to 
+NetSpell.SpellChecker.dll to the project.&nbsp; You can also add the library to 
+the Visual Studio Toolbox to make it easier to interact with the properties. The 
+library is event based so you have to handle the various events.&nbsp; Also, if 
+you set the ShowDialog property to true, the library will using its internal 
+suggestion form to display the suggestion when a MisspelledWord event occurs. </p>
+<p>The following code is a very simple implementation of the NetSpell library.</p>
 <pre lang="cs">
-NetSpell.SpellChecker.Spelling SpellChecker;
+internal System.Windows.Forms.RichTextBox Document;
+internal NetSpell.SpellChecker.Spelling SpellChecker;
 
+// add event handlers
+this.SpellChecker.MisspelledWord += 
+    new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.SpellChecker_MisspelledWord);
+this.SpellChecker.EndOfText += 
+    new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
+this.SpellChecker.DoubledWord += 
+    new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
+
+private void SpellChecker_DoubledWord(object sender, 
+                                      NetSpell.SpellChecker.SpellingEventArgs args)
+{
+    // update text
+    this.Document.Text = this.SpellChecker.Text;
+}
+
+private void SpellChecker_EndOfText(object sender, 
+                                    System.EventArgs args)
+{
+    // update text
+    this.Document.Text = this.SpellChecker.Text;
+}
+
+private void SpellChecker_MisspelledWord(object sender, 
+                                         NetSpell.SpellChecker.SpellingEventArgs args)
+{
+    // update text
+    this.Document.Text = this.SpellChecker.Text;
+}
+
+// Start Spell Checking
 SpellChecker.Text = this.Document.Text;
 SpellChecker.SpellCheck();
+
 </pre>
+<p lang="cs">The project download includes two example implementaion of the 
+NetSpell Library.&nbsp; The first is a Windows forms text editor.&nbsp; The 
+second is a web project that demonstrats using the library in a web enviroment.</p>
+
+<h2>Conclusion</h2>
+<p>The NetSpell project has been a fun and challenging project to work on.&nbsp; 
+I plan to continue to improve and add new features to the library.&nbsp; The 
+feature that I'm currently working on is real time spell checking, like MS Word.&nbsp; 
+Please feel free to contact me with any suggestions, bug reports and feature 
+request.</p>
+<p>Paul Welter<br>
+<a href="mailto:pwelter@loresoft.com">pwelter@loresoft.com</a></p>
 
 <h2>References and Credits</h2>
 <ul>
+	<li>NetSpell Home Page <a href="http://www.loresoft.com/NetSpell">
+	http://www.loresoft.com/NetSpell</a></li>
+	<li>SourceForge Project Page
+	<a href="http://sourceforge.net/projects/netspell/">
+	http://sourceforge.net/projects/netspell/</a></li>
 	<li>OpenOffice Lingucomponent
 	<a href="http://lingucomponent.openoffice.org/dictionary.html">
 	http://lingucomponent.openoffice.org/dictionary.html</a></li>
