@@ -94,7 +94,7 @@ function openSpellChecker()
     if (window.showModalDialog)
         var result = window.showModalDialog(spellURL + "?Modal=true", window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:No; status:No; scroll:No");
     else
-        var newWindow = window.open(spellURL, "newWindow", "height=320,width=400,scrollbars=no,resizable=no,toolbars=no,status=no,menubar=no,location=no");
+        var newWindow = window.open(spellURL, "newWindow", "height=300,width=400,scrollbars=no,resizable=no,toolbars=no,status=no,menubar=no,location=no");
 }
 
 

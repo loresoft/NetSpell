@@ -3,11 +3,12 @@
 <project name="NetSpell" default="build">
     <property name="nant.settings.currentframework" value="net-1.1" />
     <property name="project.name" value="NetSpell" />
-    <property name="project.version" value="2.1.5" />
+    <property name="project.version" value="2.1.6" />
     <property name="project.config" value="Release" />
     <property name="build.debug" value="false" />
     <property name="build.dir" value="..\bin" />
     <property name="doc.dir" value="..\doc" />
+    <property name="demo.dir" value="..\demo" />
     
     <target name="build" depends="test" description="Builds NetSpell">
         <copy todir="${build.dir}" flatten="true">
@@ -16,6 +17,7 @@
                 <includes name="NetSpell.DictionaryBuild\bin\${project.config}\NetSpell.DictionaryBuild.*" />
             </fileset>
         </copy>
+        <copy file="${build.dir}\NetSpell.SpellChecker.dll" todir="${demo.dir}\Demo.Web.FreeTextBox\bin" />
     </target>
     
     <target name="compile" depends="clean" description="Compiles NetSpell">

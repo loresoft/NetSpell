@@ -38,7 +38,7 @@
         <FTB:FREETEXTBOX id="FreeTextBox1" runat="Server">
             <TOOLBARS>
                 <FTB:TOOLBAR runat="server">
-                    <FTB:TOOLBARBUTTON title="SpellCheck" runat="server" FunctionName="FTB_SpellCheck" ButtonImage="spellcheck" />
+                    <FTB:TOOLBARBUTTON title="SpellCheck" runat="server" ButtonImage="spellcheck" FunctionName="FTB_SpellCheck" />
                 </FTB:TOOLBAR>
             </TOOLBARS>
         </FTB:FREETEXTBOX>

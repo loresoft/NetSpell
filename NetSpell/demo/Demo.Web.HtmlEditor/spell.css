@@ -4,7 +4,7 @@ body, a, input, option, select, table, tr, td
 	font-size: 10pt;
 }
 body {
-	background-color: #E0E0E0;
+	background-color: #c3daf9;
 }
 
 input.suggestion, select.suggestion, select.suggestion option
@@ -14,8 +14,6 @@ input.suggestion, select.suggestion, select.suggestion option
 
 input.button
 {
-	background-color: #F3F0F0;
-	border: #636E8B 1 solid;
 	width: 100px;
 	cursor: hand;
 }

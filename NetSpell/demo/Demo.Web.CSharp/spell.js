@@ -3,42 +3,89 @@
 ****************************************************/
 // spell checker constants
 var spellURL = "SpellCheck.aspx";
+var showCompleteAlert = true;
+
+
 var tagGroup = new Array("INPUT", "TEXTAREA", "DIV", "SPAN");
 // global elements to check
 var checkElements = new Array();
 
+function getText(index)
+{
+    var oElement = document.getElementById(checkElements[index]);
+    var sText = "";
+
+    switch (oElement.tagName)
+	{
+		case "INPUT" :
+        case "TEXTAREA" :
+			sText = oElement.value;
+			break;
+		case "DIV" :
+		case "SPAN" :
+        case "BODY" :
+			sText = oElement.innerHTML;
+			break;
+        case "IFRAME" :
+            var oFrame = eval(oElement.id);
+            sText = oFrame.document.body.innerHTML;
+    }
+
+    return sText;
+}
+
+function setText(index, text)
+{
+    var oElement = document.getElementById(checkElements[index]);
+
+    switch (oElement.tagName)
+	{
+		case "INPUT" :
+        case "TEXTAREA" :
+			oElement.value = text;
+			break;
+		case "DIV" :
+		case "SPAN" :
+			oElement.innerHTML = text;
+			break;
+        case "IFRAME" :
+            var oFrame = eval(oElement.id);
+            oFrame.document.body.innerHTML = text;
+            break;
+    }
+}
+
 function checkSpelling()
 {
     checkElements = new Array();
-    //loop through all tag groups 
+    //loop through all tag groups
     for (var i = 0; i < tagGroup.length; i++)
     {
         var sTagName = tagGroup[i];
         var oElements = document.getElementsByTagName(sTagName);
         //loop through all elements
         for(var x = 0; x < oElements.length; x++)
-        {            
+        {
             if ((sTagName == "INPUT" && oElements[x].type == "text") || sTagName == "TEXTAREA")
-                checkElements[checkElements.length] = oElements[x];
+                checkElements[checkElements.length] = oElements[x].id;
             else if ((sTagName == "DIV" || sTagName == "SPAN") && oElements[x].isContentEditable)
-                checkElements[checkElements.length] = oElements[x];
+                checkElements[checkElements.length] = oElements[x].id;
         }
     }
-    openSpellChecker();    
+    openSpellChecker();
 }
 
 function checkSpellingById(id)
 {
     checkElements = new Array();
-    var oElement = document.getElementById(id);
-    checkElements[checkElements.length] = oElement;
+    checkElements[checkElements.length] = id;
     openSpellChecker();
 }
 
 function checkElementSpelling(oElement)
 {
     checkElements = new Array();
-    checkElements[checkElements.length] = oElement;
+    checkElements[checkElements.length] = oElement.id;
     openSpellChecker();
 }
 
@@ -47,7 +94,7 @@ function openSpellChecker()
     if (window.showModalDialog)
         var result = window.showModalDialog(spellURL + "?Modal=true", window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:No; status:No; scroll:No");
     else
-        var newWindow = window.open(spellURL, "newWindow", "height=320,width=400,scrollbars=no,resizable=no,toolbars=no,status=no,menubar=no,location=no");
+        var newWindow = window.open(spellURL, "newWindow", "height=300,width=400,scrollbars=no,resizable=no,toolbars=no,status=no,menubar=no,location=no");
 }
 
 
@@ -67,7 +114,7 @@ function initialize()
         parentWindow = top.opener;
 
     var spellMode = document.getElementById("SpellMode").value;
-    
+
     switch (spellMode)
     {
         case "start" :
@@ -101,7 +148,7 @@ function loadText()
     // check if there is any text to spell check
     for (++iElementIndex; iElementIndex < parentWindow.checkElements.length; iElementIndex++)
     {
-        var newText = getElementText(parentWindow.checkElements[iElementIndex]);
+        var newText = parentWindow.getText(iElementIndex);
         if (newText.length > 0)
         {
 			updateSettings(newText, 0, iElementIndex, "start");
@@ -109,22 +156,8 @@ function loadText()
 			return true;
         }
     }
-    
+
     return false;
-}
-
-function getElementText(oElement)
-{
-    var sTagName = oElement.tagName;
-    var newText = "";
-    
-    //look for input or textarea elements
-    if (sTagName == "INPUT" || sTagName == "TEXTAREA")
-        newText = oElement.value;
-    else if (sTagName == "DIV" || sTagName == "SPAN" || sTagName == "BODY")
-        newText = oElement.innerHTML;
-
-    return newText;
 }
 
 function updateSettings(currentText, wordIndex, elementIndex, mode)
@@ -140,27 +173,14 @@ function updateText()
     if (!parentWindow.document)
         return false;
 
-	var oDocument = parentWindow.document;
 	var newText = document.getElementById("CurrentText").value;
-	var oElement = parentWindow.checkElements[iElementIndex];
-            
-	switch (oElement.tagName)
-	{
-		case "INPUT" :
-        case "TEXTAREA" :
-			oElement.value = newText;
-			break;
-		case "DIV" :
-		case "SPAN" :
-        case "BODY" :
-			oElement.innerHTML = newText;
-			break;
-    }
+    parentWindow.setText(iElementIndex, newText);
 }
 
 function endCheck()
 {
-    alert("Spell Check Complete");
+    if (showCompleteAlert)
+    	alert("Spell Check Complete");
     closeWindow();
 }
 
