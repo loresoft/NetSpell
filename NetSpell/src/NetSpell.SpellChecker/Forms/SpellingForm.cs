@@ -51,12 +51,14 @@ namespace NetSpell.SpellChecker.Forms
 
 		private void AddButton_Click(object sender, System.EventArgs e)
 		{
-
+			this.SpellChecker.Dictionary.Add(this.SpellChecker.CurrentWord);
+			this.SpellChecker.SpellCheck();
 		}
 
 		private void CancelBtn_Click(object sender, System.EventArgs e)
 		{
 			this.Hide();
+			if (this.Owner != null) this.Owner.Activate();
 		}
 			
 		private void IgnoreAllButton_Click(object sender, System.EventArgs e)
@@ -98,8 +100,8 @@ namespace NetSpell.SpellChecker.Forms
 		private void SpellingForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			e.Cancel = true;
-			if (this.Owner != null) this.Owner.Activate();
 			this.Hide();
+			if (this.Owner != null) this.Owner.Activate();
 		}
 
 		private void SpellingForm_Load(object sender, System.EventArgs e)

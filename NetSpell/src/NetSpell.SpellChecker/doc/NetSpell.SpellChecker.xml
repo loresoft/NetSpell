@@ -1018,7 +1018,12 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFolder">
             <summary>
-                Folder containing dictionaries
+                Folder containing the dictionaries
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialized">
+            <summary>
+                True if the dictionary has been initialized
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PhoneticRules">
@@ -1051,6 +1056,11 @@
                 The file name for the user word list for this dictionary
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserFolder">
+            <summary>
+                The folder where the User dictionary will be saved
+            </summary>
+        </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserWords">
             <summary>
                 List of user entered words in this dictionary
@@ -1065,11 +1075,6 @@
             <remarks>
             	These are not actual words.
             </remarks>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Dictionary.WordEnumerator">
-            <summary>
-            Summary description for WordEnumerator.
-            </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Forms.OptionForm">
             <summary>
@@ -1423,8 +1428,12 @@
                 Populates the <see cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/> property with word suggestions
                 for the <see cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             </summary>
+            <remarks>
+            	<see cref="M:NetSpell.SpellChecker.Spelling.TestWord(System.String)"/> must have been called before calling this method
+            </remarks>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/>
+            <seealso cref="M:NetSpell.SpellChecker.Spelling.TestWord(System.String)"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.TestWord(System.String)">
             <summary>

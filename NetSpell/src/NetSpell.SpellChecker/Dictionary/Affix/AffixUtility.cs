@@ -53,7 +53,7 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 					if (passCount == entry.ConditionCount)
 					{
 						string tempWord = word.Substring(entry.StripCharacters.Length);
-						tempWord += entry.AddCharacters;
+						tempWord = entry.AddCharacters + tempWord;
 						return tempWord;
 					}
 				}

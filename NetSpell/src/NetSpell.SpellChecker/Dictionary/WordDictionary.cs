@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Threading;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -21,21 +22,22 @@ namespace NetSpell.SpellChecker.Dictionary
 	/// <summary>
 	/// The WordDictionary class contains all the logic for managing the word list.
 	/// </summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public class WordDictionary
 	{
-
 
 		private Hashtable _BaseWords = new Hashtable();
 		private string _Copyright = "";
 		private string _DictionaryFile = Thread.CurrentThread.CurrentCulture.Name + ".dic";
-		private string _DictionaryFolder;
+		private string _DictionaryFolder = "";
+		private bool _Initialized = false;
 		private PhoneticRuleCollection _PhoneticRules = new PhoneticRuleCollection();
 		private ArrayList _PossibleBaseWords = new ArrayList();
 		private AffixRuleCollection _PrefixRules = new AffixRuleCollection();
 		private ArrayList _ReplaceCharacters = new ArrayList();
 		private AffixRuleCollection _SuffixRules = new AffixRuleCollection();
 		private string _TryCharacters = "";
-		private string _UserFile = Path.Combine(Application.UserAppDataPath, "user.dic");
+		private string _UserFile = "user.dic";
 		private Hashtable _UserWords = new Hashtable();
 
 		/// <summary>
@@ -66,13 +68,16 @@ namespace NetSpell.SpellChecker.Dictionary
 			_UserWords.Add(word, word);
 
 			// update file
-			FileStream fs = new FileStream(_UserFile, FileMode.Append, FileAccess.Write);
+			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
+			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Append, FileAccess.Write, isf);
+			FileStream fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.Append, FileAccess.Write);
 			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 			sw.NewLine = "\n";
 
 			sw.WriteLine(word);
 			sw.Close();
 			fs.Close();
+			//isf.Close();
 		}
 
 		/// <summary>
@@ -85,7 +90,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		{
 			_UserWords.Clear();
 			// delelte file
-			if (File.Exists(_UserFile)) File.Delete(_UserFile);
+			if (File.Exists(Path.Combine(this.UserFolder, _UserFile))) File.Delete(Path.Combine(this.UserFolder, _UserFile));
 		}
 
 		/// <summary>
@@ -169,6 +174,10 @@ namespace NetSpell.SpellChecker.Dictionary
 				} // prefix rule entry
 			} // prefix rule
 			// word not found 
+
+			// add word itself
+			_PossibleBaseWords.Add(word);
+
 			return false;
 		}
 
@@ -259,7 +268,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			AffixRule currentRule = null;
 
 			// open dictionary file
-			FileStream fs = new FileStream(_DictionaryFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+			FileStream fs = new FileStream(Path.Combine(_DictionaryFolder, _DictionaryFile), FileMode.Open, FileAccess.Read, FileShare.Read);
 			StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 			
 			// read line by line
@@ -375,23 +384,28 @@ namespace NetSpell.SpellChecker.Dictionary
 			fs.Close();
 
 			// load user words
-			if (File.Exists(_UserFile))
+			_UserWords.Clear();
+
+			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
+			//fs = new IsolatedStorageFileStream(_UserFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, isf);
+			fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+			sr = new StreamReader(fs, Encoding.UTF8);
+
+			// read line by line
+			while (sr.Peek() >= 0) 
 			{
-				_UserWords.Clear();
-
-				fs = new FileStream(_UserFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-				sr = new StreamReader(fs, Encoding.UTF8);
-
-				// read line by line
-				while (sr.Peek() >= 0) 
+				string tempLine = sr.ReadLine().Trim();
+				if (tempLine.Length > 0)
 				{
-					string tempLine = sr.ReadLine().Trim();
-					if (tempLine.Length > 0)
-					{
-						_UserWords.Add(tempLine, tempLine);
-					}
+					_UserWords.Add(tempLine, tempLine);
 				}
 			}
+
+			fs.Close();
+			sr.Close();
+			//isf.Close();
+
+			this.Initialized = true;
 		}
 
 
@@ -486,7 +500,9 @@ namespace NetSpell.SpellChecker.Dictionary
 			_UserWords.Remove(word);
 			
 			// overwrite file
-			FileStream fs = new FileStream(_UserFile, FileMode.Create, FileAccess.Write);
+			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
+			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Create, FileAccess.Write, isf);
+			FileStream fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.Create, FileAccess.Write);
 			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 			sw.NewLine = "\n";
 
@@ -497,6 +513,7 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			sw.Close();
 			fs.Close();
+			//isf.Close();
 		}
 
 		/// <summary>
@@ -524,19 +541,26 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     The file name for the main dictionary
 		/// </summary>
-		[DefaultValue("en_US.dic")]
+		[DefaultValue("en-US.dic")]
 		[CategoryAttribute("Dictionary")]
 		[Description("The file name for the main dictionary")]
 		[NotifyParentProperty(true)]
 		public string DictionaryFile
 		{
 			get {return _DictionaryFile;}
-			set {_DictionaryFile = value;}
+			set 
+			{
+				_DictionaryFile = value;
+				if (_DictionaryFile.Length == 0)
+				{
+					_DictionaryFile = Thread.CurrentThread.CurrentCulture.Name + ".dic";
+				}
+			}
 		}
 
 
 		/// <summary>
-		///     Folder containing dictionaries
+		///     Folder containing the dictionaries
 		/// </summary>
 		[DefaultValue("")]
 		[CategoryAttribute("Dictionary")]
@@ -547,6 +571,18 @@ namespace NetSpell.SpellChecker.Dictionary
 		{
 			get {return _DictionaryFolder;}
 			set {_DictionaryFolder = value;}
+		}
+
+
+		/// <summary>
+		///     True if the dictionary has been initialized
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public bool Initialized
+		{
+			get {return _Initialized;}
+			set {_Initialized = value;}
 		}
 
 
@@ -610,14 +646,31 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     The file name for the user word list for this dictionary
 		/// </summary>
-		[Browsable(false)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		[DefaultValue("user.dic")]
+		[CategoryAttribute("Dictionary")]
+		[Description("The file name for the user word list for this dictionary")]
+		[NotifyParentProperty(true)]
 		public string UserFile
 		{
 			get {return _UserFile;}
 			set {_UserFile = value;}
 		}
 
+		/// <summary>
+		///     The folder where the User dictionary will be saved
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public string UserFolder
+		{
+			get 
+			{
+				string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
+				if (!Directory.Exists(userPath)) Directory.CreateDirectory(userPath);
+
+				return userPath;
+			}
+		}
 		
 		/// <summary>
 		///     List of user entered words in this dictionary

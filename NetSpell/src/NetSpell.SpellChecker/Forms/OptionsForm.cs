@@ -28,7 +28,6 @@ namespace NetSpell.SpellChecker.Forms
 		private System.Windows.Forms.TabPage generalTab;
 		private System.Windows.Forms.CheckBox IgnoreDigitsCheck;
 		private System.Windows.Forms.CheckBox IgnoreUpperCheck;
-		private System.Windows.Forms.Label lblCompany;
 		private System.Windows.Forms.Label lblCopyright;
 		private System.Windows.Forms.Label lblDescription;
 		private System.Windows.Forms.Label lbllabel1;
@@ -43,6 +42,7 @@ namespace NetSpell.SpellChecker.Forms
 		private System.Windows.Forms.TabPage versionsTab;
 		private System.Windows.Forms.TextBox txtCopyright;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.LinkLabel linkWebSite;
 		private System.Windows.Forms.CheckBox IgnoreHtmlCheck;
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.lblVersion.Text = string.Format("Version {0}", aInfo.Version);
 			this.lblCopyright.Text = aInfo.Copyright;
 			this.lblDescription.Text = aInfo.Description;
-			this.lblCompany.Text = aInfo.Company;
+			//this.lblCompany.Text = aInfo.Company;
 
 			// Get all modules
 			ArrayList localItems = new ArrayList();
@@ -153,13 +153,15 @@ namespace NetSpell.SpellChecker.Forms
 			this.IgnoreUpperCheck = new System.Windows.Forms.CheckBox();
 			this.IgnoreDigitsCheck = new System.Windows.Forms.CheckBox();
 			this.dictionaryTab = new System.Windows.Forms.TabPage();
+			this.txtCopyright = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.versionsTab = new System.Windows.Forms.TabPage();
 			this.assembliesListView = new System.Windows.Forms.ListView();
 			this.assemblyColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.versionColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.dateColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.aboutTab = new System.Windows.Forms.TabPage();
-			this.lblCompany = new System.Windows.Forms.Label();
+			this.linkWebSite = new System.Windows.Forms.LinkLabel();
 			this.lblCopyright = new System.Windows.Forms.Label();
 			this.lblDescription = new System.Windows.Forms.Label();
 			this.lblVersion = new System.Windows.Forms.Label();
@@ -167,8 +169,6 @@ namespace NetSpell.SpellChecker.Forms
 			this.pbIcon = new System.Windows.Forms.PictureBox();
 			this.OkButton = new System.Windows.Forms.Button();
 			this.CancelBtn = new System.Windows.Forms.Button();
-			this.txtCopyright = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTab.SuspendLayout();
 			this.dictionaryTab.SuspendLayout();
@@ -259,6 +259,25 @@ namespace NetSpell.SpellChecker.Forms
 			this.dictionaryTab.TabIndex = 2;
 			this.dictionaryTab.Text = "Dictionary";
 			// 
+			// txtCopyright
+			// 
+			this.txtCopyright.Location = new System.Drawing.Point(8, 32);
+			this.txtCopyright.Multiline = true;
+			this.txtCopyright.Name = "txtCopyright";
+			this.txtCopyright.ReadOnly = true;
+			this.txtCopyright.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.txtCopyright.Size = new System.Drawing.Size(360, 112);
+			this.txtCopyright.TabIndex = 0;
+			this.txtCopyright.Text = "";
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(8, 16);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(208, 16);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Dictionary Copyright:";
+			// 
 			// versionsTab
 			// 
 			this.versionsTab.Controls.Add(this.assembliesListView);
@@ -299,7 +318,7 @@ namespace NetSpell.SpellChecker.Forms
 			// 
 			// aboutTab
 			// 
-			this.aboutTab.Controls.Add(this.lblCompany);
+			this.aboutTab.Controls.Add(this.linkWebSite);
 			this.aboutTab.Controls.Add(this.lblCopyright);
 			this.aboutTab.Controls.Add(this.lblDescription);
 			this.aboutTab.Controls.Add(this.lblVersion);
@@ -311,13 +330,15 @@ namespace NetSpell.SpellChecker.Forms
 			this.aboutTab.TabIndex = 4;
 			this.aboutTab.Text = "About";
 			// 
-			// lblCompany
+			// linkWebSite
 			// 
-			this.lblCompany.Location = new System.Drawing.Point(64, 128);
-			this.lblCompany.Name = "lblCompany";
-			this.lblCompany.Size = new System.Drawing.Size(296, 23);
-			this.lblCompany.TabIndex = 13;
-			this.lblCompany.Text = "Application Company";
+			this.linkWebSite.Location = new System.Drawing.Point(64, 128);
+			this.linkWebSite.Name = "linkWebSite";
+			this.linkWebSite.Size = new System.Drawing.Size(296, 23);
+			this.linkWebSite.TabIndex = 16;
+			this.linkWebSite.TabStop = true;
+			this.linkWebSite.Text = "http://www.loresoft.com";
+			this.linkWebSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWebSite_LinkClicked);
 			// 
 			// lblCopyright
 			// 
@@ -384,25 +405,6 @@ namespace NetSpell.SpellChecker.Forms
 			this.CancelBtn.TabIndex = 7;
 			this.CancelBtn.Text = "&Cancel";
 			// 
-			// txtCopyright
-			// 
-			this.txtCopyright.Location = new System.Drawing.Point(8, 32);
-			this.txtCopyright.Multiline = true;
-			this.txtCopyright.Name = "txtCopyright";
-			this.txtCopyright.ReadOnly = true;
-			this.txtCopyright.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtCopyright.Size = new System.Drawing.Size(360, 112);
-			this.txtCopyright.TabIndex = 0;
-			this.txtCopyright.Text = "";
-			// 
-			// label1
-			// 
-			this.label1.Location = new System.Drawing.Point(8, 16);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(208, 16);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Dictionary Copyright:";
-			// 
 			// OptionForm
 			// 
 			this.AcceptButton = this.OkButton;
@@ -429,5 +431,12 @@ namespace NetSpell.SpellChecker.Forms
 
 		}
 #endregion
+
+		private void linkWebSite_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start("http://www.loresoft.com");
+		}
+
+
 	}
 }

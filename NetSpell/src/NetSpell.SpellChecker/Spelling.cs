@@ -496,6 +496,7 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public void ReplaceWord()
 		{
+
 			int index = _words[_WordIndex].Index;
 			int length = _words[_WordIndex].Length;
 			
@@ -548,6 +549,11 @@ namespace NetSpell.SpellChecker
 		/// <seealso cref="Dictionaries"/>
 		public bool SpellCheck()
 		{
+			if (!this.Dictionary.Initialized)
+			{
+				this.Dictionary.Initialize();
+			}
+
 			string currentWord = "";
 			bool misspelledWord = false;
             
@@ -676,10 +682,19 @@ namespace NetSpell.SpellChecker
 		///     Populates the <see cref="Suggestions"/> property with word suggestions
 		///     for the <see cref="CurrentWord"/>
 		/// </summary>
+		/// <remarks>
+		///		<see cref="TestWord"/> must have been called before calling this method
+		/// </remarks>
 		/// <seealso cref="CurrentWord"/>
 		/// <seealso cref="Suggestions"/>
+		/// <seealso cref="TestWord"/>
 		public void Suggest()
 		{
+			if (!_Dictionary.Initialized)
+			{
+				_Dictionary.Initialize();
+			}
+
 			ArrayList tempSuggestion = new ArrayList();
 
 			if ((_SuggestionMode == SuggestionEnum.PhoneticNearMiss 
@@ -696,20 +711,23 @@ namespace NetSpell.SpellChecker
 						codes.Add(tempCode, tempCode);
 					}
 				}
-
-				// search root words for phonetic codes
-				foreach (Word word in _Dictionary.BaseWords.Values)
+				
+				if (codes.Count > 0)
 				{
-					if (codes.ContainsKey(word.PhoneticCode))
+					// search root words for phonetic codes
+					foreach (Word word in _Dictionary.BaseWords.Values)
 					{
-						ArrayList words = _Dictionary.ExpandWord(word);
-						// add expanded words
-						foreach (string expandedWord in words)
+						if (codes.ContainsKey(word.PhoneticCode))
 						{
-							Word newWord = new Word();
-							newWord.Value = expandedWord;
-							newWord.EditDistance = this.EditDistance(_CurrentWord, expandedWord);
-							tempSuggestion.Add(newWord);
+							ArrayList words = _Dictionary.ExpandWord(word);
+							// add expanded words
+							foreach (string expandedWord in words)
+							{
+								Word newWord = new Word();
+								newWord.Value = expandedWord;
+								newWord.EditDistance = this.EditDistance(_CurrentWord, expandedWord);
+								tempSuggestion.Add(newWord);
+							}
 						}
 					}
 				}
@@ -771,6 +789,11 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		public bool TestWord(string word)
 		{
+			if (!this.Dictionary.Initialized)
+			{
+				this.Dictionary.Initialize();
+			}
+
 			if (this.Dictionary.Contains(word))
 			{
 				return true;
@@ -846,8 +869,8 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		[Browsable(true)]
 		[CategoryAttribute("Dictionary")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		[Description("The WordDictionary object to use when spell checking")]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public WordDictionary Dictionary
 		{
 			get {return _Dictionary;}
