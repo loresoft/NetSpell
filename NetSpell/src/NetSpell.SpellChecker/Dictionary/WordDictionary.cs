@@ -342,16 +342,8 @@ namespace NetSpell.SpellChecker.Dictionary
 								if (parts.Length >= 2) tempWord.AffixKeys = parts[1];
 								// part 3 = phonetic code
 								if (parts.Length >= 3) tempWord.PhoneticCode = parts[2];
-								try
-								{
-									this.BaseWords.Add(tempWord.Value, tempWord);
-								}
-								catch (ArgumentException ae)
-								{
-									// skip word if already added
-									 Trace.WriteLine(ae.ToString());
-								}
-
+								
+								this.BaseWords.Add(tempWord.Value, tempWord);
 								break;
 						} // currentSection swith
 							break;

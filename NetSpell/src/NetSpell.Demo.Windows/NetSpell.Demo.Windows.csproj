@@ -122,13 +122,23 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TextForm.cs"
+                    RelPath = "DocumentForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "TextForm.resx"
-                    DependentUpon = "TextForm.cs"
+                    RelPath = "DocumentForm.resx"
+                    DependentUpon = "DocumentForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MainForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MainForm.resx"
+                    DependentUpon = "MainForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>
