@@ -286,29 +286,7 @@ namespace NetSpell.Demo.Windows
 			this.LayoutMdi(MdiLayout.TileVertical);
 		}
 
-		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
-		{
-			if (this.ActiveMdiChild != null)
-			{
-				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
-			}
-		}
 
-		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
-		{
-			if (this.ActiveMdiChild != null)
-			{
-				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
-			}
-		}
-
-		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
-		{
-			if (this.ActiveMdiChild != null)
-			{
-				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
-			}
-		}
 
 		/// <summary>
 		/// Clean up any resources being used.
@@ -806,9 +784,6 @@ namespace NetSpell.Demo.Windows
 			this.SpellChecker.IgnoreHtml = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreHtml", typeof(bool))));
 			this.SpellChecker.IgnoreWordsWithDigits = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreWordsWithDigits", typeof(bool))));
 			this.SpellChecker.MaxSuggestions = ((int)(configurationAppSettings.GetValue("SpellChecker.MaxSuggestions", typeof(int))));
-			this.SpellChecker.MisspelledWord += new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.SpellChecker_MisspelledWord);
-			this.SpellChecker.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
-			this.SpellChecker.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
 			// 
 			// MainForm
 			// 

@@ -1369,6 +1369,12 @@
                 receivers that the event occurred
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.OnReplacedWord(System.EventArgs)">
+            <summary>
+                This is the method that is responsible for notifying
+                receivers that the event occurred
+            </summary>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor">
             <summary>
                 Initializes a new instance of the SpellCheck class
@@ -1658,6 +1664,14 @@
                 is not in the dictionaries
             </summary>
         </member>
+        <member name="E:NetSpell.SpellChecker.Spelling.ReplacedWord">
+            <summary>
+                This event is fired when a word is replace
+            </summary>
+            <remarks>
+            	Use this event to update the parent text
+            </remarks>
+        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.CurrentWord">
             <summary>
                 The current word being spell checked from the text property
@@ -1768,6 +1782,12 @@
                 event receivers must implement
             </summary>
         </member>
+        <member name="T:NetSpell.SpellChecker.Spelling.ReplacedWordEventHandler">
+            <summary>
+                This represents the delegate method prototype that
+                event receivers must implement
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.Spelling.SuggestionEnum">
             <summary>
                 The suggestion strategy to use when generating suggestions
@@ -1819,6 +1839,56 @@
         <member name="P:NetSpell.SpellChecker.SpellingEventArgs.WordIndex">
             <summary>
                 Word index of the WordEvent
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox">
+            <summary>
+            Summary description for SpellTextBox.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Controls.SpellTextBox.#ctor">
+            <summary>
+            Summary description for SpellTextBox.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledColor">
+            <summary>
+                The Color to use to mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledStyle">
+            <summary>
+                The Underline style used to mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SelectionBackColor">
+            <summary>
+                Gets or sets the selections background color
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.AutoSpellCheck">
+            <summary>
+                Automatically mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SpellChecker">
+            <summary>
+                The Spelling Object to use when checking words
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineColor">
+            <summary>
+            	Underline Colors
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineStyle">
+            <summary>
+            	Underline Styles
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
+            <summary>
+            Summary description for NativeMethods.
             </summary>
         </member>
     </members>

@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Printing;
-using System.Drawing;
 using System.IO;
 using System.Text;
 
@@ -20,11 +19,7 @@ namespace NetSpell.Demo.Windows
 		private bool _Changed = false;
 		private string _FileName = "untitled";
 		private System.Windows.Forms.ColorDialog colorDialog;
-
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.ContextMenu contextMenu;
 		private System.Windows.Forms.MenuItem contextMenuCopy;
 		private System.Windows.Forms.MenuItem contextMenuCut;
@@ -67,7 +62,8 @@ namespace NetSpell.Demo.Windows
 		private System.Drawing.Printing.PrintDocument printDocument;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
 		private System.Windows.Forms.SaveFileDialog saveDialog;
-		internal System.Windows.Forms.RichTextBox Document;
+		internal NetSpell.SpellChecker.Controls.SpellTextBox Document;
+		internal NetSpell.SpellChecker.Spelling SpellChecker;
 
 		public DocumentForm()
 		{
@@ -140,6 +136,14 @@ namespace NetSpell.Demo.Windows
 		private void DocumentForm_Load(object sender, System.EventArgs e)
 		{
 			this.menuFormatWrap.Checked = this.Document.WordWrap;
+			// share instance of spell checker
+			if (this.MdiParent != null) 
+			{
+				MainForm main = (MainForm)this.MdiParent;
+				this.SpellChecker = main.SpellChecker;
+				this.Document.SpellChecker = main.SpellChecker;
+				this.SpellChecker.ReplacedWord += new NetSpell.SpellChecker.Spelling.ReplacedWordEventHandler(this.SpellChecker_ReplacedWord);
+			}
 		}
 
 		private void menuEditCopy_Click(object sender, System.EventArgs e)
@@ -308,6 +312,11 @@ namespace NetSpell.Demo.Windows
 
 		}
 
+		private void SpellChecker_ReplacedWord(object sender, System.EventArgs args)
+		{
+			this.Document.Text = this.SpellChecker.Text;
+		}
+
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -432,12 +441,8 @@ namespace NetSpell.Demo.Windows
 
 		internal void SpellCheck()
 		{
-			if (this.MdiParent != null) 
-			{
-				MainForm main = (MainForm)this.MdiParent;
-				main.SpellChecker.Text = this.Document.Text;
-				main.SpellChecker.SpellCheck();
-			}
+			this.SpellChecker.Text = this.Document.Text;
+			this.SpellChecker.SpellCheck();			
 		}
 
 		internal void Style(FontStyle style)
@@ -477,7 +482,6 @@ namespace NetSpell.Demo.Windows
 				}
 			}
 		}
-
 		internal string FileName
 		{
 			get
@@ -498,7 +502,9 @@ namespace NetSpell.Demo.Windows
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DocumentForm));
+			System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
 			this.mainMenu = new System.Windows.Forms.MainMenu();
 			this.menuFile = new System.Windows.Forms.MenuItem();
 			this.menuFileClose = new System.Windows.Forms.MenuItem();
@@ -529,7 +535,7 @@ namespace NetSpell.Demo.Windows
 			this.printDialog = new System.Windows.Forms.PrintDialog();
 			this.printDocument = new System.Drawing.Printing.PrintDocument();
 			this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-			this.Document = new System.Windows.Forms.RichTextBox();
+			this.Document = new NetSpell.SpellChecker.Controls.SpellTextBox();
 			this.contextMenu = new System.Windows.Forms.ContextMenu();
 			this.contextMenuUndo = new System.Windows.Forms.MenuItem();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
@@ -539,6 +545,7 @@ namespace NetSpell.Demo.Windows
 			this.contextMenuPaste = new System.Windows.Forms.MenuItem();
 			this.menuItem8 = new System.Windows.Forms.MenuItem();
 			this.contextMenuSelectAll = new System.Windows.Forms.MenuItem();
+			this.SpellChecker = new NetSpell.SpellChecker.Spelling(this.components);
 			this.saveDialog = new System.Windows.Forms.SaveFileDialog();
 			this.openDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
@@ -783,10 +790,11 @@ namespace NetSpell.Demo.Windows
 			this.Document.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
 			this.Document.ShowSelectionMargin = true;
 			this.Document.Size = new System.Drawing.Size(520, 446);
+			this.Document.SpellChecker = this.SpellChecker;
 			this.Document.TabIndex = 0;
 			this.Document.Text = "";
-			this.Document.TextChanged += new System.EventHandler(this.Document_TextChanged);
 			this.Document.SelectionChanged += new System.EventHandler(this.Document_SelectionChanged);
+			this.Document.TextChanged += new System.EventHandler(this.Document_TextChanged);
 			// 
 			// contextMenu
 			// 
@@ -846,6 +854,13 @@ namespace NetSpell.Demo.Windows
 			this.contextMenuSelectAll.Text = "Select All";
 			this.contextMenuSelectAll.Click += new System.EventHandler(this.menuEditSelectAll_Click);
 			// 
+			// SpellChecker
+			// 
+			this.SpellChecker.IgnoreAllCapsWords = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreAllCapsWords", typeof(bool))));
+			this.SpellChecker.IgnoreHtml = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreHtml", typeof(bool))));
+			this.SpellChecker.IgnoreWordsWithDigits = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreWordsWithDigits", typeof(bool))));
+			this.SpellChecker.MaxSuggestions = ((int)(configurationAppSettings.GetValue("SpellChecker.MaxSuggestions", typeof(int))));
+			// 
 			// saveDialog
 			// 
 			this.saveDialog.DefaultExt = "*.txt";
@@ -889,6 +904,8 @@ namespace NetSpell.Demo.Windows
 		
 		[DllImport("USER32.dll")]
 		private static extern IntPtr SendMessage (IntPtr hWnd , int msg , IntPtr wp, IntPtr lp);
+
+
 
 
 

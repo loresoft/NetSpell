@@ -43,6 +43,7 @@ namespace NetSpell.SpellChecker
 #endregion
 
 #region Events
+
 		/// <summary>
 		///     This event is fired when word is detected two times in a row
 		/// </summary>
@@ -61,6 +62,14 @@ namespace NetSpell.SpellChecker
 		public event MisspelledWordEventHandler MisspelledWord;
 
 		/// <summary>
+		///     This event is fired when a word is replace
+		/// </summary>
+		/// <remarks>
+		///		Use this event to update the parent text
+		/// </remarks>
+		public event ReplacedWordEventHandler ReplacedWord;
+
+		/// <summary>
 		///     This represents the delegate method prototype that
 		///     event receivers must implement
 		/// </summary>
@@ -77,6 +86,12 @@ namespace NetSpell.SpellChecker
 		///     event receivers must implement
 		/// </summary>
 		public delegate void MisspelledWordEventHandler(object sender, SpellingEventArgs args);
+
+		/// <summary>
+		///     This represents the delegate method prototype that
+		///     event receivers must implement
+		/// </summary>
+		public delegate void ReplacedWordEventHandler(object sender, System.EventArgs args);
 
 		/// <summary>
 		///     This is the method that is responsible for notifying
@@ -111,6 +126,18 @@ namespace NetSpell.SpellChecker
 			if (MisspelledWord != null)
 			{
 				MisspelledWord(this, e);
+			}
+		}
+
+		/// <summary>
+		///     This is the method that is responsible for notifying
+		///     receivers that the event occurred
+		/// </summary>
+		protected virtual void OnReplacedWord(System.EventArgs e)
+		{
+			if (ReplacedWord != null)
+			{
+				ReplacedWord(this, e);
 			}
 		}
 
@@ -573,6 +600,7 @@ namespace NetSpell.SpellChecker
 				}
 			}
 			this.CalculateWords();
+			this.OnReplacedWord(System.EventArgs.Empty);
 		}
 
 		/// <summary>
@@ -647,7 +675,7 @@ namespace NetSpell.SpellChecker
 
 				if(_WordIndex >= _words.Count-1 && !misspelledWord) 
 				{
-					OnEndOfText(System.EventArgs.Empty);	//raise event
+					this.OnEndOfText(System.EventArgs.Empty);	//raise event
 				}
 			} // not words null
 
@@ -1137,7 +1165,6 @@ namespace NetSpell.SpellChecker
 			components = new System.ComponentModel.Container();
 		}
 #endregion
-
 
 	} 
 }

@@ -123,6 +123,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Controls\NativeMethods.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Controls\SpellTextBox.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Dictionary\Word.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
