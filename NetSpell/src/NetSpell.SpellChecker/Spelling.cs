@@ -844,6 +844,8 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The WordDictionary object to use when spell checking
 		/// </summary>
+		[CategoryAttribute("Dictionary")]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public WordDictionary Dictionary
 		{
 			get {return _Dictionary;}
@@ -973,6 +975,9 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The suggestion stratagy to use when generating suggestions
 		/// </summary>
+		[DefaultValue(SuggestionEnum.PhoneticNearMiss)]
+		[CategoryAttribute("Options")]
+		[Description("The suggestion stratagy to use when generating suggestions")]
 		public SuggestionEnum SuggestionMode
 		{
 			get {return _SuggestionMode;}

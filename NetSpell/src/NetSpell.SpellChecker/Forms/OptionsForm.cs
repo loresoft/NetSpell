@@ -24,7 +24,6 @@ namespace NetSpell.SpellChecker.Forms
 		private System.Windows.Forms.Button CancelBtn;
 		private System.ComponentModel.Container components = null;
 		private System.Windows.Forms.ColumnHeader dateColumnHeader;
-		private System.Windows.Forms.ListView DictionaryList;
 		private System.Windows.Forms.TabPage dictionaryTab;
 		private System.Windows.Forms.TabPage generalTab;
 		private System.Windows.Forms.CheckBox IgnoreDigitsCheck;
@@ -36,15 +35,15 @@ namespace NetSpell.SpellChecker.Forms
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.TextBox MaxSuggestions;
-		private System.Windows.Forms.ColumnHeader nameColumn;
 		private System.Windows.Forms.Button OkButton;
 		private System.Windows.Forms.TabControl optionsTabControl;
 		private System.Windows.Forms.PictureBox pbIcon;
 		private NetSpell.SpellChecker.Spelling SpellChecker;
 		private System.Windows.Forms.ColumnHeader versionColumnHeader;
 		private System.Windows.Forms.TabPage versionsTab;
+		private System.Windows.Forms.TextBox txtCopyright;
+		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.CheckBox IgnoreHtmlCheck;
-		private System.Windows.Forms.ColumnHeader wordsColumn;
 
 		/// <summary>
 		///		Default Constructor
@@ -57,94 +56,71 @@ namespace NetSpell.SpellChecker.Forms
 
 		private void OkButton_Click(object sender, System.EventArgs e)
 		{
-			try
-			{
-
-				this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
-				this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
-				this.SpellChecker.IgnoreHtml = this.IgnoreHtmlCheck.Checked;
-				this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
-				this.Close();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(string.Format("{0}\n\n{1}", ex.Message, ex.ToString()), 
-					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+			this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
+			this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
+			this.SpellChecker.IgnoreHtml = this.IgnoreHtmlCheck.Checked;
+			this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
+			this.Close();
 		}
 
 		private void OptionForm_Load(object sender, System.EventArgs e)
 		{
-			try
+			this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
+			this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
+			this.IgnoreHtmlCheck.Checked = this.SpellChecker.IgnoreHtml;
+			this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
+
+			// set dictionary info
+			this.txtCopyright.Text = this.SpellChecker.Dictionary.Copyright;
+
+			// set about info
+			this.pbIcon.Image = this.Owner.Icon.ToBitmap();
+
+			AssemblyInfo aInfo = new AssemblyInfo(typeof(OptionForm));
+			this.lblTitle.Text = aInfo.Title;
+			this.lblVersion.Text = string.Format("Version {0}", aInfo.Version);
+			this.lblCopyright.Text = aInfo.Copyright;
+			this.lblDescription.Text = aInfo.Description;
+			this.lblCompany.Text = aInfo.Company;
+
+			// Get all modules
+			ArrayList localItems = new ArrayList();
+			foreach (ProcessModule module in Process.GetCurrentProcess().Modules)
 			{
-				this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
-				this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
-				this.IgnoreHtmlCheck.Checked = this.SpellChecker.IgnoreHtml;
-				this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
+				ListViewItem item = new ListViewItem();
+				item.Text = module.ModuleName;
 
-				// set dictionary info
-				// TODO: Fix this ...
-				/*foreach (Dictionary dic in this.SpellChecker.Dictionaries)
+				// Get version info
+				FileVersionInfo verInfo = module.FileVersionInfo;
+				string versionStr = String.Format("{0}.{1}.{2}.{3}", 
+					verInfo.FileMajorPart,
+					verInfo.FileMinorPart,
+					verInfo.FileBuildPart,
+					verInfo.FilePrivatePart);
+				item.SubItems.Add(versionStr);
+
+				// Get file date info
+				DateTime lastWriteDate = File.GetLastWriteTime(module.FileName);
+				string dateStr = lastWriteDate.ToString("MMM dd, yyyy");
+				item.SubItems.Add(dateStr);
+
+				assembliesListView.Items.Add(item);
+
+				// Stash assemply related list view items for later
+				if (module.ModuleName.ToLower().StartsWith("netspell"))
 				{
-					ListViewItem item = new ListViewItem();
-					item.Text = dic.FileName;
-					item.SubItems.Add(dic.WordList.Count.ToString());
-					DictionaryList.Items.Add(item);
-				}*/
-
-				// set about info
-				this.pbIcon.Image = this.Owner.Icon.ToBitmap();
-
-				AssemblyInfo aInfo = new AssemblyInfo(typeof(OptionForm));
-				this.lblTitle.Text = aInfo.Title;
-				this.lblVersion.Text = string.Format("Version {0}", aInfo.Version);
-				this.lblCopyright.Text = aInfo.Copyright;
-				this.lblDescription.Text = aInfo.Description;
-				this.lblCompany.Text = aInfo.Company;
-
-				// Get all modules
-				ArrayList localItems = new ArrayList();
-				foreach (ProcessModule module in Process.GetCurrentProcess().Modules)
-				{
-					ListViewItem item = new ListViewItem();
-					item.Text = module.ModuleName;
-
-					// Get version info
-					FileVersionInfo verInfo = module.FileVersionInfo;
-					string versionStr = String.Format("{0}.{1}.{2}.{3}", 
-						verInfo.FileMajorPart,
-						verInfo.FileMinorPart,
-						verInfo.FileBuildPart,
-						verInfo.FilePrivatePart);
-					item.SubItems.Add(versionStr);
-
-					// Get file date info
-					DateTime lastWriteDate = File.GetLastWriteTime(module.FileName);
-					string dateStr = lastWriteDate.ToString("MMM dd, yyyy");
-					item.SubItems.Add(dateStr);
-
-					assembliesListView.Items.Add(item);
-
-					// Stash assemply related list view items for later
-					if (module.ModuleName.ToLower().StartsWith("netspell"))
-					{
-						localItems.Add(item);
-					}
-				}
-
-				// Extract the assemply related modules and move them to the top
-				for (int i = localItems.Count; i > 0; i--)
-				{
-					ListViewItem localItem = (ListViewItem)localItems[i-1];
-					assembliesListView.Items.Remove(localItem);
-					assembliesListView.Items.Insert(0, localItem);
+					localItems.Add(item);
 				}
 			}
-			catch (Exception ex)
+
+			// Extract the assemply related modules and move them to the top
+			for (int i = localItems.Count; i > 0; i--)
 			{
-				MessageBox.Show(string.Format("{0}\n\n{1}", ex.Message, ex.ToString()), 
-					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ListViewItem localItem = (ListViewItem)localItems[i-1];
+				assembliesListView.Items.Remove(localItem);
+				assembliesListView.Items.Insert(0, localItem);
 			}
+
 		}
 
 		/// <summary>
@@ -171,14 +147,12 @@ namespace NetSpell.SpellChecker.Forms
 		{
 			this.optionsTabControl = new System.Windows.Forms.TabControl();
 			this.generalTab = new System.Windows.Forms.TabPage();
+			this.IgnoreHtmlCheck = new System.Windows.Forms.CheckBox();
 			this.lbllabel1 = new System.Windows.Forms.Label();
 			this.MaxSuggestions = new System.Windows.Forms.TextBox();
 			this.IgnoreUpperCheck = new System.Windows.Forms.CheckBox();
 			this.IgnoreDigitsCheck = new System.Windows.Forms.CheckBox();
 			this.dictionaryTab = new System.Windows.Forms.TabPage();
-			this.DictionaryList = new System.Windows.Forms.ListView();
-			this.nameColumn = new System.Windows.Forms.ColumnHeader();
-			this.wordsColumn = new System.Windows.Forms.ColumnHeader();
 			this.versionsTab = new System.Windows.Forms.TabPage();
 			this.assembliesListView = new System.Windows.Forms.ListView();
 			this.assemblyColumnHeader = new System.Windows.Forms.ColumnHeader();
@@ -193,7 +167,8 @@ namespace NetSpell.SpellChecker.Forms
 			this.pbIcon = new System.Windows.Forms.PictureBox();
 			this.OkButton = new System.Windows.Forms.Button();
 			this.CancelBtn = new System.Windows.Forms.Button();
-			this.IgnoreHtmlCheck = new System.Windows.Forms.CheckBox();
+			this.txtCopyright = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTab.SuspendLayout();
 			this.dictionaryTab.SuspendLayout();
@@ -228,6 +203,16 @@ namespace NetSpell.SpellChecker.Forms
 			this.generalTab.Size = new System.Drawing.Size(378, 158);
 			this.generalTab.TabIndex = 0;
 			this.generalTab.Text = "General";
+			// 
+			// IgnoreHtmlCheck
+			// 
+			this.IgnoreHtmlCheck.Checked = true;
+			this.IgnoreHtmlCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.IgnoreHtmlCheck.Location = new System.Drawing.Point(32, 72);
+			this.IgnoreHtmlCheck.Name = "IgnoreHtmlCheck";
+			this.IgnoreHtmlCheck.Size = new System.Drawing.Size(296, 24);
+			this.IgnoreHtmlCheck.TabIndex = 9;
+			this.IgnoreHtmlCheck.Text = "Ignore HTML Tags";
 			// 
 			// lbllabel1
 			// 
@@ -266,37 +251,13 @@ namespace NetSpell.SpellChecker.Forms
 			// 
 			// dictionaryTab
 			// 
-			this.dictionaryTab.Controls.Add(this.DictionaryList);
+			this.dictionaryTab.Controls.Add(this.txtCopyright);
+			this.dictionaryTab.Controls.Add(this.label1);
 			this.dictionaryTab.Location = new System.Drawing.Point(4, 22);
 			this.dictionaryTab.Name = "dictionaryTab";
 			this.dictionaryTab.Size = new System.Drawing.Size(378, 158);
 			this.dictionaryTab.TabIndex = 2;
-			this.dictionaryTab.Text = "Dictionaries";
-			// 
-			// DictionaryList
-			// 
-			this.DictionaryList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-																							 this.nameColumn,
-																							 this.wordsColumn});
-			this.DictionaryList.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.DictionaryList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.DictionaryList.LabelWrap = false;
-			this.DictionaryList.Location = new System.Drawing.Point(0, 0);
-			this.DictionaryList.MultiSelect = false;
-			this.DictionaryList.Name = "DictionaryList";
-			this.DictionaryList.Size = new System.Drawing.Size(378, 158);
-			this.DictionaryList.TabIndex = 4;
-			this.DictionaryList.View = System.Windows.Forms.View.Details;
-			// 
-			// nameColumn
-			// 
-			this.nameColumn.Text = "Name";
-			this.nameColumn.Width = 281;
-			// 
-			// wordsColumn
-			// 
-			this.wordsColumn.Text = "Words";
-			this.wordsColumn.Width = 80;
+			this.dictionaryTab.Text = "Dictionary";
 			// 
 			// versionsTab
 			// 
@@ -423,15 +384,24 @@ namespace NetSpell.SpellChecker.Forms
 			this.CancelBtn.TabIndex = 7;
 			this.CancelBtn.Text = "&Cancel";
 			// 
-			// IgnoreHtmlCheck
+			// txtCopyright
 			// 
-			this.IgnoreHtmlCheck.Checked = true;
-			this.IgnoreHtmlCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.IgnoreHtmlCheck.Location = new System.Drawing.Point(32, 72);
-			this.IgnoreHtmlCheck.Name = "IgnoreHtmlCheck";
-			this.IgnoreHtmlCheck.Size = new System.Drawing.Size(296, 24);
-			this.IgnoreHtmlCheck.TabIndex = 9;
-			this.IgnoreHtmlCheck.Text = "Ignore HTML Tags";
+			this.txtCopyright.Location = new System.Drawing.Point(8, 32);
+			this.txtCopyright.Multiline = true;
+			this.txtCopyright.Name = "txtCopyright";
+			this.txtCopyright.ReadOnly = true;
+			this.txtCopyright.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.txtCopyright.Size = new System.Drawing.Size(360, 112);
+			this.txtCopyright.TabIndex = 0;
+			this.txtCopyright.Text = "";
+			// 
+			// label1
+			// 
+			this.label1.Location = new System.Drawing.Point(8, 16);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(208, 16);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Dictionary Copyright:";
 			// 
 			// OptionForm
 			// 

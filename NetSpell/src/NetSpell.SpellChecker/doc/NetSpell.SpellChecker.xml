@@ -917,7 +917,7 @@
                 Initializes a new instance of the class
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String,NetSpell.SpellChecker.Dictionary.Word)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String)">
             <summary>
                 Adds a word to the user list
             </summary>
@@ -1013,7 +1013,12 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFile">
             <summary>
-                The file name for this dictionary
+                The file name for the main dictionary
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFolder">
+            <summary>
+                Folder containing dictionaries
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PhoneticRules">
@@ -1043,7 +1048,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserFile">
             <summary>
-                file name for the user word list for this dictionary
+                The file name for the user word list for this dictionary
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserWords">

@@ -4,6 +4,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.IO;
+using System.Threading;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Windows.Forms.Design;
+using System.Drawing;
+using System.Drawing.Design;
+
 using NetSpell.SpellChecker;
 using NetSpell.SpellChecker.Dictionary.Affix;
 using NetSpell.SpellChecker.Dictionary.Phonetic;
@@ -17,16 +24,18 @@ namespace NetSpell.SpellChecker.Dictionary
 	public class WordDictionary
 	{
 
+
 		private Hashtable _BaseWords = new Hashtable();
 		private string _Copyright = "";
-		private string _DictionaryFile = "";
+		private string _DictionaryFile = Thread.CurrentThread.CurrentCulture.Name + ".dic";
+		private string _DictionaryFolder;
 		private PhoneticRuleCollection _PhoneticRules = new PhoneticRuleCollection();
 		private ArrayList _PossibleBaseWords = new ArrayList();
 		private AffixRuleCollection _PrefixRules = new AffixRuleCollection();
 		private ArrayList _ReplaceCharacters = new ArrayList();
 		private AffixRuleCollection _SuffixRules = new AffixRuleCollection();
 		private string _TryCharacters = "";
-		private string _UserFile = "";
+		private string _UserFile = Path.Combine(Application.UserAppDataPath, "user.dic");
 		private Hashtable _UserWords = new Hashtable();
 
 		/// <summary>
@@ -52,9 +61,18 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <remarks>
 		///		This method is only affects the user word list
 		/// </remarks>
-		public void Add(string word, Word value)
+		public void Add(string word)
 		{
-			_UserWords.Add(word, value);
+			_UserWords.Add(word, word);
+
+			// update file
+			FileStream fs = new FileStream(_UserFile, FileMode.Append, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+			sw.NewLine = "\n";
+
+			sw.WriteLine(word);
+			sw.Close();
+			fs.Close();
 		}
 
 		/// <summary>
@@ -66,6 +84,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		public void Clear()
 		{
 			_UserWords.Clear();
+			// delelte file
+			if (File.Exists(_UserFile)) File.Delete(_UserFile);
 		}
 
 		/// <summary>
@@ -266,7 +286,7 @@ namespace NetSpell.SpellChecker.Dictionary
 						switch (currentSection)
 						{
 							case "[Copyright]" :
-								this.Copyright += tempLine;
+								this.Copyright += tempLine + "\r\n";
 								break;
 							case "[Try]" : // ISpell try chars
 								this.TryCharacters += tempLine;
@@ -353,6 +373,25 @@ namespace NetSpell.SpellChecker.Dictionary
 			// close files
 			sr.Close();
 			fs.Close();
+
+			// load user words
+			if (File.Exists(_UserFile))
+			{
+				_UserWords.Clear();
+
+				fs = new FileStream(_UserFile, FileMode.Open, FileAccess.Read, FileShare.Read);
+				sr = new StreamReader(fs, Encoding.UTF8);
+
+				// read line by line
+				while (sr.Peek() >= 0) 
+				{
+					string tempLine = sr.ReadLine().Trim();
+					if (tempLine.Length > 0)
+					{
+						_UserWords.Add(tempLine, tempLine);
+					}
+				}
+			}
 		}
 
 
@@ -445,11 +484,26 @@ namespace NetSpell.SpellChecker.Dictionary
 		public void Remove(string word)
 		{
 			_UserWords.Remove(word);
+			
+			// overwrite file
+			FileStream fs = new FileStream(_UserFile, FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+			sw.NewLine = "\n";
+
+			foreach (string tempWord in _UserWords.Keys)
+			{
+				sw.WriteLine(tempWord);
+			}
+
+			sw.Close();
+			fs.Close();
 		}
 
 		/// <summary>
 		///     The collection of base words for the dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Hashtable BaseWords
 		{
 			get {return _BaseWords;}
@@ -459,6 +513,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Copyright text for the dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string Copyright
 		{
 			get {return _Copyright;}
@@ -466,8 +522,12 @@ namespace NetSpell.SpellChecker.Dictionary
 		}
 
 		/// <summary>
-		///     The file name for this dictionary
+		///     The file name for the main dictionary
 		/// </summary>
+		[DefaultValue("en_US.dic")]
+		[CategoryAttribute("Dictionary")]
+		[Description("The file name for the main dictionary")]
+		[NotifyParentProperty(true)]
 		public string DictionaryFile
 		{
 			get {return _DictionaryFile;}
@@ -476,8 +536,25 @@ namespace NetSpell.SpellChecker.Dictionary
 
 
 		/// <summary>
+		///     Folder containing dictionaries
+		/// </summary>
+		[DefaultValue("")]
+		[CategoryAttribute("Dictionary")]
+		[Description("The folder containing dictionaries")]
+		[Editor(typeof(FolderNameEditor), typeof(UITypeEditor))]
+		[NotifyParentProperty(true)]
+		public string DictionaryFolder
+		{
+			get {return _DictionaryFolder;}
+			set {_DictionaryFolder = value;}
+		}
+
+
+		/// <summary>
 		///     Collection of phonetic rules for this dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public PhoneticRuleCollection PhoneticRules
 		{
 			get {return _PhoneticRules;}
@@ -488,6 +565,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Collection of affix prefixes for the base words in this dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public AffixRuleCollection PrefixRules
 		{
 			get {return _PrefixRules;}
@@ -497,6 +576,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     List of characters to use when generating suggestions using the near miss stratigy
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ArrayList ReplaceCharacters
 		{
 			get {return _ReplaceCharacters;}
@@ -507,6 +588,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Collection of affix suffixes for the base words in this dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public AffixRuleCollection SuffixRules
 		{
 			get {return _SuffixRules;}
@@ -516,6 +599,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     List of characters to try when generating suggestions using the near miss stratigy
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string TryCharacters
 		{
 			get {return _TryCharacters;}
@@ -523,8 +608,10 @@ namespace NetSpell.SpellChecker.Dictionary
 		}
 
 		/// <summary>
-		///     file name for the user word list for this dictionary
+		///     The file name for the user word list for this dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string UserFile
 		{
 			get {return _UserFile;}
@@ -535,6 +622,8 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     List of user entered words in this dictionary
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Hashtable UserWords
 		{
 			get {return _UserWords;}

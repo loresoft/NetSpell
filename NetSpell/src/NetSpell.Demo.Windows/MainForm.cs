@@ -47,6 +47,7 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.ToolBarButton toolBarButton4;
 		private System.Windows.Forms.ToolBarButton toolBarButton8;
 		private System.Windows.Forms.ImageList toolBarImages;
+		private NetSpell.SpellChecker.Spelling spelling1;
 		private System.Windows.Forms.ToolBarButton undoBarButton;
 		
 		public MainForm()
@@ -270,9 +271,10 @@ namespace NetSpell.Demo.Windows
 			this.pasteBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton8 = new System.Windows.Forms.ToolBarButton();
 			this.undoBarButton = new System.Windows.Forms.ToolBarButton();
+			this.redoBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton11 = new System.Windows.Forms.ToolBarButton();
 			this.toolBarImages = new System.Windows.Forms.ImageList(this.components);
-			this.redoBarButton = new System.Windows.Forms.ToolBarButton();
+			this.spelling1 = new NetSpell.SpellChecker.Spelling(this.components);
 			this.SuspendLayout();
 			// 
 			// statusBar
@@ -464,6 +466,11 @@ namespace NetSpell.Demo.Windows
 			this.undoBarButton.ImageIndex = 10;
 			this.undoBarButton.ToolTipText = "Undo";
 			// 
+			// redoBarButton
+			// 
+			this.redoBarButton.ImageIndex = 11;
+			this.redoBarButton.ToolTipText = "Redo";
+			// 
 			// toolBarButton11
 			// 
 			this.toolBarButton11.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
@@ -474,10 +481,10 @@ namespace NetSpell.Demo.Windows
 			this.toolBarImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toolBarImages.ImageStream")));
 			this.toolBarImages.TransparentColor = System.Drawing.Color.Transparent;
 			// 
-			// redoBarButton
+			// spelling1
 			// 
-			this.redoBarButton.ImageIndex = 11;
-			this.redoBarButton.ToolTipText = "Redo";
+			this.spelling1.Dictionary.DictionaryFile = "en-US.dic";
+			this.spelling1.Dictionary.DictionaryFolder = null;
 			// 
 			// MainForm
 			// 
