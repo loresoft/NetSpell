@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild", 
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NetSpell.Setup", "NetSpell.Setup\NetSpell.Setup.vdproj", "{4750A43C-EF43-478B-BE79-4E6DDD5EB75A}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NetSpell.Setup", "NetSpell.Setup\NetSpell.Setup.vdproj", "{61F38488-46CE-4E27-8917-372903BDB50F}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -33,10 +33,8 @@ Global
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.Build.0 = Debug|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.ActiveCfg = Release|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.Build.0 = Release|.NET
-		{4750A43C-EF43-478B-BE79-4E6DDD5EB75A}.Debug.ActiveCfg = Debug
-		{4750A43C-EF43-478B-BE79-4E6DDD5EB75A}.Debug.Build.0 = Debug
-		{4750A43C-EF43-478B-BE79-4E6DDD5EB75A}.Release.ActiveCfg = Release
-		{4750A43C-EF43-478B-BE79-4E6DDD5EB75A}.Release.Build.0 = Release
+		{61F38488-46CE-4E27-8917-372903BDB50F}.Debug.ActiveCfg = Debug
+		{61F38488-46CE-4E27-8917-372903BDB50F}.Release.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

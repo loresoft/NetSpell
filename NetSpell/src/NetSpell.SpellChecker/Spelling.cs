@@ -644,13 +644,14 @@ namespace NetSpell.SpellChecker
 		///		spell checking
 		/// </remarks>
 		public void IgnoreWord()
-		{
-			// increment Word Index to skip over this word
-			_WordIndex++;
+		{	
 			this.OnIgnoredWord(new SpellingEventArgs(
 				_CurrentWord, 
 				_WordIndex, 
 				_words[_WordIndex].Index));
+
+			// increment Word Index to skip over this word
+			_WordIndex++;
 		}
 
 		/// <summary>

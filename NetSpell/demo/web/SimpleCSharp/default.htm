@@ -1,46 +1,52 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-    <head>
-        <title>NetSpell Web Demo</title>
-        <script language="JavaScript" src="spell.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <form name="frmDemo">
-            <p>
-                <font face="Arial" size="4"><b>NetSpell Web Demo</b></font></p>
-            <table border="0" width="100%" id="table1">
+<head>
+    <title>NetSpell Web Demo</title>
+    <script language="JavaScript" src="spell.js" type="text/javascript"></script>
+</head>
+<body>
+    <form name="frmDemo">
+        <p>
+            <font face="Arial" size="4"><b>NetSpell Web Demo</b></font>
+        </p>
+        <table id="table1" width="100%" border="0">
+            <tbody>
                 <tr>
-                    <td width="80" align="right" valign="top">
+                    <td valign="top" align="right" width="80">
                         <b><font face="Arial">From:</font></b></td>
                     <td>
-                        <input type="text" name="txtFrom" size="54" value="me@user.com" /></td>
+                        <input id="txtFrom" type="text" size="54" value="me@user.com" name="txtFrom" /></td>
                 </tr>
                 <tr>
-                    <td width="80" align="right" valign="top">
+                    <td valign="top" align="right" width="80">
                         <b><font face="Arial">To:</font></b></td>
                     <td>
-                        <input type="text" name="txtTo" size="54" value="you@user.com" /></td>
+                        <input id="txtTo" type="text" size="54" value="you@user.com" name="txtTo" /></td>
                 </tr>
                 <tr>
-                    <td width="80" align="right" valign="top">
+                    <td valign="top" align="right" width="80">
                         <b><font face="Arial">Subject:</font></b></td>
                     <td>
-                        <input type="text" name="txtSubject" size="54" value="Bad speled emal subjct" /></td>
+                        <input id="txtSubject" type="text" size="54" value="Bad speled emal subjct" name="txtSubject" /></td>
                 </tr>
                 <tr>
-                    <td width="80" align="right" valign="top">
+                    <td valign="top" align="right" width="80">
                         <b><font face="Arial">Message:</font></b></td>
                     <td>
-                        <textarea id="strText" name="txtMessage" rows="13" wrap="VIRTUAL" cols="43">Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.</textarea></td>
+                        <textarea id="txtMessage" name="txtMessage" rows="13" wrap="VIRTUAL" cols="43">Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.</textarea>
+                    </td>
                 </tr>
                 <tr>
-                    <td width="80" align="right" valign="top">&nbsp;</td>
+                    <td valign="top" align="right" width="80">
+                        &nbsp;</td>
                     <td>
-                        <input type="button" value="Spell Check" name="btnSpellCheck" onclick="checkSpelling()" id="SpellButton" />
+                        <input id="SpellButton" onclick="checkSpelling()" type="button" value="Spell Check" name="btnSpellCheck" />
+                        <input id="btnSpellMessage" onclick="checkSpellingById('txtMessage')" type="button" value="Check Message" name="btnSpellCheckMessage" />
                         <input id="ResetButton" type="reset" value="Reset Text" name="ResetButton" />
                     </td>
                 </tr>
-            </table>
-        </form>
-    </body>
+            </tbody>
+        </table>
+    </form>
+</body>
 </html>
