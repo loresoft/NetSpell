@@ -30,8 +30,8 @@ Dictionary Wordlists		http://wordlist.sourceforge.net/
 Metaphone Algorithm 		http://aspell.net/metaphone/
 
 
-License
--------
+BSD License
+------------------
 Copyright (c) 2003, Paul Welter
 All rights reserved.
 
