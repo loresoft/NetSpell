@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.SpellChecker", "NetSpell.SpellChecker\NetSpell.SpellChecker.csproj", "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.TraySpell", "NetSpell.TraySpell\NetSpell.TraySpell.csproj", "{16D8A4A3-17EF-4C60-8CF7-16B50938420A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NetSpell.TraySpell.Setup", "NetSpell.TraySpell.Setup\NetSpell.TraySpell.Setup.vdproj", "{C8034C6D-C041-4851-9A05-3F8F09405297}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.ActiveCfg = Debug|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.Build.0 = Debug|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.ActiveCfg = Release|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.Build.0 = Release|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.ActiveCfg = Debug|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.Build.0 = Debug|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.ActiveCfg = Release|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.Build.0 = Release|.NET
+		{C8034C6D-C041-4851-9A05-3F8F09405297}.Debug.ActiveCfg = Debug
+		{C8034C6D-C041-4851-9A05-3F8F09405297}.Debug.Build.0 = Debug
+		{C8034C6D-C041-4851-9A05-3F8F09405297}.Release.ActiveCfg = Release
+		{C8034C6D-C041-4851-9A05-3F8F09405297}.Release.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
