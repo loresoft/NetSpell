@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 
-namespace Demo.WinForm.Csharp
+namespace NetSpell.WinForm.Test
 {
 	/// <summary>
 	/// Summary description for Form1.

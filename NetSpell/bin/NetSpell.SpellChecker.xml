@@ -618,7 +618,7 @@
                 Populates the <see cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/> property with word suggestions
                 for the word
             </summary>
-            <param name="text" type="string">
+            <param name="word" type="string">
                 <para>
                     The word to generate suggestions on
                 </para>
@@ -701,6 +701,11 @@
             <remarks>
             	Use this event to update the parent text
             </remarks>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.AlertComplete">
+            <summary>
+                The WordDictionary object to use when spell checking
+            </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.CurrentWord">
             <summary>

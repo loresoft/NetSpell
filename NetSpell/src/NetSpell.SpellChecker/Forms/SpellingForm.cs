@@ -374,8 +374,11 @@ namespace NetSpell.SpellChecker.Forms
 		{
 			this.UpdateDisplay(this.SpellChecker.Text, "", 0, 0);
 
-			MessageBox.Show(this, "Spell Check Complete.", "Spell Check", 
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
+			if(this.SpellChecker.AlertComplete)
+			{
+				MessageBox.Show(this, "Spell Check Complete.", "Spell Check", 
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
 
 			this.Hide();
 			if (this.Owner != null) this.Owner.Activate();

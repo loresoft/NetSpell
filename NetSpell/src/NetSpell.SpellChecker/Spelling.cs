@@ -786,7 +786,7 @@ namespace NetSpell.SpellChecker
 		/// <seealso cref="WordIndex"/>
 		public bool SpellCheck()
 		{
-			return SpellCheck(this.WordIndex, this.WordCount-1);
+			return SpellCheck(_WordIndex, this.WordCount-1);
 		}
 
 		/// <summary>
@@ -833,9 +833,10 @@ namespace NetSpell.SpellChecker
 		/// <seealso cref="WordIndex"/>
 		public bool SpellCheck(int startWordIndex, int endWordIndex)
 		{
-			if(_words == null || _words.Count == 0) 
+			if(startWordIndex > endWordIndex || _words == null || _words.Count == 0) 
 			{
-				TraceWriter.TraceWarning("No words to spell check");
+				// make sure end index is not greater then word count
+				this.OnEndOfText(System.EventArgs.Empty);	//raise event
 				return false;
 			}
 
@@ -843,10 +844,6 @@ namespace NetSpell.SpellChecker
 
 			string currentWord = "";
 			bool misspelledWord = false;
-            
-			// make sure end index is not greater then word count
-			if (endWordIndex > (_words.Count-1))
-				endWordIndex = _words.Count-1;
 
 			for (int i = startWordIndex; i <= endWordIndex; i++) 
 			{
@@ -942,7 +939,7 @@ namespace NetSpell.SpellChecker
 		///     Populates the <see cref="Suggestions"/> property with word suggestions
 		///     for the word
 		/// </summary>
-		/// <param name="text" type="string">
+		/// <param name="word" type="string">
 		///     <para>
 		///         The word to generate suggestions on
 		///     </para>
@@ -1104,6 +1101,7 @@ namespace NetSpell.SpellChecker
 
 		#region public properties
 
+		private bool _alertComplete = true;
 		private WordDictionary _Dictionary;
 		private bool _IgnoreAllCapsWords = true;
 		private bool _IgnoreHtml = true;
@@ -1146,6 +1144,19 @@ namespace NetSpell.SpellChecker
 			NearMiss
 		}
 
+
+		/// <summary>
+		///     The WordDictionary object to use when spell checking
+		/// </summary>
+		[Browsable(true)]
+		[DefaultValue(true)]
+		[CategoryAttribute("Options")]
+		[Description("Display the 'Spell Check Complete' alert.")]
+		public bool AlertComplete
+		{
+			get { return _alertComplete; }
+			set { _alertComplete = value; }
+		}
 
 		/// <summary>
 		///     The current word being spell checked from the text property

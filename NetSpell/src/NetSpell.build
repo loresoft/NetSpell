@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!-- NAnt version 0.8.4 -->
 <project name="NetSpell" default="build">
+    <property name="nant.settings.currentframework" value="net-1.1" />
     <property name="project.name" value="NetSpell" />
     <property name="project.version" value="2.1.5" />
     <property name="project.config" value="Release" />
     <property name="build.debug" value="false" />
     <property name="build.dir" value="..\bin" />
     <property name="doc.dir" value="..\doc" />
-    
     <target name="build" depends="test" description="Builds NetSpell">
         <copy todir="${build.dir}" flatten="true">
             <fileset>
@@ -16,13 +16,11 @@
             </fileset>
         </copy>
     </target>
-    
     <target name="compile" depends="clean" description="Compiles NetSpell">
         <solution configuration="${project.config}" solutionfile="NetSpell.sln">
             <assemblyfolders basedir="lib" />
         </solution>
     </target>
-    
     <target name="clean" description="Cleans the build folder">
         <delete failonerror="false">
             <fileset>
@@ -34,36 +32,33 @@
         </delete>
         <mkdir dir="${build.dir}" />
     </target>
-    
     <target name="test" depends="compile" description="Runs NUnit Tests">
         <nunit2>
             <formatter type="Plain" />
             <test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
         </nunit2>
     </target>
-    
     <target name="package" depends="doc" description="Creates a deployment package">
-    	<mkdir dir="..\package" />
-		<zip zipfile="..\package\${project.name}.${project.version}.zip">
-			<fileset basedir="..\">
-				<includes name="*"/>
-				<includes name="bin\*.*" />
-				<includes name="dic\*.*" />
-				<includes name="demo\**" />
-				<includes name="doc\*.*" />
-				<includes name="lib\*.*" />
-				<includes name="src\**" />				
-                <!--exclude VS.Net stuff -->
+        <mkdir dir="..\package" />
+        <zip zipfile="..\package\${project.name}.${project.version}.zip">
+            <fileset basedir="..\">
+                <includes name="*" />
+                <includes name="bin\*.*" />
+                <includes name="dic\*.*" />
+                <includes name="demo\**" />
+                <includes name="doc\*.*" />
+                <includes name="lib\*.*" />
+                <includes name="src\**" />
+		<!--exclude VS.Net stuff -->
                 <excludes name="src\NetSpell.Setup\**" />
                 <excludes name="**\*.suo" />
                 <excludes name="**\*j.user" />
                 <excludes name="src\**\bin\**" />
                 <excludes name="demo\**\bin\**" />
                 <excludes name="**\obj\**" />
-			</fileset>
-		</zip>
+            </fileset>
+        </zip>
     </target>
-    
     <target name="doc" depends="build" description="Creates HTML Help file">
         <ndoc failonerror="false">
             <assemblies basedir="${build.dir}">

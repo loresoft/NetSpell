@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild", 
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.WinForm.Test", "NetSpell.WinForm.Test\NetSpell.WinForm.Test.csproj", "{953B172F-6026-494E-BD97-111374606CFD}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -29,10 +33,13 @@ Global
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.Build.0 = Debug|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.ActiveCfg = Release|.NET
 		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.Build.0 = Release|.NET
+		{953B172F-6026-494E-BD97-111374606CFD}.Debug.ActiveCfg = Debug|.NET
+		{953B172F-6026-494E-BD97-111374606CFD}.Debug.Build.0 = Debug|.NET
+		{953B172F-6026-494E-BD97-111374606CFD}.Release.ActiveCfg = Release|.NET
+		{953B172F-6026-494E-BD97-111374606CFD}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NetSpell.build = NetSpell.build
-		..\doc\NetSpell.vsd = ..\doc\NetSpell.vsd
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
