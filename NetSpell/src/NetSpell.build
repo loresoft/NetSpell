@@ -10,6 +10,7 @@
     	<solution configuration="${project.config}" solutionfile="NetSpell.sln">
     		<assemblyfolders basedir="lib" />
     	</solution>
+    	<mkdir dir="${build.dir}" />
     	<copy todir="${build.dir}">
 	    	<fileset basedir="src">
 	    	    <includes name="NetSpell.SpellChecker\bin\${project.config}\*.*" />
@@ -31,9 +32,10 @@
   </target>
   
   <target name="test" depends="build" description="Runs NUnit Tests">
-	<nunit2>
-		<test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
-	</nunit2>
+		<nunit2>
+			<formatter type="Plain" />
+			<test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
+		</nunit2>
   </target>
   
   <target name="package" depends="doc" description="Creates a deployment package">
