@@ -324,23 +324,23 @@ namespace NetSpell.TraySpell
 			this.IgnoreDigitsCheck.Checked = SpellingForm.settings.IgnoreWordsWithDigits;
 			this.IgnoreUpperCheck.Checked = SpellingForm.settings.IgnoreAllCapsWords;
 			this.KeyTextBox.Text = SpellingForm.settings.HotKey.ToString();
-			
-			if (SpellingForm.settings.HotKeyModifier & KeyModifiers.MOD_ALT = KeyModifiers.MOD_ALT) 
+			/*
+			if (SpellingForm.settings.HotKeyModifier & (int)KeyModifiers.MOD_ALT = (int)KeyModifiers.MOD_ALT) 
 				this.AltCheck.Checked = true;
 			else this.AltCheck.Checked = false;
 
-			if (SpellingForm.settings.HotKeyModifier & KeyModifiers.MOD_CONTROL = KeyModifiers.MOD_CONTROL) 
+			if (SpellingForm.settings.HotKeyModifier & (int)KeyModifiers.MOD_CONTROL = (int)KeyModifiers.MOD_CONTROL) 
 				this.CtrlCheck.Checked = true;
 			else this.CtrlCheck.Checked = false;
 
-			if (SpellingForm.settings.HotKeyModifier & KeyModifiers.MOD_SHIFT = KeyModifiers.MOD_SHIFT) 
+			if (SpellingForm.settings.HotKeyModifier & (int)KeyModifiers.MOD_SHIFT = (int)KeyModifiers.MOD_SHIFT) 
 				this.ShiftCheck.Checked = true;
 			else this.ShiftCheck.Checked = false;
 
-			if (SpellingForm.settings.HotKeyModifier & KeyModifiers.MOD_WIN = KeyModifiers.MOD_WIN) 
+			if (SpellingForm.settings.HotKeyModifier & (int)KeyModifiers.MOD_WIN = (int)KeyModifiers.MOD_WIN) 
 				this.WinCheck.Checked = true;
 			else this.WinCheck.Checked = false;
-
+			*/
 
 
 		}

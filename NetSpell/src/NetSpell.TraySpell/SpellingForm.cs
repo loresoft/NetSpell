@@ -24,13 +24,14 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Text;
 using NetSpell.SpellChecker;
+using NetSpell.TraySpell.HotKey;
 
 namespace NetSpell.TraySpell
 {
 	/// <summary>
 	/// Summary description for SpellingForm.
 	/// </summary>
-	public class SpellingForm : System.Windows.Forms.Form
+	public class SpellingForm : NetSpell.TraySpell.HotKey.HotKeyForm
 	{
 
 		private NetSpell.TraySpell.AboutForm _aboutForm = new AboutForm();
@@ -65,7 +66,7 @@ namespace NetSpell.TraySpell
 
 		internal static Settings settings;
 		internal static Spelling spell;
-		private int _AtomID = 0;
+		//private IntPtr _AtomID;
 
 		public SpellingForm()
 		{
@@ -228,17 +229,22 @@ namespace NetSpell.TraySpell
 		/// <summary>
 		///     Handles Hotkey messages
 		/// </summary>
+		/*
 		protected override void WndProc( ref Message m )
 		{	
+			base.WndProc(ref m );
 			switch(m.Msg)	
 			{	
-				case (int)Win32.Msgs.WM_HOTKEY:		
-					this.startSpelling();
+				case (int)Win32.Msgs.WM_HOTKEY:	
+					if (_AtomID.Equals(m.WParam))
+					{
+						this.startSpelling();
+					}
 					break;	
 			} 	
-			base.WndProc(ref m );
+			
 		}
-
+		*/
 		internal void LoadSettings()
 		{
 			if (File.Exists("Settings.xml")) 
@@ -256,9 +262,16 @@ namespace NetSpell.TraySpell
 			spell.IgnoreAllCapsWords = settings.IgnoreAllCapsWords;
 			spell.IgnoreWordsWithDigits = settings.IgnoreWordsWithDigits;
 
+			// Add a HotKey for Ctrl+Shift+up:
+			HotKey.HotKey hotKey = new HotKey.HotKey("SpellCheck", Keys.S, 
+				HotKey.HotKey.HotKeyModifiers.MOD_CONTROL | HotKey.HotKey.HotKeyModifiers.MOD_WIN);
+			HotKeys.Add(hotKey);
+
+			/*
 			_AtomID = Win32.Kernel32.GlobalAddAtom(DateTime.Now.ToString());
-			Win32.User32.RegisterHotKey(this.Handle, _AtomID, 
-				settings.HotKeyModifier, settings.HotKey);
+			Win32.User32.RegisterHotKey(this.Handle, _AtomID.ToInt32(), 
+				(int)Win32.KeyModifiers.MOD_WIN, (int)Keys.S);
+			*/
 		}
 
 		internal void SaveSettings()
@@ -271,9 +284,6 @@ namespace NetSpell.TraySpell
 
 			xw.Close();
 			fs.Close();
-
-			Win32.User32.UnregisterHotKey(this.Handle, _AtomID);
-			Win32.Kernel32.GlobalDeleteAtom(_AtomID);
 			
 		}
 
@@ -283,6 +293,10 @@ namespace NetSpell.TraySpell
 			spell.MisspelledWord += new Spelling.MisspelledWordEventHandler(this.MisspelledWord);
 			spell.DoubledWord += new Spelling.DoubledWordEventHandler(this.DoubleWord);
 			spell.EndOfText += new Spelling.EndOfTextEventHandler(this.EndOfText);
+
+			// add event handler for HotKeyPressed:
+			this.HotKeyPressed += new HotKeyPressedEventHandler(hotKey_Pressed);
+
 		}
 
 		private void DoubleWord(object sender, WordEventArgs args)
@@ -591,6 +605,7 @@ namespace NetSpell.TraySpell
 			this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.SpellingForm_Closing);
 			this.Load += new System.EventHandler(this.SpellingForm_Load);
+			this.Closed += new System.EventHandler(this.SpellingForm_Closed);
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneWord)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneCount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneIndex)).EndInit();
@@ -599,5 +614,19 @@ namespace NetSpell.TraySpell
 		}
 #endregion
 
+		private void SpellingForm_Closed(object sender, System.EventArgs e)
+		{
+			/*
+			Win32.User32.UnregisterHotKey(this.Handle, _AtomID.ToInt32());
+			Win32.Kernel32.GlobalDeleteAtom(_AtomID);
+			*/
+		}
+
+		private void hotKey_Pressed(object sender, HotKeyPressedEventArgs e)
+		{
+			// ensure form is shown:
+			this.RestoreAndActivate();
+			this.startSpelling();
+		}
 	}
 }

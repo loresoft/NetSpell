@@ -47,12 +47,12 @@ namespace Win32
 	public class Kernel32
 	{
 		[DllImport("kernel32.dll")]
-		public static extern int GlobalAddAtom(
+		public static extern IntPtr GlobalAddAtom(
 			string Name);
 
 		[DllImport("kernel32.dll")]
-		public static extern int GlobalDeleteAtom(
-			int atom);
+		public static extern IntPtr GlobalDeleteAtom(
+			IntPtr atom);
 
 		[DllImport("kernel32.dll")]
 		public static extern IntPtr GlobalLock(

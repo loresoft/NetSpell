@@ -11,7 +11,7 @@ namespace NetSpell.TraySpell
 	{
 		private string[] _Dictionaries = new string[]{"us-en.dic", "user.dic"};
 		private int _HotKey = (int)Keys.S;
-		private int _HotKeyModifier = (int)Win32.KeyModifiers.MOD_WIN;
+		private int _HotKeyModifier = (int)(Win32.KeyModifiers.MOD_WIN | Win32.KeyModifiers.MOD_CONTROL);
 		private bool _IgnoreAllCapsWords = true;
 		private bool _IgnoreWordsWithDigits = false;
 

@@ -107,6 +107,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "HotKeyFormLib.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "HotKeyFormLib.resx"
+                    DependentUpon = "HotKeyFormLib.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "OptionsForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
