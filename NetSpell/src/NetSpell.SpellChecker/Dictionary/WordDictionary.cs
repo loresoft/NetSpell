@@ -13,7 +13,7 @@ namespace NetSpell.SpellChecker.Dictionary
 	/// <summary>
 	/// Summary description for WordDictionary.
 	/// </summary>
-	public class WordDictionary : IDictionary, ICollection, IEnumerable 
+	public class WordDictionary : IEnumerable 
 	{
 		private Hashtable _BaseWords = new Hashtable();
 		private string _DictionaryFile = "";
@@ -123,20 +123,32 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// </summary>
 		public void Initialize()
 		{
+			// clean up data first
+			_BaseWords.Clear();
+			_ReplaceCharacters.Clear();
+			_PrefixRules.Clear();
+			_SuffixRules.Clear();
+			_PhoneticRules.Clear();
+			_TryCharacters = "";
+			
+
 			// the following is used to split a line by space
 			Regex _spaceRegx = new Regex(@"[^\s]+", RegexOptions.Compiled);
 			
 			string currentSection = "";
 			AffixRule currentRule = null;
 
+			// open dictionary file
 			FileStream fs = new FileStream(_DictionaryFile, FileMode.Open, FileAccess.Read, FileShare.Read);
 			StreamReader sr = new StreamReader(fs, Encoding.UTF7);
 			
+			// read line by line
 			while (sr.Peek() >= 0) 
 			{
 				string tempLine = sr.ReadLine().Trim();
 				if (tempLine.Length > 0)
 				{
+					// check for section flag
 					switch (tempLine)
 					{
 						case "[Try]" : 
@@ -173,7 +185,7 @@ namespace NetSpell.SpellChecker.Dictionary
 										currentRule.Name = partMatches[0].Value;
 										// part 2 = combine flag
 										if (partMatches[1].Value == "Y") currentRule.AllowCombine = true;
-										// part 3 = entry count
+										// part 3 = entry count, not used
 
 										if (currentSection == "[Prefix]")
 										{
@@ -204,9 +216,9 @@ namespace NetSpell.SpellChecker.Dictionary
 											currentRule.AffixEntries.Add(entry);
 										}
 									}	
-									
 									break;
 								case "[Phonetic]" : // ASpell phonetic rules
+									// TODO: parse phonectic rules
 									break;
 								case "[Words]" : // dictionary word list
 									// splits word into its parts
@@ -224,9 +236,11 @@ namespace NetSpell.SpellChecker.Dictionary
 							} // currentSection swith
 						break;
 					} //tempLine switch
-						
-				} 
-			}
+				} // if templine
+			} // read line
+			// close files
+			sr.Close();
+			fs.Close();
 		}
 
 #region Public IDictionary Members
@@ -276,6 +290,13 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// </returns>
 		public bool Contains(string word)
 		{
+			
+			// save suffixed words to check if word with prefix removed
+			ArrayList suffixWords = new ArrayList();
+
+			// Add word to suffix word list
+			suffixWords.Add(word);
+			
 			// Step 1 Search UserWords
 			if (_UserWords.Contains(word)) 
 			{
@@ -288,7 +309,7 @@ namespace NetSpell.SpellChecker.Dictionary
 				return true; // word found
 			}
 
-			// Step 3 Remove Affix, Search BaseWords
+			// Step 3 Remove suffix, Search BaseWords
 			foreach(AffixRule rule in SuffixRules.Values)
 			{	
 				foreach(AffixEntry entry in rule.AffixEntries)
@@ -302,21 +323,33 @@ namespace NetSpell.SpellChecker.Dictionary
 						}
 						else if(rule.AllowCombine)
 						{
-							// Step 3.1 Remove prefix if can combine
-
+							// saving word to check if it is a word after prefix is removed
+							suffixWords.Add(tempWord);
 						}
 					}
 				}
 			}
+
 			// Step 4 Remove Prefix, Search BaseWords
-
+			foreach(AffixRule rule in PrefixRules.Values)
+			{
+				foreach(AffixEntry entry in rule.AffixEntries)
+				{
+					foreach(string suffixWord in suffixWords)
+					{
+						string tempWord = AffixUtility.RemovePrefix(suffixWord, entry);
+						if (tempWord != suffixWord)
+						{
+							if (_BaseWords.Contains(tempWord))
+							{
+								return true; // word found
+							}
+						}
+					}
+				}
+			}
+			// word not found 
 			return false;
-		}
-
-		public IDictionaryEnumerator GetEnumerator()
-		{
-			// TODO:  Add WordDictionary.GetEnumerator implementation
-			return null;
 		}
 
 		/// <summary>
@@ -335,102 +368,9 @@ namespace NetSpell.SpellChecker.Dictionary
 			_UserWords.Remove(word);
 		}
 
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public bool IsFixedSize
-		{
-			get {return false;}
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public bool IsReadOnly
-		{
-			get {return false;}
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public ICollection Keys
-		{
-			get
-			{
-				// TODO:  Add WordDictionary.Keys getter implementation
-				return null;
-			}
-		}
-
-		/// <summary>
-		///     Searchs for word and returns a word object
-		/// </summary>
-		/// <value>
-		///     <para>
-		///         Word to search for
-		///     </para>
-		/// </value>
-		public Word this[string key]
-		{
-			get
-			{
-				// TODO:  Add WordDictionary.this getter implementation
-				return null;
-			}
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public ICollection Values
-		{
-			get
-			{
-				// TODO:  Add WordDictionary.Values getter implementation
-				return null;
-			}
-		}
 
 #endregion
 
-#region Public ICollection Members
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public void CopyTo(Array array, int index)
-		{
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		/// <remarks>
-		///     Always returns 0
-		/// </remarks>
-		public int Count
-		{
-			get {return 0;}
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public bool IsSynchronized
-		{
-			get {return false;}
-		}
-
-		/// <summary>
-		///     Not Implemented!
-		/// </summary>
-		public object SyncRoot
-		{
-			get {return null;}
-		}
-
-#endregion
 
 #region IEnumerable Members
 
@@ -442,30 +382,6 @@ namespace NetSpell.SpellChecker.Dictionary
 
 #endregion
 
-#region IDictionary Members
-
-		void System.Collections.IDictionary.Add(object key, object value)
-		{
-			this.Add((string)key, (Word)value);
-		}
-
-		bool System.Collections.IDictionary.Contains(object key)
-		{
-			return this.Contains((string)key);
-		}
-
-		void System.Collections.IDictionary.Remove(object key)
-		{
-			this.Remove((string)key);
-		}
-
-		object System.Collections.IDictionary.this[object key]
-		{
-			get {return this[(string)key];}
-			set {}
-		}
-
-#endregion
 
 	}
 

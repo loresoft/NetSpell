@@ -133,10 +133,31 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 
 		}
 
+		/// <summary>
+		///     Removes the affix suffix rule entry for the word if valid
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         The word to be modified
+		///     </para>
+		/// </param>
+		/// <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
+		///     <para>
+		///         The affix rule entry to use
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The word after affix removed.  Will be the same word if affix could not be removed.
+		/// </returns>
+		/// <remarks>
+		///		This method does not verify that the returned word is a valid word, only that the affix can be removed
+		/// </remarks>
 		public static string RemoveSuffix(string word, AffixEntry entry)
 		{
 			int tempLength = word.Length - entry.AddCharacters.Length;
-			if ((tempLength > 0)  &&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount))
+			if ((tempLength > 0)  
+				&&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount)
+				&& (word.EndsWith(entry.AddCharacters)))
 			{
 				// word with out affix
 				string tempWord = word.Substring(0, tempLength);
@@ -156,6 +177,56 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 				{
 					return tempWord;
 				}
+			}
+			return word;
+		}
+
+		/// <summary>
+		///     Removes the affix prefix rule entry for the word if valid
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         The word to be modified
+		///     </para>
+		/// </param>
+		/// <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
+		///     <para>
+		///         The affix rule entry to use
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The word after affix removed.  Will be the same word if affix could not be removed.
+		/// </returns>
+		/// <remarks>
+		///		This method does not verify that the returned word is a valid word, only that the affix can be removed
+		/// </remarks>
+		public static string RemovePrefix(string word, AffixEntry entry)
+		{
+
+			int tempLength = word.Length - entry.AddCharacters.Length;
+			if ((tempLength > 0)  
+				&& (tempLength + entry.StripCharacters.Length >= entry.ConditionCount) 
+				&& (word.StartsWith(entry.AddCharacters)))
+			{
+				// word with out affix
+				string tempWord = word.Substring(entry.AddCharacters.Length);
+				// add back strip chars
+				tempWord = entry.StripCharacters + tempWord;
+				// check that this is valid
+				int passCount = 0;
+				for (int i = 0;  i < entry.ConditionCount; i++) 
+				{
+					int charCode = (int)tempWord[i];
+					if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
+					{
+						passCount++;
+					}
+				}
+				if (passCount == entry.ConditionCount)
+				{
+					return tempWord;
+				}
+				
 			}
 			return word;
 		}

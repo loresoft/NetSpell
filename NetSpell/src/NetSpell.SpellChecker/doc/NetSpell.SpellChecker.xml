@@ -892,11 +892,6 @@
             	This method is only affects the user word list
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.CopyTo(System.Array,System.Int32)">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.BaseWords">
             <summary>
                 The collection of base words for the dictionary
@@ -940,54 +935,6 @@
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserWords">
             <summary>
                 List of user entered words in this dictionary
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.IsFixedSize">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.IsReadOnly">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Keys">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Item(System.String)">
-            <summary>
-                Searchs for word and returns a word object
-            </summary>
-            <value>
-                <para>
-                    Word to search for
-                </para>
-            </value>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Values">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Count">
-            <summary>
-                Not Implemented!
-            </summary>
-            <remarks>
-                Always returns 0
-            </remarks>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.IsSynchronized">
-            <summary>
-                Not Implemented!
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.SyncRoot">
-            <summary>
-                Not Implemented!
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.WordEnumerator">

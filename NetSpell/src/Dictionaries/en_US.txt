@@ -114,11 +114,80 @@ K Y 1
 K   0     pro        .
 
 [Suffix]
+V N 2
+V   e     ive        e
+V   0     ive        [^e]
+
+N Y 3
+N   e     ion        e
+N   y     ication    y 
+N   0     en         [^ey] 
+
+X Y 3
+X   e     ions       e
+X   y     ications   y
+X   0     ens        [^ey]
+
+H N 2
+H   y     ieth       y
+H   0     th         [^y] 
+
+Y Y 1
+Y   0     ly         .
+
+G Y 2
+G   e     ing        e
+G   0     ing        [^e] 
+
+J Y 2
+J   e     ings       e
+J   0     ings       [^e]
+
 D Y 4
 D   0     d          e
 D   y     ied        [^aeiou]y
 D   0     ed         [^ey]
 D   0     ed         [aeiou]y
+
+T N 4
+T   0     st         e
+T   y     iest       [^aeiou]y
+T   0     est        [aeiou]y
+T   0     est        [^ey]
+
+R Y 4
+R   0     r          e
+R   y     ier        [^aeiou]y
+R   0     er         [aeiou]y
+R   0     er         [^ey]
+
+Z Y 4
+Z   0     rs         e
+Z   y     iers       [^aeiou]y
+Z   0     ers        [aeiou]y
+Z   0     ers        [^ey]
+
+S Y 4
+S   y     ies        [^aeiou]y
+S   0     s          [aeiou]y
+S   0     es         [sxzh]
+S   0     s          [^sxzhy]
+
+P Y 3
+P   y     iness      [^aeiou]y
+P   0     ness       [aeiou]y
+P   0     ness       [^y]
+
+M Y 1
+M   0     's         .
+
+B Y 3
+B   0     able       [^aeiou]
+B   0     able       ee
+B   e     able       [^aeiou]e
+
+L Y 1
+L   0     ment       .
 
 [Phonetic]
 AH(AEIOUY)-^         *H
