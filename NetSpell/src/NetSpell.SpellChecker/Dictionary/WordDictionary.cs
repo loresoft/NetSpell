@@ -23,8 +23,8 @@ namespace NetSpell.SpellChecker.Dictionary
 	/// <summary>
 	/// The WordDictionary class contains all the logic for managing the word list.
 	/// </summary>
-	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Dictionary.Lexicon), "Dictionary.bmp")]
-	public class Lexicon : System.ComponentModel.Component
+	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Dictionary.WordDictionary), "Dictionary.bmp")]
+	public class WordDictionary : System.ComponentModel.Component
 	{
 		private Hashtable _baseWords = new Hashtable();
 		private string _copyright = "";
@@ -45,7 +45,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Initializes a new instance of the class
 		/// </summary>
-		public Lexicon()
+		public WordDictionary()
 		{
 			InitializeComponent();
 		}
@@ -53,7 +53,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Initializes a new instance of the class
 		/// </summary>
-		public Lexicon(System.ComponentModel.IContainer container)
+		public WordDictionary(System.ComponentModel.IContainer container)
 		{
 			container.Add(this);
 			InitializeComponent();
@@ -620,7 +620,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public Hashtable BaseWords
 		{
 			get {return _baseWords;}
-			set {_baseWords = value;}
 		}
 
 		/// <summary>
@@ -772,7 +771,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public Hashtable UserWords
 		{
 			get {return _userWords;}
-			set {_userWords = value;}
 		}
 
 		/// <summary>

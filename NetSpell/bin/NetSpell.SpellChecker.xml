@@ -469,7 +469,7 @@
             </summary>
             <param name="textIndex">
             	<para>
-                    The word to replace the CurrentWord with
+                    The index to search for
                 </para>
             </param>
             <returns>
@@ -766,7 +766,7 @@
                 and options dialogs.
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Spelling.SpellingForm">
+        <member name="P:NetSpell.SpellChecker.Spelling.SuggestionForm">
             <summary>
                 The internal spelling suggestions dialog form
             </summary>
@@ -1352,6 +1352,39 @@
                 Gets an object that can be used to synchronize access to the AffixRuleCollection.
             </summary>
         </member>
+        <member name="T:NetSpell.SpellChecker.Forms.SuggestionForm">
+            <summary>
+            The SpellingForm is used to display suggestions when there is a misspelled word
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Forms.SuggestionForm.#ctor(NetSpell.SpellChecker.Spelling)">
+            <summary>
+                Default Constructor
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Forms.SuggestionForm.Dispose(System.Boolean)">
+            <summary>
+            	Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Forms.SuggestionForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Forms.SuggestionForm.AttachEvents">
+            <summary>
+                called by spell checker to enable this 
+                form to handle spell checker events
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Forms.SuggestionForm.DetachEvents">
+            <summary>
+                called by spell checker to disable this 
+                form from handling spell checker events
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.ReplaceWordEventArgs">
             <summary>
             Summary description for ReplaceWordEventArgs.
@@ -1591,39 +1624,6 @@
                 Gets the current element from the collection
             </summary>
         </member>
-        <member name="T:NetSpell.SpellChecker.Forms.SpellingForm">
-            <summary>
-            The SpellingForm is used to display suggestions when there is a misspelled word
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Forms.SpellingForm.#ctor(NetSpell.SpellChecker.Spelling)">
-            <summary>
-                Default Constructor
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Forms.SpellingForm.Dispose(System.Boolean)">
-            <summary>
-            	Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Forms.SpellingForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Forms.SpellingForm.AttachEvents">
-            <summary>
-                called by spell checker to enable this 
-                form to handle spell checker events
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Forms.SpellingForm.DetachEvents">
-            <summary>
-                called by spell checker to disable this 
-                form from handling spell checker events
-            </summary>
-        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Word">
             <summary>
             The Word class represents a base word in the dictionary
@@ -1634,26 +1634,11 @@
                 Initializes a new instance of the class
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.Int32)">
-            <summary>
-                Initializes a new instance of the class
-            </summary>
-            <param name="value" type="string">
-                <para>
-                    The string for the base word
-                </para>
-            </param>
-            <param name="editDistance" type="int">
-                <para>
-                    The edit distance from the misspelled word
-                </para>
-            </param>
-        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.String,System.String)">
             <summary>
                 Initializes a new instance of the class
             </summary>
-            <param name="value" type="string">
+            <param name="text" type="string">
                 <para>
                     The string for the base word
                 </para>
@@ -1673,7 +1658,7 @@
             <summary>
                 Initializes a new instance of the class
             </summary>
-            <param name="value" type="string">
+            <param name="text" type="string">
                 <para>
                     The string for the base word
                 </para>
@@ -1688,9 +1673,47 @@
             <summary>
                 Initializes a new instance of the class
             </summary>
-            <param name="value" type="string">
+            <param name="text" type="string">
                 <para>
                     The string for the base word
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="text" type="string">
+                <para>
+                    The string for the word
+                </para>
+            </param>
+            <param name="index" type="int">
+                <para>
+                    The position index of this word
+                </para>
+            </param>
+            <param name="height" type="int">
+                <para>
+                    The line height of this word
+                </para>
+            </param>
+            <returns>
+                A void value...
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.Int32)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="text" type="string">
+                <para>
+                    The string for the base word
+                </para>
+            </param>
+            <param name="editDistance" type="int">
+                <para>
+                    The edit distance from the misspelled word
                 </para>
             </param>
         </member>
@@ -1702,9 +1725,32 @@
             	The compare sorts in desc order, largest EditDistance first
             </remarks>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.ToString">
+            <summary>
+                Converts the word object to a string
+            </summary>
+            <returns>
+            	Returns the Text Property contents
+            </returns>
+        </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.Word.AffixKeys">
             <summary>
                 The affix keys that can be applied to this base word
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Word.Index">
+            <summary>
+                The index position of where this word appears
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Word.PhoneticCode">
+            <summary>
+                The phonetic code for this word
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Word.Text">
+            <summary>
+                The string for the base word
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.Word.EditDistance">
@@ -1712,18 +1758,10 @@
                 Used for sorting suggestions by its edit distance for 
                 the misspelled word
             </summary>
-            <remarks>
-            	Internal use only
-            </remarks>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Word.PhoneticCode">
+        <member name="P:NetSpell.SpellChecker.Dictionary.Word.Height">
             <summary>
-                The phonetic code for this word
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Word.Value">
-            <summary>
-                The string for the base word
+                The line height of this word
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility">

@@ -144,7 +144,7 @@ namespace TextEditor
 				// share instance of spell checker dictionary
 				this.SpellChecker.Dictionary = main.WordDictionary;
 			}
-			this.SpellChecker.SpellingForm.Owner = this;
+			this.SpellChecker.SuggestionForm.Owner = this;
 		}
 
 		private void menuEditCopy_Click(object sender, System.EventArgs e)

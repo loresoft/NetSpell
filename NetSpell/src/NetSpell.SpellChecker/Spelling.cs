@@ -289,7 +289,7 @@ namespace NetSpell.SpellChecker
 		private void Initialize()
 		{
 			if(_dictionary == null)
-				_dictionary = new Lexicon();
+				_dictionary = new WordDictionary();
 
 			if(!_dictionary.Initialized)
 				_dictionary.Initialize();
@@ -496,18 +496,50 @@ namespace NetSpell.SpellChecker
 				TraceWriter.TraceWarning("No Words to Delete");
 				return;
 			}
+			string replacedWord = this.CurrentWord;
+			int replacedIndex = this.WordIndex;
 
-			int index = _words[this.WordIndex].Index;
-			int length = _words[this.WordIndex].Length;
+			int index = _words[replacedIndex].Index;
+			int length = _words[replacedIndex].Length;
 			
-			if (_text[index + length] == ' ') 
-				length += 1; //removing space
+			// adjust length to remove extra white space after first word
+			if (index == 0 
+				&& index + length < _text.Length 
+				&& _text[index+length] == ' ')
+			{
+				length++; //removing trailing space
+			}
+			// adjust length to remove double white space
+			else if (index > 0 
+				&& index + length < _text.Length 
+				&& _text[index-1] == ' ' 
+				&& _text[index+length] == ' ')
+			{					
+				length++; //removing trailing space
+			}
+			// adjust index to remove extra white space before punctuation
+			else if (index > 0 
+				&& index + length < _text.Length 
+				&& _text[index-1] == ' ' 
+				&& char.IsPunctuation(_text[index+length]))
+			{					
+				index--;
+				length++;
+			}
+			// adjust index to remove extra white space before last word
+			else if (index > 0 
+				&& index + length == _text.Length
+				&& _text[index-1] == ' ')	
+			{				
+				index--;
+				length++;
+			}
 
 			string deletedWord = _text.ToString(index, length);
 			_text.Remove(index, length);
 			
 			this.CalculateWords();
-			this.OnDeletedWord(new SpellingEventArgs(deletedWord, this.WordIndex, index));
+			this.OnDeletedWord(new SpellingEventArgs(deletedWord, replacedIndex, index));
 		}
 
 		/// <summary>
@@ -750,14 +782,14 @@ namespace NetSpell.SpellChecker
 				return;
 			}
 			string replacedWord = this.CurrentWord;
-			int replacedWordIndex = this.WordIndex;
+			int replacedIndex = this.WordIndex;
 
-			int index = _words[replacedWordIndex].Index;
-			int length = _words[replacedWordIndex].Length;
+			int index = _words[replacedIndex].Index;
+			int length = _words[replacedIndex].Length;
             
 			_text.Remove(index, length);
 			// if first letter upper case, match case for replacement word
-			if (char.IsUpper(_words[replacedWordIndex].ToString(), 0))
+			if (char.IsUpper(_words[replacedIndex].ToString(), 0))
 			{
 				_replacementWord = _replacementWord.Substring(0,1).ToUpper(CultureInfo.CurrentUICulture) 
 					+ _replacementWord.Substring(1);
@@ -769,7 +801,7 @@ namespace NetSpell.SpellChecker
 			this.OnReplacedWord(new ReplaceWordEventArgs(
 				_replacementWord, 
 				replacedWord, 
-				replacedWordIndex, 
+				replacedIndex, 
 				index));
 		}
 
@@ -1115,7 +1147,7 @@ namespace NetSpell.SpellChecker
 		#region public properties
 
 		private bool _alertComplete = true;
-		private Lexicon _dictionary;
+		private WordDictionary _dictionary;
 		private bool _ignoreAllCapsWords = true;
 		private bool _ignoreHtml = true;
 		private ArrayList _ignoreList = new ArrayList();
@@ -1193,12 +1225,12 @@ namespace NetSpell.SpellChecker
 		[Browsable(true)]
 		[CategoryAttribute("Dictionary")]
 		[Description("The WordDictionary object to use when spell checking")]
-		public Lexicon Dictionary
+		public WordDictionary Dictionary
 		{
 			get 
 			{
 				if(!base.DesignMode && _dictionary == null)
-					_dictionary = new Lexicon();
+					_dictionary = new WordDictionary();
 
 				return _dictionary;
 			}
@@ -1245,11 +1277,6 @@ namespace NetSpell.SpellChecker
 		public ArrayList IgnoreList
 		{
 			get {return _ignoreList;}
-			set 
-			{
-				if (value != null)
-					_ignoreList = value;
-			}
 		}
 
 		/// <summary>
@@ -1287,11 +1314,6 @@ namespace NetSpell.SpellChecker
 		public Hashtable ReplaceList
 		{
 			get {return _replaceList;}
-			set 
-			{
-				if (value != null)
-					_replaceList = value;
-			}
 		}
 
 		/// <summary>

@@ -13,7 +13,7 @@ namespace NetSpell.WinForm.Test
 	public class DemoForm : System.Windows.Forms.Form
 	{
 		private NetSpell.SpellChecker.Spelling spelling;
-		private NetSpell.SpellChecker.Dictionary.Lexicon wordDictionary;
+		private NetSpell.SpellChecker.Dictionary.WordDictionary wordDictionary;
 		internal System.Windows.Forms.Button spellButton;
 		internal System.Windows.Forms.RichTextBox demoRichText;
 		private System.ComponentModel.IContainer components;
@@ -57,7 +57,7 @@ namespace NetSpell.WinForm.Test
 			this.spellButton = new System.Windows.Forms.Button();
 			this.demoRichText = new System.Windows.Forms.RichTextBox();
 			this.spelling = new NetSpell.SpellChecker.Spelling(this.components);
-			this.wordDictionary = new NetSpell.SpellChecker.Dictionary.Lexicon(this.components);
+			this.wordDictionary = new NetSpell.SpellChecker.Dictionary.WordDictionary(this.components);
 			this.SuspendLayout();
 			// 
 			// spellButton

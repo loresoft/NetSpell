@@ -57,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_03B02D8F23AE42A7B99F0F368BCBD866"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_03C7E7A42D4647C2ACE0B67F0F02FBB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,6 +142,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1183C07DCA7A4EF9881F9D43361F48C6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_13C1EC73DCEE4FD399B9E02910FCD7C5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -255,6 +255,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2AE06A400BFD41BE960EDFBCFD2899FC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2B72B9E3123D4A5E90044E9D9A5B4300"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -334,12 +340,6 @@
         "Entry"
         {
         "MsmKey" = "8:_33C559D8ED7141AA841DEF0CA8D2AA05"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_35171C98CAB240448FE3F258F352EF1D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -633,6 +633,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_731ACB3525DE42678C180A5E80252724"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_732E95ABD6124AA7BBDF64569368F699"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -664,6 +670,12 @@
         "Entry"
         {
         "MsmKey" = "8:_7883E8B3BA2D40569E6EC2D6FE057DF8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7A3169EDDAF94A8D8E72062752902834"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1119,38 +1131,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_3AB6519DFAC54C7FAAD35D898A4E23DD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_FFFE0271E77A43019DABA855D61A78A6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_202B6FB3B70410FA36735A718C14B418"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCEBDE88FE1D4CBF9BD35688074926F6"
-        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
+        "MsmKey" = "8:_CE15415A750B4813AD1589E52C8B054B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1227,12 +1209,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E00FBE8F09224606BDD6CE9F6577FA1A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E255251563994A39BB6CE9A13C7B4CA1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1259,6 +1235,42 @@
         {
         "MsmKey" = "8:_E822F3D5A0304D9AA7368113637FE4EB"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_FFFE0271E77A43019DABA855D61A78A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_202B6FB3B70410FA36735A718C14B418"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E889BC2D727D438F9F203EC763C1DE5A"
+        "OwnerKey" = "8:_3AB6519DFAC54C7FAAD35D898A4E23DD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1604,26 +1616,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_03B02D8F23AE42A7B99F0F368BCBD866"
-            {
-            "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SpellingForm.cs"
-            "TargetName" = "8:SpellingForm.cs"
-            "Tag" = "8:"
-            "Folder" = "8:_7C8A93EB6C8F41009C3D0F815FC594E8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_03C7E7A42D4647C2ACE0B67F0F02FBB2"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\doc\\NetSpell.SpellChecker.xml"
@@ -1924,6 +1916,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_13C1EC73DCEE4FD399B9E02910FCD7C5"
+            {
+            "SourcePath" = "8:..\\NetSpell.SpellChecker\\Dictionary\\WordDictionary.resx"
+            "TargetName" = "8:WordDictionary.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_A0523239F06347BCB4F83362626D2448"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_144327790A3442A9B478F1C6F6D2271A"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.Web.FreeTextBox\\aspnet_client\\FreeTextBox\\images\\unlink.gif"
@@ -2048,7 +2060,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.6.31985, Culture=neutral, PublicKeyToken=318b389f0db66e46"
+            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.7.27129, Culture=neutral, PublicKeyToken=318b389f0db66e46"
                 "ScatterAssemblies"
                 {
                     "_202B6FB3B70410FA36735A718C14B418"
@@ -2261,6 +2273,26 @@
             "TargetName" = "8:paste.gif"
             "Tag" = "8:"
             "Folder" = "8:_AF2AF5CF5C0F4199B9442F70445B8E41"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_2AE06A400BFD41BE960EDFBCFD2899FC"
+            {
+            "SourcePath" = "8:..\\..\\dic\\en-GB.dic"
+            "TargetName" = "8:en-GB.dic"
+            "Tag" = "8:"
+            "Folder" = "8:_34F3175E460E4DE8912B81FD807DEB91"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2555,26 +2587,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_35171C98CAB240448FE3F258F352EF1D"
-            {
-            "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SpellingForm.resx"
-            "TargetName" = "8:SpellingForm.resx"
-            "Tag" = "8:"
-            "Folder" = "8:_7C8A93EB6C8F41009C3D0F815FC594E8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_36A9F16C97D546E0971E87AA2AB4738B"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\OptionsForm.cs"
@@ -2659,7 +2671,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.6.31985, Culture=neutral, PublicKeyToken=318b389f0db66e46"
+            "AssemblyAsmDisplayName" = "8:NetSpell.SpellChecker, Version=2.1.7.27129, Culture=neutral, PublicKeyToken=318b389f0db66e46"
                 "ScatterAssemblies"
                 {
                     "_3AB6519DFAC54C7FAAD35D898A4E23DD"
@@ -3537,6 +3549,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_731ACB3525DE42678C180A5E80252724"
+            {
+            "SourcePath" = "8:..\\NetSpell.Tests\\EventTest.cs"
+            "TargetName" = "8:EventTest.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_8E6606DE50064E82850656D1FC6D67B3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_732E95ABD6124AA7BBDF64569368F699"
             {
             "SourcePath" = "8:..\\..\\demo\\Demo.TextEditor\\Documents\\demo.rtf"
@@ -3643,6 +3675,26 @@
             "TargetName" = "8:NetSpell.WinForm.Test.csproj"
             "Tag" = "8:"
             "Folder" = "8:_3221DA8DB328413B843A0558B6057311"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_7A3169EDDAF94A8D8E72062752902834"
+            {
+            "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SuggestionForm.resx"
+            "TargetName" = "8:SuggestionForm.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_7C8A93EB6C8F41009C3D0F815FC594E8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5157,6 +5209,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_CE15415A750B4813AD1589E52C8B054B"
+            {
+            "SourcePath" = "8:..\\NetSpell.SpellChecker\\Forms\\SuggestionForm.cs"
+            "TargetName" = "8:SuggestionForm.cs"
+            "Tag" = "8:"
+            "Folder" = "8:_7C8A93EB6C8F41009C3D0F815FC594E8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_CEA2316EA27745998A9456B3D675B15F"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Dictionary\\WordDictionary.cs"
@@ -5397,26 +5469,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_E00FBE8F09224606BDD6CE9F6577FA1A"
-            {
-            "SourcePath" = "8:..\\..\\dic\\en-UK.dic"
-            "TargetName" = "8:en-UK.dic"
-            "Tag" = "8:"
-            "Folder" = "8:_34F3175E460E4DE8912B81FD807DEB91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_E255251563994A39BB6CE9A13C7B4CA1"
             {
             "SourcePath" = "8:..\\..\\bin\\NetSpell.SpellChecker.xml"
@@ -5621,7 +5673,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NetSpell.DictionaryBuild, Version=2.1.1545.31986, Culture=neutral"
+            "AssemblyAsmDisplayName" = "8:NetSpell.DictionaryBuild, Version=2.1.1550.27131, Culture=neutral"
                 "ScatterAssemblies"
                 {
                     "_F3E099D359B940D597176BA1DB77210F"
@@ -6264,7 +6316,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NetSpell"
         "ProductCode" = "8:{C0E2C644-F015-4356-9D37-A20356A70033}"
-        "PackageCode" = "8:{E577525B-83D4-4B2D-8E5F-03C08EE8B790}"
+        "PackageCode" = "8:{9BCA767D-B622-46F4-99D8-776DCD885B97}"
         "UpgradeCode" = "8:{E30E2359-6E76-4A86-9723-851D719D55B0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -7017,7 +7069,7 @@
         }
         "MergeModule"
         {
-            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_CCEBDE88FE1D4CBF9BD35688074926F6"
+            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_E889BC2D727D438F9F203EC763C1DE5A"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -7062,9 +7114,6 @@
                 {
                 }
             }
-        }
-        "VJSharpPlugin"
-        {
         }
     }
 }

@@ -138,16 +138,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Controls\NativeMethods.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Controls\SpellRichTextBox.cs"
-                    SubType = "Component"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Dictionary\Dictionary.bmp"
                     BuildAction = "EmbeddedResource"
                 />
@@ -232,13 +222,13 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Forms\SpellingForm.cs"
+                    RelPath = "Forms\SuggestionForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Forms\SpellingForm.resx"
-                    DependentUpon = "SpellingForm.cs"
+                    RelPath = "Forms\SuggestionForm.resx"
+                    DependentUpon = "SuggestionForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>

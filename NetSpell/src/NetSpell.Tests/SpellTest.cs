@@ -21,7 +21,7 @@ namespace NetSpell.Tests
 	{
 		
 		PerformanceTimer _timer = new PerformanceTimer();
-		Lexicon _dictionary = new Lexicon();
+		WordDictionary _dictionary = new WordDictionary();
 
 		[SetUp]
 		public void Setup()
@@ -47,14 +47,51 @@ namespace NetSpell.Tests
 		{
 			Spelling _SpellChecker = NewSpellChecker();
 
-			_SpellChecker.Text = "this is is a test";
+			_SpellChecker.Text = "this is is a tst.";
 			_SpellChecker.SpellCheck();
 			Assert.AreEqual(2, _SpellChecker.WordIndex, "Incorrect WordOffset");
 			Assert.AreEqual("is", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
 
+			// basic delete test
 			_SpellChecker.DeleteWord();
-			Assert.AreEqual("this is a test", _SpellChecker.Text, "Incorrect Text");
+			Assert.AreEqual("this is a tst.", _SpellChecker.Text, "Incorrect Text");
+						
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(3, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("tst", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+
+			// before punctuation delete test
+			_SpellChecker.DeleteWord();
+			Assert.AreEqual("this is a.", _SpellChecker.Text, "Incorrect Text");
 			
+			
+			_SpellChecker.Text = "Becuase people are realy bad spelers";
+			_SpellChecker.SpellCheck();
+
+			Assert.AreEqual(0, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("Becuase", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+
+			//delete first word test
+			_SpellChecker.DeleteWord();
+			Assert.AreEqual("people are realy bad spelers", _SpellChecker.Text, "Incorrect Text");
+			
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(2, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("realy", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+
+			//delete first word test
+			_SpellChecker.DeleteWord();
+			Assert.AreEqual("people are bad spelers", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(3, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("spelers", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+
+			//delete last word test
+			_SpellChecker.DeleteWord();
+			Assert.AreEqual("people are bad", _SpellChecker.Text, "Incorrect Text");
+
+
 		}
 
 		/// <summary>
@@ -141,15 +178,66 @@ namespace NetSpell.Tests
 			Spelling _SpellChecker = NewSpellChecker();
 
 			_SpellChecker.Text = "ths is an errr tst";
-			_SpellChecker.SpellCheck();
-			
-			Assertion.AssertEquals("Incorrect WordOffset", 0, _SpellChecker.WordIndex);
-			Assertion.AssertEquals("Incorrect CurrentWord", "ths", _SpellChecker.CurrentWord);
 
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(0, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("ths", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
 			_SpellChecker.ReplacementWord = "this";
 			_SpellChecker.ReplaceWord();
-			Assertion.AssertEquals("Incorrect Text", "this is an errr tst", _SpellChecker.Text);
+			Assert.AreEqual("this is an errr tst", _SpellChecker.Text, "Incorrect Text");
 			
+			//replace with empty string
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(3, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("errr", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("");
+			Assert.AreEqual("this is an tst", _SpellChecker.Text, "Incorrect Text");
+
+			
+			_SpellChecker.Text = "Becuase people are realy bad spelers, \r\nths produc was desinged to prevent spelling errors in a text area like ths.";
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(0, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("Becuase", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("because");
+			Assert.AreEqual("Because people are realy bad spelers, \r\nths produc was desinged to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(3, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("realy", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("really");
+			Assert.AreEqual("Because people are really bad spelers, \r\nths produc was desinged to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(5, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("spelers", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("spellers");
+			Assert.AreEqual("Because people are really bad spellers, \r\nths produc was desinged to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(6, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("ths", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("this");
+			Assert.AreEqual("Because people are really bad spellers, \r\nthis produc was desinged to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(7, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("produc", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("product");
+			Assert.AreEqual("Because people are really bad spellers, \r\nthis product was desinged to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(9, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("desinged", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("designed");
+			Assert.AreEqual("Because people are really bad spellers, \r\nthis product was designed to prevent spelling errors in a text area like ths.", _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.SpellCheck();
+			Assert.AreEqual(19, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("ths", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
+			_SpellChecker.ReplaceWord("this");
+			Assert.AreEqual("Because people are really bad spellers, \r\nthis product was designed to prevent spelling errors in a text area like this.", _SpellChecker.Text, "Incorrect Text");
+
 		}
 
 		/// <summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FxCopProject Version="1.23" Name="NetSpell">
+<FxCopProject Version="1.3" Name="NetSpell">
  <ProjectOptions>
   <SharedProject>False</SharedProject>
   <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.23\Xml\FxCopReport.xsl</Stylesheet>
@@ -7,63 +7,100 @@
    <Project Status="Active, Excluded" NewOnly="False" />
    <Report Status="Active" NewOnly="False" />
   </SaveMessages>
-  <CompressProjectFile DefaultTargetCheck="True" DefaultRuleCheck="True">True</CompressProjectFile>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="False" />
   <PermitAnalysis>True</PermitAnalysis>
   <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>100</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>10</RuleExceptionsThreshold>
+  <Spelling Locale="en-us" />
  </ProjectOptions>
  <Targets>
   <Target Name="NetSpell.SpellChecker\bin\debug\NetSpell.SpellChecker.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
- <RuleFiles>
-  <RuleFile Name="$(FxCopDir)\Rules\ComRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
-  <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
- </RuleFiles>
- <FxCopReport Version="1.23" LastAnalysis="2003-11-10 07:44:50Z">
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\ComRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.3" LastAnalysis="2004-03-30 23:41:57Z">
   <Namespaces>
-   <Namespace Name="NetSpell.SpellChecker.Dictionary">
+   <Namespace Name="NetSpell.SpellChecker">
     <Messages>
-     <Message Level="Warning" Certainty="50" Status="Active" Created="2003-11-10 07:07:28Z">
+     <Message Status="Active" Created="2004-03-30 23:30:41Z">
       <Rule TypeName="AvoidNamespacesWithFewMembers" />
-      <Resolution>
-       <Data>
-        <Items>
-         <Item>NetSpell.SpellChecker.Dictionary</Item>
-        </Items>
-       </Data>
-      </Resolution>
+      <Issues>
+       <Issue Certainty="50" Level="Warning">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NetSpell.SpellChecker</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
      </Message>
     </Messages>
    </Namespace>
-   <Namespace Name="NetSpell.SpellChecker.Dictionary.Phonetic">
+   <Namespace Name="NetSpell.SpellChecker.Dictionary">
     <Messages>
-     <Message Level="Warning" Certainty="50" Status="Active" Created="2003-11-10 07:07:28Z">
+     <Message Status="Active" Created="2003-11-10 07:07:28Z">
       <Rule TypeName="AvoidNamespacesWithFewMembers" />
-      <Resolution>
-       <Data>
-        <Items>
-         <Item>NetSpell.SpellChecker.Dictionary.Phonetic</Item>
-        </Items>
-       </Data>
-      </Resolution>
+      <Issues>
+       <Issue Certainty="50" Level="Warning">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NetSpell.SpellChecker.Dictionary</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="NetSpell.SpellChecker.Forms">
     <Messages>
-     <Message Level="Warning" Certainty="50" Status="Active" Created="2003-11-10 07:07:28Z">
+     <Message Status="Active" Created="2003-11-10 07:07:28Z">
       <Rule TypeName="AvoidNamespacesWithFewMembers" />
-      <Resolution>
-       <Data>
-        <Items>
-         <Item>NetSpell.SpellChecker.Forms</Item>
-        </Items>
-       </Data>
-      </Resolution>
+      <Issues>
+       <Issue Certainty="50" Level="Warning">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NetSpell.SpellChecker.Forms</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="NetSpell.SpellChecker.Dictionary.Phonetic">
+    <Messages>
+     <Message Status="Active" Created="2003-11-10 07:07:28Z">
+      <Rule TypeName="AvoidNamespacesWithFewMembers" />
+      <Issues>
+       <Issue Certainty="50" Level="Warning">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NetSpell.SpellChecker.Dictionary.Phonetic</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
      </Message>
     </Messages>
    </Namespace>
@@ -71,15 +108,19 @@
   <Targets>
    <Target Name="NetSpell.SpellChecker\bin\debug\NetSpell.SpellChecker.dll">
     <Messages>
-     <Message Level="CriticalError" Certainty="99" Status="Active" Created="2003-11-10 07:07:28Z">
+     <Message Status="Active" Created="2003-11-10 07:07:28Z">
       <Rule TypeName="AssembliesHavePermissionRequests" />
-      <Resolution>
-       <Data>
-        <Items>
-         <Item>NetSpell.SpellChecker</Item>
-        </Items>
-       </Data>
-      </Resolution>
+      <Issues>
+       <Issue Certainty="99" Level="CriticalError">
+        <Resolution>
+         <Data>
+          <Items>
+           <Item>NetSpell.SpellChecker</Item>
+          </Items>
+         </Data>
+        </Resolution>
+       </Issue>
+      </Issues>
      </Message>
     </Messages>
     <Modules>
@@ -91,327 +132,214 @@
           <Enums>
            <Enum Name="SuggestionEnum">
             <Messages>
-             <Message Level="Error" Certainty="99" Status="Active" Created="2003-11-10 07:07:28Z">
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="EnumerationNamesDoNotHaveEnumSuffix" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>SuggestionEnum</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="99" Level="Error">
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>SuggestionEnum</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Enum>
           </Enums>
           <Methods>
-           <Method Name="BadChar(System.Collections.ArrayList&amp;):System.Void">
+           <Method Name="TwoWords(System.Collections.ArrayList&amp;):System.Void">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="300" />
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.BadChar(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-           <Method Name="ForgotChar(System.Collections.ArrayList&amp;):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="349" />
-              <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.ForgotChar(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-           <Method Name="ReplaceChars(System.Collections.ArrayList&amp;):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="376" />
-              <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.ReplaceChars(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="376" />
-              <Rule TypeName="IFormatProviderShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.ReplaceChars(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToString()</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="473" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
            <Method Name="SpellCheck(System.Int32,System.Int32):System.Boolean">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="779" />
-              <Rule TypeName="IFormatProviderShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.SpellCheck(System.Int32,System.Int32)</Item>
-                 <Item>
-
-String.ToString()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-           <Method Name="SwapChar(System.Collections.ArrayList&amp;):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="408" />
-              <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.SwapChar(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="TestForEmptyStringsUsingStringLength" />
+              <Issues>
+               <Issue Certainty="95" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="914" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>op_Equality</Item>
+                   <Item>""</Item>
+                   <Item>Spelling.SpellCheck(Int32 startWordIndex, Int32 endWordIndex)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
            <Method Name="TestWord(System.String):System.Boolean">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="1005" />
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.TestWord(System.String)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-           <Method Name="TwoWords(System.Collections.ArrayList&amp;):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="434" />
-              <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.TwoWords(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="434" />
-              <Rule TypeName="IFormatProviderShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Spelling.TwoWords(System.Collections.ArrayList&amp;)</Item>
-                 <Item>
-
-String.ToString()</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-          </Methods>
-          <Properties>
-           <Property Name="IgnoreList">
-            <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="1136" />
-              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>IgnoreList</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Property>
-           <Property Name="ReplaceList">
-            <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="1178" />
-              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>ReplaceList</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Property>
-           <Property Name="WordIndex">
-            <Methods>
-             <Method Name="set_WordIndex(System.Int32):System.Void">
-              <Messages>
-               <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-                <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker" File="Spelling.cs" Line="1305" />
-                <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="1138" />
                 <Resolution>
                  <Data>
                   <Items>
-                   <Item>Spelling.set_WordIndex(System.Int32)</Item>
-                   <Item>
-
-String.ToString()</Item>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
                   </Items>
                  </Data>
                 </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="BadChar(System.Collections.ArrayList&amp;):System.Void">
+            <Messages>
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="CultureInfoShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="339" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="ReplaceChars(System.Collections.ArrayList&amp;):System.Void">
+            <Messages>
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="CultureInfoShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="422" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="SpellCheck(System.String):System.Boolean">
+            <Parameters>
+             <Parameter Name="0">
+              <Messages>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="951" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
                </Message>
               </Messages>
-             </Method>
-            </Methods>
-           </Property>
-          </Properties>
-         </Class>
-        </Classes>
-       </Namespace>
-       <Namespace Name="NetSpell.SpellChecker.Dictionary">
-        <Classes>
-         <Class Name="Word">
-          <Messages>
-           <Message Level="Error" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="Word.cs" Line="1" />
-            <Rule TypeName="IComparableImplementationsOverrideEquals" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>Word</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-           <Message Level="Error" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="Word.cs" Line="1" />
-            <Rule TypeName="IComparableImplementationsOverrideOperators" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>Word</Item>
-               <Item>==</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-          </Messages>
-         </Class>
-         <Class Name="WordDictionary">
-          <Messages>
-           <Message Level="CriticalError" Certainty="99" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="WordDictionary.cs" Line="1" />
-            <Rule TypeName="OnlyDictionaryNamesHaveDictionarySuffix" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>WordDictionary</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-          </Messages>
-          <Methods>
-           <Method Name="PhoneticCode(System.String):System.String">
+             </Parameter>
+            </Parameters>
+           </Method>
+           <Method Name="SpellCheck(System.String,System.Int32):System.Boolean">
+            <Parameters>
+             <Parameter Name="0">
+              <Messages>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="978" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Method>
+           <Method Name="SwapChar(System.Collections.ArrayList&amp;):System.Void">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="WordDictionary.cs" Line="515" />
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>WordDictionary.PhoneticCode(System.String)</Item>
-                 <Item>
-
-String.ToUpper()</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="449" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="ForgotChar(System.Collections.ArrayList&amp;):System.Void">
+            <Messages>
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="CultureInfoShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="spelling.cs" Line="390" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
           </Methods>
-          <Properties>
-           <Property Name="BaseWords">
-            <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="WordDictionary.cs" Line="602" />
-              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>BaseWords</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Property>
-           <Property Name="UserWords">
-            <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary" File="WordDictionary.cs" Line="754" />
-              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>UserWords</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Property>
-          </Properties>
          </Class>
         </Classes>
        </Namespace>
@@ -421,46 +349,35 @@ String.ToUpper()</Item>
           <Properties>
            <Property Name="Condition">
             <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixEntry.cs" Line="38" />
-              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Condition</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-             <Message Level="Warning" Certainty="50" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixEntry.cs" Line="38" />
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="PropertiesShouldNotReturnArrays" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Condition</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="50" Level="Warning">
+                <SourceCode Path="D:\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixEntry.cs" Line="37" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Condition</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
-            </Messages>
-           </Property>
-          </Properties>
-         </Class>
-         <Class Name="AffixRule">
-          <Properties>
-           <Property Name="AffixEntries">
-            <Messages>
-             <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRule.cs" Line="38" />
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>AffixEntries</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="D:\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixEntry.cs" Line="37" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Condition</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Property>
@@ -468,255 +385,361 @@ String.ToUpper()</Item>
          </Class>
          <Class Name="AffixRuleCollection">
           <Messages>
-           <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="1" />
-            <Rule TypeName="DictionaryNamesHaveDictionarySuffix" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>AffixRuleCollection</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-           <Message Level="Error" Certainty="90" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="1" />
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
             <Rule TypeName="ICollectionImplementationsHaveStronglyTypedMembers" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>AffixRuleCollection</Item>
-               <Item>CopyTo</Item>
-              </Items>
-             </Data>
-            </Resolution>
+            <Issues>
+             <Issue Certainty="90" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>AffixRuleCollection</Item>
+                 <Item>CopyTo</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
            </Message>
-           <Message Level="Error" Certainty="99" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="1" />
-            <Rule TypeName="MemberNamesDifferByMoreThanCase" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>innerHash</Item>
-               <Item>InnerHash</Item>
-              </Items>
-             </Data>
-            </Resolution>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="DictionaryNamesHaveDictionarySuffix" />
+            <Issues>
+             <Issue Certainty="95" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>AffixRuleCollection</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
            </Message>
           </Messages>
           <Fields>
            <Field Name="innerHash">
             <Messages>
-             <Message Level="Error" Certainty="90" Status="Active" Created="2003-11-10 07:07:28Z">
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="TypesDoNotHavePublicInstanceFields" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>innerHash</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="90" Level="Error">
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>innerHash</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Field>
           </Fields>
+         </Class>
+         <Class Name="AffixRuleEnumerator">
+          <Messages>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="IEnumeratorImplementationsHaveStronglyTypedMembers" />
+            <Issues>
+             <Issue Certainty="90" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>AffixRuleEnumerator</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+         </Class>
+         <Class Name="AffixRule">
+          <Properties>
+           <Property Name="AffixEntries">
+            <Messages>
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary\affix" File="affixrule.cs" Line="37" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>AffixEntries</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Property>
+          </Properties>
+         </Class>
+         <Class Name="AffixUtility">
+          <Messages>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="TypesHavingOnlyStaticMembersShouldNotHaveConstructors" />
+            <Issues>
+             <Issue Certainty="90" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>AffixUtility</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+         </Class>
+        </Classes>
+       </Namespace>
+       <Namespace Name="NetSpell.SpellChecker.Dictionary">
+        <Classes>
+         <Class Name="WordDictionary">
+          <Messages>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="OnlyDictionaryNamesHaveDictionarySuffix" />
+            <Issues>
+             <Issue Certainty="99" Level="CriticalError">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>WordDictionary</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
           <Methods>
-           <Method Name="System.Collections.IDictionary.Add(System.Object,System.Object):System.Void">
+           <Method Name="Initialize():System.Void">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="309" />
-              <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>AffixRuleCollection</Item>
-                 <Item>Void System.Collections.IDictionary.Add(System.Object, System.Object)</Item>
-                 <Item>protected void Add(object, object);</Item>
-                </Items>
-               </Data>
-              </Resolution>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="TestForEmptyStringsUsingStringLength" />
+              <Issues>
+               <Issue Certainty="95" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="worddictionary.cs" Line="436" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>op_Equality</Item>
+                   <Item>""</Item>
+                   <Item>WordDictionary.Initialize()</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
-           <Method Name="System.Collections.IDictionary.Contains(System.Object):System.Boolean">
+           <Method Name="PhoneticCode(System.String):System.String">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="279" />
-              <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>AffixRuleCollection</Item>
-                 <Item>Boolean System.Collections.IDictionary.Contains(System.Object)</Item>
-                 <Item>protected Boolean Contains(object);</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Method>
-           <Method Name="System.Collections.IDictionary.Remove(System.Object):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="259" />
-              <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>AffixRuleCollection</Item>
-                 <Item>Void System.Collections.IDictionary.Remove(System.Object)</Item>
-                 <Item>protected void Remove(object);</Item>
-                </Items>
-               </Data>
-              </Resolution>
+             <Message ID="System.String.ToUpper" Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="CultureInfoShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="worddictionary.cs" Line="521" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToUpper()</Item>
+                   <Item>String.ToUpper(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
           </Methods>
-          <Properties>
-           <Property Name="System.Collections.IDictionary.Item[System.Object]">
-            <Methods>
-             <Method Name="System.Collections.IDictionary.get_Item(System.Object):System.Object">
+         </Class>
+         <Class Name="Word">
+          <Messages>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="IComparableImplementationsOverrideOperators" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>Word</Item>
+                 <Item>==</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>Word</Item>
+                 <Item>!=</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>Word</Item>
+                 <Item>&lt;</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>Word</Item>
+                 <Item>&gt;</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+           <Message Status="Active" Created="2003-11-10 07:07:28Z">
+            <Rule TypeName="IComparableImplementationsOverrideEquals" />
+            <Issues>
+             <Issue Certainty="75" Level="Error">
+              <Resolution>
+               <Data>
+                <Items>
+                 <Item>Word</Item>
+                </Items>
+               </Data>
+              </Resolution>
+             </Issue>
+            </Issues>
+           </Message>
+          </Messages>
+          <Constructors>
+           <Constructor Name=".ctor(System.String,System.String)">
+            <Parameters>
+             <Parameter Name="0">
               <Messages>
-               <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-                <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="346" />
-                <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>AffixRuleCollection</Item>
-                   <Item>System.Object System.Collections.IDictionary.get_Item(System.Object)</Item>
-                   <Item>protected Object Item[System.Object] { get; }</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="word.cs" Line="10" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Constructor>
+           <Constructor Name=".ctor(System.String,System.String,System.String)">
+            <Parameters>
+             <Parameter Name="0">
+              <Messages>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="word.cs" Line="10" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Constructor>
+           <Constructor Name=".ctor(System.String)">
+            <Parameters>
+             <Parameter Name="0">
+              <Messages>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="ParameterNamesDoNotMatchKeywords" />
+                <Issues>
+                 <Issue Certainty="95" Level="Error">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="word.cs" Line="10" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>text</Item>
+                     <Item>Text</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Constructor>
+          </Constructors>
+          <Properties>
+           <Property Name="Height">
+            <Methods>
+             <Method Name="set_Height(System.Int32):System.Void">
+              <Messages>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="word.cs" Line="195" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NetSpell.SpellChecker.Dictionary.Word.set_Height(System.Int32)</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
                </Message>
               </Messages>
              </Method>
-             <Method Name="System.Collections.IDictionary.set_Item(System.Object,System.Object):System.Void">
+             <Method Name="get_Height():System.Int32">
               <Messages>
-               <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-                <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleCollection.cs" Line="350" />
-                <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>AffixRuleCollection</Item>
-                   <Item>Void System.Collections.IDictionary.set_Item(System.Object, System.Object)</Item>
-                   <Item>protected Object Item[System.Object] { set; }</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
+               <Message Status="Active" Created="2004-03-30 23:30:41Z">
+                <Rule TypeName="AvoidBuildingNonCallableCode" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary" File="word.cs" Line="194" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>NetSpell.SpellChecker.Dictionary.Word.get_Height</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
                </Message>
               </Messages>
              </Method>
             </Methods>
            </Property>
           </Properties>
-         </Class>
-         <Class Name="AffixRuleEnumerator">
-          <Messages>
-           <Message Level="Error" Certainty="90" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixRuleEnumerator.cs" Line="1" />
-            <Rule TypeName="IEnumeratorImplementationsHaveStronglyTypedMembers" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>AffixRuleEnumerator</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-          </Messages>
-         </Class>
-         <Class Name="AffixUtility">
-          <Messages>
-           <Message Level="Error" Certainty="90" Status="Active" Created="2003-11-10 07:07:28Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Affix" File="AffixUtility.cs" Line="1" />
-            <Rule TypeName="TypesHavingOnlyStaticMembersShouldNotHaveConstructors" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>AffixUtility</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-          </Messages>
-         </Class>
-        </Classes>
-       </Namespace>
-       <Namespace Name="NetSpell.SpellChecker.Dictionary.Phonetic">
-        <Classes>
-         <Class Name="PhoneticRule">
-          <Properties>
-           <Property Name="Condition">
-            <Messages>
-             <Message Level="Warning" Certainty="50" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Phonetic" File="PhoneticRule.cs" Line="41" />
-              <Rule TypeName="PropertiesShouldNotReturnArrays" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>Condition</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-           </Property>
-          </Properties>
-         </Class>
-         <Class Name="PhoneticUtility">
-          <Messages>
-           <Message Level="CriticalWarning" Certainty="75" Status="Active" Created="2003-11-10 07:44:50Z">
-            <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Phonetic" File="PhoneticUtility.cs" Line="1" />
-            <Rule TypeName="TypesHavingOnlyStaticMembersShouldBeSealed" />
-            <Resolution>
-             <Data>
-              <Items>
-               <Item>PhoneticUtility</Item>
-              </Items>
-             </Data>
-            </Resolution>
-           </Message>
-          </Messages>
-          <Methods>
-           <Method Name="EncodeRule(System.String,NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule&amp;):System.Void">
-            <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Dictionary\Phonetic" File="PhoneticUtility.cs" Line="34" />
-              <Rule TypeName="IFormatProviderShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>PhoneticUtility.EncodeRule(System.String,NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule&amp;)</Item>
-                 <Item>
-
-Int32.Parse(System.String)</Item>
-                </Items>
-               </Data>
-              </Resolution>
-             </Message>
-            </Messages>
-            <Parameters>
-             <Parameter Name="1">
-              <Messages>
-               <Message Level="Warning" Certainty="75" Status="Active" Created="2003-11-10 07:07:28Z">
-                <Rule TypeName="ReferenceTypesAreNotPassedAsByRefParameters" />
-                <Resolution>
-                 <Data>
-                  <Items>
-                   <Item>rule</Item>
-                  </Items>
-                 </Data>
-                </Resolution>
-               </Message>
-              </Messages>
-             </Parameter>
-            </Parameters>
-           </Method>
-          </Methods>
          </Class>
         </Classes>
        </Namespace>
@@ -726,59 +749,405 @@ Int32.Parse(System.String)</Item>
           <Methods>
            <Method Name="OptionForm_Load(System.Object,System.EventArgs):System.Void">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Forms" File="OptionsForm.cs" Line="69" />
+             <Message ID="System.String.ToLower" Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>OptionForm.OptionForm_Load(System.Object,System.EventArgs)</Item>
-                 <Item>
-
-String.ToLower()</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="optionsform.cs" Line="111" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.ToLower()</Item>
+                   <Item>String.ToLower(CultureInfo culture)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object[])" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="optionsform.cs" Line="96" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object[] args)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object)" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="optionsform.cs" Line="82" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object arg0)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
           </Methods>
          </Class>
-         <Class Name="SpellingForm">
+         <Class Name="SuggestionForm">
           <Methods>
-           <Method Name="InitializeComponent():System.Void">
+           <Method Name="UpdateDisplay(System.String,System.String,System.Int32,System.Int32):System.Void">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Forms" File="SpellingForm.cs" Line="151" />
-              <Rule TypeName="CultureInfoShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>SpellingForm.InitializeComponent()</Item>
-                 <Item>
-
-ResourceManager.GetObject(System.String)</Item>
-                </Items>
-               </Data>
-              </Resolution>
+             <Message ID="wordIndex+1" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="OperationsDoNotOverflowDataTypeCapacity" />
+              <Issues>
+               <Issue Certainty="75" Level="CriticalWarning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="suggestionform.cs" Line="434" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>wordIndex</Item>
+                   <Item>+</Item>
+                   <Item>1</Item>
+                   <Item>NetSpell.SpellChecker.Forms.SuggestionForm::UpdateDisplay(System.String text, System.String word, System.Int32 wordIndex, System.Int32 textIndex)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.Int32.ToString" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="suggestionform.cs" Line="435" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Int32.ToString()</Item>
+                   <Item>Int32.ToString(IFormatProvider provider)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="suggestionform.cs" Line="437" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Int32.ToString()</Item>
+                   <Item>Int32.ToString(IFormatProvider provider)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object,System.Object)" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="suggestionform.cs" Line="435" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object arg0, Object arg1)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object)" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\forms" File="suggestionform.cs" Line="437" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object arg0)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
-           <Method Name="UpdateDisplay(System.String,System.String,System.Int32,System.Int32):System.Void">
+          </Methods>
+         </Class>
+        </Classes>
+       </Namespace>
+       <Namespace Name="NetSpell.SpellChecker.Dictionary.Phonetic">
+        <Classes>
+         <Class Name="PhoneticRule">
+          <Properties>
+           <Property Name="Condition">
             <Messages>
-             <Message Level="Error" Certainty="95" Status="Active" Created="2003-11-10 07:07:28Z">
-              <SourceCode Path="D:\My Documents\Projects\LoreSoft\NetSpell\NetSpell\src\NetSpell.SpellChecker\Forms" File="SpellingForm.cs" Line="403" />
+             <Message Status="Active" Created="2003-11-10 07:07:28Z">
+              <Rule TypeName="PropertiesShouldNotReturnArrays" />
+              <Issues>
+               <Issue Certainty="50" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary\phonetic" File="phoneticrule.cs" Line="41" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Condition</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Property>
+          </Properties>
+         </Class>
+         <Class Name="PhoneticUtility">
+          <Methods>
+           <Method Name="EncodeRule(System.String,NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule&amp;):System.Void">
+            <Messages>
+             <Message ID="System.Int32.Parse(System.String)" Status="Active" Created="2003-11-10 07:07:28Z">
               <Rule TypeName="IFormatProviderShouldBePassed" />
-              <Resolution>
-               <Data>
-                <Items>
-                 <Item>SpellingForm.UpdateDisplay(System.String,System.String,System.Int32,System.Int32)</Item>
-                 <Item>
-
-Int32.ToString()</Item>
-                </Items>
-               </Data>
-              </Resolution>
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary\phonetic" File="phoneticutility.cs" Line="77" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>Int32.Parse(String s)</Item>
+                   <Item>Int32.Parse(String s, IFormatProvider provider)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+            <Parameters>
+             <Parameter Name="1">
+              <Messages>
+               <Message Status="Active" Created="2003-11-10 07:07:28Z">
+                <Rule TypeName="ReferenceTypesAreNotPassedAsByRefParameters" />
+                <Issues>
+                 <Issue Certainty="75" Level="Warning">
+                  <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker\dictionary\phonetic" File="phoneticutility.cs" Line="34" />
+                  <Resolution>
+                   <Data>
+                    <Items>
+                     <Item>rule</Item>
+                    </Items>
+                   </Data>
+                  </Resolution>
+                 </Issue>
+                </Issues>
+               </Message>
+              </Messages>
+             </Parameter>
+            </Parameters>
+           </Method>
+          </Methods>
+         </Class>
+        </Classes>
+       </Namespace>
+       <Namespace Name="">
+        <Classes>
+         <Class Name="TraceWriter">
+          <Methods>
+           <Method Name="GetCallingMethod(System.Diagnostics.StackTrace):System.String">
+            <Messages>
+             <Message ID="System.String.Format(System.String,System.Object,System.Object)" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="66" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object arg0, Object arg1)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceVerbose(System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="57" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>TraceWriter.TraceVerbose(System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceInfo(System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="34" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>TraceWriter.TraceInfo(System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceInfo(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message ID="System.String.Format(System.String,System.Object[])" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="29" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object[] args)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceWarning(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="40" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>TraceWriter.TraceWarning(System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object[])" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="41" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object[] args)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceVerbose(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message ID="System.String.Format(System.String,System.Object[])" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="52" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object[] args)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceError(System.String):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="22" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>TraceWriter.TraceError(System.String)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+            </Messages>
+           </Method>
+           <Method Name="TraceError(System.String,System.Object[]):System.Void">
+            <Messages>
+             <Message Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="AvoidBuildingNonCallableCode" />
+              <Issues>
+               <Issue Certainty="75" Level="Warning">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="16" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>TraceWriter.TraceError(System.String,System.Object[])</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
+             </Message>
+             <Message ID="System.String.Format(System.String,System.Object[])" Status="Active" Created="2004-03-30 23:30:41Z">
+              <Rule TypeName="IFormatProviderShouldBePassed" />
+              <Issues>
+               <Issue Certainty="95" Level="Error">
+                <SourceCode Path="d:\projects\loresoft\netspell\netspell\src\netspell.spellchecker" File="tracewriter.cs" Line="17" />
+                <Resolution>
+                 <Data>
+                  <Items>
+                   <Item>String.Format(String format, Object[] args)</Item>
+                   <Item>String.Format(IFormatProvider provider, String format, Object[] args)</Item>
+                  </Items>
+                 </Data>
+                </Resolution>
+               </Issue>
+              </Issues>
              </Message>
             </Messages>
            </Method>
@@ -794,7 +1163,7 @@ Int32.ToString()</Item>
   <Rules>
    <Rule TypeName="AssembliesHavePermissionRequests">
     <Name>Assemblies specify permission requests</Name>
-    <Description>Permission requests prevent security exceptions from being thrown after code in an assembly has already begun executing. With permission requests, the assembly does not load if it has insufficient permissions. This rule will generate a message if you have specified a permission request incorrectly, or incompletely. If you have specified requests but FxCop reports a message from this rule, use the PermView.exe tool to view the security permissions in the assembly. An unenforceable permission appears as an empty permission set.</Description>
+    <Description>Permission requests prevent security exceptions from being thrown after code in an assembly has already begun executing. With permission requests, the assembly does not load if it has insufficient permissions. This rule will fire if you have specified a permission request incorrectly, or incompletely. If you have specified requests but FxCop reports a violation for this rule, use the PermView.exe tool to view the security permissions in the assembly. An unenforceable permission appears as an empty permission set.</Description>
     <LongDescription>You should add attributes specifying what permissions your assembly will demand, might demand, and what permissions it does not want granted.  For example, the following attribute indicates that an assembly will, at minimum, require read access to the USERNAME environment variable: [assembly:EnvironmentPermissionAttribute(SecurityAction.RequestMinimum,
 Read="USERNAME")]. To specify permissions that the assembly might demand, use SecurityAction.RequestOptional. To specify permissions that the assembly must not be granted, use SecurityAction.RequestRefuse.</LongDescription>
     <GroupOwner>MS FxCopDev</GroupOwner>
@@ -802,7 +1171,18 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/UsageRules/AssembliesPermissionRequests.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="99">CriticalError</MessageLevel>
-    <File Name="UsageRules.dll" Version="1.23.0.0" />
+    <File Name="UsageRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="AvoidBuildingNonCallableCode">
+    <Name>Avoid building non-callable code into assemblies</Name>
+    <Description>There is code that appears to not be callable from a public or protected code path.</Description>
+    <LongDescription>If this violation fires in error, please send a problem report to the FxCop team.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/UncallableCode.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="AvoidNamespacesWithFewMembers">
     <Name>Avoid having a namespace with a small number of types</Name>
@@ -813,7 +1193,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/AvoidSmallNamespaces.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="50">Warning</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="CultureInfoShouldBePassed">
     <Name>CultureInfo should be passed</Name>
@@ -824,7 +1204,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Globalization/CultureInfoPassed.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="95">Error</MessageLevel>
-    <File Name="GlobalizationRules.dll" Version="1.23.0.0" />
+    <File Name="GlobalizationRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="DictionaryNamesHaveDictionarySuffix">
     <Name>Dictionary names have the 'Dictionary' suffix</Name>
@@ -835,7 +1215,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/DictionaryNamesHaveDictionarySuffix.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="95">Error</MessageLevel>
-    <File Name="NamingRules.dll" Version="1.23.0.0" />
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="EnumerationNamesDoNotHaveEnumSuffix">
     <Name>Enumeration names do not have an 'Enum' suffix</Name>
@@ -846,29 +1226,18 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/EnumNamesDoNotHaveEnumSuffix.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="99">Error</MessageLevel>
-    <File Name="NamingRules.dll" Version="1.23.0.0" />
-   </Rule>
-   <Rule TypeName="ExplicitMethodImplementationsInUnsealedClassesHaveVisibleAlternates">
-    <Name>Explicit method implementations in unsealed classes should provide alternate methods with protected accessibility</Name>
-    <Description>Explicit method implementations are defined with private accessibility. Classes that derive from classes with explicit method implementations and choose to re-declare them on the class will not be able to call into the base class implementation unless the base class has provided an alternate method with appropriate accessibility.</Description>
-    <LongDescription>When overriding a base class method that has been hidden by explicit interface implementation, in order to call into the base class implementation, a derived class must cast the base pointer to the relevant interface. When calling through this reference, however, the derived class implementation will actually be invoked, resulting in recursion and an eventual stack overflow.</LongDescription>
-    <GroupOwner>MS FxCopDev</GroupOwner>
-    <DevOwner />
-    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/ExplicitMethodImplementations.html</Url>
-    <Email>askfxcop@microsoft.com</Email>
-    <MessageLevel Certainty="95">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="ICollectionImplementationsHaveStronglyTypedMembers">
     <Name>ICollection implementations have strongly typed members</Name>
     <Description>Types that implement ICollection should also provide a version of CopyTo with the first parameter set to a strong type, namely a type other than an array of objects or System.Array. Implement the interface member explicitly and make the strongly typed version public.</Description>
-    <LongDescription>It is safe to ignore messages from this rule when you are implementing a new object-based collection, such as a binary tree, where types based on your collection will determine what the strong type is. These types should expose strongly typed members.</LongDescription>
+    <LongDescription>It is safe to ignore violations of this rule when you are implementing a new object-based collection, such as a binary tree, where types based on your collection will determine what the strong type is. These types should expose strongly typed members.</LongDescription>
     <GroupOwner>MS FxCopDev</GroupOwner>
     <DevOwner />
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/ICollectionsStronglyTyped.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="90">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="IComparableImplementationsOverrideEquals">
     <Name>IComparable implementations override System.Object.Equals</Name>
@@ -879,7 +1248,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/IComparableEquals.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="IComparableImplementationsOverrideOperators">
     <Name>IComparable implementations override operators</Name>
@@ -890,7 +1259,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/IComparableOperators.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="IEnumeratorImplementationsHaveStronglyTypedMembers">
     <Name>IEnumerator implementations have strongly typed members</Name>
@@ -901,7 +1270,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/IEnumeratorStronglyTyped.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="90">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="IFormatProviderShouldBePassed">
     <Name>IFormatProvider should be passed</Name>
@@ -912,18 +1281,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Globalization/IFormatProviderPassed.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="95">Error</MessageLevel>
-    <File Name="GlobalizationRules.dll" Version="1.23.0.0" />
-   </Rule>
-   <Rule TypeName="MemberNamesDifferByMoreThanCase">
-    <Name>Member names differ by more than case</Name>
-    <Description>Do not use names that require case sensitivity for uniqueness.</Description>
-    <LongDescription />
-    <GroupOwner>MS FxCopDev</GroupOwner>
-    <DevOwner />
-    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/MemberNamesDifferByMoreThanCase.html</Url>
-    <Email>askfxcop@microsoft.com</Email>
-    <MessageLevel Certainty="99">Error</MessageLevel>
-    <File Name="NamingRules.dll" Version="1.23.0.0" />
+    <File Name="GlobalizationRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="OnlyDictionaryNamesHaveDictionarySuffix">
     <Name>Only dictionary names have the 'Dictionary' suffix</Name>
@@ -934,7 +1292,29 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/OnlyDictionaryNamesHaveDictionarySuffix.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="99">CriticalError</MessageLevel>
-    <File Name="NamingRules.dll" Version="1.23.0.0" />
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="OperationsDoNotOverflowDataTypeCapacity">
+    <Name>Operations do not overflow the maximum capacity of the data type</Name>
+    <Description>Arithmetic operations should not be done without first validating the operands to prevent overflow.</Description>
+    <LongDescription />
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/UsageRules/OperationsDoNotOverflowDataType.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="ParameterNamesDoNotMatchKeywords">
+    <Name>Parameter names do not match reserved keywords</Name>
+    <Description>Identifiers which match reserved keywords should be avoided. Matching is performed case-insensitively.</Description>
+    <LongDescription>Names that describe the purpose or contents of a parameter are preferable to names that describe the data type or format. If a parameter has no descriptive information other than its type, use a generic name such as 'value'.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/NamingRules/ParameterNamesDoNotMatchKeywords.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="NamingRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="PropertiesReturningCollectionsShouldBeReadOnly">
     <Name>Properties that return collections should be read-only</Name>
@@ -945,7 +1325,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/UsageRules/PropertiesCollectionsReadOnly.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Warning</MessageLevel>
-    <File Name="UsageRules.dll" Version="1.23.0.0" />
+    <File Name="UsageRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="PropertiesShouldNotReturnArrays">
     <Name>Properties should not return arrays</Name>
@@ -956,7 +1336,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/PropertyArray.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="50">Warning</MessageLevel>
-    <File Name="PerformanceRules.dll" Version="1.23.0.0" />
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="ReferenceTypesAreNotPassedAsByRefParameters">
     <Name>Reference types are not passed as ref (pointer) parameters</Name>
@@ -967,7 +1347,18 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/RefTypeNotRefParm.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="75">Warning</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
+   </Rule>
+   <Rule TypeName="TestForEmptyStringsUsingStringLength">
+    <Name>Test for empty strings using System.String.Length</Name>
+    <Description>To test for empty strings, check if String.Length is equal to zero.</Description>
+    <LongDescription>Constructs such as "".Equals(someString) and String.Empty.Equals(someString) are less efficient than testing the string length. Replace these with checks for someString.Length == 0.</LongDescription>
+    <GroupOwner>MS FxCopDev</GroupOwner>
+    <DevOwner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/Performance/EmptyStringCompare.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="TypesDoNotHavePublicInstanceFields">
     <Name>Types do not have externally visible instance fields</Name>
@@ -978,18 +1369,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/TypesDoNotHavePublicInstanceFields.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="90">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
-   </Rule>
-   <Rule TypeName="TypesHavingOnlyStaticMembersShouldBeSealed">
-    <Name>Types with only static members should be sealed (NotInheritable)</Name>
-    <Description>Static holder types do not provide functionality that derived instances can extend. Inheriting from such a type indicates a flawed design.</Description>
-    <LongDescription />
-    <GroupOwner>MS FxCopDev</GroupOwner>
-    <DevOwner />
-    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/TypesHavingStaticMembers.html</Url>
-    <Email>askfxcop@microsoft.com</Email>
-    <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
    <Rule TypeName="TypesHavingOnlyStaticMembersShouldNotHaveConstructors">
     <Name>Types with only static members should not have public or protected constructors</Name>
@@ -1000,7 +1380,7 @@ Read="USERNAME")]. To specify permissions that the assembly might demand, use Se
     <Url>http://www.gotdotnet.com/team/fxcop/docs/rules/DesignRules/StaticTypesNoCtors.html</Url>
     <Email>askfxcop@microsoft.com</Email>
     <MessageLevel Certainty="90">Error</MessageLevel>
-    <File Name="DesignRules.dll" Version="1.23.0.0" />
+    <File Name="DesignRules.dll" Version="1.30.0.0" />
    </Rule>
   </Rules>
  </FxCopReport>

@@ -106,7 +106,7 @@ namespace NetSpell.DictionaryBuild
 
 			this.Cursor = Cursors.WaitCursor;
 
-			Lexicon dict = new Lexicon();
+			WordDictionary dict = new WordDictionary();
 			dict.DictionaryFile = this.FileName;
 			dict.Initialize();
 
@@ -225,7 +225,7 @@ namespace NetSpell.DictionaryBuild
 
 			this.Cursor = Cursors.WaitCursor;
 			// load dictionary
-			Lexicon dict = new Lexicon();
+			WordDictionary dict = new WordDictionary();
 			dict.DictionaryFile = this.FileName;
 			dict.Initialize();
 			this.Cursor = Cursors.Default;

@@ -5,7 +5,7 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 	/// <summary>
 	/// Summary description for AffixUtility.
 	/// </summary>
-	public class AffixUtility
+	public sealed class AffixUtility
 	{
 		/// <summary>
 		///     Initializes a new instance of the class

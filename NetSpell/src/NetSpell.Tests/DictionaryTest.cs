@@ -21,7 +21,7 @@ namespace NetSpell.Tests
 	[TestFixture]
 	public class DictionaryTest
 	{
-		Lexicon _WordDictionary = new Lexicon();
+		WordDictionary _WordDictionary = new WordDictionary();
 		PerformanceTimer _timer = new PerformanceTimer();
 
 

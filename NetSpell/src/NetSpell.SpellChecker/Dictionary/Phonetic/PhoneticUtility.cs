@@ -6,7 +6,7 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 	/// <summary>
 	///		This class holds helper methods for phonetic encoding
 	/// </summary>
-	public class PhoneticUtility
+	public sealed class PhoneticUtility
 	{
 		/// <summary>
 		///     Initializes a new instance of the class

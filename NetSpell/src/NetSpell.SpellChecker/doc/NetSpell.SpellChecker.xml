@@ -4,31 +4,6 @@
         <name>NetSpell.SpellChecker</name>
     </assembly>
     <members>
-        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
-            <summary>
-            Summary description for NativeMethods.
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.SpellRichTextBox">
-            <summary>
-            Summary description for SpellRichTextBox.
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellRichTextBox.SpellChecker">
-            <summary>
-                The WordDictionary object to use when spell checking
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellRichTextBox.ErrorColor">
-            <summary>
-                The color of the wavy underline that marks misspelled words
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellRichTextBox.EnableSpellCheck">
-            <summary>
-                Enable As You Type spell checking
-            </summary>
-        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
             <summary>
             	Rule Entry for expanding base words
@@ -1095,27 +1070,27 @@
                 The line height of this word
             </summary>
         </member>
-        <member name="T:NetSpell.SpellChecker.Dictionary.Lexicon">
+        <member name="T:NetSpell.SpellChecker.Dictionary.WordDictionary">
             <summary>
             The WordDictionary class contains all the logic for managing the word list.
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.#ctor">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.#ctor">
             <summary>
                 Initializes a new instance of the class
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.#ctor(System.ComponentModel.IContainer)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.#ctor(System.ComponentModel.IContainer)">
             <summary>
                 Initializes a new instance of the class
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.LoadUserFile">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.LoadUserFile">
             <summary>
                 Loads the user dictionary file
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.SaveUserFile">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.SaveUserFile">
             <summary>
                 Saves the user dictionary file
             </summary>
@@ -1123,7 +1098,7 @@
             	If the file does not exist, it will be created
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.VerifyAffixKey(System.String,System.Char)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.VerifyAffixKey(System.String,System.Char)">
             <summary>
                 Verifies the base word has the affix key
             </summary>
@@ -1141,7 +1116,7 @@
                 True if word contains affix key
             </returns>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Add(System.String)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String)">
             <summary>
                 Adds a word to the user list
             </summary>
@@ -1154,7 +1129,7 @@
             	This method is only affects the user word list
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Clear">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Clear">
             <summary>
                 Clears the user list of words
             </summary>
@@ -1162,7 +1137,7 @@
             	This method is only affects the user word list
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Contains(System.String)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Contains(System.String)">
             <summary>
                 Searches all contained word lists for word
             </summary>
@@ -1175,7 +1150,7 @@
                 Returns true if word is found
             </returns>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.ExpandWord(NetSpell.SpellChecker.Dictionary.Word)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.ExpandWord(NetSpell.SpellChecker.Dictionary.Word)">
             <summary>
                 Expands an affix compressed base word
             </summary>
@@ -1188,13 +1163,13 @@
                 A System.Collections.ArrayList of words expanded from base word
             </returns>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Initialize">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialize">
             <summary>
                 Initializes the dictionary by loading and parsing the
                 dictionary file and the user file.
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.PhoneticCode(System.String)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.PhoneticCode(System.String)">
             <summary>
                 Generates a phonetic code of how the word sounds
             </summary>
@@ -1207,7 +1182,7 @@
                 A code of how the word sounds
             </returns>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Remove(System.String)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Remove(System.String)">
             <summary>
                 Removes a word from the user list
             </summary>
@@ -1220,38 +1195,38 @@
             	This method is only affects the user word list
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.Dispose(System.Boolean)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Lexicon.InitializeComponent">
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.BaseWords">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.BaseWords">
             <summary>
                 The collection of base words for the dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.Copyright">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Copyright">
             <summary>
                 Copyright text for the dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.DictionaryFile">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFile">
             <summary>
                 The file name for the main dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.DictionaryFolder">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFolder">
             <summary>
                 Folder containing the dictionaries
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.EnableUserFile">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.EnableUserFile">
             <summary>
                 Set this to true to automaticly create a user dictionary when
                 a word is added.
@@ -1260,47 +1235,47 @@
             	This should be set to false in a web environment
             </remarks>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.Initialized">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialized">
             <summary>
                 True if the dictionary has been initialized
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.PhoneticRules">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PhoneticRules">
             <summary>
                 Collection of phonetic rules for this dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.PrefixRules">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PrefixRules">
             <summary>
                 Collection of affix prefixes for the base words in this dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.ReplaceCharacters">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.ReplaceCharacters">
             <summary>
                 List of characters to use when generating suggestions using the near miss stratigy
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.SuffixRules">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.SuffixRules">
             <summary>
                 Collection of affix suffixes for the base words in this dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.TryCharacters">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.TryCharacters">
             <summary>
                 List of characters to try when generating suggestions using the near miss stratigy
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.UserFile">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserFile">
             <summary>
                 The file name for the user word list for this dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.UserWords">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.UserWords">
             <summary>
                 List of user entered words in this dictionary
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Lexicon.PossibleBaseWords">
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PossibleBaseWords">
             <summary>
                 List of text saved from when 'Contains' is called. 
                 This list is used to generate suggestions from if Contains
