@@ -25,18 +25,21 @@ namespace NetSpell.DictionaryBuild
 		// the following is used to split a line by white space
 		private Regex _spaceRegx = new Regex(@"[^\s]+", RegexOptions.Compiled);
 		private ArrayList _Words = new ArrayList();
-		private System.Windows.Forms.Button btnSearch;
 
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private System.Windows.Forms.Button btnLookup;
+		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.TabControl DictionaryTab;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.ImageList imageList1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.ListBox listAffixWords;
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuAffix;
 		private System.Windows.Forms.MenuItem menuDictionary;
@@ -57,8 +60,10 @@ namespace NetSpell.DictionaryBuild
 		private System.Windows.Forms.TabPage tabPrefix;
 		private System.Windows.Forms.TabPage tabSuffix;
 		private System.Windows.Forms.TabPage tabWords;
+		private System.Windows.Forms.TextBox txtAffixKeys;
 		private System.Windows.Forms.TextBox txtCurrentWord;
-		private System.Windows.Forms.TextBox txtSearchWord;
+		private System.Windows.Forms.TextBox txtPhoneticCode;
+		private System.Windows.Forms.TextBox txtWord;
 		private System.Windows.Forms.TextBox txtWordCount;
 		internal System.Windows.Forms.TextBox txtCopyright;
 		internal System.Windows.Forms.TextBox txtPhonetic;
@@ -77,13 +82,50 @@ namespace NetSpell.DictionaryBuild
 
 		}
 
-		private void btnSearch_Click(object sender, System.EventArgs e)
+		private void btnLookup_Click(object sender, System.EventArgs e)
 		{
-			int result = _Words.IndexOf(this.txtSearchWord.Text);
-			if (result > 0)
+			// if saved and words > 0
+			if (_Words.Count == 0)
 			{
-				this.numUpDownWord.Value = result;
+				MessageBox.Show(this, "Dictionary contains no words!", "No Words", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
+
+			if (this.Changed)
+			{
+				if (MessageBox.Show(this, "Dictionary should be saved before phonetic cache is added. \r\n \r\n Save Dictonary Now?", 
+					"Save Dictonary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				{
+					this.SaveDictionary();
+				}
+				else
+				{
+					return;
+				}
+			}
+
+			this.Cursor = Cursors.WaitCursor;
+
+			WordDictionary dict = new WordDictionary();
+			dict.DictionaryFile = this.FileName;
+			dict.Initialize();
+
+			string[] parts = _Words[(int)numUpDownWord.Value].ToString().Split('/');
+		
+			Word word = new Word();
+			word.Value = parts[0];
+			if (parts.Length > 1) word.AffixKeys = parts[1];
+			if (parts.Length > 2) word.PhoneticCode = parts[2];
+
+			ArrayList words = dict.ExpandWord(word);
+
+			this.listAffixWords.Items.Clear();
+			foreach (string tempWord in words)
+			{
+				this.listAffixWords.Items.Add(tempWord);
+			}
+			
+			this.Cursor = Cursors.Default;
 		}
 
 		private void DictionaryForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -134,20 +176,30 @@ namespace NetSpell.DictionaryBuild
 
 		private void numUpDownWord_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if ((int)numUpDownWord.Value < _Words.Count)
-			{
-				this.txtCurrentWord.Text = _Words[(int)numUpDownWord.Value].ToString();
-			}
+			this.UpdateCurrentWord();
 		}
 
 		private void numUpDownWord_ValueChanged(object sender, System.EventArgs e)
 		{
-			if ((int)numUpDownWord.Value < _Words.Count)
-			{
-				this.txtCurrentWord.Text = _Words[(int)numUpDownWord.Value].ToString();
-			}
+			this.UpdateCurrentWord();
 		}
 		
+		private void UpdateCurrentWord()
+		{
+			if ((int)numUpDownWord.Value < _Words.Count)
+			{
+				this.txtWordCount.Text = _Words.Count.ToString();
+				this.txtCurrentWord.Text = _Words[(int)numUpDownWord.Value].ToString();
+				this.listAffixWords.Items.Clear();
+				string[] parts = _Words[(int)numUpDownWord.Value].ToString().Split('/');
+
+				this.txtWord.Text = parts[0];
+
+				if (parts.Length > 1) this.txtAffixKeys.Text = parts[1];
+				if (parts.Length > 2) this.txtPhoneticCode.Text = parts[2];
+			}
+		}
+
 		public void GenerateCache()
 		{
 
@@ -212,6 +264,7 @@ namespace NetSpell.DictionaryBuild
 				{
 					_Words[i] = string.Format("{0}/{1}/{2}", tempWord, tempKeys, tempCode);
 				}
+				
 			}
 			main.statusBar.Text = "";
 
@@ -311,6 +364,7 @@ namespace NetSpell.DictionaryBuild
 				StreamReader sr = new StreamReader(fs, Encoding.UTF7);
 
 				_Words.Clear();
+				Hashtable tempWordList = new Hashtable();
 
 				// read line by line
 				while (sr.Peek() >= 0) 
@@ -318,7 +372,38 @@ namespace NetSpell.DictionaryBuild
 					string tempLine = sr.ReadLine().Trim();
 					if (!char.IsNumber(tempLine[0]))
 					{
-						_Words.Add(tempLine);
+						
+						string[] parts = tempLine.Split('/');
+						string word = parts[0];
+						string affixKeys = "";
+						if(parts.Length > 1) affixKeys = parts[1];
+
+						// look for duplicate words
+						if(tempWordList.ContainsKey(word))
+						{
+							// merge affix keys on duplicate words
+							string[] tempParts = tempWordList[word].ToString().Split('/');
+							string oldKeys = "";
+							if(tempParts.Length > 1) oldKeys = tempParts[1];
+
+							foreach (char key in oldKeys)
+							{
+								// if the new affix keys do not contain old key, add old key to new keys
+								if(affixKeys.IndexOf(key) == -1)
+								{
+									affixKeys += key.ToString();
+								}
+							}
+							// only update if have keys
+							if(affixKeys.Length > 0)
+							{
+								tempWordList[word] = string.Format("{0}/{1}", word, affixKeys);
+							}
+						}
+						else
+						{
+							tempWordList.Add(word, tempLine);
+						}
 					}
 				}
 				// close reader
@@ -326,10 +411,13 @@ namespace NetSpell.DictionaryBuild
 				// close stream
 				fs.Close();
 
+				_Words.AddRange(tempWordList.Values);
+				_Words.Sort();
+
 				this.numUpDownWord.Value = 0;
 				this.numUpDownWord.Maximum = _Words.Count;
-				this.txtWordCount.Text = _Words.Count.ToString();
-				this.txtCurrentWord.Text = _Words[0].ToString();
+				this.UpdateCurrentWord();
+				this.Changed = true;
 			}
 			this.Cursor = Cursors.Default;
 		}
@@ -407,7 +495,7 @@ namespace NetSpell.DictionaryBuild
 				this.txtWordCount.Text = _Words.Count.ToString();
 				if (_Words.Count > 0)
 				{
-					this.txtCurrentWord.Text = _Words[0].ToString();
+					this.UpdateCurrentWord();
 					this.numUpDownWord.Maximum = _Words.Count - 1;
 				}
 				else
@@ -444,25 +532,26 @@ namespace NetSpell.DictionaryBuild
 
 			// copyright
 			sw.WriteLine("[Copyright]");
-			sw.WriteLine(this.txtCopyright.Text.Replace("\r\n", "\n"));
+			sw.WriteLine(this.txtCopyright.Text.Replace("\r\n", "\n")); // unix line ends
 			// try
 			sw.WriteLine("[Try]");
 			sw.WriteLine(this.txtTry.Text);
 			sw.WriteLine(); 
 			// replace
 			sw.WriteLine("[Replace]");
-			sw.WriteLine(this.txtReplace.Text.Replace("\r\n", "\n"));
+			sw.WriteLine(this.txtReplace.Text.Replace("\r\n", "\n")); // unix line ends
 			// prefix
 			sw.WriteLine("[Prefix]");
-			sw.WriteLine(this.txtPrefix.Text.Replace("\r\n", "\n"));
+			sw.WriteLine(this.txtPrefix.Text.Replace("\r\n", "\n")); // unix line ends
 			// suffix
 			sw.WriteLine("[Suffix]");
-			sw.WriteLine(this.txtSuffix.Text.Replace("\r\n", "\n"));
+			sw.WriteLine(this.txtSuffix.Text.Replace("\r\n", "\n")); // unix line ends
 			// phonetic
 			sw.WriteLine("[Phonetic]");
-			sw.WriteLine(this.txtPhonetic.Text.Replace("\r\n", "\n"));
+			sw.WriteLine(this.txtPhonetic.Text.Replace("\r\n", "\n")); // unix line ends
 			// words
 			sw.WriteLine("[Words]");
+			_Words.Sort();
 			foreach (string tempWord in _Words)
 			{
 				sw.WriteLine(tempWord);
@@ -527,13 +616,14 @@ namespace NetSpell.DictionaryBuild
 			set {_Words = value;}
 		}
 
-#region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DictionaryForm));
 			this.DictionaryTab = new System.Windows.Forms.TabControl();
 			this.tabCopyright = new System.Windows.Forms.TabPage();
@@ -550,9 +640,16 @@ namespace NetSpell.DictionaryBuild
 			this.tabPhonetic = new System.Windows.Forms.TabPage();
 			this.txtPhonetic = new System.Windows.Forms.TextBox();
 			this.tabWords = new System.Windows.Forms.TabPage();
-			this.btnSearch = new System.Windows.Forms.Button();
-			this.label5 = new System.Windows.Forms.Label();
-			this.txtSearchWord = new System.Windows.Forms.TextBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.btnLookup = new System.Windows.Forms.Button();
+			this.txtPhoneticCode = new System.Windows.Forms.TextBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.txtAffixKeys = new System.Windows.Forms.TextBox();
+			this.txtWord = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
+			this.listAffixWords = new System.Windows.Forms.ListBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.txtCurrentWord = new System.Windows.Forms.TextBox();
 			this.numUpDownWord = new System.Windows.Forms.NumericUpDown();
@@ -571,6 +668,7 @@ namespace NetSpell.DictionaryBuild
 			this.openWordsDialog = new System.Windows.Forms.OpenFileDialog();
 			this.openAffixDialog = new System.Windows.Forms.OpenFileDialog();
 			this.openPhoneticDialog = new System.Windows.Forms.OpenFileDialog();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.DictionaryTab.SuspendLayout();
 			this.tabCopyright.SuspendLayout();
 			this.tabNearMiss.SuspendLayout();
@@ -578,6 +676,7 @@ namespace NetSpell.DictionaryBuild
 			this.tabSuffix.SuspendLayout();
 			this.tabPhonetic.SuspendLayout();
 			this.tabWords.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numUpDownWord)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -747,12 +846,7 @@ namespace NetSpell.DictionaryBuild
 			// 
 			// tabWords
 			// 
-			this.tabWords.Controls.Add(this.btnSearch);
-			this.tabWords.Controls.Add(this.label5);
-			this.tabWords.Controls.Add(this.txtSearchWord);
-			this.tabWords.Controls.Add(this.label4);
-			this.tabWords.Controls.Add(this.txtCurrentWord);
-			this.tabWords.Controls.Add(this.numUpDownWord);
+			this.tabWords.Controls.Add(this.groupBox1);
 			this.tabWords.Controls.Add(this.txtWordCount);
 			this.tabWords.Controls.Add(this.label3);
 			this.tabWords.Location = new System.Drawing.Point(4, 22);
@@ -761,59 +855,146 @@ namespace NetSpell.DictionaryBuild
 			this.tabWords.TabIndex = 5;
 			this.tabWords.Text = "Word List";
 			// 
-			// btnSearch
+			// groupBox1
 			// 
-			this.btnSearch.Location = new System.Drawing.Point(424, 160);
-			this.btnSearch.Name = "btnSearch";
-			this.btnSearch.TabIndex = 7;
-			this.btnSearch.Text = "Search";
-			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+				| System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.btnLookup);
+			this.groupBox1.Controls.Add(this.txtPhoneticCode);
+			this.groupBox1.Controls.Add(this.label9);
+			this.groupBox1.Controls.Add(this.txtAffixKeys);
+			this.groupBox1.Controls.Add(this.txtWord);
+			this.groupBox1.Controls.Add(this.label6);
+			this.groupBox1.Controls.Add(this.listAffixWords);
+			this.groupBox1.Controls.Add(this.label8);
+			this.groupBox1.Controls.Add(this.label7);
+			this.groupBox1.Controls.Add(this.label4);
+			this.groupBox1.Controls.Add(this.txtCurrentWord);
+			this.groupBox1.Controls.Add(this.numUpDownWord);
+			this.groupBox1.Location = new System.Drawing.Point(16, 64);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(512, 376);
+			this.groupBox1.TabIndex = 14;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Current Word";
 			// 
-			// label5
+			// btnLookup
 			// 
-			this.label5.Location = new System.Drawing.Point(80, 160);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(64, 23);
-			this.label5.TabIndex = 6;
-			this.label5.Text = "Find Word:";
+			this.btnLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnLookup.Location = new System.Drawing.Point(416, 160);
+			this.btnLookup.Name = "btnLookup";
+			this.btnLookup.TabIndex = 24;
+			this.btnLookup.Text = "Lookup";
+			this.btnLookup.Click += new System.EventHandler(this.btnLookup_Click);
 			// 
-			// txtSearchWord
+			// txtPhoneticCode
 			// 
-			this.txtSearchWord.Location = new System.Drawing.Point(152, 161);
-			this.txtSearchWord.Name = "txtSearchWord";
-			this.txtSearchWord.Size = new System.Drawing.Size(256, 20);
-			this.txtSearchWord.TabIndex = 5;
-			this.txtSearchWord.Text = "";
+			this.txtPhoneticCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtPhoneticCode.Location = new System.Drawing.Point(144, 112);
+			this.txtPhoneticCode.Name = "txtPhoneticCode";
+			this.txtPhoneticCode.ReadOnly = true;
+			this.txtPhoneticCode.Size = new System.Drawing.Size(256, 20);
+			this.txtPhoneticCode.TabIndex = 23;
+			this.txtPhoneticCode.Text = "";
+			// 
+			// label9
+			// 
+			this.label9.Location = new System.Drawing.Point(56, 112);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(88, 23);
+			this.label9.TabIndex = 22;
+			this.label9.Text = "Phonetic Code:";
+			// 
+			// txtAffixKeys
+			// 
+			this.txtAffixKeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtAffixKeys.Location = new System.Drawing.Point(144, 88);
+			this.txtAffixKeys.Name = "txtAffixKeys";
+			this.txtAffixKeys.ReadOnly = true;
+			this.txtAffixKeys.Size = new System.Drawing.Size(256, 20);
+			this.txtAffixKeys.TabIndex = 21;
+			this.txtAffixKeys.Text = "";
+			// 
+			// txtWord
+			// 
+			this.txtWord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtWord.Location = new System.Drawing.Point(144, 64);
+			this.txtWord.Name = "txtWord";
+			this.txtWord.ReadOnly = true;
+			this.txtWord.Size = new System.Drawing.Size(256, 20);
+			this.txtWord.TabIndex = 20;
+			this.txtWord.Text = "";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(16, 160);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(125, 16);
+			this.label6.TabIndex = 19;
+			this.label6.Text = "Words from Base Word:";
+			// 
+			// listAffixWords
+			// 
+			this.listAffixWords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.listAffixWords.Location = new System.Drawing.Point(144, 160);
+			this.listAffixWords.Name = "listAffixWords";
+			this.listAffixWords.Size = new System.Drawing.Size(256, 69);
+			this.listAffixWords.TabIndex = 18;
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(80, 88);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(64, 16);
+			this.label8.TabIndex = 17;
+			this.label8.Text = "Affix Keys:";
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(72, 64);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(64, 16);
+			this.label7.TabIndex = 16;
+			this.label7.Text = "Base Word:";
 			// 
 			// label4
 			// 
-			this.label4.Location = new System.Drawing.Point(48, 120);
+			this.label4.Location = new System.Drawing.Point(16, 32);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(104, 17);
-			this.label4.TabIndex = 4;
-			this.label4.Text = "Current Word Text:";
+			this.label4.Size = new System.Drawing.Size(128, 17);
+			this.label4.TabIndex = 7;
+			this.label4.Text = "Current Word Raw Text:";
 			// 
 			// txtCurrentWord
 			// 
-			this.txtCurrentWord.Location = new System.Drawing.Point(152, 120);
+			this.txtCurrentWord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+				| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtCurrentWord.Location = new System.Drawing.Point(144, 32);
 			this.txtCurrentWord.Name = "txtCurrentWord";
 			this.txtCurrentWord.ReadOnly = true;
 			this.txtCurrentWord.Size = new System.Drawing.Size(256, 20);
-			this.txtCurrentWord.TabIndex = 3;
+			this.txtCurrentWord.TabIndex = 6;
 			this.txtCurrentWord.Text = "";
 			// 
 			// numUpDownWord
 			// 
-			this.numUpDownWord.Location = new System.Drawing.Point(424, 120);
+			this.numUpDownWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.numUpDownWord.Location = new System.Drawing.Point(416, 32);
 			this.numUpDownWord.Name = "numUpDownWord";
 			this.numUpDownWord.Size = new System.Drawing.Size(72, 20);
-			this.numUpDownWord.TabIndex = 2;
+			this.numUpDownWord.TabIndex = 5;
 			this.numUpDownWord.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numUpDownWord_KeyUp);
 			this.numUpDownWord.ValueChanged += new System.EventHandler(this.numUpDownWord_ValueChanged);
 			// 
 			// txtWordCount
 			// 
-			this.txtWordCount.Location = new System.Drawing.Point(152, 88);
+			this.txtWordCount.Location = new System.Drawing.Point(152, 24);
 			this.txtWordCount.Name = "txtWordCount";
 			this.txtWordCount.ReadOnly = true;
 			this.txtWordCount.Size = new System.Drawing.Size(64, 20);
@@ -822,7 +1003,7 @@ namespace NetSpell.DictionaryBuild
 			// 
 			// label3
 			// 
-			this.label3.Location = new System.Drawing.Point(48, 90);
+			this.label3.Location = new System.Drawing.Point(48, 24);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(96, 16);
 			this.label3.TabIndex = 0;
@@ -902,6 +1083,11 @@ namespace NetSpell.DictionaryBuild
 			// 
 			this.openPhoneticDialog.Filter = "Phonetic files (*.dat)|*.dat|Text files (*.txt)|*.txt|All files (*.*)|*.*";
 			// 
+			// imageList1
+			// 
+			this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			// 
 			// DictionaryForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -920,11 +1106,17 @@ namespace NetSpell.DictionaryBuild
 			this.tabSuffix.ResumeLayout(false);
 			this.tabPhonetic.ResumeLayout(false);
 			this.tabWords.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numUpDownWord)).EndInit();
 			this.ResumeLayout(false);
 
 		}
-#endregion
+		#endregion
+
+
+
+
+
 
 	}
 }
