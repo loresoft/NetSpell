@@ -42,6 +42,7 @@ namespace NetSpell.SpellChecker
 		private NetSpell.SpellChecker.Spelling SpellChecker;
 		private System.Windows.Forms.ColumnHeader versionColumnHeader;
 		private System.Windows.Forms.TabPage versionsTab;
+		private System.Windows.Forms.CheckBox IgnoreHtmlCheck;
 		private System.Windows.Forms.ColumnHeader wordsColumn;
 
 		/// <summary>
@@ -60,6 +61,7 @@ namespace NetSpell.SpellChecker
 
 				this.SpellChecker.IgnoreWordsWithDigits = this.IgnoreDigitsCheck.Checked;
 				this.SpellChecker.IgnoreAllCapsWords = this.IgnoreUpperCheck.Checked;
+				this.SpellChecker.IgnoreHtml = this.IgnoreHtmlCheck.Checked;
 				this.SpellChecker.MaxSuggestions = int.Parse(this.MaxSuggestions.Text);
 				this.Close();
 			}
@@ -76,6 +78,7 @@ namespace NetSpell.SpellChecker
 			{
 				this.IgnoreDigitsCheck.Checked = this.SpellChecker.IgnoreWordsWithDigits;
 				this.IgnoreUpperCheck.Checked = this.SpellChecker.IgnoreAllCapsWords;
+				this.IgnoreHtmlCheck.Checked = this.SpellChecker.IgnoreHtml;
 				this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
 
 				// set dictionary info
@@ -188,6 +191,7 @@ namespace NetSpell.SpellChecker
 			this.pbIcon = new System.Windows.Forms.PictureBox();
 			this.OkButton = new System.Windows.Forms.Button();
 			this.CancelBtn = new System.Windows.Forms.Button();
+			this.IgnoreHtmlCheck = new System.Windows.Forms.CheckBox();
 			this.optionsTabControl.SuspendLayout();
 			this.generalTab.SuspendLayout();
 			this.dictionaryTab.SuspendLayout();
@@ -212,6 +216,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// generalTab
 			// 
+			this.generalTab.Controls.Add(this.IgnoreHtmlCheck);
 			this.generalTab.Controls.Add(this.lbllabel1);
 			this.generalTab.Controls.Add(this.MaxSuggestions);
 			this.generalTab.Controls.Add(this.IgnoreUpperCheck);
@@ -224,7 +229,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// lbllabel1
 			// 
-			this.lbllabel1.Location = new System.Drawing.Point(48, 88);
+			this.lbllabel1.Location = new System.Drawing.Point(48, 112);
 			this.lbllabel1.Name = "lbllabel1";
 			this.lbllabel1.Size = new System.Drawing.Size(264, 16);
 			this.lbllabel1.TabIndex = 8;
@@ -232,7 +237,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// MaxSuggestions
 			// 
-			this.MaxSuggestions.Location = new System.Drawing.Point(24, 86);
+			this.MaxSuggestions.Location = new System.Drawing.Point(24, 112);
 			this.MaxSuggestions.MaxLength = 2;
 			this.MaxSuggestions.Name = "MaxSuggestions";
 			this.MaxSuggestions.Size = new System.Drawing.Size(24, 20);
@@ -415,6 +420,16 @@ namespace NetSpell.SpellChecker
 			this.CancelBtn.Name = "CancelBtn";
 			this.CancelBtn.TabIndex = 7;
 			this.CancelBtn.Text = "&Cancel";
+			// 
+			// IgnoreHtmlCheck
+			// 
+			this.IgnoreHtmlCheck.Checked = true;
+			this.IgnoreHtmlCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.IgnoreHtmlCheck.Location = new System.Drawing.Point(32, 72);
+			this.IgnoreHtmlCheck.Name = "IgnoreHtmlCheck";
+			this.IgnoreHtmlCheck.Size = new System.Drawing.Size(296, 24);
+			this.IgnoreHtmlCheck.TabIndex = 9;
+			this.IgnoreHtmlCheck.Text = "Ignore HTML Tags";
 			// 
 			// OptionForm
 			// 

@@ -20,17 +20,21 @@ namespace NetSpell.SpellChecker
 	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Spelling), "Spelling.bmp")]
 	public class Spelling : System.ComponentModel.Component
 	{
-
-		private string _CurrentWord = "";
-		private DictionaryCollection _Dictionaries = new DictionaryCollection();
 		
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
+		private Regex _htmlRegex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>", RegexOptions.Compiled);
+		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
 		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
 		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
 		
+		private MatchCollection _words;
+		private MatchCollection _htmlTags;
+
+		private string _CurrentWord = "";
+		private DictionaryCollection _Dictionaries = new DictionaryCollection();
 		private bool _IgnoreAllCapsWords = true;
+		private bool _IgnoreHtml = true;
 		private ArrayList _IgnoreList = new ArrayList();
 		private bool _IgnoreWordsWithDigits = false;
 		private int _mainDictionaryId = -1;
@@ -46,31 +50,30 @@ namespace NetSpell.SpellChecker
 		private int _WordCount = 0;
 		private int _WordIndex = 0;
 
-		private MatchCollection _words;
-
+		
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-
-		// subsitution chars for suggetions
-		private char[] tryme = new char[] {'e', 's', 'i', 'a', 'n', 'r', 't', 'o', 'l',
-			'c', 'd', 'u', 'g', 'm', 'p', 'h', 'b', 'y', 'f', 'v', 'k', 'w'};
 		
 		// common spelling errors
 		private string[] replacementChars = new string[] {"a ei", "ei a", "a ey", "ey a", 
-			"ai ie", "ie ai", "are air", "are ear", "are eir", "air are", "air ere", 
-			"ere air", "ere ear", "ere eir", "ear are", "ear air", "ear ere", 
-			"eir are", "eir ere", "ch te", "te ch", "ch ti", "ti ch", "ch tu", 
-			"tu ch", "ch s", "s ch", "ch k", "k ch", "f ph", "ph f", "gh f", 
-			"f gh", "i igh", "igh i", "i uy", "uy i", "i ee", "ee i", "j di", 
-			"di j", "j gg", "gg j", "j ge", "ge j", "s ti", "ti s", "s ci", 
-			"ci s", "k cc", "cc k", "k qu", "qu k", "kw qu", "o eau", "eau o", 
-			"o ew", "ew o", "oo ew", "ew oo", "ew ui", "ui ew", "oo ui", "ui oo", 
-			"ew u", "u ew", "oo u", "u oo", "u oe", "oe u", "u ieu", "ieu u", 
-			"ue ew", "ew ue", "uff ough", "oo ieu", "ieu oo", "ier ear", "ear ier", 
-			"ear air", "air ear", "w qu", "qu w", "z ss", "ss z", "shun tion", 
-			"shun sion", "shun cion"};
+															 "ai ie", "ie ai", "are air", "are ear", "are eir", "air are", "air ere", 
+															 "ere air", "ere ear", "ere eir", "ear are", "ear air", "ear ere", 
+															 "eir are", "eir ere", "ch te", "te ch", "ch ti", "ti ch", "ch tu", 
+															 "tu ch", "ch s", "s ch", "ch k", "k ch", "f ph", "ph f", "gh f", 
+															 "f gh", "i igh", "igh i", "i uy", "uy i", "i ee", "ee i", "j di", 
+															 "di j", "j gg", "gg j", "j ge", "ge j", "s ti", "ti s", "s ci", 
+															 "ci s", "k cc", "cc k", "k qu", "qu k", "kw qu", "o eau", "eau o", 
+															 "o ew", "ew o", "oo ew", "ew oo", "ew ui", "ui ew", "oo ui", "ui oo", 
+															 "ew u", "u ew", "oo u", "u oo", "u oe", "oe u", "u ieu", "ieu u", 
+															 "ue ew", "ew ue", "uff ough", "oo ieu", "ieu oo", "ier ear", "ear ier", 
+															 "ear air", "air ear", "w qu", "qu w", "z ss", "ss z", "shun tion", 
+															 "shun sion", "shun cion"};
+
+		// subsitution chars for suggetions
+		private char[] tryme = new char[] {'e', 's', 'i', 'a', 'n', 'r', 't', 'o', 'l',
+											  'c', 'd', 'u', 'g', 'm', 'p', 'h', 'b', 'y', 'f', 'v', 'k', 'w'};
 
 
 		/// <summary>
@@ -220,6 +223,15 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
+		///     Calculates the position of html tags in the Text property
+		/// </summary>
+		private void CalculateHtml()
+		{
+			// splits the text into words
+			_htmlTags = _htmlRegex.Matches(_Text.ToString());
+		}
+
+		/// <summary>
 		///     Calculates the words from the Text property
 		/// </summary>
 		private void CalculateWords()
@@ -253,6 +265,18 @@ namespace NetSpell.SpellChecker
 			if(!_letterRegex.IsMatch(characters))
 			{
 				return false;
+			}
+			if(_IgnoreHtml)
+			{
+				int startIndex = _words[_WordIndex].Index;
+				
+				foreach (Match item in _htmlTags) 
+				{
+					if (startIndex >= item.Index && startIndex <= item.Index + item.Length - 1)
+					{
+						return false;
+					}
+				}
 			}
 			return true;
 		}
@@ -804,6 +828,18 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
+		///     Ignore html tags when spell checking
+		/// </summary>
+		[DefaultValue(true)]
+		[CategoryAttribute("Options")]
+		[Description("Ignore html tags when spell checking")]
+		public bool IgnoreHtml
+		{
+			get {return _IgnoreHtml;}
+			set {_IgnoreHtml = value;}
+		}
+
+		/// <summary>
 		///     List of words to automatically ignore
 		/// </summary>
 		/// <remarks>
@@ -948,6 +984,7 @@ namespace NetSpell.SpellChecker
 			{
 				_Text = new StringBuilder(value);
 				this.CalculateWords();
+				this.CalculateHtml();
 				this.Reset();
 			}
 		}
@@ -1038,30 +1075,7 @@ namespace NetSpell.SpellChecker
 			}
 
 		}
-#region ISpell Suggetion Helper functions
-
-		/// <summary>
-		///		swap out each char one by one and try all the tryme
-		///		chars in its place to see if that makes a good word
-		/// </summary>
-		public void BadChar(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < _CurrentWord.Length; i++)
-			{
-				StringBuilder tempWord = new StringBuilder(_CurrentWord);
-				for (int x = 0; x < tryme.Length; x++)
-				{
-					tempWord[i] = tryme[x];
-					if (this.TestWord(tempWord.ToString())) 
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-					
-						tempSuggestion.Add(ws);
-					}
-				}				 
-			}
-		}
+		#region ISpell Suggetion Helper functions
 
 		/// <summary>
 		///     try omitting one char of word at a time
@@ -1186,9 +1200,32 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-#endregion
+		/// <summary>
+		///		swap out each char one by one and try all the tryme
+		///		chars in its place to see if that makes a good word
+		/// </summary>
+		public void BadChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				for (int x = 0; x < tryme.Length; x++)
+				{
+					tempWord[i] = tryme[x];
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+						tempSuggestion.Add(ws);
+					}
+				}				 
+			}
+		}
 
-#region Component Designer generated code
+		#endregion
+
+		#region Component Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -1197,7 +1234,7 @@ namespace NetSpell.SpellChecker
 		{
 			components = new System.ComponentModel.Container();
 		}
-#endregion
+		#endregion
 
 	} // Class SpellChecker
 

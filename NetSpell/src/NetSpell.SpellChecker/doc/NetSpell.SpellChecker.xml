@@ -466,6 +466,11 @@
                 Required for Windows.Forms Class Composition Designer support
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.CalculateHtml">
+            <summary>
+                Calculates the position of html tags in the Text property
+            </summary>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.CalculateWords">
             <summary>
                 Calculates the words from the Text property
@@ -701,12 +706,6 @@
                 receivers that the event occurred
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.BadChar(System.Collections.ArrayList@)">
-            <summary>
-            	swap out each char one by one and try all the tryme
-            	chars in its place to see if that makes a good word
-            </summary>
-        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.ExtraChar(System.Collections.ArrayList@)">
             <summary>
                 try omitting one char of word at a time
@@ -732,6 +731,12 @@
             <summary>
                 split the string into two pieces after every char
             	if both pieces are good words make them a suggestion
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.BadChar(System.Collections.ArrayList@)">
+            <summary>
+            	swap out each char one by one and try all the tryme
+            	chars in its place to see if that makes a good word
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.InitializeComponent">
@@ -770,6 +775,11 @@
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreAllCapsWords">
             <summary>
                 Ignore words with all capital letters when spell checking
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.IgnoreHtml">
+            <summary>
+                Ignore html tags when spell checking
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreList">

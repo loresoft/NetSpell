@@ -152,6 +152,21 @@ namespace NetSpell.Tests
 		}
 
 		/// <summary>
+		///		NUnit Test Function for SpellCheck
+		/// </summary>
+		[Test]
+		public void HtmlSpellCheck()
+		{
+			_SpellChecker.IgnoreHtml = true;
+			_SpellChecker.Text = "<a href=\"#\">this <span id=\"txt\">is</span> an errr tst</a>";
+
+			_SpellChecker.SpellCheck();
+			Assertion.AssertEquals("Incorrect WordOffset", 9, _SpellChecker.WordIndex);
+			Assertion.AssertEquals("Incorrect CurrentWord", "errr", _SpellChecker.CurrentWord);
+
+		}
+
+		/// <summary>
 		///		NUnit Test Function for Soundex
 		/// </summary>
 		[Test]
