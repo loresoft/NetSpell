@@ -38,7 +38,7 @@ namespace NetSpell.Tests
 			_SpellChecker.Dictionary.Initialize();
 			
 			_SpellChecker.ShowDialog = false;
-			_SpellChecker.MaxSuggestions = 50;
+			_SpellChecker.MaxSuggestions = 0;
 		}
 
 		[Test]
@@ -52,9 +52,12 @@ namespace NetSpell.Tests
 
 			int totalFound = 0;
 			int totalChecked = 0;
+			int totalFirst = 0;
 			int totalTopFive = 0;
 			int totalTopTen = 0;
 			int totalTopTwentyFive = 0;
+
+			Console.WriteLine("Misspelled\tCorrect\tPosition\tCount");
 
 			// read line by line
 			while (sr.Peek() >= 0) 
@@ -65,6 +68,8 @@ namespace NetSpell.Tests
 					string[] parts = tempLine.Split();
 					string misSpelled = parts[0];
 					string correctSpelled = parts[1];
+					if (parts.Length > 2) correctSpelled += " " + parts[2];
+
 					bool found = false;
 
 					if(_SpellChecker.SpellCheck(misSpelled))
@@ -77,13 +82,14 @@ namespace NetSpell.Tests
 							position++;
 							if(suggestion.ToLower() == correctSpelled.ToLower())
 							{
-								Console.WriteLine("{0} found correctly spelled as {1} in position {2}", 
-									misSpelled, suggestion, position.ToString());
+								Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
+									misSpelled, correctSpelled, position.ToString(), _SpellChecker.Suggestions.Count.ToString());
 								found = true;
 
 								totalFound++;
 
-								if (position <= 5) totalTopFive++;
+								if (position == 1) totalFirst++;
+								else if (position <= 5) totalTopFive++;
 								else if (position <= 10) totalTopTen++;
 								else if (position <= 25) totalTopTwentyFive++;
 
@@ -93,19 +99,38 @@ namespace NetSpell.Tests
 
 						if (!found)
 						{
-							Console.WriteLine("{0} not found in suggestions. {1} suggestions generated.", 
-								misSpelled, _SpellChecker.Suggestions.Count.ToString());
+							if (_SpellChecker.Suggestions.Count > 0)
+							{
+								Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
+									misSpelled, correctSpelled, "0", _SpellChecker.Suggestions.Count.ToString());
+							}
+							else
+							{
+								Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
+									misSpelled, correctSpelled, "-1", "-1");
+							}
 
 						}
+					}
+					else
+					{
+						Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
+							misSpelled, correctSpelled, "1", "1");
 					}
 				}
 			}
 
-			Console.WriteLine("{0} words tested", totalChecked);
-			Console.WriteLine("{0} words found", totalFound);
-			Console.WriteLine("{0} words found in top 5", totalTopFive);
-			Console.WriteLine("{0} words found in top 10", totalTopTen);
-			Console.WriteLine("{0} words found in top 25", totalTopTwentyFive);
+
+			totalTopFive += totalFirst;
+			totalTopTen += totalTopFive;
+			totalTopTwentyFive += totalTopTen;
+
+			Console.WriteLine("Total Tested\t{0}", totalChecked);
+			Console.WriteLine("Total Found\t{0}\t{1}%", totalFound, ((float)totalFound / (float)totalChecked * 100f));
+			Console.WriteLine("First Suggestions\t{0}\t{1}%", totalFirst, ((float)totalFirst / (float)totalChecked * 100f));
+			Console.WriteLine("Top 5 Suggestions\t{0}\t{1}%", totalTopFive, ((float)totalTopFive / (float)totalChecked * 100f));
+			Console.WriteLine("Top 10 Suggestions\t{0}\t{1}%", totalTopTen, ((float)totalTopTen / (float)totalChecked * 100f));
+			Console.WriteLine("Top 25 Suggestions\t{0}\t{1}%", totalTopTwentyFive, ((float)totalTopTwentyFive / (float)totalChecked * 100f));
 
 			sr.Close();
 			fs.Close();

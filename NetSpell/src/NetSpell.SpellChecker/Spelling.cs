@@ -26,6 +26,7 @@ namespace NetSpell.SpellChecker
 	public class Spelling : System.ComponentModel.Component
 	{
 
+
 #region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex(@"^\d", RegexOptions.Compiled);
@@ -388,6 +389,79 @@ namespace NetSpell.SpellChecker
 			_Text.Remove(index, length);
 			this.CalculateWords();
 		}
+
+		/// <summary>
+		///     Calculates the minimum number of change, inserts or deletes
+		///     required to change firstWord into secondWord
+		/// </summary>
+		/// <param name="source" type="string">
+		///     <para>
+		///         The first word to calculate
+		///     </para>
+		/// </param>
+		/// <param name="target" type="string">
+		///     <para>
+		///         The second word to calculate
+		///     </para>
+		/// </param>
+		/// <param name="positionPriority" type="bool">
+		///     <para>
+		///         set to true if the first and last char should have priority
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The number of edits to make firstWord equal secondWord
+		/// </returns>
+		public int EditDistance(string source, string target, bool positionPriority)
+		{
+		
+			// i.e. 2-D array
+			Array matrix = Array.CreateInstance(typeof(int), source.Length+1, target.Length+1);
+
+			// boundary conditions
+			matrix.SetValue(0, 0, 0); 
+
+			for(int j=1; j <= target.Length; j++)
+			{
+				// boundary conditions
+				int val = (int)matrix.GetValue(0,j-1);
+				matrix.SetValue(val+1, 0, j);
+			}
+
+			// outer loop
+			for(int i=1; i <= source.Length; i++)                            
+			{ 
+				// boundary conditions
+				int val = (int)matrix.GetValue(i-1, 0);
+				matrix.SetValue(val+1, i, 0); 
+
+				// inner loop
+				for(int j=1; j <= target.Length; j++)                         
+				{ 
+					int diag = (int)matrix.GetValue(i-1, j-1);
+
+					if(source.Substring(i-1, 1) != target.Substring(j-1, 1)) 
+					{
+						diag++;
+					}
+
+					int deletion = (int)matrix.GetValue(i-1, j);
+					int insertion = (int)matrix.GetValue(i, j-1);
+					int match = Math.Min(deletion+1, insertion+1);		
+					matrix.SetValue(Math.Min(diag, match), i, j);
+				}//for j
+			}//for i
+
+			int dist = (int)matrix.GetValue(source.Length, target.Length);
+
+			// extra edit on first and last chars
+			if (positionPriority)
+			{
+				if (source[0] != target[0]) dist++;
+				if (source[source.Length-1] != target[target.Length-1]) dist++;
+			}
+			return dist;
+		}
 		
 		/// <summary>
 		///     Calculates the minimum number of change, inserts or deletes
@@ -406,40 +480,12 @@ namespace NetSpell.SpellChecker
 		/// <returns>
 		///     The number of edits to make firstWord equal secondWord
 		/// </returns>
+		/// <remarks>
+		///		This method automaticly gives priority to matching the first and last char
+		/// </remarks>
 		public int EditDistance(string source, string target)
 		{
-		
-			int n = source.Length; //length of source
-			int m = target.Length; //length of target
-			// i.e. 2-D array
-			int[,] matrix = new int[n + 1, m + 1]; // matrix
-
-			int cost; // cost
-
-			if(n == 0) return m;
-			if(m == 0) return n;
-
-			matrix[0, 0] = 0;
-
-			for(int i = 1; i <= n;i++) 
-			{
-				for(int j = 1; j <= m;j++) 
-				{
-					cost = (target.Substring(j - 1, 1) == source.Substring(i - 1, 1) ? 0 : 1);
-
-					int above = matrix[i - 1, j] + 1;
-					int left = matrix[i, j - 1] + 1;
-					int diagonal = matrix[i - 1, j - 1] + cost;
-					matrix[i, j] = System.Math.Min(System.Math.Min(above, left),diagonal);
-				}
-			}
-			int val = matrix[n, m];
-
-			// extra edit on first and last chars
-			if (source[0] != target[0]) val++;
-			if (source[source.Length-1] != target[target.Length-1]) val++;
-
-			return val;
+			return this.EditDistance(source, target, true);
 		}
 
 		/// <summary>
@@ -490,6 +536,7 @@ namespace NetSpell.SpellChecker
 			this.ReplacementWord = replacementWord;
 			this.ReplaceAllWord();
 		}
+
 
 		/// <summary>
 		///     Replaces the instances of the CurrentWord in the Text Property
@@ -758,12 +805,10 @@ namespace NetSpell.SpellChecker
 				this.SwapChar(ref tempSuggestion);
 			}
 
-			tempSuggestion.Sort();  // sorts by word sim score
+			tempSuggestion.Sort();  // sorts by edit score
 			_Suggestions.Clear(); 
 
-			
-
-			for (int i = 0; i < tempSuggestion.Count && _Suggestions.Count < _MaxSuggestions; i++)
+			for (int i = 0; i < tempSuggestion.Count; i++)
 			{
 				string word = ((Word)tempSuggestion[i]).Value;
 				// looking for duplicates
@@ -771,6 +816,11 @@ namespace NetSpell.SpellChecker
 				{
 					// populating the suggestion list
 					_Suggestions.Add(word);
+				}
+
+				if (_Suggestions.Count >= _MaxSuggestions && _MaxSuggestions > 0)
+				{
+					break;
 				}
 			}
 
@@ -816,6 +866,7 @@ namespace NetSpell.SpellChecker
 		private ArrayList _IgnoreList = new ArrayList();
 		private bool _IgnoreWordsWithDigits = false;
 		private int _MaxSuggestions = 25;
+		private int _PhoneticLevel = 0;
 		private Hashtable _ReplaceList = new Hashtable();
 		private string _ReplacementWord = "";
 		private bool _ShowDialog = true;
@@ -938,6 +989,18 @@ namespace NetSpell.SpellChecker
 		{
 			get {return _MaxSuggestions;}
 			set {_MaxSuggestions = value;}
+		}
+
+		/// <summary>
+		///     Determines how close the suggestion words need to sound
+		/// </summary>
+		[DefaultValue(2)]
+		[CategoryAttribute("Options")]
+		[Description("Determines how close the suggestion words need to sound")]
+		public int PhoneticLevel
+		{
+			get {return _PhoneticLevel;}
+			set {_PhoneticLevel = value;}
 		}
 
 
@@ -1073,6 +1136,7 @@ namespace NetSpell.SpellChecker
 			components = new System.ComponentModel.Container();
 		}
 #endregion
+
 
 	} 
 }

@@ -175,9 +175,6 @@ namespace NetSpell.SpellChecker.Dictionary
 			} // prefix rule
 			// word not found 
 
-			// add word itself
-			_PossibleBaseWords.Add(word);
-
 			return false;
 		}
 
