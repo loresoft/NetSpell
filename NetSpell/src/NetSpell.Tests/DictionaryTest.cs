@@ -39,8 +39,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void Contains() 
 		{
-			string validFile = @"ValidWords.txt";
-			string invalidFile = @"SuggestionTest.txt";
+			string validFile = @"..\..\Data\ValidWords.txt";
+			string invalidFile = @"..\..\Data\SuggestionTest.txt";
 			
 			// open file
 			FileStream fs = new FileStream(validFile, FileMode.Open, FileAccess.Read, FileShare.Read);

@@ -7,7 +7,11 @@
 					<includes name="nunit.framework.dll" />
 			</fileset>
 		</copy>
-
+		<copy todir="${data.dir}">
+					<fileset basedir="Data">
+							<includes name="*.txt" />
+					</fileset>
+		</copy>
 		<csc target="library" warnaserror="false" debug="${build.debug}" output="${build.dir}\bin\${project.name}.${output.name}.dll" doc="">       
 			<sources>
 				<includes name="**\*.cs" />
@@ -23,7 +27,6 @@
 				<includes name="${build.dir}\bin\nunit.framework.dll"/>
 			</references>
 		</csc>
-		<copy file="bin\Debug\SuggestionTest.txt" tofile="${build.dir}\bin\SuggestionTest.txt" />
-		<copy file="bin\Debug\ValidWords.txt" tofile="${build.dir}\bin\ValidWords.txt" />
+		
 	</target>
 </project>

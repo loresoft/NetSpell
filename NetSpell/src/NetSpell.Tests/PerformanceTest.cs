@@ -45,7 +45,7 @@ namespace NetSpell.Tests
 		[Test]
 		public void SuggestionRank()
 		{
-			string invalidFile = @"SuggestionTest.txt";
+			string invalidFile = @"..\..\Data\SuggestionTest.txt";
 			
 			// open file
 			FileStream fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read, FileShare.Read);

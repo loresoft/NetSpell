@@ -2,7 +2,7 @@
 <project name="SpellChecker" default="compile">
 	<property name="output.name" value="DictionaryBuild" />
 	<target name="compile" description="Compile project">
-		<csc target="winexe" warnaserror="false" debug="${build.debug}" output="${build.dir}\bin\${project.name}.${output.name}.exe" doc="">       
+		<csc target="winexe" warnaserror="false" debug="${build.debug}" output="${build.dir}\bin\${project.name}.${output.name}.exe" doc="" win32icon="BOOK01A.ICO">       
 			<sources>
 				<includes name="**\*.cs" />
 			</sources>

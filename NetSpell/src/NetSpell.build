@@ -5,6 +5,7 @@
   <property name="project.config" value="release" />
   <property name="build.debug" value="false" />
   <property name="build.dir" value="${nant.project.basedir}\build\${project.name}-${project.version}" />
+  <property name="data.dir" value="${nant.project.basedir}\build\Data" />
   
   <target name="build" depends="clean" description="Builds NetSpell">
     <echo message="Build Directory is ${build.dir}" />
@@ -12,6 +13,7 @@
     <mkdir dir="${build.dir}\doc" />
     <mkdir dir="${build.dir}\src" />
     <mkdir dir="${build.dir}\dic" />
+    <mkdir dir="${data.dir}" />
     <copy todir="${build.dir}\dic">
     	<fileset basedir="..\dic">
     	    <includes name="*.dic" />
@@ -28,43 +30,46 @@
   </target>
   
   <target name="test" depends="build" description="Runs NUnit Tests">
-	<nunit2>
-		<test assemblyname="${build.dir}\bin\${project.name}.Tests.dll" type="Plain" />
-	</nunit2>
-	<delete>
-	    	<fileset>
-	    	    <includes name="${build.dir}\bin\*.dll" />
-	    	    <includes name="${build.dir}\bin\*.txt" />
-	    	    
-	    	    <excludes name="${build.dir}\bin\NetSpell.SpellChecker.dll" />
-	    	</fileset>
-    	</delete>
+		<nunit2>
+			<test assemblyname="${build.dir}\bin\${project.name}.Tests.dll" type="Plain" />
+		</nunit2>
+		
   </target>
   
   <target name="package" depends="doc" description="Creates a deployment package">
+    <!-- delete test files project files -->
+    <delete>
+					<fileset>
+							<includes name="${build.dir}\bin\*.dll" />
+							<includes name="${build.dir}\bin\*.txt" />
+							<includes name="${build.dir}\bin\*.xml" />
+		
+							<excludes name="${build.dir}\bin\NetSpell.SpellChecker.dll" />
+					</fileset>
+		</delete>
     <!-- copy project files -->
     <copy todir="${build.dir}/src">
-	<fileset>
-	    <includes name="NetSpell.SpellChecker\**" />
-	    <includes name="NetSpell.DictionaryBuild\**" />
-	    <includes name="NetSpell.Tests\**" />
-	    <includes name="NetSpell.Demo.Windows\**" />
-	    <includes name="NetSpell.Demo.Web\**" />
-	    <includes name="*.sln" />
-	    <includes name="readme.txt" />
-	    <includes name="history.txt" />
-	    
-	    <excludes name="NetSpell.TraySpell.sln" />
-	    <!--Start "Exclude VS.Net stuff" -->
-	    <excludes name="**\*.suo" />
-	    <excludes name="**\*j.user" />
-	    <excludes name="**\*.webinfo" />
-	    <excludes name="**\bin\**" />
-	    <excludes name="**\obj\**" />
-	    <excludes name="**\doc\**" />
-	    <excludes name="**\_vti*\**" />
-	    <!--End "Exclude VS.Net stuff"-->
-	</fileset>
+			<fileset>
+					<includes name="NetSpell.SpellChecker\**" />
+					<includes name="NetSpell.DictionaryBuild\**" />
+					<includes name="NetSpell.Tests\**" />
+					<includes name="NetSpell.Demo.Windows\**" />
+					<includes name="NetSpell.Demo.Web\**" />
+					<includes name="*.sln" />
+					<includes name="readme.txt" />
+					<includes name="history.txt" />
+
+					<excludes name="NetSpell.TraySpell.sln" />
+					<!--Start "Exclude VS.Net stuff" -->
+					<excludes name="**\*.suo" />
+					<excludes name="**\*j.user" />
+					<excludes name="**\*.webinfo" />
+					<excludes name="**\bin\**" />
+					<excludes name="**\obj\**" />
+					<excludes name="**\doc\**" />
+					<excludes name="**\_vti*\**" />
+					<!--End "Exclude VS.Net stuff"-->
+			</fileset>
     </copy>
     <!-- create zip file -->
     <property name="project.zip-path" value="${nant.project.basedir}\build\${project.name}-${project.version}.zip" />
