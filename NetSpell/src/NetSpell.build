@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="NetSpell" default="test">
   <property name="project.name" value="NetSpell" />
-  <property name="project.version" value="2.0.2" />
+  <property name="project.version" value="2.0.3" />
   <property name="project.config" value="release" />
   <property name="build.debug" value="false" />
   <property name="build.dir" value="${nant.project.basedir}\build\${project.name}-${project.version}" />
