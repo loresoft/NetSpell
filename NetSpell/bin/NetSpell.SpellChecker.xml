@@ -613,6 +613,26 @@
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.Suggest(System.String)">
+            <summary>
+                Populates the <see cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/> property with word suggestions
+                for the word
+            </summary>
+            <param name="text" type="string">
+                <para>
+                    The word to generate suggestions on
+                </para>
+            </param>
+            <remarks>
+            	This method sets the <see cref="P:NetSpell.SpellChecker.Spelling.Text"/> property to the word. 
+            	Then calls <see cref="M:NetSpell.SpellChecker.Spelling.TestWord(System.String)"/> on the word to generate the need
+            	information for suggestions. Note that the Text, CurrentWord and WordIndex 
+            	properties are set when calling this method.
+            </remarks>
+            <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
+            <seealso cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/>
+            <seealso cref="M:NetSpell.SpellChecker.Spelling.TestWord(System.String)"/>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.Suggest">
             <summary>
                 Populates the <see cref="P:NetSpell.SpellChecker.Spelling.Suggestions"/> property with word suggestions
@@ -755,7 +775,7 @@
             <summary>
                 An array of word suggestions for the correct spelling of the misspelled word
             </summary>
-            <seealso cref="M:NetSpell.SpellChecker.Spelling.Suggest"/>
+            <seealso cref="M:NetSpell.SpellChecker.Spelling.Suggest(System.String)"/>
             <seealso cref="M:NetSpell.SpellChecker.Spelling.SpellCheck"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.MaxSuggestions"/>
         </member>
