@@ -118,6 +118,30 @@ namespace NetSpell.SpellChecker.Dictionary
 		}
 
 		/// <summary>
+		///     Verifies the base word has the affix key
+		/// </summary>
+		/// <param name="word" type="string">
+		///     <para>
+		///         Base word to check
+		///     </para>
+		/// </param>
+		/// <param name="affixKey" type="string">
+		///     <para>
+		///         Affix key to check 
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     True if word contains affix key
+		/// </returns>
+		private bool VerifyAffixKey(string word, char affixKey)
+		{
+			// make sure base word has this affix key
+			Word baseWord = (Word)this.BaseWords[word];
+			ArrayList keys = new ArrayList(baseWord.AffixKeys.ToCharArray());
+			return keys.Contains(affixKey);			
+		}
+
+		/// <summary>
 		///     Adds a word to the user list
 		/// </summary>
 		/// <param name="word" type="string">
@@ -195,9 +219,13 @@ namespace NetSpell.SpellChecker.Dictionary
 					{
 						if (_BaseWords.Contains(tempWord))
 						{
-							return true; // word found
+							if(this.VerifyAffixKey(tempWord, rule.Name[0]))
+							{
+								return true; // word found
+							}
 						}
-						else if(rule.AllowCombine)
+						
+						if(rule.AllowCombine)
 						{
 							// saving word to check if it is a word after prefix is removed
 							suffixWords.Add(tempWord);
@@ -225,13 +253,14 @@ namespace NetSpell.SpellChecker.Dictionary
 						{
 							if (_BaseWords.Contains(tempWord))
 							{
-								return true; // word found
+								if(this.VerifyAffixKey(tempWord, rule.Name[0]))
+								{
+									return true; // word found
+								}
 							}
-							else
-							{
-								// saving possible base words for use in generating suggestions
-								_PossibleBaseWords.Add(tempWord);
-							}
+							
+							// saving possible base words for use in generating suggestions
+							_PossibleBaseWords.Add(tempWord);
 						}
 					} // suffix word
 				} // prefix rule entry
@@ -445,7 +474,7 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			this.LoadUserFile();
 
-			this.Initialized = true;
+			_Initialized = true;
 		}
 
 
@@ -624,7 +653,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		public bool Initialized
 		{
 			get {return _Initialized;}
-			set {_Initialized = value;}
 		}
 
 

@@ -30,7 +30,7 @@ namespace NetSpell.SpellChecker
 #region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex(@"^\d", RegexOptions.Compiled);
-		private Regex _htmlRegex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>", RegexOptions.Compiled);
+		private Regex _htmlRegex = new Regex(@"</[c-g\d]+>|</[i-o\d]+>|</[a\d]+>|</[q-z\d]+>|<[cg]+[^>]*>|<[i-o]+[^>]*>|<[q-z]+[^>]*>|<[a]+[^>]*>|<(\[^\]*\|'[^']*'|[^'\>])*>", RegexOptions.IgnoreCase & RegexOptions.Compiled);
 		private MatchCollection _htmlTags;
 		private Regex _letterRegex = new Regex(@"\D", RegexOptions.Compiled);
 		private Regex _upperRegex = new Regex(@"[^A-Z]", RegexOptions.Compiled);
@@ -381,6 +381,10 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Deletes the CurrentWord from the Text Property
 		/// </summary>
+		/// <remarks>
+		///		Note, calling ReplaceWord with the ReplacementWord property set to 
+		///		an empty string has the same behavior as DeleteWord.
+		/// </remarks>
 		public void DeleteWord()
 		{
 			int index = _words[_WordIndex].Index;
@@ -481,7 +485,7 @@ namespace NetSpell.SpellChecker
 		///     The number of edits to make firstWord equal secondWord
 		/// </returns>
 		/// <remarks>
-		///		This method automaticly gives priority to matching the first and last char
+		///		This method automatically gives priority to matching the first and last char
 		/// </remarks>
 		public int EditDistance(string source, string target)
 		{
@@ -516,10 +520,12 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public void ReplaceAllWord()
 		{
-			if(!_ReplaceList.ContainsKey(_CurrentWord)) 
+			// if not in list and replacement word has length
+			if(!_ReplaceList.ContainsKey(_CurrentWord) && _ReplacementWord.Length > 0) 
 			{
 				_ReplaceList.Add(_CurrentWord, _ReplacementWord);
 			}
+			
 			this.ReplaceWord();
 		}
 
@@ -874,27 +880,27 @@ namespace NetSpell.SpellChecker
 
 
 		/// <summary>
-		///     The suggestion stratagy to use when generating suggestions
+		///     The suggestion strategy to use when generating suggestions
 		/// </summary>
 		public enum SuggestionEnum
 		{
 			/// <summary>
-			///     Combines the phonetic and near miss stratagies
+			///     Combines the phonetic and near miss strategies
 			/// </summary>
 			PhoneticNearMiss,
 			/// <summary>
-			///     The phonetic stratagy generates suggestions by word sound
+			///     The phonetic strategy generates suggestions by word sound
 			/// </summary>
 			/// <remarks>
-			///		This techneque was developed by the open source project ASpell.net
+			///		This technique was developed by the open source project ASpell.net
 			/// </remarks>
 			Phonetic,
 			/// <summary>
-			///     The near miss stratagy generates suggestion by replacing, 
+			///     The near miss strategy generates suggestion by replacing, 
 			///     removing, adding chars to make words
 			/// </summary>
 			/// <remarks>
-			///     This techneque was developed by the open source spell checker ISpell
+			///     This technique was developed by the open source spell checker ISpell
 			/// </remarks>
 			NearMiss
 		}
@@ -1010,7 +1016,7 @@ namespace NetSpell.SpellChecker
 		public string ReplacementWord
 		{
 			get {return _ReplacementWord;}
-			set {_ReplacementWord = value;}
+			set {_ReplacementWord = value.Trim();}
 		}
 
 		/// <summary>
@@ -1049,11 +1055,11 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     The suggestion stratagy to use when generating suggestions
+		///     The suggestion strategy to use when generating suggestions
 		/// </summary>
 		[DefaultValue(SuggestionEnum.PhoneticNearMiss)]
 		[CategoryAttribute("Options")]
-		[Description("The suggestion stratagy to use when generating suggestions")]
+		[Description("The suggestion strategy to use when generating suggestions")]
 		public SuggestionEnum SuggestionMode
 		{
 			get {return _SuggestionMode;}
