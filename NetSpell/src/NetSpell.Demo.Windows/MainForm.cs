@@ -18,9 +18,6 @@ namespace NetSpell.Demo.Windows
 	public class MainForm : System.Windows.Forms.Form
 	{
 		private System.ComponentModel.IContainer components;
-		private System.Windows.Forms.ToolBarButton copyBarButton;
-		private System.Windows.Forms.ToolBarButton cutBarButton;
-		private System.Windows.Forms.ToolBar editToolBar;
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuFile;
 		private System.Windows.Forms.MenuItem menuFileDemo;
@@ -35,22 +32,40 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.MenuItem menuWindowCascade;
 		private System.Windows.Forms.MenuItem menuWindowHorizontal;
 		private System.Windows.Forms.MenuItem menuWindowVertical;
-		private System.Windows.Forms.ToolBarButton newBarButton;
-		private System.Windows.Forms.ToolBarButton openBarButton;
-		private System.Windows.Forms.ToolBarButton pasteBarButton;
-		private System.Windows.Forms.ToolBarButton printBarButton;
-		private System.Windows.Forms.ToolBarButton printPreviewBarButton;
-		private System.Windows.Forms.ToolBarButton redoBarButton;
-		private System.Windows.Forms.ToolBarButton saveBarButton;
-		private System.Windows.Forms.ToolBarButton spellBarButton;
 		private System.Windows.Forms.StatusBar statusBar;
-		private System.Windows.Forms.ToolBarButton toolBarButton1;
-		private System.Windows.Forms.ToolBarButton toolBarButton11;
-		private System.Windows.Forms.ToolBarButton toolBarButton4;
-		private System.Windows.Forms.ToolBarButton toolBarButton8;
 		private System.Windows.Forms.ImageList toolBarImages;
-		private System.Windows.Forms.ToolBarButton undoBarButton;
+		internal System.Windows.Forms.ToolBarButton boldBarButton;
+		internal System.Windows.Forms.ToolBarButton bulletsBarButton;
+		internal System.Windows.Forms.ToolBarButton centerBarButton;
+		internal System.Windows.Forms.ToolBarButton copyBarButton;
+		internal System.Windows.Forms.ToolBarButton cutBarButton;
+		internal System.Windows.Forms.ToolBar editToolBar;
+		internal System.Windows.Forms.ToolBarButton fontBarButton;
+		internal System.Windows.Forms.ToolBarButton fontColorBarButton;
+		internal System.Windows.Forms.ToolBarButton highlightBarButton;
+		internal System.Windows.Forms.ToolBarButton italicBarButton;
+		internal System.Windows.Forms.ToolBarButton leftBarButton;
+		internal System.Windows.Forms.ToolBarButton newBarButton;
+		internal System.Windows.Forms.ToolBarButton openBarButton;
+		internal System.Windows.Forms.ToolBarButton pasteBarButton;
+		internal System.Windows.Forms.ToolBarButton printBarButton;
+		internal System.Windows.Forms.ToolBarButton printPreviewBarButton;
+		internal System.Windows.Forms.ToolBarButton redoBarButton;
+		internal System.Windows.Forms.ToolBarButton rightBarButton;
+		internal System.Windows.Forms.ToolBarButton saveBarButton;
+		internal System.Windows.Forms.ToolBarButton spellBarButton;
 		internal NetSpell.SpellChecker.Spelling SpellChecker;
+		internal System.Windows.Forms.ToolBarButton toolBarButton1;
+		internal System.Windows.Forms.ToolBarButton toolBarButton11;
+		internal System.Windows.Forms.ToolBarButton toolBarButton12;
+		internal System.Windows.Forms.ToolBarButton toolBarButton2;
+		internal System.Windows.Forms.ToolBarButton toolBarButton3;
+		internal System.Windows.Forms.ToolBarButton toolBarButton4;
+		internal System.Windows.Forms.ToolBarButton toolBarButton5;
+		internal System.Windows.Forms.ToolBarButton toolBarButton6;
+		internal System.Windows.Forms.ToolBarButton toolBarButton8;
+		internal System.Windows.Forms.ToolBarButton underlineBarButton;
+		internal System.Windows.Forms.ToolBarButton undoBarButton;
 		
 		public MainForm()
 		{
@@ -119,6 +134,73 @@ namespace NetSpell.Demo.Windows
 				if(this.ActiveMdiChild != null)
 					((DocumentForm)this.ActiveMdiChild).Undo();
 			}
+
+			else if(e.Button == fontBarButton)
+			{
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).SetFont();
+			}
+			else if(e.Button == boldBarButton || e.Button == italicBarButton || e.Button == underlineBarButton)
+			{
+				System.Drawing.FontStyle newFontStyle = FontStyle.Regular;
+				if(this.boldBarButton.Pushed) 
+					newFontStyle |= FontStyle.Bold;
+				if(this.italicBarButton.Pushed) 
+					newFontStyle |= FontStyle.Italic;
+				if(this.underlineBarButton.Pushed) 
+					newFontStyle |= FontStyle.Underline;
+
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).Style(newFontStyle);
+
+			}
+			
+			else if(e.Button == leftBarButton)
+			{
+				leftBarButton.Pushed = true;
+				centerBarButton.Pushed = false;
+				rightBarButton.Pushed = false;
+
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).Alignment(HorizontalAlignment.Left);
+			}
+			else if(e.Button == centerBarButton)
+			{
+				leftBarButton.Pushed = false;
+				centerBarButton.Pushed = true;
+				rightBarButton.Pushed = false;
+
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).Alignment(HorizontalAlignment.Center);;
+			}
+			else if(e.Button == rightBarButton)
+			{
+				centerBarButton.Pushed = false;
+				leftBarButton.Pushed = false;
+				rightBarButton.Pushed = true;
+
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).Alignment(HorizontalAlignment.Right);;
+			}
+			else if(e.Button == bulletsBarButton)
+			{
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).Bullets(bulletsBarButton.Pushed);
+			}
+	
+			else if(e.Button == fontColorBarButton)
+			{
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild).SetFontColor();
+			}
+			/*
+			else if(e.Button == highlightBarButton)
+			{
+				if(this.ActiveMdiChild != null)
+					((DocumentForm)this.ActiveMdiChild);
+			}
+			*/
+
 		}
 
 		/// <summary>
@@ -262,6 +344,18 @@ namespace NetSpell.Demo.Windows
 			this.pasteBarButton.Enabled = false;
 			this.undoBarButton.Enabled = false;
 			this.redoBarButton.Enabled = false;
+
+			this.fontBarButton.Enabled = false;
+			this.boldBarButton.Enabled = false;
+			this.italicBarButton.Enabled = false;
+			this.underlineBarButton.Enabled = false;
+			this.leftBarButton.Enabled = false;
+			this.centerBarButton.Enabled = false;
+			this.rightBarButton.Enabled = false;
+			this.bulletsBarButton.Enabled = false;
+			this.fontColorBarButton.Enabled = false;
+			this.highlightBarButton.Enabled = false;
+
 		}
 		
 		internal void EnableEditButtons()
@@ -275,6 +369,17 @@ namespace NetSpell.Demo.Windows
 			this.pasteBarButton.Enabled = true;
 			this.undoBarButton.Enabled = true;
 			this.redoBarButton.Enabled = true;
+
+			this.fontBarButton.Enabled = true;
+			this.boldBarButton.Enabled = true;
+			this.italicBarButton.Enabled = true;
+			this.underlineBarButton.Enabled = true;
+			this.leftBarButton.Enabled = true;
+			this.centerBarButton.Enabled = true;
+			this.rightBarButton.Enabled = true;
+			this.bulletsBarButton.Enabled = true;
+			this.fontColorBarButton.Enabled = true;
+			this.highlightBarButton.Enabled = true;
 		}
 
 		internal void SaveAll()
@@ -282,6 +387,45 @@ namespace NetSpell.Demo.Windows
 			foreach (DocumentForm child in this.MdiChildren)
 			{
 				child.Save();
+			}
+		}
+
+		internal void UpdateButtons(FontStyle style, bool bullet, HorizontalAlignment alignment)
+		{
+			if((style & FontStyle.Bold) == FontStyle.Bold)
+				this.boldBarButton.Pushed = true;
+			else 
+				this.boldBarButton.Pushed = false;
+
+			if((style & FontStyle.Italic) == FontStyle.Italic)
+				this.italicBarButton.Pushed = true;
+			else 
+				this.italicBarButton.Pushed = false;
+
+			if((style & FontStyle.Underline) == FontStyle.Underline)
+				this.underlineBarButton.Pushed = true;
+			else 
+				this.underlineBarButton.Pushed = false;
+
+			this.bulletsBarButton.Pushed = bullet;
+
+			switch (alignment) 
+			{
+				case HorizontalAlignment.Left :
+					this.leftBarButton.Pushed = true;
+					this.centerBarButton.Pushed = false;
+					this.rightBarButton.Pushed = false;
+					break;
+				case HorizontalAlignment.Center :
+					this.leftBarButton.Pushed = false;
+					this.centerBarButton.Pushed = true;
+					this.rightBarButton.Pushed = false;
+					break;
+				case HorizontalAlignment.Right :
+					this.leftBarButton.Pushed = false;
+					this.centerBarButton.Pushed = false;
+					this.rightBarButton.Pushed = true;
+					break;
 			}
 		}
 
@@ -317,6 +461,7 @@ namespace NetSpell.Demo.Windows
 			this.toolBarButton4 = new System.Windows.Forms.ToolBarButton();
 			this.printBarButton = new System.Windows.Forms.ToolBarButton();
 			this.printPreviewBarButton = new System.Windows.Forms.ToolBarButton();
+			this.toolBarButton5 = new System.Windows.Forms.ToolBarButton();
 			this.spellBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton1 = new System.Windows.Forms.ToolBarButton();
 			this.cutBarButton = new System.Windows.Forms.ToolBarButton();
@@ -326,6 +471,20 @@ namespace NetSpell.Demo.Windows
 			this.undoBarButton = new System.Windows.Forms.ToolBarButton();
 			this.redoBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton11 = new System.Windows.Forms.ToolBarButton();
+			this.fontBarButton = new System.Windows.Forms.ToolBarButton();
+			this.toolBarButton2 = new System.Windows.Forms.ToolBarButton();
+			this.boldBarButton = new System.Windows.Forms.ToolBarButton();
+			this.italicBarButton = new System.Windows.Forms.ToolBarButton();
+			this.underlineBarButton = new System.Windows.Forms.ToolBarButton();
+			this.toolBarButton6 = new System.Windows.Forms.ToolBarButton();
+			this.leftBarButton = new System.Windows.Forms.ToolBarButton();
+			this.centerBarButton = new System.Windows.Forms.ToolBarButton();
+			this.rightBarButton = new System.Windows.Forms.ToolBarButton();
+			this.toolBarButton12 = new System.Windows.Forms.ToolBarButton();
+			this.bulletsBarButton = new System.Windows.Forms.ToolBarButton();
+			this.toolBarButton3 = new System.Windows.Forms.ToolBarButton();
+			this.fontColorBarButton = new System.Windows.Forms.ToolBarButton();
+			this.highlightBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarImages = new System.Windows.Forms.ImageList(this.components);
 			this.SpellChecker = new NetSpell.SpellChecker.Spelling(this.components);
 			this.SuspendLayout();
@@ -452,6 +611,7 @@ namespace NetSpell.Demo.Windows
 																						   this.toolBarButton4,
 																						   this.printBarButton,
 																						   this.printPreviewBarButton,
+																						   this.toolBarButton5,
 																						   this.spellBarButton,
 																						   this.toolBarButton1,
 																						   this.cutBarButton,
@@ -460,7 +620,21 @@ namespace NetSpell.Demo.Windows
 																						   this.toolBarButton8,
 																						   this.undoBarButton,
 																						   this.redoBarButton,
-																						   this.toolBarButton11});
+																						   this.toolBarButton11,
+																						   this.fontBarButton,
+																						   this.toolBarButton2,
+																						   this.boldBarButton,
+																						   this.italicBarButton,
+																						   this.underlineBarButton,
+																						   this.toolBarButton6,
+																						   this.leftBarButton,
+																						   this.centerBarButton,
+																						   this.rightBarButton,
+																						   this.toolBarButton12,
+																						   this.bulletsBarButton,
+																						   this.toolBarButton3,
+																						   this.fontColorBarButton,
+																						   this.highlightBarButton});
 			this.editToolBar.ButtonSize = new System.Drawing.Size(24, 24);
 			this.editToolBar.DropDownArrows = true;
 			this.editToolBar.ImageList = this.toolBarImages;
@@ -500,6 +674,10 @@ namespace NetSpell.Demo.Windows
 			// 
 			this.printPreviewBarButton.ImageIndex = 3;
 			this.printPreviewBarButton.ToolTipText = "Print Preview";
+			// 
+			// toolBarButton5
+			// 
+			this.toolBarButton5.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
 			// 
 			// spellBarButton
 			// 
@@ -542,6 +720,79 @@ namespace NetSpell.Demo.Windows
 			// toolBarButton11
 			// 
 			this.toolBarButton11.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+			// 
+			// fontBarButton
+			// 
+			this.fontBarButton.ImageIndex = 13;
+			this.fontBarButton.ToolTipText = "Font";
+			// 
+			// toolBarButton2
+			// 
+			this.toolBarButton2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+			// 
+			// boldBarButton
+			// 
+			this.boldBarButton.ImageIndex = 14;
+			this.boldBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.boldBarButton.ToolTipText = "Bold";
+			// 
+			// italicBarButton
+			// 
+			this.italicBarButton.ImageIndex = 15;
+			this.italicBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.italicBarButton.ToolTipText = "Italic";
+			// 
+			// underlineBarButton
+			// 
+			this.underlineBarButton.ImageIndex = 16;
+			this.underlineBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.underlineBarButton.ToolTipText = "Underline";
+			// 
+			// toolBarButton6
+			// 
+			this.toolBarButton6.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+			// 
+			// leftBarButton
+			// 
+			this.leftBarButton.ImageIndex = 17;
+			this.leftBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.leftBarButton.ToolTipText = "Align Left";
+			// 
+			// centerBarButton
+			// 
+			this.centerBarButton.ImageIndex = 18;
+			this.centerBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.centerBarButton.ToolTipText = "Align Center";
+			// 
+			// rightBarButton
+			// 
+			this.rightBarButton.ImageIndex = 19;
+			this.rightBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.rightBarButton.ToolTipText = "Align Right";
+			// 
+			// toolBarButton12
+			// 
+			this.toolBarButton12.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+			// 
+			// bulletsBarButton
+			// 
+			this.bulletsBarButton.ImageIndex = 20;
+			this.bulletsBarButton.Style = System.Windows.Forms.ToolBarButtonStyle.ToggleButton;
+			this.bulletsBarButton.ToolTipText = "Bullets";
+			// 
+			// toolBarButton3
+			// 
+			this.toolBarButton3.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+			// 
+			// fontColorBarButton
+			// 
+			this.fontColorBarButton.ImageIndex = 22;
+			this.fontColorBarButton.ToolTipText = "Font Color";
+			// 
+			// highlightBarButton
+			// 
+			this.highlightBarButton.ImageIndex = 23;
+			this.highlightBarButton.ToolTipText = "Highlight";
 			// 
 			// toolBarImages
 			// 

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Printing;
+using System.Drawing;
 using System.IO;
 using System.Text;
 
@@ -18,6 +19,7 @@ namespace NetSpell.Demo.Windows
 
 		private bool _Changed = false;
 		private string _FileName = "untitled";
+		private System.Windows.Forms.ColorDialog colorDialog;
 
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +31,6 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.MenuItem contextMenuPaste;
 		private System.Windows.Forms.MenuItem contextMenuSelectAll;
 		private System.Windows.Forms.MenuItem contextMenuUndo;
-		internal System.Windows.Forms.RichTextBox Document;
 		private System.Windows.Forms.FontDialog fontDialog;
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuEdit;
@@ -66,6 +67,7 @@ namespace NetSpell.Demo.Windows
 		private System.Drawing.Printing.PrintDocument printDocument;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
 		private System.Windows.Forms.SaveFileDialog saveDialog;
+		internal System.Windows.Forms.RichTextBox Document;
 
 		public DocumentForm()
 		{
@@ -73,6 +75,19 @@ namespace NetSpell.Demo.Windows
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
+		}
+
+		private void Document_SelectionChanged(object sender, System.EventArgs e)
+		{
+			
+			if (this.MdiParent != null) 
+			{
+				MainForm main = (MainForm)this.MdiParent;
+
+				main.UpdateButtons(Document.SelectionFont.Style, 
+					Document.SelectionBullet,
+					Document.SelectionAlignment);
+			}		
 		}
 
 		private void Document_TextChanged(object sender, System.EventArgs e)
@@ -86,7 +101,10 @@ namespace NetSpell.Demo.Windows
 			{
 				MainForm main = (MainForm)this.MdiParent;
 				main.EnableEditButtons();
-			}
+				main.UpdateButtons(Document.SelectionFont.Style, 
+					Document.SelectionBullet,
+					Document.SelectionAlignment);
+			}		
 		}
 
 		private void DocumentForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -208,11 +226,7 @@ namespace NetSpell.Demo.Windows
 
 		private void menuFormatFont_Click(object sender, System.EventArgs e)
 		{
-			this.fontDialog.Font = this.Document.Font;
-			if (this.fontDialog.ShowDialog(this) == DialogResult.OK)
-			{
-				this.Document.Font = this.fontDialog.Font;
-			}
+			this.SetFont();
 		}
 
 		private void menuFormatWrap_Click(object sender, System.EventArgs e)
@@ -309,6 +323,16 @@ namespace NetSpell.Demo.Windows
 			base.Dispose( disposing );
 		}
 
+		internal void Alignment(HorizontalAlignment alignment)
+		{
+			Document.SelectionAlignment = alignment;
+		}
+
+		internal void Bullets(bool value)
+		{
+			Document.SelectionBullet = value;
+		}
+
 		internal void Copy()
 		{
 			this.Document.Copy();
@@ -388,6 +412,24 @@ namespace NetSpell.Demo.Windows
 			this.Changed = false;
 		}
 
+		internal void SetFont()
+		{
+			this.fontDialog.Font = Document.SelectionFont;
+			if (this.fontDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				Document.SelectionFont = this.fontDialog.Font;
+			}
+		}
+
+		internal void SetFontColor()
+		{
+			this.colorDialog.Color = Document.SelectionColor;
+			if (this.colorDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				Document.SelectionColor = this.colorDialog.Color;
+			}
+		}
+
 		internal void SpellCheck()
 		{
 			if (this.MdiParent != null) 
@@ -395,6 +437,19 @@ namespace NetSpell.Demo.Windows
 				MainForm main = (MainForm)this.MdiParent;
 				main.SpellChecker.Text = this.Document.Text;
 				main.SpellChecker.SpellCheck();
+			}
+		}
+
+		internal void Style(FontStyle style)
+		{
+			if (Document.SelectionFont != null)
+			{
+				System.Drawing.Font currentFont = Document.SelectionFont;
+				
+				Document.SelectionFont = new Font(
+					currentFont.FontFamily, 
+					currentFont.Size, 
+					style);
 			}
 		}
 
@@ -436,7 +491,7 @@ namespace NetSpell.Demo.Windows
 			}
 		}
 
-		#region Windows Form Designer generated code
+#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -487,6 +542,7 @@ namespace NetSpell.Demo.Windows
 			this.saveDialog = new System.Windows.Forms.SaveFileDialog();
 			this.openDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
+			this.colorDialog = new System.Windows.Forms.ColorDialog();
 			this.SuspendLayout();
 			// 
 			// mainMenu
@@ -730,6 +786,7 @@ namespace NetSpell.Demo.Windows
 			this.Document.TabIndex = 0;
 			this.Document.Text = "";
 			this.Document.TextChanged += new System.EventHandler(this.Document_TextChanged);
+			this.Document.SelectionChanged += new System.EventHandler(this.Document_SelectionChanged);
 			// 
 			// contextMenu
 			// 
@@ -820,9 +877,9 @@ namespace NetSpell.Demo.Windows
 			this.ResumeLayout(false);
 
 		}
-		#endregion
+#endregion
 
-		#region RichTextBox Printing Functions
+#region RichTextBox Printing Functions
 		//Convert the unit used by the .NET framework (1/100 inch) 
 		//and the unit used by Win32 API calls (twips 1/1440 inch)
 		private const double anInch = 14.4;
@@ -832,6 +889,8 @@ namespace NetSpell.Demo.Windows
 		
 		[DllImport("USER32.dll")]
 		private static extern IntPtr SendMessage (IntPtr hWnd , int msg , IntPtr wp, IntPtr lp);
+
+
 
 		[StructLayout(LayoutKind.Sequential)]
 			private struct CHARRANGE
@@ -859,7 +918,6 @@ namespace NetSpell.Demo.Windows
 			public int Bottom;
 		}
 
-		#endregion
-
+#endregion
 	}
 }

@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<title>The Code Project - NetSpell</title>
+<style>
+BODY, P, TD { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt }
+H2,H3,H4,H5 { color: #ff9900; font-weight: bold; }
+H2 { font-size: 13pt; }
+H3 { font-size: 12pt; }
+H4 { font-size: 10pt; color: black; }
+PRE { BACKGROUND-COLOR: #FBEDBB; FONT-FAMILY: "Courier New", Courier, mono; WHITE-SPACE: pre; }
+CODE { COLOR: #990000; FONT-FAMILY: "Courier New", Courier, mono; }
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.codeproject.com/styles/global.css">
+</head>
+
+<body bgcolor="#FFFFFF" color="#000000">
+
+<pre>
+
+Title:       NetSpell - Spell Checker for .net
+Author:      Paul Welter 
+Email:       pwelter@loresoft.com
+Environment: C#, ASP.NET, XP, W2K, Win2003, .NET 1.1, .NET 1.0, NT4
+Keywords:    Spell Checker, Control
+Level:       Intermediate&quot;
+Description: The NetSpell project is a spell checking engine written entirely in managed C# .net code.
+Section      C# Controls
+SubSection   General
+</pre>
+<ul class="download">
+	<li><a href="http://sourceforge.net/projects/netspell/">Download source - 3.33 
+	MB</a></li>
+</ul>
+<p><img src="netspell.JPG" alt="NetSpell" width="456" height="336"></p>
+<h2>Introduction</h2>
+<p>The NetSpell project is a spell checking engine written entirely in managed 
+C# .net code. Package includes an English dictionary with dictionaries for other 
+languages available for download on the project web site. NetSpell&#39;s suggestions 
+for misspelled words are generated using phonetic (sounds like) matching and ranked 
+by a typographical score (looks like). Also supports &quot;ignore all&quot; and &quot;replace all&quot; 
+misspelled-word handling. Project also includes a dictionary build tool to build 
+custom dictionaries.</p>
+<p><i>TODO: Write better intro, include that it uses affix compression and supports 
+multiple languages...</i></p>
+<h2>The Dictionary</h2>
+<p>The root of all spell checkers is a word list, aka the dictionary.&nbsp; The 
+dictionary contains a list of all possible correctly spelled words for a 
+language.&nbsp; For example, the US English dictionary that comes with this 
+package contains 162,573 words.</p>
+<p>When designing the dictionary for NetSpell I wanted the dictionary to be a 
+single file, be 
+as small as possible and load extremely fast. I experimented with many different 
+ways to save and load the large word lists.&nbsp; Some techniques I tried 
+were everything from a saved dataset to a binary serialized collection, all of 
+wish proved to be too slow. I ended up using the good old UTF8 text file. 
+Loading and parsing a text file proved to be extremely fast.</p>
+<h2>Affix Compression</h2>
+<p>The first issue I wanted to tackle was the file size.&nbsp; Any compression 
+scheme would have to decompress really fast. I first tried using zip.&nbsp; 
+While the dictionary loaded in the one second range, it was still not fast 
+enough to be used in a web environment.</p>
+<p>My research into spell checkers turned up a popular technique called Affix 
+Compression.&nbsp; Affix Compression is using a base word and adding prefixes 
+and suffixes to it to create other words.&nbsp; The affix compression scheme was 
+originally developed by Geoff Kuenning for his ISpell spell checker. The 
+OpenOffice project expanded the Affix Compression scheme to simplify its rule 
+definitions.&nbsp; The NetSpell 
+Affix implementation is largely based on the OpenOffice MySpell format.&nbsp; 
+Read the following <a href="http://lingucomponent.openoffice.org/affix.readme">
+link</a> to better understand Affix Compression format.</p>
+<p>As a result of using the OpenOffice dictionary format, NetSpell dictionaries 
+are easily created from OpenOffice dictionaries.&nbsp; This allows NetSpell to 
+easily support additionally languages.&nbsp; The NetSpell package includes a 
+dictionary build tool that allows you to create new dictionaries.&nbsp; The 
+build tool also allows you to import OpenOffice dictionaries and save them to 
+the NetSpell format.</p>
+<h2>Dictionary Sections</h2>
+<p>To satisfy the goal of making the dictionary a single file, I needed a way to 
+separate different sections of the file to store different types of data as a 
+word list was not the only data need to be stored.&nbsp; I decided to use the 
+INI section format. I thought about using XML but XML carries a large weight in 
+terms of file size because of the use of tags.&nbsp; I ended up with the 
+following sections in the file.</p>
+<p><b>[Copyright]</b><br>
+The Copyright section contains any copyright information about the word list for 
+the particular dictionary. </p>
+<p><b>[Try]</b> <br>
+The try section contains a sequence of letters that are used to try to make a 
+correct word out of a misspelled word. They should be listed on a single line in 
+order of character frequency (highest to lowest).&nbsp; This section is used by 
+the Near Miss Strategy discussed letter.</p>
+<p><b>[Replace]</b> <br>
+The replace section contains a sequence of letter combinations that are often 
+misspelled, for example ei and ie.&nbsp; The data is entered in this section in 
+a <i>search characters</i> space <i>replace characters</i> format.&nbsp; The ei, 
+ie example would look like this in the dictionary, &quot;ei ie&quot;. This section is used 
+by the Near Miss Strategy discussed letter.</p>
+<p><b>[Prefix]</b><br>
+The prefix section is used to define a set of affix rules for prefixes that can 
+be attached to the beginning of a base word to form other words.&nbsp; The 
+format of these rules follows the same format as OpenOffice's affix files except 
+the PFX is removed. You can read more about the OpenOffice affix format
+<a href="http://lingucomponent.openoffice.org/affix.readme">here</a></p>
+<p><b>[Suffix]</b><br>
+The suffix section is used to define a set of affix rules for suffixes that can 
+be attached to the end of a base word to form other words.&nbsp; The format of 
+suffix rules follows the same format as OpenOffice's affix files except the SFX 
+is removed. You can read more about the OpenOffice affix format
+<a href="http://lingucomponent.openoffice.org/affix.readme">here</a></p>
+<p><b>[Phonetic]</b><br>
+The phonetic section is optional and it contains a set of rule that define how 
+to generate a phonetic code for a character or set of characters.&nbsp; The 
+phonetic code is generated using Lawrence Philips' Metaphone Algorithm that has 
+been adapted to a table format by the ASpell project.&nbsp; The NetSpell 
+dictionary uses the same format that ASpell uses.&nbsp; ASpell phonetic maps can 
+be used directly by NetSpell.&nbsp; See the following
+<a href="http://savannah.gnu.org/download/aspell/manual/user/7_Adding.html#SECTION00830000000000000000">
+link</a> to learn more about the ASpell phonetic code.</p>
+<p><b>[Words]</b><br>
+The words section is the list of base words for this dictionary.&nbsp; The 
+format for this section is <i>word/affix keys/phonetic code</i>.&nbsp; The affix 
+keys and phonetic code portions are optional.&nbsp; The affix keys portion 
+indicates which affix rules apply to this word.&nbsp; The phonetic code portion 
+is a cache of the phonetic code for this word and is used by the phonetic 
+suggestion strategy&nbsp; </p>
+<h2>Spell Checking Text</h2>
+<p>Spell checking is normally done by searching the dictionary for the given 
+word.&nbsp; Now that we've implemented affix compression, searching for the word 
+become more complicated.&nbsp; We have to create base words out of the given 
+word. The process goes like this, first the base word list is searched for the 
+given word.&nbsp; If the word is not found in the base word like, the suffix 
+rules are removed from the word.&nbsp; After a suffix is removed, then the new 
+word is checked to see if it is in the base word list.&nbsp; If the word is 
+still not found, the same process is repeated for the prefixes. If the word 
+can't be found after removing the suffixes and prefixes, then the word is not 
+found in this dictionary and is most likely misspelled.</p>
+<h2>Generating Suggestions</h2>
+<p>Once its been determined that the word is misspell, we need to generate 
+suggestions for the correct spelling of that word.&nbsp; This is where the magic 
+of a spell checker happens. NetSpell uses two different techniques to generate 
+suggestions.&nbsp; The first was developed by Geoff Kuenning for ISpell and is 
+commonly called the near miss strategy. The second is Lawrence Philips' 
+Metaphone Algorithm which returns a code that is a rough approximation of how an 
+English word sounds.</p>
+<h2>Near Miss Strategy</h2>
+<p>The near miss strategy is a fairly simple way to generate suggestions.&nbsp; 
+Near miss takes the approach&nbsp; that the user didn't necessarily misspell the 
+word but rather that they mistyped it.&nbsp; Two words are considered near if 
+they can be made identical by either inserting a blank space, interchanging two 
+adjacent letter, changing one letter, deleting one letter or adding one letter. 
+If a valid word is generated using these techniques, then it is added to the 
+suggestion list. As you might have guessed, the near miss strategy doesn't 
+provide the best list of suggestions when a word is truly misspelled.&nbsp; That 
+is where the phonetic strategy kicks in. </p>
+<h2>Phonetic Strategy</h2>
+<p>To understand the phonetic strategy, phonetic code needs to be defined.&nbsp; 
+A phonetic code is a rough approximation of how the word sounds.&nbsp; Each 
+character in the code represents a sound.&nbsp; Its important to also understand 
+that the phonetic code does not indicate how to pronounce the word, its only a 
+representation of how it sounds.</p>
+<p>&nbsp;The phonetic strategy is simply comparing the phonetic code of the 
+misspelled word to all the words in the word list.&nbsp; If the phonetic codes 
+match, then the word is added to the suggestion list.&nbsp; </p>
+<p>While that process may sound strait forward, it becomes much more complicated 
+when affix compression is introduced.&nbsp; An affix compressed word list only 
+contains base words.&nbsp; We can't just compare the phonetic code of the 
+misspelled word to the word list because the misspelled word may or may not be a 
+base word.&nbsp; To solve this issue, we remove all affix rules that pass the 
+conditions of the rule from the misspelled word and add the resulting string to 
+a possible base word list.&nbsp; An important note to keep in mind is that the 
+possible base word list is not a list of real words.&nbsp; It is only a list of 
+strings that can be made by removing the affix rules from the misspelled word.</p>
+<p>Now that we have a list of possible base words from the misspelled word, we 
+can generate the phonetic code on them and compare those codes with the list of 
+base words.&nbsp; If one of the codes match the base word code, we add that word 
+to the list of suggestion.&nbsp; Since we removed all the affix keys and we 
+compared only the base words, an expanded base word could be the correct word.&nbsp; 
+So, we expand the base word that matched by applying all the affix rules to get 
+a list of all the possible words from that base word. We then add that list to 
+the suggestion list.</p>
+<h2>Ranking Suggestions</h2>
+<p>Now that we have a list of suggestions, we need some way to rank them by the 
+most likely to be the correct spelling. My research into the best way to go 
+about this turned up the Edit Distance Algorithm.&nbsp; The edit distance is 
+defined as the smallest number of insertions, deletions, and substitutions 
+required to change one string into another. </p>
+<h2>Using the Library</h2>
+<p>&nbsp;</p>
+<pre lang="cs">
+NetSpell.SpellChecker.Spelling SpellChecker;
+
+SpellChecker.Text = this.Document.Text;
+SpellChecker.SpellCheck();
+</pre>
+
+<h2>References and Credits</h2>
+<ul>
+	<li>OpenOffice Lingucomponent
+	<a href="http://lingucomponent.openoffice.org/dictionary.html">
+	http://lingucomponent.openoffice.org/dictionary.html</a></li>
+	<li>ASpell <a href="http://aspell.net/">http://aspell.net/</a></li>
+	<li>Metaphone Algorithm <a href="http://aspell.net/metaphone/">
+	http://aspell.net/metaphone/</a></li>
+	<li>Dictionary Wordlists <a href="http://wordlist.sourceforge.net/">
+	http://wordlist.sourceforge.net/</a></li>
+</ul>
+
+</body>
+
+</html>
