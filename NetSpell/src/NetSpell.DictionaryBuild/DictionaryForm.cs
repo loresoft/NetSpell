@@ -5,6 +5,12 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+
+using NetSpell.SpellChecker;
+using NetSpell.SpellChecker.Dictionary;
+using NetSpell.SpellChecker.Dictionary.Affix;
+using NetSpell.SpellChecker.Dictionary.Phonetic;
 
 namespace NetSpell.DictionaryBuild
 {
@@ -15,6 +21,9 @@ namespace NetSpell.DictionaryBuild
 	{
 		private bool _Changed = false;
 		private string _FileName = "untitled";
+		
+		// the following is used to split a line by white space
+		private Regex _spaceRegx = new Regex(@"[^\s]+", RegexOptions.Compiled);
 		private ArrayList _Words = new ArrayList();
 		private System.Windows.Forms.Button btnSearch;
 
@@ -66,9 +75,6 @@ namespace NetSpell.DictionaryBuild
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
 		}
 
 		private void btnSearch_Click(object sender, System.EventArgs e)
@@ -84,18 +90,26 @@ namespace NetSpell.DictionaryBuild
 		{
 			if (_Changed)
 			{
-				if (MessageBox.Show(this, "Save Dictionary?", 
-					"Save Dictionary", MessageBoxButtons.YesNo, 
-					MessageBoxIcon.Question) == DialogResult.Yes)
+				DialogResult result = MessageBox.Show(this, 
+					string.Format("Save changes to {0}?", Path.GetFileName(this.FileName)), 
+					"Save Dictionary", MessageBoxButtons.YesNoCancel, 
+					MessageBoxIcon.Question);
+
+				switch (result)
 				{
-					SaveDictionary();
+					case DialogResult.Yes :
+						this.SaveDictionary();
+						break;
+					case DialogResult.Cancel :
+						e.Cancel = true;
+						break;
 				}
 			}
 		}
 
 		private void form_TextChanged(object sender, System.EventArgs e)
 		{
-			if (!_Changed) _Changed = true;
+			this.Changed = true;
 		}
 
 		private void menuAffix_Click(object sender, System.EventArgs e)
@@ -105,7 +119,7 @@ namespace NetSpell.DictionaryBuild
 
 		private void menuGenerate_Click(object sender, System.EventArgs e)
 		{
-		
+			this.GenerateCache();
 		}
 
 		private void menuPhonetic_Click(object sender, System.EventArgs e)
@@ -118,7 +132,7 @@ namespace NetSpell.DictionaryBuild
 			this.LoadWords();
 		}
 
-		private void numUpDownWord_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+		private void numUpDownWord_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
 			if ((int)numUpDownWord.Value < _Words.Count)
 			{
@@ -133,27 +147,198 @@ namespace NetSpell.DictionaryBuild
 				this.txtCurrentWord.Text = _Words[(int)numUpDownWord.Value].ToString();
 			}
 		}
+		
+		public void GenerateCache()
+		{
+
+			// if saved and words > 0
+			if (_Words.Count == 0)
+			{
+				MessageBox.Show(this, "Dictionary contains no words!", "No Words", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (this.Changed)
+			{
+				if (MessageBox.Show(this, "Dictionary should be saved before phonetic cache is added. \r\n \r\n Save Dictonary Now?", 
+					"Save Dictonary", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				{
+					this.SaveDictionary();
+				}
+				else
+				{
+					return;
+				}
+			}
+
+			this.Cursor = Cursors.WaitCursor;
+			// load dictionary
+			WordDictionary dict = new WordDictionary();
+			dict.DictionaryFile = this.FileName;
+			dict.Initialize();
+			this.Cursor = Cursors.Default;
+
+			if (dict.PhoneticRules.Count == 0)
+			{
+				MessageBox.Show(this, "Dictionary does not contain phonetic rules!", "No Phonetic Rules", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			MainForm main = (MainForm)this.MdiParent;
+
+			this.Cursor = Cursors.WaitCursor;
+			for (int i = 0; i < _Words.Count; i++)
+			{
+				if (i % 1000 == 0)
+				{
+					main.statusBar.Text = string.Format("Word {0} of {1}", i, _Words.Count);
+					Application.DoEvents();
+				}
+
+				string[] parts = _Words[i].ToString().Split('/');
+				// part 1 = base word
+				string tempWord = parts[0];
+				
+				// part 2 = affix keys
+				string tempKeys = "";
+				if (parts.Length >= 2) 
+				{
+					tempKeys = parts[1];
+				}
+				// part 3 = phonetic code
+				string tempCode = dict.PhoneticCode(tempWord);
+								
+				if (tempCode.Length > 0)
+				{
+					_Words[i] = string.Format("{0}/{1}/{2}", tempWord, tempKeys, tempCode);
+				}
+			}
+			main.statusBar.Text = "";
+
+			this.Changed = true;
+			this.Cursor = Cursors.Default;
+			MessageBox.Show(this, "Cache created successfully", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
 
 		public void LoadAffix()
 		{
+			if (this.openAffixDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				this.txtTry.Text = "";
+				this.txtReplace.Text = "";
+				this.txtPrefix.Text = "";
+				this.txtSuffix.Text = "";
+				
+				// open dictionary file
+				FileStream fs = (FileStream)openAffixDialog.OpenFile();
+				StreamReader sr = new StreamReader(fs, Encoding.UTF7);
 
+				// read line by line
+				while (sr.Peek() >= 0) 
+				{
+					string tempLine = sr.ReadLine().Trim();
+					if (tempLine.Length > 3)
+					{
+						switch (tempLine.Substring(0, 3))
+						{
+							case "TRY" :
+								this.txtTry.Text = tempLine.Substring(4);
+								break;
+							case "PFX" :
+								this.txtPrefix.AppendText(tempLine.Substring(4) + "\r\n");
+								break;
+							case "SFX" :
+								this.txtSuffix.AppendText(tempLine.Substring(4) + "\r\n");
+								break;
+							case "REP" :
+								if (!char.IsNumber(tempLine.Substring(4)[0]))
+								{
+									this.txtReplace.AppendText(tempLine.Substring(4) + "\r\n");
+								}
+								break;
+						}
+					}
+
+				}
+				// close reader
+				sr.Close();
+				// close stream
+				fs.Close();
+			}
+			this.Cursor = Cursors.Default;
 		}
 
 		public void LoadPhonetic()
 		{
+			if (this.openPhoneticDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				// open dictionary file
+				FileStream fs = (FileStream)openPhoneticDialog.OpenFile();
+				StreamReader sr = new StreamReader(fs, Encoding.UTF7);
 
+				this.txtPhonetic.Text = "";
+
+				// read line by line
+				while (sr.Peek() >= 0) 
+				{
+					string tempLine = sr.ReadLine().Trim();
+					if (!tempLine.StartsWith("#") 
+						&& !tempLine.StartsWith("version") 
+						&& !tempLine.StartsWith("followup")
+						&& !tempLine.StartsWith("collapse_result")
+						&& tempLine.Length > 0)
+					{
+						this.txtPhonetic.AppendText(tempLine + "\r\n");
+					}
+				}
+				// close reader
+				sr.Close();
+				// close stream
+				fs.Close();
+			}
+			this.Cursor = Cursors.Default;
 		}
 
 		public void LoadWords()
 		{
+			if (this.openWordsDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				this.Cursor = Cursors.WaitCursor;
+				// open dictionary file
+				FileStream fs = (FileStream)openWordsDialog.OpenFile();
+				StreamReader sr = new StreamReader(fs, Encoding.UTF7);
 
+				_Words.Clear();
+
+				// read line by line
+				while (sr.Peek() >= 0) 
+				{
+					string tempLine = sr.ReadLine().Trim();
+					if (!char.IsNumber(tempLine[0]))
+					{
+						_Words.Add(tempLine);
+					}
+				}
+				// close reader
+				sr.Close();
+				// close stream
+				fs.Close();
+
+				this.numUpDownWord.Value = 0;
+				this.numUpDownWord.Maximum = _Words.Count;
+				this.txtWordCount.Text = _Words.Count.ToString();
+				this.txtCurrentWord.Text = _Words[0].ToString();
+			}
+			this.Cursor = Cursors.Default;
 		}
-		
 
 		public bool OpenDictionary()
 		{
 			if (this.openDictionaryDialog.ShowDialog(this) == DialogResult.OK)
 			{
+				this.Cursor = Cursors.WaitCursor;
 				// open dictionary file
 				FileStream fs = (FileStream)openDictionaryDialog.OpenFile();
 				StreamReader sr = new StreamReader(fs, Encoding.UTF8);
@@ -171,6 +356,8 @@ namespace NetSpell.DictionaryBuild
 				while (sr.Peek() >= 0) 
 				{
 					string tempLine = sr.ReadLine().Trim();
+					if (tempLine.Length > 0)
+					{
 						switch (tempLine)
 						{
 							case "[Copyright]" :
@@ -189,10 +376,7 @@ namespace NetSpell.DictionaryBuild
 									this.txtCopyright.AppendText(tempLine + "\r\n");
 									break;
 								case "[Try]" : 
-									if (tempLine.Length > 0)
-									{
-										this.txtTry.AppendText(tempLine);
-									}
+									this.txtTry.AppendText(tempLine);
 									break;
 								case "[Replace]" : 
 									this.txtReplace.AppendText(tempLine + "\r\n");
@@ -207,15 +391,12 @@ namespace NetSpell.DictionaryBuild
 									this.txtPhonetic.AppendText(tempLine + "\r\n");
 									break;
 								case "[Words]" :
-									if (tempLine.Length > 0)
-									{
-										_Words.Add(tempLine);
-									}
-									
+									_Words.Add(tempLine);
 									break;
 							} // switch section
 								break;
 						} // switch temp line
+					}
 				} // while
 
 				// close reader
@@ -234,15 +415,16 @@ namespace NetSpell.DictionaryBuild
 					this.numUpDownWord.Maximum = 0;
 				}
 				this.FileName = this.openDictionaryDialog.FileName;
-
+				this.Cursor = Cursors.Default;
 				return true;
 			}
-
+			this.Cursor = Cursors.Default;
 			return false;
 		}
 
 		public void SaveDictionary()
 		{
+			
 			if (!File.Exists(this.FileName))
 			{
 				if (this.saveDictionaryDialog.ShowDialog(this) == DialogResult.OK)
@@ -254,32 +436,31 @@ namespace NetSpell.DictionaryBuild
 					return;
 				}
 			}
-
+			this.Cursor = Cursors.WaitCursor;
 			// save dictionary file
 			FileStream fs = new FileStream(this.FileName, FileMode.Create, FileAccess.Write);
 			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-			sw.NewLine = "\n"; // unix line ends
+			sw.NewLine = "\n";  // unix line ends
 
 			// copyright
 			sw.WriteLine("[Copyright]");
-			sw.WriteLine(this.txtCopyright.Text);
-			sw.WriteLine();  
+			sw.WriteLine(this.txtCopyright.Text.Replace("\r\n", "\n"));
 			// try
 			sw.WriteLine("[Try]");
 			sw.WriteLine(this.txtTry.Text);
 			sw.WriteLine(); 
 			// replace
 			sw.WriteLine("[Replace]");
-			sw.WriteLine(this.txtReplace.Text);
+			sw.WriteLine(this.txtReplace.Text.Replace("\r\n", "\n"));
 			// prefix
 			sw.WriteLine("[Prefix]");
-			sw.WriteLine(this.txtPrefix.Text);
+			sw.WriteLine(this.txtPrefix.Text.Replace("\r\n", "\n"));
 			// suffix
 			sw.WriteLine("[Suffix]");
-			sw.WriteLine(this.txtSuffix.Text);
+			sw.WriteLine(this.txtSuffix.Text.Replace("\r\n", "\n"));
 			// phonetic
 			sw.WriteLine("[Phonetic]");
-			sw.WriteLine(this.txtPhonetic.Text);
+			sw.WriteLine(this.txtPhonetic.Text.Replace("\r\n", "\n"));
 			// words
 			sw.WriteLine("[Words]");
 			foreach (string tempWord in _Words)
@@ -290,6 +471,7 @@ namespace NetSpell.DictionaryBuild
 			fs.Close();
 
 			this.Changed = false;
+			this.Cursor = Cursors.Default;
 		}
 
 		/// <summary>
@@ -316,11 +498,11 @@ namespace NetSpell.DictionaryBuild
 				_Changed = value;
 				if (_Changed)
 				{
-					this.Text = this.FileName + " *";
+					this.Text = Path.GetFileName(this.FileName) + " *";
 				}
 				else 
 				{
-					this.Text = this.FileName;
+					this.Text = Path.GetFileName(this.FileName);
 				}
 			}
 		}
@@ -334,7 +516,7 @@ namespace NetSpell.DictionaryBuild
 			set
 			{
 				_FileName = value;
-				this.Text = _FileName;
+				this.Text = Path.GetFileName(this.FileName);
 			}
 		}
 
@@ -352,6 +534,7 @@ namespace NetSpell.DictionaryBuild
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DictionaryForm));
 			this.DictionaryTab = new System.Windows.Forms.TabControl();
 			this.tabCopyright = new System.Windows.Forms.TabPage();
 			this.txtCopyright = new System.Windows.Forms.TextBox();
@@ -625,7 +808,7 @@ namespace NetSpell.DictionaryBuild
 			this.numUpDownWord.Name = "numUpDownWord";
 			this.numUpDownWord.Size = new System.Drawing.Size(72, 20);
 			this.numUpDownWord.TabIndex = 2;
-			this.numUpDownWord.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numUpDownWord_KeyPress);
+			this.numUpDownWord.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numUpDownWord_KeyUp);
 			this.numUpDownWord.ValueChanged += new System.EventHandler(this.numUpDownWord_ValueChanged);
 			// 
 			// txtWordCount
@@ -695,7 +878,7 @@ namespace NetSpell.DictionaryBuild
 			// menuGenerate
 			// 
 			this.menuGenerate.Index = 5;
-			this.menuGenerate.Text = "Generate Phonetic Code";
+			this.menuGenerate.Text = "Generate Phonetic Cache";
 			this.menuGenerate.Click += new System.EventHandler(this.menuGenerate_Click);
 			// 
 			// saveDictionaryDialog
@@ -713,12 +896,10 @@ namespace NetSpell.DictionaryBuild
 			// 
 			// openAffixDialog
 			// 
-			this.openAffixDialog.FileName = "en_US.aff";
 			this.openAffixDialog.Filter = "Affix files (*.aff)|*.aff|Text files (*.txt)|*.txt|All files (*.*)|*.*";
 			// 
 			// openPhoneticDialog
 			// 
-			this.openPhoneticDialog.FileName = "en_phonet.dat";
 			this.openPhoneticDialog.Filter = "Phonetic files (*.dat)|*.dat|Text files (*.txt)|*.txt|All files (*.*)|*.*";
 			// 
 			// DictionaryForm
@@ -726,6 +907,7 @@ namespace NetSpell.DictionaryBuild
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(552, 478);
 			this.Controls.Add(this.DictionaryTab);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Menu = this.mainMenu;
 			this.Name = "DictionaryForm";
 			this.Text = "untitled";

@@ -594,6 +594,47 @@
             Summary description for AffixUtility.
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.AddPrefix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixRule)">
+            <summary>
+                Adds a prefix to a word
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to add the prefix to
+                </para>
+            </param>
+            <param name="rule" type="NetSpell.SpellChecker.Dictionary.Affix.AffixRule">
+                <para>
+                    The AffixRule to use when adding the prefix
+                </para>
+            </param>
+            <returns>
+                The word with the prefix added
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.AddSuffix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixRule)">
+            <summary>
+                Adds a suffix to a word
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to get the suffix added to
+                </para>
+            </param>
+            <param name="rule" type="NetSpell.SpellChecker.Dictionary.Affix.AffixRule">
+                <para>
+                    The AffixRule to use when adding the suffix
+                </para>
+            </param>
+            <returns>
+                The word with the suffix added
+            </returns>
+        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.EncodeConditions(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
             <summary>
                 Generates the condition character array
@@ -609,9 +650,9 @@
                 </para>
             </param>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemoveSuffix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemovePrefix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
             <summary>
-                Removes the affix suffix rule entry for the word if valid
+                Removes the affix prefix rule entry for the word if valid
             </summary>
             <param name="word" type="string">
                 <para>
@@ -630,9 +671,9 @@
             	This method does not verify that the returned word is a valid word, only that the affix can be removed
             </remarks>
         </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemovePrefix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemoveSuffix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
             <summary>
-                Removes the affix prefix rule entry for the word if valid
+                Removes the affix suffix rule entry for the word if valid
             </summary>
             <param name="word" type="string">
                 <para>
@@ -868,18 +909,12 @@
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.WordDictionary">
             <summary>
-            Summary description for WordDictionary.
+            The WordDictionary class contains all the logic for managing the word list.
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.#ctor">
             <summary>
                 Initializes a new instance of the class
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialize">
-            <summary>
-                Initializes the dictionary by loading and parsing the
-                dictionary file and the user file.
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String,NetSpell.SpellChecker.Dictionary.Word)">
@@ -921,6 +956,38 @@
                 Returns true if word is found
             </returns>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.ExpandWord(NetSpell.SpellChecker.Dictionary.Word)">
+            <summary>
+                Expands an affix compressed base word
+            </summary>
+            <param name="word" type="NetSpell.SpellChecker.Dictionary.Word">
+                <para>
+                    The word to expand
+                </para>
+            </param>
+            <returns>
+                A System.Collections.ArrayList of words expanded from base word
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Initialize">
+            <summary>
+                Initializes the dictionary by loading and parsing the
+                dictionary file and the user file.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.PhoneticCode(System.String)">
+            <summary>
+                Generates a phonetic code of how the word sounds
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to generated the sound code from
+                </para>
+            </param>
+            <returns>
+                A code of how the word sounds
+            </returns>
+        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Remove(System.String)">
             <summary>
                 Removes a word from the user list
@@ -937,6 +1004,11 @@
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.BaseWords">
             <summary>
                 The collection of base words for the dictionary
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.Copyright">
+            <summary>
+                Copyright text for the dictionary
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.DictionaryFile">
@@ -978,6 +1050,16 @@
             <summary>
                 List of user entered words in this dictionary
             </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordDictionary.PossibleBaseWords">
+            <summary>
+                List of text saved from when 'Contains' is called. 
+                This list is used to generate suggestions from if Contains
+                doesn't find a word.
+            </summary>
+            <remarks>
+            	These are not actual words.
+            </remarks>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.WordEnumerator">
             <summary>

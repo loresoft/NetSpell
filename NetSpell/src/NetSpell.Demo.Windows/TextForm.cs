@@ -239,7 +239,7 @@ namespace NetSpell.Demo.Windows
 		{
 			// the following prevents the Spelling form from being hiden
 			this.spelling.SpellingForm.Owner = this;
-			this.spelling.Dictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
+			this.spelling.Dictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.dic";
 			this.spelling.Dictionary.Initialize();
 			
 		}

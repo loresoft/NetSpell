@@ -218,6 +218,11 @@ namespace NetSpell.SpellChecker.Forms
 			}
 		}
 
+		private void SuggestionList_DoubleClick(object sender, System.EventArgs e)
+		{
+			this.ReplaceButton_Click(sender, e);
+		}
+
 		private void SuggestionList_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
 			try
@@ -283,6 +288,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.SuggestionList.Name = "SuggestionList";
 			this.SuggestionList.Size = new System.Drawing.Size(336, 95);
 			this.SuggestionList.TabIndex = 4;
+			this.SuggestionList.DoubleClick += new System.EventHandler(this.SuggestionList_DoubleClick);
 			this.SuggestionList.SelectedIndexChanged += new System.EventHandler(this.SuggestionList_SelectedIndexChanged);
 			// 
 			// ReplacementWord

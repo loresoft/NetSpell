@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections;
@@ -239,7 +240,7 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			// open dictionary file
 			FileStream fs = new FileStream(_DictionaryFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-			StreamReader sr = new StreamReader(fs, Encoding.UTF7);
+			StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 			
 			// read line by line
 			while (sr.Peek() >= 0) 
@@ -323,7 +324,7 @@ namespace NetSpell.SpellChecker.Dictionary
 							case "[Phonetic]" : // ASpell phonetic rules
 								// split line by white space
 								partMatches = _spaceRegx.Matches(tempLine);
-								if (partMatches.Count == 2)
+								if (partMatches.Count >= 2)
 								{
 									PhoneticRule rule = new PhoneticRule();
 									PhoneticUtility.EncodeRule(partMatches[0].Value, ref rule);
@@ -341,7 +342,15 @@ namespace NetSpell.SpellChecker.Dictionary
 								if (parts.Length >= 2) tempWord.AffixKeys = parts[1];
 								// part 3 = phonetic code
 								if (parts.Length >= 3) tempWord.PhoneticCode = parts[2];
-								this.BaseWords.Add(tempWord.Value, tempWord);
+								try
+								{
+									this.BaseWords.Add(tempWord.Value, tempWord);
+								}
+								catch (ArgumentException ae)
+								{
+									// skip word if already added
+									 Trace.WriteLine(ae.ToString());
+								}
 
 								break;
 						} // currentSection swith
@@ -369,11 +378,13 @@ namespace NetSpell.SpellChecker.Dictionary
 		public string PhoneticCode(string word)
 		{
 			string tempWord = word.ToUpper();
-			bool matchFound = false;
+			string prevWord = "";
 			StringBuilder code = new StringBuilder();
 
 			while (tempWord.Length > 0)
 			{
+				// save previous word
+				prevWord = tempWord;
 				foreach (PhoneticRule rule in _PhoneticRules)
 				{
 					bool begining = tempWord.Length == word.Length ? true : false;
@@ -412,17 +423,17 @@ namespace NetSpell.SpellChecker.Dictionary
 								}
 								tempWord = tempWord.Substring(rule.ConditionCount - rule.ConsumeCount);
 							}
-							matchFound = true;
 							break;
 						}
 					} 
 				} // for each
-				if (!matchFound) 
+
+				// if no match consume one char
+				if (prevWord.Length == tempWord.Length) 
 				{
-					// if no match consume one char
+					
 					tempWord = tempWord.Substring(1);
 				}
-				matchFound = false;
 			}// while
 
 			return code.ToString();

@@ -58,11 +58,11 @@ namespace NetSpell.DictionaryBuild
 		private System.Windows.Forms.ToolBarButton openBarButton;
 		private System.Windows.Forms.ToolBarButton pasteBarButton;
 		private System.Windows.Forms.ToolBarButton saveBarButton;
-		private System.Windows.Forms.StatusBar statusBar1;
 		private System.Windows.Forms.ToolBarButton toolBarButton11;
 		private System.Windows.Forms.ToolBarButton toolBarButton4;
 		private System.Windows.Forms.ToolBarButton toolBarButton8;
 		private System.Windows.Forms.ImageList toolBarImages;
+		internal System.Windows.Forms.StatusBar statusBar;
 		private System.Windows.Forms.ToolBarButton undoBarButton;
 
 
@@ -361,12 +361,6 @@ namespace NetSpell.DictionaryBuild
 			this.LayoutMdi(MdiLayout.TileVertical);
 		}
 
-		
-		private void WriteLog(string message)
-		{
-			statusBar1.Text = message;
-		}
-
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -391,17 +385,30 @@ namespace NetSpell.DictionaryBuild
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
-			this.statusBar1 = new System.Windows.Forms.StatusBar();
+			this.statusBar = new System.Windows.Forms.StatusBar();
 			this.mainMenu = new System.Windows.Forms.MainMenu();
 			this.menuFile = new System.Windows.Forms.MenuItem();
 			this.menuFileNew = new System.Windows.Forms.MenuItem();
 			this.menuFileOpen = new System.Windows.Forms.MenuItem();
 			this.menuFileClose = new System.Windows.Forms.MenuItem();
+			this.menuFileCloseAll = new System.Windows.Forms.MenuItem();
 			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.menuFileSave = new System.Windows.Forms.MenuItem();
+			this.menuFileSaveAll = new System.Windows.Forms.MenuItem();
 			this.menuItem9 = new System.Windows.Forms.MenuItem();
 			this.menuFileExit = new System.Windows.Forms.MenuItem();
+			this.menuEdit = new System.Windows.Forms.MenuItem();
+			this.menuEditUndo = new System.Windows.Forms.MenuItem();
+			this.menuItem3 = new System.Windows.Forms.MenuItem();
+			this.menuEditCut = new System.Windows.Forms.MenuItem();
+			this.menuEditCopy = new System.Windows.Forms.MenuItem();
+			this.menuEditPaste = new System.Windows.Forms.MenuItem();
+			this.menuItem8 = new System.Windows.Forms.MenuItem();
+			this.menuEditSelect = new System.Windows.Forms.MenuItem();
 			this.menuWindow = new System.Windows.Forms.MenuItem();
+			this.menuWindowHorizontal = new System.Windows.Forms.MenuItem();
+			this.menuWindowVertical = new System.Windows.Forms.MenuItem();
+			this.menuWindowCascade = new System.Windows.Forms.MenuItem();
 			this.menuHelp = new System.Windows.Forms.MenuItem();
 			this.menuHelpAbout = new System.Windows.Forms.MenuItem();
 			this.toolBarImages = new System.Windows.Forms.ImageList(this.components);
@@ -416,27 +423,14 @@ namespace NetSpell.DictionaryBuild
 			this.toolBarButton8 = new System.Windows.Forms.ToolBarButton();
 			this.undoBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton11 = new System.Windows.Forms.ToolBarButton();
-			this.menuFileCloseAll = new System.Windows.Forms.MenuItem();
-			this.menuFileSaveAll = new System.Windows.Forms.MenuItem();
-			this.menuWindowHorizontal = new System.Windows.Forms.MenuItem();
-			this.menuWindowVertical = new System.Windows.Forms.MenuItem();
-			this.menuWindowCascade = new System.Windows.Forms.MenuItem();
-			this.menuEdit = new System.Windows.Forms.MenuItem();
-			this.menuEditUndo = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
-			this.menuEditCut = new System.Windows.Forms.MenuItem();
-			this.menuEditCopy = new System.Windows.Forms.MenuItem();
-			this.menuEditPaste = new System.Windows.Forms.MenuItem();
-			this.menuItem8 = new System.Windows.Forms.MenuItem();
-			this.menuEditSelect = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
 			// 
-			// statusBar1
+			// statusBar
 			// 
-			this.statusBar1.Location = new System.Drawing.Point(0, 401);
-			this.statusBar1.Name = "statusBar1";
-			this.statusBar1.Size = new System.Drawing.Size(648, 16);
-			this.statusBar1.TabIndex = 0;
+			this.statusBar.Location = new System.Drawing.Point(0, 401);
+			this.statusBar.Name = "statusBar";
+			this.statusBar.Size = new System.Drawing.Size(648, 16);
+			this.statusBar.TabIndex = 0;
 			// 
 			// mainMenu
 			// 
@@ -479,6 +473,12 @@ namespace NetSpell.DictionaryBuild
 			this.menuFileClose.Text = "Close";
 			this.menuFileClose.Click += new System.EventHandler(this.menuFileClose_Click);
 			// 
+			// menuFileCloseAll
+			// 
+			this.menuFileCloseAll.Index = 3;
+			this.menuFileCloseAll.Text = "Close All";
+			this.menuFileCloseAll.Click += new System.EventHandler(this.menuFileCloseAll_Click);
+			// 
 			// menuItem5
 			// 
 			this.menuItem5.Index = 4;
@@ -489,6 +489,12 @@ namespace NetSpell.DictionaryBuild
 			this.menuFileSave.Index = 5;
 			this.menuFileSave.Text = "Save";
 			this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
+			// 
+			// menuFileSaveAll
+			// 
+			this.menuFileSaveAll.Index = 6;
+			this.menuFileSaveAll.Text = "Save All";
+			this.menuFileSaveAll.Click += new System.EventHandler(this.menuFileSaveAll_Click);
 			// 
 			// menuItem9
 			// 
@@ -501,6 +507,59 @@ namespace NetSpell.DictionaryBuild
 			this.menuFileExit.Text = "Exit";
 			this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
 			// 
+			// menuEdit
+			// 
+			this.menuEdit.Index = 1;
+			this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																					 this.menuEditUndo,
+																					 this.menuItem3,
+																					 this.menuEditCut,
+																					 this.menuEditCopy,
+																					 this.menuEditPaste,
+																					 this.menuItem8,
+																					 this.menuEditSelect});
+			this.menuEdit.Text = "Edit";
+			// 
+			// menuEditUndo
+			// 
+			this.menuEditUndo.Index = 0;
+			this.menuEditUndo.Text = "Undo";
+			this.menuEditUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
+			// 
+			// menuItem3
+			// 
+			this.menuItem3.Index = 1;
+			this.menuItem3.Text = "-";
+			// 
+			// menuEditCut
+			// 
+			this.menuEditCut.Index = 2;
+			this.menuEditCut.Text = "Cut";
+			this.menuEditCut.Click += new System.EventHandler(this.menuEditCut_Click);
+			// 
+			// menuEditCopy
+			// 
+			this.menuEditCopy.Index = 3;
+			this.menuEditCopy.Text = "Copy";
+			this.menuEditCopy.Click += new System.EventHandler(this.menuEditCopy_Click);
+			// 
+			// menuEditPaste
+			// 
+			this.menuEditPaste.Index = 4;
+			this.menuEditPaste.Text = "Paste";
+			this.menuEditPaste.Click += new System.EventHandler(this.menuEditPaste_Click);
+			// 
+			// menuItem8
+			// 
+			this.menuItem8.Index = 5;
+			this.menuItem8.Text = "-";
+			// 
+			// menuEditSelect
+			// 
+			this.menuEditSelect.Index = 6;
+			this.menuEditSelect.Text = "Select All";
+			this.menuEditSelect.Click += new System.EventHandler(this.menuEditSelect_Click);
+			// 
 			// menuWindow
 			// 
 			this.menuWindow.Index = 2;
@@ -511,6 +570,24 @@ namespace NetSpell.DictionaryBuild
 																					   this.menuWindowCascade});
 			this.menuWindow.MergeOrder = 7;
 			this.menuWindow.Text = "Window";
+			// 
+			// menuWindowHorizontal
+			// 
+			this.menuWindowHorizontal.Index = 0;
+			this.menuWindowHorizontal.Text = "Tile Horizontal";
+			this.menuWindowHorizontal.Click += new System.EventHandler(this.menuWindowHorizontal_Click);
+			// 
+			// menuWindowVertical
+			// 
+			this.menuWindowVertical.Index = 1;
+			this.menuWindowVertical.Text = "Tile Vertical";
+			this.menuWindowVertical.Click += new System.EventHandler(this.menuWindowVertical_Click);
+			// 
+			// menuWindowCascade
+			// 
+			this.menuWindowCascade.Index = 2;
+			this.menuWindowCascade.Text = "Cascade";
+			this.menuWindowCascade.Click += new System.EventHandler(this.menuWindowCascade_Click);
 			// 
 			// menuHelp
 			// 
@@ -604,95 +681,13 @@ namespace NetSpell.DictionaryBuild
 			// 
 			this.toolBarButton11.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
 			// 
-			// menuFileCloseAll
-			// 
-			this.menuFileCloseAll.Index = 3;
-			this.menuFileCloseAll.Text = "Close All";
-			this.menuFileCloseAll.Click += new System.EventHandler(this.menuFileCloseAll_Click);
-			// 
-			// menuFileSaveAll
-			// 
-			this.menuFileSaveAll.Index = 6;
-			this.menuFileSaveAll.Text = "Save All";
-			this.menuFileSaveAll.Click += new System.EventHandler(this.menuFileSaveAll_Click);
-			// 
-			// menuWindowHorizontal
-			// 
-			this.menuWindowHorizontal.Index = 0;
-			this.menuWindowHorizontal.Text = "Tile Horizontal";
-			this.menuWindowHorizontal.Click += new System.EventHandler(this.menuWindowHorizontal_Click);
-			// 
-			// menuWindowVertical
-			// 
-			this.menuWindowVertical.Index = 1;
-			this.menuWindowVertical.Text = "Tile Vertical";
-			this.menuWindowVertical.Click += new System.EventHandler(this.menuWindowVertical_Click);
-			// 
-			// menuWindowCascade
-			// 
-			this.menuWindowCascade.Index = 2;
-			this.menuWindowCascade.Text = "Cascade";
-			this.menuWindowCascade.Click += new System.EventHandler(this.menuWindowCascade_Click);
-			// 
-			// menuEdit
-			// 
-			this.menuEdit.Index = 1;
-			this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuEditUndo,
-																					 this.menuItem3,
-																					 this.menuEditCut,
-																					 this.menuEditCopy,
-																					 this.menuEditPaste,
-																					 this.menuItem8,
-																					 this.menuEditSelect});
-			this.menuEdit.Text = "Edit";
-			// 
-			// menuEditUndo
-			// 
-			this.menuEditUndo.Index = 0;
-			this.menuEditUndo.Text = "Undo";
-			this.menuEditUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
-			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = 1;
-			this.menuItem3.Text = "-";
-			// 
-			// menuEditCut
-			// 
-			this.menuEditCut.Index = 2;
-			this.menuEditCut.Text = "Cut";
-			this.menuEditCut.Click += new System.EventHandler(this.menuEditCut_Click);
-			// 
-			// menuEditCopy
-			// 
-			this.menuEditCopy.Index = 3;
-			this.menuEditCopy.Text = "Copy";
-			this.menuEditCopy.Click += new System.EventHandler(this.menuEditCopy_Click);
-			// 
-			// menuEditPaste
-			// 
-			this.menuEditPaste.Index = 4;
-			this.menuEditPaste.Text = "Paste";
-			this.menuEditPaste.Click += new System.EventHandler(this.menuEditPaste_Click);
-			// 
-			// menuItem8
-			// 
-			this.menuItem8.Index = 5;
-			this.menuItem8.Text = "-";
-			// 
-			// menuEditSelect
-			// 
-			this.menuEditSelect.Index = 6;
-			this.menuEditSelect.Text = "Select All";
-			this.menuEditSelect.Click += new System.EventHandler(this.menuEditSelect_Click);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(648, 417);
 			this.Controls.Add(this.editToolBar);
-			this.Controls.Add(this.statusBar1);
+			this.Controls.Add(this.statusBar);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.IsMdiContainer = true;
 			this.Menu = this.mainMenu;
 			this.Name = "MainForm";

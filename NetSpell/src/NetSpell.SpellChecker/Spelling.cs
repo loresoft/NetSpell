@@ -28,13 +28,12 @@ namespace NetSpell.SpellChecker
 
 #region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
-		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
+		private Regex _digitRegex = new Regex(@"^\d", RegexOptions.Compiled);
 		private Regex _htmlRegex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>", RegexOptions.Compiled);
-
 		private MatchCollection _htmlTags;
-		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
-		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
+		private Regex _letterRegex = new Regex(@"\D", RegexOptions.Compiled);
+		private Regex _upperRegex = new Regex(@"[^A-Z]", RegexOptions.Compiled);
+		private Regex _wordEx = new Regex(@"\b[A-Za-z0-9_'À-ÿ]+\b", RegexOptions.Compiled);
 		private MatchCollection _words;
 #endregion
 
@@ -682,30 +681,42 @@ namespace NetSpell.SpellChecker
 		public void Suggest()
 		{
 			ArrayList tempSuggestion = new ArrayList();
-			if (this.SuggestionMode == SuggestionEnum.PhoneticNearMiss || this.SuggestionMode == SuggestionEnum.Phonetic)
+
+			if ((_SuggestionMode == SuggestionEnum.PhoneticNearMiss 
+				|| _SuggestionMode == SuggestionEnum.Phonetic)
+				&& _Dictionary.PhoneticRules.Count > 0)
 			{
-				//TODO: fix
-				/*_meta.GenerateMetaphone(_CurrentWord);
-
-				string priSearch = string.Concat("|", _meta.PrimaryCode, "|");
-				string sndSearch = string.Concat("|", _meta.SecondaryCode, "|");
-
-				// get suggestions by sound
-				foreach (Dictionary dic in _Dictionaries)
+				// generate phonetic code for possible root word
+				Hashtable codes = new Hashtable();
+				foreach (string tempWord in _Dictionary.PossibleBaseWords)
 				{
-					foreach (string word in dic.WordList)
+					string tempCode = _Dictionary.PhoneticCode(tempWord);
+					if (tempCode.Length > 0 && !codes.ContainsKey(tempCode)) 
 					{
-						if(word.IndexOf(priSearch) > -1 || word.IndexOf(sndSearch) > -1)
+						codes.Add(tempCode, tempCode);
+					}
+				}
+
+				// search root words for phonetic codes
+				foreach (Word word in _Dictionary.BaseWords.Values)
+				{
+					if (codes.ContainsKey(word.PhoneticCode))
+					{
+						ArrayList words = _Dictionary.ExpandWord(word);
+						// add expanded words
+						foreach (string expandedWord in words)
 						{
-							string tempWord = word.Substring(0, word.IndexOf("|"));
-							tempSuggestion.Add(new WordSuggestion(tempWord, 
-								WordSimilarity(_CurrentWord, tempWord)));
+							Word newWord = new Word();
+							newWord.Value = expandedWord;
+							newWord.EditDistance = this.EditDistance(_CurrentWord, expandedWord);
+							tempSuggestion.Add(newWord);
 						}
-					} 
-				} 
-				*/
+					}
+				}
 			}
-			if (this.SuggestionMode == SuggestionEnum.PhoneticNearMiss || this.SuggestionMode == SuggestionEnum.NearMiss)
+
+			if (_SuggestionMode == SuggestionEnum.PhoneticNearMiss 
+				|| _SuggestionMode == SuggestionEnum.NearMiss)
 			{
 				// suggestions for a typical fault of spelling, that
 				// differs with more, than 1 letter from the right form.
@@ -732,17 +743,17 @@ namespace NetSpell.SpellChecker
 			tempSuggestion.Sort();  // sorts by word sim score
 			_Suggestions.Clear(); 
 
-			string lastWord = "";
+			
 
 			for (int i = 0; i < tempSuggestion.Count && _Suggestions.Count < _MaxSuggestions; i++)
 			{
+				string word = ((Word)tempSuggestion[i]).Value;
 				// looking for duplicates
-				if (((Word)tempSuggestion[i]).Value != lastWord)
+				if (!_Suggestions.Contains(word))
 				{
 					// populating the suggestion list
-					_Suggestions.Add(((Word)tempSuggestion[i]).Value);
+					_Suggestions.Add(word);
 				}
-				lastWord = ((Word)tempSuggestion[i]).Value;
 			}
 
 		} // suggest
