@@ -45,7 +45,7 @@
         </nunit2>
     </target>
     
-    <target name="package" depends="doc" description="Creates a deployment package">
+    <target name="package" depends="setup" description="Creates a deployment package">
         <mkdir dir="..\package" />
         <zip zipfile="..\package\${project.name}.${project.version}.zip">
             <fileset basedir="..\">
@@ -56,7 +56,7 @@
                 <includes name="doc\*.*" />
                 <includes name="lib\*.*" />
                 <includes name="src\**" />
-		<!--exclude VS.Net stuff -->
+        		<!--exclude VS.Net stuff -->
                 <excludes name="src\NetSpell.Setup\**" />
                 <excludes name="**\*.suo" />
                 <excludes name="**\*j.user" />
@@ -67,7 +67,17 @@
             </fileset>
         </zip>
     </target>
-    
+
+    <target name="setup" depends="doc" description="Creates a set package">
+        <mkdir dir="..\package" />
+        <!-- call visual studio to package the msi -->
+        <exec program="C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\devenv.exe" 
+            commandline="/project NetSpell.Setup /rebuild Release /out ..\package\setup-out.txt NetSpell.Setup\NetSpell.Setup.sln" 
+            verbose="false" />
+        
+        <copy file="NetSpell.Setup\${project.config}\NetSpell.Setup.msi" todir="..\package" />
+    </target>
+  
     <target name="doc" depends="build" description="Creates HTML Help file">
         <ndoc failonerror="false">
             <assemblies basedir="${build.dir}">
