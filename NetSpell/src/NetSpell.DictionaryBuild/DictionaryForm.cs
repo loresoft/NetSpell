@@ -65,11 +65,11 @@ namespace NetSpell.DictionaryBuild
 		private System.Windows.Forms.TextBox txtPhoneticCode;
 		private System.Windows.Forms.TextBox txtWord;
 		private System.Windows.Forms.TextBox txtWordCount;
-		internal System.Windows.Forms.TextBox txtCopyright;
-		internal System.Windows.Forms.TextBox txtPhonetic;
-		internal System.Windows.Forms.TextBox txtPrefix;
-		internal System.Windows.Forms.TextBox txtReplace;
-		internal System.Windows.Forms.TextBox txtSuffix;
+		internal System.Windows.Forms.RichTextBox txtCopyright;
+		internal System.Windows.Forms.RichTextBox txtPhonetic;
+		internal System.Windows.Forms.RichTextBox txtPrefix;
+		internal System.Windows.Forms.RichTextBox txtReplace;
+		internal System.Windows.Forms.RichTextBox txtSuffix;
 		internal System.Windows.Forms.TextBox txtTry;
 		
 
@@ -627,18 +627,18 @@ namespace NetSpell.DictionaryBuild
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DictionaryForm));
 			this.DictionaryTab = new System.Windows.Forms.TabControl();
 			this.tabCopyright = new System.Windows.Forms.TabPage();
-			this.txtCopyright = new System.Windows.Forms.TextBox();
+			this.txtCopyright = new System.Windows.Forms.RichTextBox();
 			this.tabNearMiss = new System.Windows.Forms.TabPage();
-			this.txtReplace = new System.Windows.Forms.TextBox();
+			this.txtReplace = new System.Windows.Forms.RichTextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtTry = new System.Windows.Forms.TextBox();
 			this.tabPrefix = new System.Windows.Forms.TabPage();
-			this.txtPrefix = new System.Windows.Forms.TextBox();
+			this.txtPrefix = new System.Windows.Forms.RichTextBox();
 			this.tabSuffix = new System.Windows.Forms.TabPage();
-			this.txtSuffix = new System.Windows.Forms.TextBox();
+			this.txtSuffix = new System.Windows.Forms.RichTextBox();
 			this.tabPhonetic = new System.Windows.Forms.TabPage();
-			this.txtPhonetic = new System.Windows.Forms.TextBox();
+			this.txtPhonetic = new System.Windows.Forms.RichTextBox();
 			this.tabWords = new System.Windows.Forms.TabPage();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.btnLookup = new System.Windows.Forms.Button();
@@ -711,7 +711,6 @@ namespace NetSpell.DictionaryBuild
 			this.txtCopyright.Location = new System.Drawing.Point(0, 0);
 			this.txtCopyright.Multiline = true;
 			this.txtCopyright.Name = "txtCopyright";
-			this.txtCopyright.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtCopyright.Size = new System.Drawing.Size(544, 452);
 			this.txtCopyright.TabIndex = 0;
 			this.txtCopyright.Text = "";
@@ -739,7 +738,6 @@ namespace NetSpell.DictionaryBuild
 			this.txtReplace.Location = new System.Drawing.Point(16, 80);
 			this.txtReplace.Multiline = true;
 			this.txtReplace.Name = "txtReplace";
-			this.txtReplace.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtReplace.Size = new System.Drawing.Size(512, 360);
 			this.txtReplace.TabIndex = 4;
 			this.txtReplace.Text = "";
@@ -791,7 +789,6 @@ namespace NetSpell.DictionaryBuild
 			this.txtPrefix.Location = new System.Drawing.Point(0, 0);
 			this.txtPrefix.Multiline = true;
 			this.txtPrefix.Name = "txtPrefix";
-			this.txtPrefix.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtPrefix.Size = new System.Drawing.Size(544, 452);
 			this.txtPrefix.TabIndex = 2;
 			this.txtPrefix.Text = "";
@@ -814,7 +811,6 @@ namespace NetSpell.DictionaryBuild
 			this.txtSuffix.Location = new System.Drawing.Point(0, 0);
 			this.txtSuffix.Multiline = true;
 			this.txtSuffix.Name = "txtSuffix";
-			this.txtSuffix.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtSuffix.Size = new System.Drawing.Size(544, 452);
 			this.txtSuffix.TabIndex = 2;
 			this.txtSuffix.Text = "";
@@ -837,7 +833,6 @@ namespace NetSpell.DictionaryBuild
 			this.txtPhonetic.Location = new System.Drawing.Point(0, 0);
 			this.txtPhonetic.Multiline = true;
 			this.txtPhonetic.Name = "txtPhonetic";
-			this.txtPhonetic.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.txtPhonetic.Size = new System.Drawing.Size(544, 452);
 			this.txtPhonetic.TabIndex = 2;
 			this.txtPhonetic.Text = "";

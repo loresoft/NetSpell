@@ -1,19 +1,14 @@
 using System;
-using System.Diagnostics;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Collections;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Threading;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Globalization;
-
-using NetSpell.SpellChecker;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms.Design;
 using NetSpell.SpellChecker.Dictionary.Affix;
 using NetSpell.SpellChecker.Dictionary.Phonetic;
 
@@ -23,8 +18,8 @@ namespace NetSpell.SpellChecker.Dictionary
 	/// <summary>
 	/// The WordDictionary class contains all the logic for managing the word list.
 	/// </summary>
-	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Dictionary.WordDictionary), "Dictionary.bmp")]
-	public class WordDictionary : System.ComponentModel.Component
+	[ToolboxBitmap(typeof(WordDictionary), "Dictionary.bmp")]
+	public class WordDictionary : Component
 	{
 		private Hashtable _baseWords = new Hashtable();
 		private string _copyright = "";
@@ -40,7 +35,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		private string _tryCharacters = "";
 		private string _userFile = "user.dic";
 		private Hashtable _userWords = new Hashtable();
-		private System.ComponentModel.Container components = null;
+		private Container components = null;
 
 		/// <summary>
 		///     Initializes a new instance of the class
@@ -53,7 +48,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <summary>
 		///     Initializes a new instance of the class
 		/// </summary>
-		public WordDictionary(System.ComponentModel.IContainer container)
+		public WordDictionary(IContainer container)
 		{
 			container.Add(this);
 			InitializeComponent();
@@ -70,7 +65,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			// quit if user file is disabled
 			if(!this.EnableUserFile) return;
 
-			string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
+			string userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NetSpell");
 			string filePath = Path.Combine(userPath, _userFile);
 
 			if (File.Exists(filePath)) 
@@ -112,7 +107,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			// quit if user file is disabled
 			if(!this.EnableUserFile) return;
 
-			string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
+			string userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NetSpell");
 			if (!Directory.Exists(userPath)) Directory.CreateDirectory(userPath);
 
 			string filePath = Path.Combine(userPath, _userFile);
@@ -637,7 +632,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		///     The file name for the main dictionary
 		/// </summary>
 		[DefaultValue("en-US.dic")]
-		[CategoryAttribute("Dictionary")]
+		[Category("Dictionary")]
 		[Description("The file name for the main dictionary")]
 		[NotifyParentProperty(true)]
 		public string DictionaryFile
@@ -658,7 +653,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		///     Folder containing the dictionaries
 		/// </summary>
 		[DefaultValue("")]
-		[CategoryAttribute("Dictionary")]
+		[Category("Dictionary")]
 		[Description("The folder containing dictionaries")]
 		[Editor(typeof(FolderNameEditor), typeof(UITypeEditor))]
 		[NotifyParentProperty(true)]
@@ -676,7 +671,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		///		This should be set to false in a web environment
 		/// </remarks>
 		[DefaultValue(true)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Set this to true to automaticly create a user dictionary")]
 		[NotifyParentProperty(true)]
 		public bool EnableUserFile
@@ -754,7 +749,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		///     The file name for the user word list for this dictionary
 		/// </summary>
 		[DefaultValue("user.dic")]
-		[CategoryAttribute("Dictionary")]
+		[Category("Dictionary")]
 		[Description("The file name for the user word list for this dictionary")]
 		[NotifyParentProperty(true)]
 		public string UserFile

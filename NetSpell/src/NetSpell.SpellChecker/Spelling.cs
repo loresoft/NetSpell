@@ -3,20 +3,13 @@
 
 using System;
 using System.Collections;
+using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows.Forms.Design;
-using System.Drawing;
-using System.Drawing.Design;
-using System.Globalization;
-
-using NetSpell.SpellChecker.Forms;
 using NetSpell.SpellChecker.Dictionary;
-using NetSpell.SpellChecker.Dictionary.Affix;
-using NetSpell.SpellChecker.Dictionary.Phonetic;
-
+using NetSpell.SpellChecker.Forms;
 
 namespace NetSpell.SpellChecker
 {
@@ -24,23 +17,24 @@ namespace NetSpell.SpellChecker
 	///		The Spelling class encapsulates the functions necessary to check
 	///		the spelling of inputted text.
 	/// </summary>
-	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Spelling), "Spelling.bmp")]
-	public class Spelling : System.ComponentModel.Component
+	[ToolboxBitmap(typeof(Spelling), "Spelling.bmp")]
+	public class Spelling : Component
 	{
 
 		#region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
-		private Regex _digitRegex = new Regex(@"^\d", RegexOptions.Compiled);
-		private Regex _htmlRegex = new Regex(@"</[c-g\d]+>|</[i-o\d]+>|</[a\d]+>|</[q-z\d]+>|<[cg]+[^>]*>|<[i-o]+[^>]*>|<[q-z]+[^>]*>|<[a]+[^>]*>|<(\[^\]*\|'[^']*'|[^'\>])*>", RegexOptions.IgnoreCase & RegexOptions.Compiled);
+		private static readonly Regex _digitRegex = new Regex(@"\d", RegexOptions.Compiled);
+		private static readonly Regex _htmlRegex = new Regex("<(?:\"[^\"]*\"|'[^']*'|[^'\"<>])*>|&\\w+;", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+		private static readonly Regex _letterRegex = new Regex(@"\D", RegexOptions.Compiled);
+		private static readonly Regex _upperRegex = new Regex(@"[^A-Z]", RegexOptions.Compiled);
+		private static readonly Regex _wordEx = new Regex(@"\b[\w_']+\b", RegexOptions.Compiled);
+		
 		private MatchCollection _htmlTags;
-		private Regex _letterRegex = new Regex(@"\D", RegexOptions.Compiled);
-		private Regex _upperRegex = new Regex(@"[^A-Z]", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex(@"\b[A-Za-z0-9_'À-ÿ]+\b", RegexOptions.Compiled);
 		private MatchCollection _words;
 		#endregion
 
 		#region private variables
-		private System.ComponentModel.Container components = null;
+		private Container components = null;
 		#endregion
 
 		#region Events
@@ -100,7 +94,7 @@ namespace NetSpell.SpellChecker
 		///     This represents the delegate method prototype that
 		///     event receivers must implement
 		/// </summary>
-		public delegate void EndOfTextEventHandler(object sender, System.EventArgs e);
+		public delegate void EndOfTextEventHandler(object sender, EventArgs e);
 
 		/// <summary>
 		///     This represents the delegate method prototype that
@@ -148,7 +142,7 @@ namespace NetSpell.SpellChecker
 		///     This is the method that is responsible for notifying
 		///     receivers that the event occurred
 		/// </summary>
-		protected virtual void OnEndOfText(System.EventArgs e)
+		protected virtual void OnEndOfText(EventArgs e)
 		{
 			if (EndOfText != null)
 			{
@@ -207,7 +201,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Required for Windows.Forms Class Composition Designer support
 		/// </summary>
-		public Spelling(System.ComponentModel.IContainer container)
+		public Spelling(IContainer container)
 		{
 			container.Add(this);
 			InitializeComponent();
@@ -881,7 +875,7 @@ namespace NetSpell.SpellChecker
 			if(startWordIndex > endWordIndex || _words == null || _words.Count == 0) 
 			{
 				// make sure end index is not greater then word count
-				this.OnEndOfText(System.EventArgs.Empty);	//raise event
+				this.OnEndOfText(EventArgs.Empty);	//raise event
 				return false;
 			}
 
@@ -923,7 +917,7 @@ namespace NetSpell.SpellChecker
 
 			if(_wordIndex >= _words.Count-1 && !misspelledWord) 
 			{
-				this.OnEndOfText(System.EventArgs.Empty);	//raise event
+				this.OnEndOfText(EventArgs.Empty);	//raise event
 			}
 		
 			return misspelledWord;
@@ -1195,7 +1189,7 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		[Browsable(true)]
 		[DefaultValue(true)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Display the 'Spell Check Complete' alert.")]
 		public bool AlertComplete
 		{
@@ -1223,7 +1217,7 @@ namespace NetSpell.SpellChecker
 		///     The WordDictionary object to use when spell checking
 		/// </summary>
 		[Browsable(true)]
-		[CategoryAttribute("Dictionary")]
+		[Category("Dictionary")]
 		[Description("The WordDictionary object to use when spell checking")]
 		public WordDictionary Dictionary
 		{
@@ -1246,7 +1240,7 @@ namespace NetSpell.SpellChecker
 		///     Ignore words with all capital letters when spell checking
 		/// </summary>
 		[DefaultValue(true)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Ignore words with all capital letters when spell checking")]
 		public bool IgnoreAllCapsWords
 		{
@@ -1258,7 +1252,7 @@ namespace NetSpell.SpellChecker
 		///     Ignore html tags when spell checking
 		/// </summary>
 		[DefaultValue(true)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Ignore html tags when spell checking")]
 		public bool IgnoreHtml
 		{
@@ -1283,7 +1277,7 @@ namespace NetSpell.SpellChecker
 		///     Ignore words with digits when spell checking
 		/// </summary>
 		[DefaultValue(false)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Ignore words with digits when spell checking")]
 		public bool IgnoreWordsWithDigits
 		{
@@ -1295,7 +1289,7 @@ namespace NetSpell.SpellChecker
 		///     The maximum number of suggestions to generate
 		/// </summary>
 		[DefaultValue(25)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("The maximum number of suggestions to generate")]
 		public int MaxSuggestions
 		{
@@ -1334,7 +1328,7 @@ namespace NetSpell.SpellChecker
 		///     and options dialogs.
 		/// </summary>
 		[DefaultValue(true)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("Determines if the spell checker should use its internal dialogs")]
 		public bool ShowDialog
 		{
@@ -1370,7 +1364,7 @@ namespace NetSpell.SpellChecker
 		///     The suggestion strategy to use when generating suggestions
 		/// </summary>
 		[DefaultValue(SuggestionEnum.PhoneticNearMiss)]
-		[CategoryAttribute("Options")]
+		[Category("Options")]
 		[Description("The suggestion strategy to use when generating suggestions")]
 		public SuggestionEnum SuggestionMode
 		{
