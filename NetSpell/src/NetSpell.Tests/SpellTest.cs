@@ -41,7 +41,7 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_SpellChecker.Dictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
+			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\Dictionaries";
 			_SpellChecker.Dictionary.Initialize();
 			
 			_SpellChecker.ShowDialog = false;
@@ -197,12 +197,12 @@ namespace NetSpell.Tests
 		[Test]
 		public void TestWord() 
 		{
-			if (!_SpellChecker.TestWord("reply")) 
+			if (!_SpellChecker.TestWord("test")) 
 			{
 				Assertion.Fail("Did not find test word");
 			}
 			
-			if (_SpellChecker.TestWord("replied"))
+			if (_SpellChecker.TestWord("tst"))
 			{
 				Assertion.Fail("Found tst word and shouldn't have");
 			}
@@ -214,20 +214,14 @@ namespace NetSpell.Tests
 		[Test]
 		public void EditDistance()
 		{
-			/*
-			Assertion.AssertEquals("Incorrect WordSimilarity score", 0.454545454545455F, _SpellChecker.WordSimilarity("test", "tst"), 0F);
-			Assertion.AssertEquals("Incorrect WordSimilarity score", 1F, _SpellChecker.WordSimilarity("test", "test"), 0F);
-			*/
+			
+			Assertion.AssertEquals("Incorrect EditDistance", 1, _SpellChecker.EditDistance("test", "tst"));
+			Assertion.AssertEquals("Incorrect EditDistance", 2, _SpellChecker.EditDistance("test", "tes"));
+			Assertion.AssertEquals("Incorrect EditDistance", 0, _SpellChecker.EditDistance("test", "test"));
+			
 		}
 
-		[Test]
-		public void Diciontary()
-		{
-			WordDictionary dict = new WordDictionary();
-			dict.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
-			dict.Initialize();
 
-		}
 
 
 	}

@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Text;
+using System.Diagnostics;
 
 using NUnit.Framework;
 using NetSpell.SpellChecker;
@@ -31,14 +32,14 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_WordDictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
+			_WordDictionary.DictionaryFolder = @"..\..\..\Dictionaries";
 			_WordDictionary.Initialize();
 		}
 
 		[Test]
 		public void Contains() 
 		{
-			string validFile = @"..\..\..\Dictionaries\Test\allwords.txt";
+			string validFile = @"..\..\..\Dictionaries\Test\ValidWords.txt";
 			string invalidFile = @"..\..\..\Dictionaries\Test\SuggestionTest.txt";
 			
 			// open file
@@ -65,6 +66,7 @@ namespace NetSpell.Tests
 				}
 			}
 			float checkTime = _timer.StopTimer();
+			Console.WriteLine("Valid words check time:" + checkTime.ToString());
 
 			sr.Close();
 			fs.Close();
@@ -94,7 +96,8 @@ namespace NetSpell.Tests
 
 			}
 			float invalidTime = _timer.StopTimer();
-
+			Console.WriteLine("Invalid words check time:" + invalidTime.ToString());
+			
 			sr.Close();
 			fs.Close();
 		}
@@ -116,28 +119,46 @@ namespace NetSpell.Tests
 			Assertion.AssertEquals("Incorrect Phonitic Code", "SPL", _WordDictionary.PhoneticCode("supple"));
 			Assertion.AssertEquals("Incorrect Phonitic Code", "TRTNS", _WordDictionary.PhoneticCode("triteness"));
 
-			ArrayList codes = new ArrayList();
-			_timer.StartTimer();
-			foreach (Word word in _WordDictionary.BaseWords.Values)
-			{
-				codes.Add(_WordDictionary.PhoneticCode(word.Value));
-			}
-			float invalidTime = _timer.StopTimer();
-			int count = codes.Count;
-
 		}
 
 		[Test]
-		public void Expand()
+		public void ExpandWord()
 		{
+			
 			ArrayList words = new ArrayList();
-			_timer.StartTimer();
-			foreach (Word word in _WordDictionary.BaseWords.Values)
-			{
-				words.AddRange(_WordDictionary.ExpandWord(word));
-			}
-			float invalidTime = _timer.StopTimer();
-			int count = words.Count;
+
+			words = _WordDictionary.ExpandWord(new Word("abbreviated", "UA"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 3, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("ability", "IMES"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 9, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("nominate", "CDSAXNG"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 18, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("noun", "SMK"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 6, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("object", "SGVMD"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 6, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("outgrow", "GSH"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 4, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("outlandish", "PY"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 3, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("publish", "JDRSBZG"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 8, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("sightly", "TURP"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 7, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("supple", "SPLY"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 5, words.Count);
+
+			words = _WordDictionary.ExpandWord(new Word("triteness", "SF"));
+			Assertion.AssertEquals("Incorrect Number of expanded words", 4, words.Count);
 
 		}
 

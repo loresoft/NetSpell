@@ -97,7 +97,7 @@
                 <Reference
                     Name = "nunit.framework"
                     AssemblyName = "nunit.framework"
-                    HintPath = "..\bin\nunit.framework.dll"
+                    HintPath = "C:\Program Files\NUnit V2.1\bin\nunit.framework.dll"
                     Private = "True"
                 />
             </References>
