@@ -1,23 +1,26 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.0.9466"
-        SchemaVersion = "1.0"
-        ProjectGuid = "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
+        ProjectGuid = "{16D8A4A3-17EF-4C60-8CF7-16B50938420A}"
     >
         <Build>
             <Settings
-                ApplicationIcon = ""
+                ApplicationIcon = "spellchk.ico"
                 AssemblyKeyContainerName = ""
-                AssemblyName = "NetSpell.SpellChecker"
+                AssemblyName = "NetSpell.TraySpell"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
-                OutputType = "Library"
-                RootNamespace = "NetSpell.SpellChecker"
-                StartupObject = ""
+                OutputType = "WinExe"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = "NetSpell.TraySpell"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = "NetSpell.TraySpell.StartupForm"
             >
                 <Config
                     Name = "Debug"
@@ -26,10 +29,12 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = "doc\NetSpell.SpellChecker.xml"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "true"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "false"
                     OutputPath = "bin\Debug\"
                     RegisterForComInterop = "false"
@@ -48,6 +53,8 @@
                     DebugSymbols = "false"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "true"
                     OutputPath = "bin\Release\"
                     RegisterForComInterop = "false"
@@ -68,11 +75,6 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Data.dll"
                 />
                 <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.XML.dll"
-                />
-                <Reference
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Drawing.dll"
@@ -82,29 +84,44 @@
                     AssemblyName = "System.Windows.Forms"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Windows.Forms.dll"
                 />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.XML.dll"
+                />
+                <Reference
+                    Name = "NetSpell.SpellChecker"
+                    Project = "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
             <Include>
+                <File
+                    RelPath = "AboutForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AboutForm.resx"
+                    DependentUpon = "AboutForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
                 <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Dictionary.cs"
-                    SubType = "Code"
+                    RelPath = "HotKeyFormLib.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DictionaryCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DoubleMetaphone.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
+                    RelPath = "HotKeyFormLib.resx"
+                    DependentUpon = "HotKeyFormLib.cs"
+                    BuildAction = "EmbeddedResource"
                 />
                 <File
                     RelPath = "OptionsForm.cs"
@@ -117,14 +134,13 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "Spelling.cs"
-                    SubType = "Component"
+                    RelPath = "Settings.cs"
+                    SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Spelling.resx"
-                    DependentUpon = "Spelling.cs"
-                    BuildAction = "EmbeddedResource"
+                    RelPath = "spellchk.ico"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "SpellingForm.cs"
@@ -136,7 +152,21 @@
                     DependentUpon = "SpellingForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
-                <Folder RelPath = "doc\" />
+                <File
+                    RelPath = "StartupForm.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "StartupForm.resx"
+                    DependentUpon = "StartupForm.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "win32.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
             </Include>
         </Files>
     </CSHARP>

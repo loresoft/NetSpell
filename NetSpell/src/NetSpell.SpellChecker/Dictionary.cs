@@ -20,6 +20,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.ComponentModel;
 
 namespace NetSpell.SpellChecker
 {
@@ -150,6 +151,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The list of words in this dictionary
 		/// </summary>
+		[Browsable(false)]
 		public ArrayList WordList
 		{
 			get {return _WordList;}

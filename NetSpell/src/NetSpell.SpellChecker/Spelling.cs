@@ -18,6 +18,8 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace NetSpell.SpellChecker
 {
@@ -25,29 +27,39 @@ namespace NetSpell.SpellChecker
 	///		The Spelling class encapsulates the functions necessary to check
 	///		the spelling of inputted text.
 	/// </summary>
-	public class Spelling
+	public class Spelling : System.ComponentModel.Component
 	{
+		private bool _ShowDialog;
+
+		private string _CurrentWord = "";
+		private DictionaryCollection _Dictionaries = new DictionaryCollection();
 
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
-		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
 		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
+		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
 		private Regex _wordEx = new Regex("\\b\\w+\\b", RegexOptions.Compiled);
+		
+		private bool _IgnoreAllCapsWords = true;
+		private ArrayList _IgnoreList = new ArrayList();
+		private bool _IgnoreWordsWithDigits = false;
+		private int _MaxSuggestions = 25;
 
 		private DoubleMetaphone _meta = new DoubleMetaphone();
-		private MatchCollection _words;
-		private ArrayList _IgnoreList = new ArrayList();
-		private bool _IgnoreAllCapsWords = true;
-		private bool _IgnoreWordsWithDigits = false;
-		private DictionaryCollection _Dictionaries = new DictionaryCollection();
 		private Hashtable _ReplaceList = new Hashtable();
-		private int _MaxSuggestions = 20;
-		private int _WordCount = 0;
-		private int _WordIndex = 0;
-		private StringBuilder _Text = new StringBuilder();
-		private string _CurrentWord = "";
 		private string _ReplacementWord = "";
 		private ArrayList _Suggestions = new ArrayList();
+		private StringBuilder _Text = new StringBuilder();
+		private int _WordCount = 0;
+		private int _WordIndex = 0;
+
+		private MatchCollection _words;
+		private SpellingForm _spellingForm;
+
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.Container components = null;
 
 		/// <summary>
 		///     This event is fired when word is detected two times in a row
@@ -85,6 +97,15 @@ namespace NetSpell.SpellChecker
 		public delegate void MisspelledWordEventHandler(object sender, WordEventArgs args);
 
 		/// <summary>
+		///     Default constructor
+		/// </summary>
+		public Spelling()
+		{
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
+		}
+
+		/// <summary>
 		///     Initializes a new instance of the SpellCheck class with 
 		///     the specified dictionary object. 
 		/// </summary>
@@ -96,6 +117,8 @@ namespace NetSpell.SpellChecker
 		public Spelling(Dictionary[] dictionaries)
 		{
 			_Dictionaries.AddRange(dictionaries);
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
 		}
 
 		/// <summary>
@@ -110,6 +133,8 @@ namespace NetSpell.SpellChecker
 		public Spelling(Dictionary dictionary)
 		{
 			_Dictionaries.Add(dictionary);
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
 		}
 
 		/// <summary>
@@ -127,6 +152,8 @@ namespace NetSpell.SpellChecker
 			{
 				_Dictionaries.Add(new Dictionary(file));
 			}
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
 		}
 		/// <summary>
 		///     Initializes a new instance of the SpellCheck class with 
@@ -146,6 +173,8 @@ namespace NetSpell.SpellChecker
 		{
 			_Dictionaries.Add(new Dictionary(dictionaryFile));
 			this.Text = text;
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
 		}
 
 		/// <summary>
@@ -160,6 +189,23 @@ namespace NetSpell.SpellChecker
 		public Spelling(string dictionaryFile)
 		{
 			_Dictionaries.Add(new Dictionary(dictionaryFile));
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
+		}
+
+		/// <summary>
+		///     Required for Windows.Forms Class Composition Designer support
+		/// </summary>
+		/// <param name="container" type="System.ComponentModel.IContainer">
+		///     <para>
+		///         
+		///     </para>
+		/// </param>
+		public Spelling(System.ComponentModel.IContainer container)
+		{
+			container.Add(this);
+			_spellingForm = new SpellingForm(this);
+			InitializeComponent();
 		}
 
 		/// <summary>
@@ -675,6 +721,8 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The current word being spell checked from the text property
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string CurrentWord
 		{
 			get	{return _CurrentWord;}
@@ -683,6 +731,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     A collection of dictionaries to use when spell checking
 		/// </summary>
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public DictionaryCollection Dictionaries
 		{
 			get {return _Dictionaries;}
@@ -691,6 +740,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Ignore words with all capital letters when spell checking
 		/// </summary>
+		[DefaultValue(true)]
 		public bool IgnoreAllCapsWords
 		{
 			get {return _IgnoreAllCapsWords;}
@@ -703,6 +753,8 @@ namespace NetSpell.SpellChecker
 		/// <remarks>
 		///		When <see cref="IgnoreAllWord"/> is clicked, the <see cref="CurrentWord"/> is added to this list
 		/// </remarks>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ArrayList IgnoreList
 		{
 			get {return _IgnoreList;}
@@ -712,6 +764,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     Ignore words with digits when spell checking
 		/// </summary>
+		[DefaultValue(false)]
 		public bool IgnoreWordsWithDigits
 		{
 			get {return _IgnoreWordsWithDigits;}
@@ -721,6 +774,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The maximum suggestions to generate
 		/// </summary>
+		[DefaultValue(25)]
 		public int MaxSuggestions
 		{
 			get {return _MaxSuggestions;}
@@ -733,6 +787,8 @@ namespace NetSpell.SpellChecker
 		/// <remarks>
 		///		When <see cref="ReplaceAllWord"/> is clicked, the <see cref="CurrentWord"/> is added to this list
 		/// </remarks>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Hashtable ReplaceList
 		{
 			get {return _ReplaceList;}
@@ -744,18 +800,38 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		/// <seealso cref="ReplaceAllWord"/>
 		/// <seealso cref="ReplaceWord"/>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string ReplacementWord
 		{
 			get {return _ReplacementWord;}
 			set {_ReplacementWord = value;}
 		}
-		
+
+		/// <summary>
+		///     Determins if the spell checker should use its internal suggestions
+		///     and options dialogs.
+		/// </summary>
+		[DefaultValue(false)]
+		public bool ShowDialog
+		{
+			get {return _ShowDialog;}
+			set 
+			{
+				_ShowDialog = value;
+				if (_ShowDialog) _spellingForm.AttachEvents();
+				else _spellingForm.DetachEvents();
+			}
+		}
+
 		/// <summary>
 		///     An array of word suggestions for the correct spelling of the misspelled word
 		/// </summary>
 		/// <seealso cref="Suggest"/>
 		/// <seealso cref="SpellCheck"/>
 		/// <seealso cref="MaxSuggestions"/>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ArrayList Suggestions
 		{
 			get {return _Suggestions;}
@@ -764,12 +840,11 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The text to spell check
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public string Text
 		{
-			get 
-			{
-				return _Text.ToString();
-			}
+			get {return _Text.ToString();}
 			set 
 			{
 				_Text = new StringBuilder(value);
@@ -781,6 +856,8 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The number of words being spell checked
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int WordCount
 		{
 			get {return _WordCount;}
@@ -789,12 +866,13 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     WordIndex is the index of the current word being spell checked
 		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public int WordIndex
 		{
 			get {return _WordIndex;}
 			set {_WordIndex = value;}
 		}
-		
 
 		/// <summary>
 		///     This class is used to sort suggestions
@@ -834,6 +912,17 @@ namespace NetSpell.SpellChecker
 
 		}
 
+#region Component Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			components = new System.ComponentModel.Container();
+		}
+#endregion
+
 	} // Class SpellChecker
 
 	/// <summary>
@@ -843,8 +932,8 @@ namespace NetSpell.SpellChecker
 	public class WordEventArgs : EventArgs 
 	{
 		private int _TextIndex;
-		private int _WordIndex;
 		private string _Word;
+		private int _WordIndex;
 
 		/// <summary>
 		///     Constructor used to pass in properties
