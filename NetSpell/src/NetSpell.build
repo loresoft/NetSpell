@@ -6,8 +6,9 @@
     <property name="project.config" value="Release" />
     <property name="build.debug" value="false" />
     <property name="build.dir" value="..\bin" />
+    <property name="doc.dir" value="..\doc" />
     
-    <target name="build" depends="test,init" description="Builds NetSpell">
+    <target name="build" depends="test" description="Builds NetSpell">
         <copy todir="${build.dir}" flatten="true">
             <fileset>
                 <includes name="NetSpell.SpellChecker\bin\${project.config}\NetSpell.SpellChecker.*" />
@@ -31,9 +32,6 @@
                 <includes name="NetSpell.DictionaryBuild\bin\${project.config}" />
             </fileset>
         </delete>
-    </target>
-    
-    <target name="init" description="Creates build folder">
         <mkdir dir="${build.dir}" />
     </target>
     
@@ -45,9 +43,26 @@
     </target>
     
     <target name="package" depends="doc" description="Creates a deployment package">
+    	<mkdir dir="..\package" />
+		<zip zipfile="..\package\${project.name}.${project.version}.zip">
+			<fileset basedir="..\">
+				<includes name="*"/>
+				<includes name="bin\*.*"/>
+				<includes name="dic\*.*"/>
+				<includes name="demo\**"/>
+				<includes name="doc\*.*"/>
+				<includes name="lib\*.*"/>
+				<includes name="src\**"/>				
+                <!--exclude VS.Net stuff -->
+                <excludes name="**/*.suo" />
+                <excludes name="**/*j.user" />
+                <excludes name="**/bin/**" />
+                <excludes name="**/obj/**" />
+			</fileset>
+		</zip>
     </target>
     
-    <target name="doc" depends="test" description="Creates HTML Help file">
+    <target name="doc" depends="build" description="Creates HTML Help file">
         <ndoc failonerror="false">
             <assemblies basedir="${build.dir}">
                 <includes name="NetSpell.SpellChecker.dll" />
@@ -55,7 +70,7 @@
             <documenters>
                 <documenter name="MSDN">
                     <property name="OutputDirectory" value="doc" />
-                    <property name="HtmlHelpName" value="NetSpell" />
+                    <property name="HtmlHelpName" value="${project.name}" />
                     <property name="IncludeFavorites" value="False" />
                     <property name="Title" value="${project.name} Documentation - v.${project.version}" />
                     <property name="SplitTOCs" value="False" />
@@ -76,5 +91,7 @@
                 </documenter>
             </documenters>
         </ndoc>
+        <copy file="doc\${project.name}.chm" todir="${doc.dir}" />
+        <delete dir="doc" failonerror="false" />
     </target>
 </project>
