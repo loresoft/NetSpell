@@ -142,6 +142,7 @@ namespace NetSpell.Demo.Windows
 			DocumentForm newForm = new DocumentForm();
 			newForm.MdiParent = this;
 			newForm.Show();
+			this.EnableEditButtons();
 		}
 
 		private void menuFileOpen_Click(object sender, System.EventArgs e)
@@ -151,6 +152,7 @@ namespace NetSpell.Demo.Windows
 			{
 				newForm.MdiParent = this;
 				newForm.Show();
+				this.EnableEditButtons();
 			}
 		}
 

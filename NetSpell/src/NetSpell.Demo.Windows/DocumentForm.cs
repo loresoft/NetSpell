@@ -73,15 +73,20 @@ namespace NetSpell.Demo.Windows
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
 		}
 
 		private void Document_TextChanged(object sender, System.EventArgs e)
 		{
 			this.Changed = true;
+		}
+
+		private void DocumentForm_Activated(object sender, System.EventArgs e)
+		{
+			if (this.MdiParent != null) 
+			{
+				MainForm main = (MainForm)this.MdiParent;
+				main.EnableEditButtons();
+			}
 		}
 
 		private void DocumentForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -102,6 +107,15 @@ namespace NetSpell.Demo.Windows
 						e.Cancel = true;
 						break;
 				}
+			}
+		}
+
+		private void DocumentForm_Deactivate(object sender, System.EventArgs e)
+		{
+			if (this.MdiParent != null) 
+			{
+				MainForm main = (MainForm)this.MdiParent;
+				main.DisableEditButtons();
 			}
 		}
 
@@ -203,7 +217,16 @@ namespace NetSpell.Demo.Windows
 
 		private void menuFormatWrap_Click(object sender, System.EventArgs e)
 		{
-			this.Document.WordWrap = this.menuFormatWrap.Checked;
+			if (this.Document.WordWrap)
+			{
+				this.menuFormatWrap.Checked = false;
+				this.Document.WordWrap = false;
+			}
+			else
+			{
+				this.menuFormatWrap.Checked = true;
+				this.Document.WordWrap = true;
+			}
 		}
 
 		private void menuToolsSpelling_Click(object sender, System.EventArgs e)
@@ -213,7 +236,7 @@ namespace NetSpell.Demo.Windows
 
 		private void printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
 		{
-			charFrom = 0;
+			startFrom = 0;
 		}
 
 		private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -236,7 +259,7 @@ namespace NetSpell.Demo.Windows
 
 			FORMATRANGE fmtRange;
 			fmtRange.chrg.cpMax = this.Document.TextLength;	//Indicate character from to character to 
-			fmtRange.chrg.cpMin = charFrom;
+			fmtRange.chrg.cpMin = startFrom;
 			fmtRange.hdc = hdc;                    //Use the same DC for measuring and rendering
 			fmtRange.hdcTarget = hdc;              //Point at printer hDC
 			fmtRange.rc = rectToPrint;             //Indicate the area on page to print
@@ -262,9 +285,9 @@ namespace NetSpell.Demo.Windows
 			e.Graphics.ReleaseHdc(hdc);
 
 			//Return last + 1 character printer
-			charFrom = res.ToInt32();
+			startFrom = res.ToInt32();
 			// Check for more pages
-			if (charFrom < this.Document.TextLength)
+			if (startFrom < this.Document.TextLength)
 				e.HasMorePages = true;
 			else
 				e.HasMorePages = false;
@@ -296,14 +319,15 @@ namespace NetSpell.Demo.Windows
 			this.Document.Cut();
 		}
 
-
-
 		internal bool Open()
 		{
 			if (this.openDialog.ShowDialog(this) == DialogResult.OK)
 			{
-				this.Document.LoadFile(this.openDialog.OpenFile(), RichTextBoxStreamType.RichText);
-				this.FileName = this.openDialog.FileName;
+				this.FileName = this.openDialog.FileName.ToString();
+				FileStream fs = new FileStream(this.FileName, FileMode.Open, FileAccess.Read);
+				this.Document.LoadFile(fs, RichTextBoxStreamType.PlainText);
+				fs.Close();
+				this.Changed = false;
 				return true;
 			}
 			return false;
@@ -339,13 +363,16 @@ namespace NetSpell.Demo.Windows
 			else 
 			{
 				FileStream fs = new FileStream(this.FileName, FileMode.Create, FileAccess.Write);
-				this.Document.SaveFile(fs, RichTextBoxStreamType.RichText);
+				this.Document.SaveFile(fs, RichTextBoxStreamType.PlainText);
 				fs.Close();
-			}
+				this.Changed = false;
+			}	
 		}
 
 		internal void SaveAs()
 		{
+			this.saveDialog.FileName = Path.GetFileName(this.FileName);
+
 			if (this.saveDialog.ShowDialog(this) == DialogResult.OK)
 			{
 				this.FileName = this.saveDialog.FileName;
@@ -356,8 +383,9 @@ namespace NetSpell.Demo.Windows
 			}
 
 			FileStream fs = new FileStream(this.FileName, FileMode.Create, FileAccess.Write);
-			this.Document.SaveFile(fs, RichTextBoxStreamType.RichText);
+			this.Document.SaveFile(fs, RichTextBoxStreamType.PlainText);
 			fs.Close();
+			this.Changed = false;
 		}
 
 		internal void SpellCheck()
@@ -406,7 +434,7 @@ namespace NetSpell.Demo.Windows
 			}
 		}
 
-#region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -415,22 +443,6 @@ namespace NetSpell.Demo.Windows
 		{
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DocumentForm));
 			this.mainMenu = new System.Windows.Forms.MainMenu();
-			this.menuFormat = new System.Windows.Forms.MenuItem();
-			this.menuFormatWrap = new System.Windows.Forms.MenuItem();
-			this.menuFormatFont = new System.Windows.Forms.MenuItem();
-			this.fontDialog = new System.Windows.Forms.FontDialog();
-			this.printDialog = new System.Windows.Forms.PrintDialog();
-			this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-			this.menuEdit = new System.Windows.Forms.MenuItem();
-			this.menuEditUndo = new System.Windows.Forms.MenuItem();
-			this.menuItem3 = new System.Windows.Forms.MenuItem();
-			this.menuEditCut = new System.Windows.Forms.MenuItem();
-			this.menuEditCopy = new System.Windows.Forms.MenuItem();
-			this.menuEditPaste = new System.Windows.Forms.MenuItem();
-			this.menuItem7 = new System.Windows.Forms.MenuItem();
-			this.menuEditSelectAll = new System.Windows.Forms.MenuItem();
-			this.menuTools = new System.Windows.Forms.MenuItem();
-			this.menuToolsSpelling = new System.Windows.Forms.MenuItem();
 			this.menuFile = new System.Windows.Forms.MenuItem();
 			this.menuFileClose = new System.Windows.Forms.MenuItem();
 			this.menuFileCloseAll = new System.Windows.Forms.MenuItem();
@@ -438,24 +450,40 @@ namespace NetSpell.Demo.Windows
 			this.menuFileSave = new System.Windows.Forms.MenuItem();
 			this.menuFileSaveAs = new System.Windows.Forms.MenuItem();
 			this.menuFileSaveAll = new System.Windows.Forms.MenuItem();
+			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.menuFilePrint = new System.Windows.Forms.MenuItem();
 			this.menuFilePrintPrivew = new System.Windows.Forms.MenuItem();
+			this.menuFilePageSetup = new System.Windows.Forms.MenuItem();
+			this.menuEdit = new System.Windows.Forms.MenuItem();
+			this.menuEditUndo = new System.Windows.Forms.MenuItem();
+			this.menuEditRedo = new System.Windows.Forms.MenuItem();
+			this.menuItem3 = new System.Windows.Forms.MenuItem();
+			this.menuEditCut = new System.Windows.Forms.MenuItem();
+			this.menuEditCopy = new System.Windows.Forms.MenuItem();
+			this.menuEditPaste = new System.Windows.Forms.MenuItem();
+			this.menuItem7 = new System.Windows.Forms.MenuItem();
+			this.menuEditSelectAll = new System.Windows.Forms.MenuItem();
+			this.menuFormat = new System.Windows.Forms.MenuItem();
+			this.menuFormatWrap = new System.Windows.Forms.MenuItem();
+			this.menuFormatFont = new System.Windows.Forms.MenuItem();
+			this.menuTools = new System.Windows.Forms.MenuItem();
+			this.menuToolsSpelling = new System.Windows.Forms.MenuItem();
+			this.fontDialog = new System.Windows.Forms.FontDialog();
+			this.printDialog = new System.Windows.Forms.PrintDialog();
+			this.printDocument = new System.Drawing.Printing.PrintDocument();
+			this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
 			this.Document = new System.Windows.Forms.RichTextBox();
 			this.contextMenu = new System.Windows.Forms.ContextMenu();
 			this.contextMenuUndo = new System.Windows.Forms.MenuItem();
+			this.menuItem1 = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.contextMenuCut = new System.Windows.Forms.MenuItem();
 			this.contextMenuCopy = new System.Windows.Forms.MenuItem();
 			this.contextMenuPaste = new System.Windows.Forms.MenuItem();
 			this.menuItem8 = new System.Windows.Forms.MenuItem();
 			this.contextMenuSelectAll = new System.Windows.Forms.MenuItem();
-			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.menuEditRedo = new System.Windows.Forms.MenuItem();
 			this.saveDialog = new System.Windows.Forms.SaveFileDialog();
 			this.openDialog = new System.Windows.Forms.OpenFileDialog();
-			this.printDocument = new System.Drawing.Printing.PrintDocument();
-			this.menuFilePageSetup = new System.Windows.Forms.MenuItem();
-			this.menuItem5 = new System.Windows.Forms.MenuItem();
 			this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
 			this.SuspendLayout();
 			// 
@@ -466,123 +494,6 @@ namespace NetSpell.Demo.Windows
 																					 this.menuEdit,
 																					 this.menuFormat,
 																					 this.menuTools});
-			// 
-			// menuFormat
-			// 
-			this.menuFormat.Index = 2;
-			this.menuFormat.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					   this.menuFormatWrap,
-																					   this.menuFormatFont});
-			this.menuFormat.MergeOrder = 2;
-			this.menuFormat.Text = "Format";
-			// 
-			// menuFormatWrap
-			// 
-			this.menuFormatWrap.Checked = true;
-			this.menuFormatWrap.Index = 0;
-			this.menuFormatWrap.Text = "Word Wrap";
-			this.menuFormatWrap.Click += new System.EventHandler(this.menuFormatWrap_Click);
-			// 
-			// menuFormatFont
-			// 
-			this.menuFormatFont.Index = 1;
-			this.menuFormatFont.Text = "Font...";
-			this.menuFormatFont.Click += new System.EventHandler(this.menuFormatFont_Click);
-			// 
-			// printDialog
-			// 
-			this.printDialog.AllowSomePages = true;
-			this.printDialog.Document = this.printDocument;
-			// 
-			// printPreviewDialog
-			// 
-			this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
-			this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-			this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
-			this.printPreviewDialog.Document = this.printDocument;
-			this.printPreviewDialog.Enabled = true;
-			this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
-			this.printPreviewDialog.Location = new System.Drawing.Point(327, 17);
-			this.printPreviewDialog.MinimumSize = new System.Drawing.Size(375, 250);
-			this.printPreviewDialog.Name = "printPreviewDialog";
-			this.printPreviewDialog.TransparencyKey = System.Drawing.Color.Empty;
-			this.printPreviewDialog.UseAntiAlias = true;
-			this.printPreviewDialog.Visible = false;
-			// 
-			// menuEdit
-			// 
-			this.menuEdit.Index = 1;
-			this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuEditUndo,
-																					 this.menuEditRedo,
-																					 this.menuItem3,
-																					 this.menuEditCut,
-																					 this.menuEditCopy,
-																					 this.menuEditPaste,
-																					 this.menuItem7,
-																					 this.menuEditSelectAll});
-			this.menuEdit.MergeOrder = 1;
-			this.menuEdit.Text = "Edit";
-			// 
-			// menuEditUndo
-			// 
-			this.menuEditUndo.Index = 0;
-			this.menuEditUndo.Shortcut = System.Windows.Forms.Shortcut.CtrlZ;
-			this.menuEditUndo.Text = "Undo";
-			this.menuEditUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
-			// 
-			// menuItem3
-			// 
-			this.menuItem3.Index = 2;
-			this.menuItem3.Text = "-";
-			// 
-			// menuEditCut
-			// 
-			this.menuEditCut.Index = 3;
-			this.menuEditCut.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
-			this.menuEditCut.Text = "Cut";
-			this.menuEditCut.Click += new System.EventHandler(this.menuEditCut_Click);
-			// 
-			// menuEditCopy
-			// 
-			this.menuEditCopy.Index = 4;
-			this.menuEditCopy.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
-			this.menuEditCopy.Text = "Copy";
-			this.menuEditCopy.Click += new System.EventHandler(this.menuEditCopy_Click);
-			// 
-			// menuEditPaste
-			// 
-			this.menuEditPaste.Index = 5;
-			this.menuEditPaste.Shortcut = System.Windows.Forms.Shortcut.CtrlV;
-			this.menuEditPaste.Text = "Paste";
-			this.menuEditPaste.Click += new System.EventHandler(this.menuEditPaste_Click);
-			// 
-			// menuItem7
-			// 
-			this.menuItem7.Index = 6;
-			this.menuItem7.Text = "-";
-			// 
-			// menuEditSelectAll
-			// 
-			this.menuEditSelectAll.Index = 7;
-			this.menuEditSelectAll.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
-			this.menuEditSelectAll.Text = "Select All";
-			this.menuEditSelectAll.Click += new System.EventHandler(this.menuEditSelectAll_Click);
-			// 
-			// menuTools
-			// 
-			this.menuTools.Index = 3;
-			this.menuTools.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					  this.menuToolsSpelling});
-			this.menuTools.MergeOrder = 3;
-			this.menuTools.Text = "Tools";
-			// 
-			// menuToolsSpelling
-			// 
-			this.menuToolsSpelling.Index = 0;
-			this.menuToolsSpelling.Shortcut = System.Windows.Forms.Shortcut.F7;
-			this.menuToolsSpelling.Text = "Spelling ...";
-			this.menuToolsSpelling.Click += new System.EventHandler(this.menuToolsSpelling_Click);
 			// 
 			// menuFile
 			// 
@@ -644,6 +555,12 @@ namespace NetSpell.Demo.Windows
 			this.menuFileSaveAll.Text = "Save All";
 			this.menuFileSaveAll.Click += new System.EventHandler(this.menuFileSaveAll_Click);
 			// 
+			// menuItem5
+			// 
+			this.menuItem5.Index = 6;
+			this.menuItem5.MergeOrder = 8;
+			this.menuItem5.Text = "-";
+			// 
 			// menuFilePrint
 			// 
 			this.menuFilePrint.Index = 7;
@@ -659,6 +576,142 @@ namespace NetSpell.Demo.Windows
 			this.menuFilePrintPrivew.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftP;
 			this.menuFilePrintPrivew.Text = "Print Preview";
 			this.menuFilePrintPrivew.Click += new System.EventHandler(this.menuFilePrintPrivew_Click);
+			// 
+			// menuFilePageSetup
+			// 
+			this.menuFilePageSetup.Index = 9;
+			this.menuFilePageSetup.MergeOrder = 11;
+			this.menuFilePageSetup.Text = "Page Setup";
+			this.menuFilePageSetup.Click += new System.EventHandler(this.menuFilePageSetup_Click);
+			// 
+			// menuEdit
+			// 
+			this.menuEdit.Index = 1;
+			this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																					 this.menuEditUndo,
+																					 this.menuEditRedo,
+																					 this.menuItem3,
+																					 this.menuEditCut,
+																					 this.menuEditCopy,
+																					 this.menuEditPaste,
+																					 this.menuItem7,
+																					 this.menuEditSelectAll});
+			this.menuEdit.MergeOrder = 1;
+			this.menuEdit.Text = "Edit";
+			// 
+			// menuEditUndo
+			// 
+			this.menuEditUndo.Index = 0;
+			this.menuEditUndo.Shortcut = System.Windows.Forms.Shortcut.CtrlZ;
+			this.menuEditUndo.Text = "Undo";
+			this.menuEditUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
+			// 
+			// menuEditRedo
+			// 
+			this.menuEditRedo.Index = 1;
+			this.menuEditRedo.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftZ;
+			this.menuEditRedo.Text = "Redo";
+			this.menuEditRedo.Click += new System.EventHandler(this.menuEditRedo_Click);
+			// 
+			// menuItem3
+			// 
+			this.menuItem3.Index = 2;
+			this.menuItem3.Text = "-";
+			// 
+			// menuEditCut
+			// 
+			this.menuEditCut.Index = 3;
+			this.menuEditCut.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
+			this.menuEditCut.Text = "Cut";
+			this.menuEditCut.Click += new System.EventHandler(this.menuEditCut_Click);
+			// 
+			// menuEditCopy
+			// 
+			this.menuEditCopy.Index = 4;
+			this.menuEditCopy.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
+			this.menuEditCopy.Text = "Copy";
+			this.menuEditCopy.Click += new System.EventHandler(this.menuEditCopy_Click);
+			// 
+			// menuEditPaste
+			// 
+			this.menuEditPaste.Index = 5;
+			this.menuEditPaste.Shortcut = System.Windows.Forms.Shortcut.CtrlV;
+			this.menuEditPaste.Text = "Paste";
+			this.menuEditPaste.Click += new System.EventHandler(this.menuEditPaste_Click);
+			// 
+			// menuItem7
+			// 
+			this.menuItem7.Index = 6;
+			this.menuItem7.Text = "-";
+			// 
+			// menuEditSelectAll
+			// 
+			this.menuEditSelectAll.Index = 7;
+			this.menuEditSelectAll.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
+			this.menuEditSelectAll.Text = "Select All";
+			this.menuEditSelectAll.Click += new System.EventHandler(this.menuEditSelectAll_Click);
+			// 
+			// menuFormat
+			// 
+			this.menuFormat.Index = 2;
+			this.menuFormat.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																					   this.menuFormatWrap,
+																					   this.menuFormatFont});
+			this.menuFormat.MergeOrder = 2;
+			this.menuFormat.Text = "Format";
+			// 
+			// menuFormatWrap
+			// 
+			this.menuFormatWrap.Checked = true;
+			this.menuFormatWrap.Index = 0;
+			this.menuFormatWrap.Text = "Word Wrap";
+			this.menuFormatWrap.Click += new System.EventHandler(this.menuFormatWrap_Click);
+			// 
+			// menuFormatFont
+			// 
+			this.menuFormatFont.Index = 1;
+			this.menuFormatFont.Text = "Font...";
+			this.menuFormatFont.Click += new System.EventHandler(this.menuFormatFont_Click);
+			// 
+			// menuTools
+			// 
+			this.menuTools.Index = 3;
+			this.menuTools.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+																					  this.menuToolsSpelling});
+			this.menuTools.MergeOrder = 3;
+			this.menuTools.Text = "Tools";
+			// 
+			// menuToolsSpelling
+			// 
+			this.menuToolsSpelling.Index = 0;
+			this.menuToolsSpelling.Shortcut = System.Windows.Forms.Shortcut.F7;
+			this.menuToolsSpelling.Text = "Spelling ...";
+			this.menuToolsSpelling.Click += new System.EventHandler(this.menuToolsSpelling_Click);
+			// 
+			// printDialog
+			// 
+			this.printDialog.AllowSomePages = true;
+			this.printDialog.Document = this.printDocument;
+			// 
+			// printDocument
+			// 
+			this.printDocument.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument_BeginPrint);
+			this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+			// 
+			// printPreviewDialog
+			// 
+			this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+			this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+			this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+			this.printPreviewDialog.Document = this.printDocument;
+			this.printPreviewDialog.Enabled = true;
+			this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
+			this.printPreviewDialog.Location = new System.Drawing.Point(547, 17);
+			this.printPreviewDialog.MinimumSize = new System.Drawing.Size(375, 250);
+			this.printPreviewDialog.Name = "printPreviewDialog";
+			this.printPreviewDialog.TransparencyKey = System.Drawing.Color.Empty;
+			this.printPreviewDialog.UseAntiAlias = true;
+			this.printPreviewDialog.Visible = false;
 			// 
 			// Document
 			// 
@@ -694,6 +747,12 @@ namespace NetSpell.Demo.Windows
 			this.contextMenuUndo.Text = "Undo";
 			this.contextMenuUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
 			// 
+			// menuItem1
+			// 
+			this.menuItem1.Index = 1;
+			this.menuItem1.Text = "Redo";
+			this.menuItem1.Click += new System.EventHandler(this.menuEditRedo_Click);
+			// 
 			// menuItem2
 			// 
 			this.menuItem2.Index = 2;
@@ -728,45 +787,15 @@ namespace NetSpell.Demo.Windows
 			this.contextMenuSelectAll.Text = "Select All";
 			this.contextMenuSelectAll.Click += new System.EventHandler(this.menuEditSelectAll_Click);
 			// 
-			// menuItem1
-			// 
-			this.menuItem1.Index = 1;
-			this.menuItem1.Text = "Redo";
-			this.menuItem1.Click += new System.EventHandler(this.menuEditRedo_Click);
-			// 
-			// menuEditRedo
-			// 
-			this.menuEditRedo.Index = 1;
-			this.menuEditRedo.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftZ;
-			this.menuEditRedo.Text = "Redo";
-			this.menuEditRedo.Click += new System.EventHandler(this.menuEditRedo_Click);
-			// 
 			// saveDialog
 			// 
+			this.saveDialog.DefaultExt = "*.txt";
 			this.saveDialog.FileName = "untitled";
 			this.saveDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
 			// 
 			// openDialog
 			// 
 			this.openDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-			// 
-			// printDocument
-			// 
-			this.printDocument.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument_BeginPrint);
-			this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
-			// 
-			// menuFilePageSetup
-			// 
-			this.menuFilePageSetup.Index = 9;
-			this.menuFilePageSetup.MergeOrder = 11;
-			this.menuFilePageSetup.Text = "Page Setup";
-			this.menuFilePageSetup.Click += new System.EventHandler(this.menuFilePageSetup_Click);
-			// 
-			// menuItem5
-			// 
-			this.menuItem5.Index = 6;
-			this.menuItem5.MergeOrder = 8;
-			this.menuItem5.Text = "-";
 			// 
 			// pageSetupDialog
 			// 
@@ -789,15 +818,15 @@ namespace NetSpell.Demo.Windows
 			this.ResumeLayout(false);
 
 		}
-#endregion
+		#endregion
 
-#region RichTextBox Printing Functions
+		#region RichTextBox Printing Functions
 		//Convert the unit used by the .NET framework (1/100 inch) 
 		//and the unit used by Win32 API calls (twips 1/1440 inch)
 		private const double anInch = 14.4;
 		private const int EM_FORMATRANGE  = WM_USER + 57;
 		private const int WM_USER  = 0x0400;
-		private int charFrom = 0;
+		private int startFrom = 0;
 		
 		[DllImport("USER32.dll")]
 		private static extern IntPtr SendMessage (IntPtr hWnd , int msg , IntPtr wp, IntPtr lp);
@@ -828,25 +857,7 @@ namespace NetSpell.Demo.Windows
 			public int Bottom;
 		}
 
-#endregion
-
-		private void DocumentForm_Activated(object sender, System.EventArgs e)
-		{
-			if (this.MdiParent != null) 
-			{
-				MainForm main = (MainForm)this.MdiParent;
-				main.EnableEditButtons();
-			}
-		}
-
-		private void DocumentForm_Deactivate(object sender, System.EventArgs e)
-		{
-			if (this.MdiParent != null) 
-			{
-				MainForm main = (MainForm)this.MdiParent;
-				main.DisableEditButtons();
-			}
-		}
+		#endregion
 
 	}
 }
