@@ -214,7 +214,7 @@ namespace NetSpell.Demo.Windows
 		}
 
 #region Spell Checker Events
-		private void spelling_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
+		private void spelling_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
 		{
 			this.currentText.Text = this.spelling.Text;
 		}
@@ -224,7 +224,7 @@ namespace NetSpell.Demo.Windows
 			this.currentText.Text = this.spelling.Text;
 		}
 
-		private void spelling_MisspelledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
+		private void spelling_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
 		{
 			this.currentText.Text = this.spelling.Text;
 		}
@@ -239,6 +239,9 @@ namespace NetSpell.Demo.Windows
 		{
 			// the following prevents the Spelling form from being hiden
 			this.spelling.SpellingForm.Owner = this;
+			this.spelling.Dictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
+			this.spelling.Dictionary.Initialize();
+			
 		}
 
 		private void undoMenu_Click(object sender, System.EventArgs e)

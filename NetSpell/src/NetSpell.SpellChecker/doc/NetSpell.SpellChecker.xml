@@ -609,6 +609,48 @@
                 </para>
             </param>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemoveSuffix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
+            <summary>
+                Removes the affix suffix rule entry for the word if valid
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to be modified
+                </para>
+            </param>
+            <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
+                <para>
+                    The affix rule entry to use
+                </para>
+            </param>
+            <returns>
+                The word after affix removed.  Will be the same word if affix could not be removed.
+            </returns>
+            <remarks>
+            	This method does not verify that the returned word is a valid word, only that the affix can be removed
+            </remarks>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Affix.AffixUtility.RemovePrefix(System.String,NetSpell.SpellChecker.Dictionary.Affix.AffixEntry)">
+            <summary>
+                Removes the affix prefix rule entry for the word if valid
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to be modified
+                </para>
+            </param>
+            <param name="entry" type="NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
+                <para>
+                    The affix rule entry to use
+                </para>
+            </param>
+            <returns>
+                The word after affix removed.  Will be the same word if affix could not be removed.
+            </returns>
+            <remarks>
+            	This method does not verify that the returned word is a valid word, only that the affix can be removed
+            </remarks>
+        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule">
             <summary>
             Summary description for Rule.
