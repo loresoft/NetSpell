@@ -1,53 +1,51 @@
-<%@ Page Language="C#" validaterequest="false" Trace="false" %>
+<%@ Page Language="C#" ValidateRequest=false %>
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
+
 <script runat="server">
 
-    protected void Page_Load(Object Src, EventArgs E) {
-            if (!IsPostBack) {
-                BrowserInfo.Text = Page.Request.UserAgent;
-                FreeTextBox1.Text = "<H3><FONT face=arial><FONT color=#008000>Free</FONT>TextBox</FONT></H3><P>type here...</P></FONT>";
-            }
-    }
+protected void Page_Load(Object Src, EventArgs E) {
+	if (!IsPostBack) {
+		FreeTextBox1.Text = "<p>some <b>Bold</b> and <u>underlined</u> and <font color=\"#008000\">colored</font> text<p><ul><li>bulleted list 1</li></ul>";
+	}
+}
 
-    protected void SaveButton_Click(Object Src, EventArgs E) {
+protected void SaveButton_Click(Object Src, EventArgs E) {
 
-            Output.Text = "<h3>Output</h3><div class=\"CodeBlock\">" + FreeTextBox1.Text + "</div>" +
-                "<h3>HTML</h3><div class=\"CodeBlock\">" + Server.HtmlEncode(FreeTextBox1.Text).Replace("\n","<br>") + "</div>";
-    }
+	Output.Text = FreeTextBox1.Text;
+}
+
 
 </script>
 <html>
 <head>
-    <title>FreeTextBox 2.0 development</title> <script language="JavaScript" src="spell.js" type="text/javascript"></script>
-    <script language="JavaScript">
-
-    </script>
+	<title>Example 1</title>
+<script language="JavaScript" src="spell.js" type="text/javascript"></script>
 </head>
 <body>
+
     <form runat="server">
-        <h2><span class="FTB">Free</span>TextBox 2.0
-        </h2>
-        <i>ASP.NET HTML editor for IE and Mozilla.</i>
-        <p>
-            Your Browser:
-            <asp:Literal id="BrowserInfo" runat="server"></asp:Literal>
-        </p>
-<FTB:FREETEXTBOX id="FreeTextBox1" runat="Server">
-    <TOOLBARS>
-        <FTB:TOOLBAR runat="server">
-            <FTB:TOOLBARBUTTON title="SpellCheck" runat="server" FunctionName="FTB_SpellCheck" ButtonImage="spellcheck">
-                	function FTB_SpellCheck(ftbName)
-		      {
-			     checkSpellingById(ftbName + "_Editor");
-		      }
-            </FTB:ToolbarButton>
-        </FTB:TOOLBAR>
-    </TOOLBARS>
-</FTB:FREETEXTBOX>
-        <asp:Button id="SaveButton" onclick="SaveButton_Click" runat="server" Text="Save"></asp:Button>
-        <br />
-        <br />
-        <asp:Literal id="Output" runat="server"></asp:Literal>
-    </form>
+    	
+    	<h2><a href="javascript:document.location.href=document.location.href"><span style="color:green;">Free</span>TextBox</a></h2>
+    	
+    	<div>    	    		
+		<FTB:FreeTextBox ToolbarStyleConfiguration="Office2003" OnSaveClick="SaveButton_Click" id="FreeTextBox1" runat="Server">
+			<Toolbars>
+				<FTB:Toolbar runat="server">
+					<FTB:NetSpell runat="server" />
+                </FTB:Toolbar>
+			</Toolbars>
+		</FTB:FreeTextBox>
+		
+		<asp:Button id="SaveButton" Text="Save" onclick="SaveButton_Click" runat="server" />
+		</div>
+		
+		<div style="display:none;">
+			<textarea id="Debug" style="width:500px; height: 250px;"></textarea>
+		</div>
+		
+		<div>
+		<asp:Literal id="Output" runat="server" />
+		</div>
+	</form>
 </body>
 </html>
