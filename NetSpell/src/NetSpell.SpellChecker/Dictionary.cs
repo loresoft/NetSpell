@@ -28,7 +28,7 @@ namespace NetSpell.SpellChecker
 #region Dictionary Object
 
 	/// <summary>
-	///		The Dictionary class encapsulates all functions assiated 
+	///		The Dictionary class encapsulates all functions associated 
 	///		with the word dictionary.
 	/// </summary>
 	/// <remarks>
@@ -49,7 +49,7 @@ namespace NetSpell.SpellChecker
 
 		/// <summary>
 		///     Dictionary constructor that takes in a file name
-		///     to automaticly load the dictionary from
+		///     to automatically load the dictionary from
 		/// </summary>
 		/// <param name="fileName" type="string">
 		///     <para>

@@ -6,7 +6,7 @@
     <members>
         <member name="T:NetSpell.SpellChecker.Dictionary">
             <summary>
-            	The Dictionary class encapsulates all functions assiated 
+            	The Dictionary class encapsulates all functions associated 
             	with the word dictionary.
             </summary>
             <remarks>
@@ -22,7 +22,7 @@
         <member name="M:NetSpell.SpellChecker.Dictionary.#ctor(System.String)">
             <summary>
                 Dictionary constructor that takes in a file name
-                to automaticly load the dictionary from
+                to automatically load the dictionary from
             </summary>
             <param name="fileName" type="string">
                 <para>
@@ -318,7 +318,7 @@
         </member>
         <member name="M:NetSpell.SpellChecker.OptionForm.#ctor(NetSpell.SpellChecker.Spelling@)">
             <summary>
-            	Default Constroctor
+            	Default Constructor
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.OptionForm.Dispose(System.Boolean)">
@@ -743,7 +743,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreList">
             <summary>
-                List of words to automaticly ignore
+                List of words to automatically ignore
             </summary>
             <remarks>
             	When <see cref="M:NetSpell.SpellChecker.Spelling.IgnoreAllWord"/> is clicked, the <see cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/> is added to this list
@@ -761,7 +761,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ReplaceList">
             <summary>
-                List of words and replacement values to automaticly replace
+                List of words and replacement values to automatically replace
             </summary>
             <remarks>
             	When <see cref="M:NetSpell.SpellChecker.Spelling.ReplaceAllWord"/> is clicked, the <see cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/> is added to this list
@@ -776,7 +776,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ShowDialog">
             <summary>
-                Determins if the spell checker should use its internal suggestions
+                Determines if the spell checker should use its internal suggestions
                 and options dialogs.
             </summary>
         </member>

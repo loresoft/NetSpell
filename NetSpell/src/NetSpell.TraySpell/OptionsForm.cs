@@ -321,10 +321,11 @@ namespace NetSpell.TraySpell
 
 		private void OptionForm_Load(object sender, System.EventArgs e)
 		{
+			/*
 			this.IgnoreDigitsCheck.Checked = SpellingForm.settings.IgnoreWordsWithDigits;
 			this.IgnoreUpperCheck.Checked = SpellingForm.settings.IgnoreAllCapsWords;
 			this.KeyTextBox.Text = SpellingForm.settings.HotKey.ToString();
-			/*
+			
 			if (SpellingForm.settings.HotKeyModifier & (int)KeyModifiers.MOD_ALT = (int)KeyModifiers.MOD_ALT) 
 				this.AltCheck.Checked = true;
 			else this.AltCheck.Checked = false;

@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("NetSpell.DictionaryBuild")]
 [assembly: AssemblyDescription("Dictionary build tool for NetSpell")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LoreSoft")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("http://www.loresoft.com")]
+[assembly: AssemblyProduct("NetSpell")]
+[assembly: AssemblyCopyright("Copyright © 2003 Paul Welter.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 

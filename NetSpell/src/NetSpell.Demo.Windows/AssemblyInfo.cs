@@ -6,14 +6,14 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("NetSpell.Demo.Windows")]
+[assembly: AssemblyDescription("The NetSpell Windows Demo show how to use the NetSpell.Spellchecker in a windows form.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("http://www.loresoft.com")]
+[assembly: AssemblyProduct("NetSpell")]
+[assembly: AssemblyCopyright("Copyright © 2003 Paul Welter.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]			
 
 //
 // Version information for an assembly consists of the following four values:

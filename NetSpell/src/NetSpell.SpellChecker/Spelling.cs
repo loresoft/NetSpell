@@ -761,7 +761,7 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     List of words to automaticly ignore
+		///     List of words to automatically ignore
 		/// </summary>
 		/// <remarks>
 		///		When <see cref="IgnoreAllWord"/> is clicked, the <see cref="CurrentWord"/> is added to this list
@@ -795,7 +795,7 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     List of words and replacement values to automaticly replace
+		///     List of words and replacement values to automatically replace
 		/// </summary>
 		/// <remarks>
 		///		When <see cref="ReplaceAllWord"/> is clicked, the <see cref="CurrentWord"/> is added to this list
@@ -822,7 +822,7 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     Determins if the spell checker should use its internal suggestions
+		///     Determines if the spell checker should use its internal suggestions
 		///     and options dialogs.
 		/// </summary>
 		[DefaultValue(false)]

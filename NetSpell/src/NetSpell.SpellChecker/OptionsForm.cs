@@ -63,7 +63,7 @@ namespace NetSpell.SpellChecker
 		private System.Windows.Forms.ColumnHeader wordsColumn;
 
 		/// <summary>
-		///		Default Constroctor
+		///		Default Constructor
 		/// </summary>
 		public OptionForm(ref Spelling spell)
 		{

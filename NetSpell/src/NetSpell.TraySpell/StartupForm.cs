@@ -63,6 +63,15 @@ namespace NetSpell.TraySpell
 			base.Dispose( disposing );
 		}
 
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		static void Main() 
+		{
+			Application.Run(new StartupForm());
+		}
+
 #region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -88,4 +97,5 @@ namespace NetSpell.TraySpell
 #endregion
 
 	}
+
 }

@@ -263,13 +263,13 @@ namespace NetSpell.DictionaryBuild
 			this.menuItem12 = new System.Windows.Forms.MenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.btnLoadList = new System.Windows.Forms.Button();
 			this.btnSaveList = new System.Windows.Forms.Button();
 			this.btnLoad = new System.Windows.Forms.Button();
 			this.btnCreate = new System.Windows.Forms.Button();
 			this.btnAdd = new System.Windows.Forms.Button();
-			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.txtLog = new System.Windows.Forms.TextBox();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -370,13 +370,14 @@ namespace NetSpell.DictionaryBuild
 			// 
 			this.menuItem12.Index = 0;
 			this.menuItem12.Text = "About";
+			this.menuItem12.Click += new System.EventHandler(this.menuItem12_Click);
 			// 
 			// tabControl1
 			// 
-			this.tabControl1.Controls.AddRange(new System.Windows.Forms.Control[] {
-																					  this.tabPage1,
-																					  this.tabPage2});
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(592, 297);
@@ -384,23 +385,30 @@ namespace NetSpell.DictionaryBuild
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.AddRange(new System.Windows.Forms.Control[] {
-																				   this.listBox1,
-																				   this.panel1});
+			this.tabPage1.Controls.Add(this.listBox1);
+			this.tabPage1.Controls.Add(this.panel1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Size = new System.Drawing.Size(584, 271);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Files";
 			// 
+			// listBox1
+			// 
+			this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listBox1.Location = new System.Drawing.Point(0, 0);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.ScrollAlwaysVisible = true;
+			this.listBox1.Size = new System.Drawing.Size(464, 264);
+			this.listBox1.TabIndex = 5;
+			// 
 			// panel1
 			// 
-			this.panel1.Controls.AddRange(new System.Windows.Forms.Control[] {
-																				 this.btnLoadList,
-																				 this.btnSaveList,
-																				 this.btnLoad,
-																				 this.btnCreate,
-																				 this.btnAdd});
+			this.panel1.Controls.Add(this.btnLoadList);
+			this.panel1.Controls.Add(this.btnSaveList);
+			this.panel1.Controls.Add(this.btnLoad);
+			this.panel1.Controls.Add(this.btnCreate);
+			this.panel1.Controls.Add(this.btnAdd);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.panel1.Location = new System.Drawing.Point(464, 0);
 			this.panel1.Name = "panel1";
@@ -452,32 +460,24 @@ namespace NetSpell.DictionaryBuild
 			this.btnAdd.Text = "Add File";
 			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
 			// 
-			// listBox1
-			// 
-			this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listBox1.Name = "listBox1";
-			this.listBox1.ScrollAlwaysVisible = true;
-			this.listBox1.Size = new System.Drawing.Size(464, 264);
-			this.listBox1.TabIndex = 5;
-			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.AddRange(new System.Windows.Forms.Control[] {
-																				   this.txtLog});
+			this.tabPage2.Controls.Add(this.txtLog);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Size = new System.Drawing.Size(624, 335);
+			this.tabPage2.Size = new System.Drawing.Size(584, 271);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Log";
 			// 
 			// txtLog
 			// 
 			this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.txtLog.Location = new System.Drawing.Point(0, 0);
 			this.txtLog.Multiline = true;
 			this.txtLog.Name = "txtLog";
 			this.txtLog.ReadOnly = true;
 			this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtLog.Size = new System.Drawing.Size(624, 335);
+			this.txtLog.Size = new System.Drawing.Size(584, 271);
 			this.txtLog.TabIndex = 0;
 			this.txtLog.Text = "";
 			this.txtLog.WordWrap = false;
@@ -499,9 +499,8 @@ namespace NetSpell.DictionaryBuild
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(592, 313);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																		  this.tabControl1,
-																		  this.statusBar1});
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.statusBar1);
 			this.Menu = this.mainMenu1;
 			this.Name = "frmDictionary";
 			this.Text = "Dictionary Build";
@@ -513,6 +512,12 @@ namespace NetSpell.DictionaryBuild
 
 		}
 #endregion
+
+		private void menuItem12_Click(object sender, System.EventArgs e)
+		{
+			AboutForm about = new AboutForm();
+			about.ShowDialog(this);
+		}
 
 	}
 }

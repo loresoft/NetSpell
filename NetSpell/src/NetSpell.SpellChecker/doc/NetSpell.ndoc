@@ -53,14 +53,14 @@
             <property name="GetExternalSummaries" value="True" />
         </documenter>
         <documenter name="MSDN">
-            <property name="OutputDirectory" value="..\..\doc\" />
+            <property name="OutputDirectory" value="..\doc\" />
             <property name="HtmlHelpName" value="NetSpell" />
             <property name="IncludeFavorites" value="False" />
             <property name="Title" value="NetSpell.SpellChecker" />
             <property name="SplitTOCs" value="False" />
             <property name="DefaulTOC" value="" />
             <property name="IncludeHierarchy" value="False" />
-            <property name="ShowVisualBasic" value="False" />
+            <property name="ShowVisualBasic" value="True" />
             <property name="OmitObjectTags" value="False" />
             <property name="RootPageContainsNamespaces" value="False" />
             <property name="SortTOCByNamespace" value="True" />
@@ -74,7 +74,7 @@
             <property name="DocumentPrivates" value="False" />
             <property name="DocumentEmptyNamespaces" value="False" />
             <property name="IncludeAssemblyVersion" value="False" />
-            <property name="CopyrightText" value="" />
+            <property name="CopyrightText" value="Copyright © 2003 Paul Welter.  All rights reserved.   http://www.loresoft.com" />
             <property name="CopyrightHref" value="" />
             <property name="SkipNamespacesWithoutSummaries" value="False" />
             <property name="AutoPropertyBackerSummaries" value="False" />

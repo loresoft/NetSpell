@@ -308,6 +308,7 @@ namespace NetSpell.Demo.Windows
 			// 
 			this.aboutMenu.Index = 0;
 			this.aboutMenu.Text = "About";
+			this.aboutMenu.Click += new System.EventHandler(this.aboutMenu_Click);
 			// 
 			// editToolBar
 			// 
@@ -611,6 +612,13 @@ namespace NetSpell.Demo.Windows
 		private void spelling_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
 		{
 			this.currentText.Text = this.spelling.Text;
+		}
+
+		private void aboutMenu_Click(object sender, System.EventArgs e)
+		{
+			AboutForm about = new AboutForm();
+			about.ShowDialog(this);
+
 		}
 
 

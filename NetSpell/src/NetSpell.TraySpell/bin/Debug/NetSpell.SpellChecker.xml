@@ -6,7 +6,7 @@
     <members>
         <member name="T:NetSpell.SpellChecker.Dictionary">
             <summary>
-            	The Dictionary class encapsulates all functions assiated 
+            	The Dictionary class encapsulates all functions associated 
             	with the word dictionary.
             </summary>
             <remarks>
@@ -22,7 +22,7 @@
         <member name="M:NetSpell.SpellChecker.Dictionary.#ctor(System.String)">
             <summary>
                 Dictionary constructor that takes in a file name
-                to automaticly load the dictionary from
+                to automatically load the dictionary from
             </summary>
             <param name="fileName" type="string">
                 <para>
@@ -306,10 +306,96 @@
             	Secondary Metaphone code
             </summary>
         </member>
+        <member name="T:NetSpell.SpellChecker.OptionForm">
+            <summary>
+            Summary description for OptionForm.
+            </summary>
+        </member>
+        <member name="F:NetSpell.SpellChecker.OptionForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.OptionForm.#ctor(NetSpell.SpellChecker.Spelling@)">
+            <summary>
+            	Default Constructor
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.OptionForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.OptionForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.AssemblyInfo">
+            <summary>
+            Summary description 
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.CodeBase">
+            <summary>
+            CodeBase of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Company">
+            <summary>
+            Company of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Copyright">
+            <summary>
+            Copyright of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Description">
+            <summary>
+            Description of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.FullName">
+            <summary>
+            	FullName of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Name">
+            <summary>
+            Name of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Product">
+            <summary>
+            Product of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Title">
+            <summary>
+            Title of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Version">
+            <summary>
+            Version of Assembly
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.Spelling">
             <summary>
             	The Spelling class encapsulates the functions necessary to check
             	the spelling of inputted text.
+            </summary>
+        </member>
+        <member name="F:NetSpell.SpellChecker.Spelling.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.#ctor">
+            <summary>
+                Default constructor
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor(NetSpell.SpellChecker.Dictionary[])">
@@ -369,6 +455,16 @@
             <param name="dictionaryFile" type="string">
                 <para>
                     The name of the dictionary file to load
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+                Required for Windows.Forms Class Composition Designer support
+            </summary>
+            <param name="container" type="System.ComponentModel.IContainer">
+                <para>
+                    
                 </para>
             </param>
         </member>
@@ -607,6 +703,12 @@
                 receivers that the event occurred
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="E:NetSpell.SpellChecker.Spelling.DoubledWord">
             <summary>
                 This event is fired when word is detected two times in a row
@@ -641,7 +743,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreList">
             <summary>
-                List of words to automaticly ignore
+                List of words to automatically ignore
             </summary>
             <remarks>
             	When <see cref="M:NetSpell.SpellChecker.Spelling.IgnoreAllWord"/> is clicked, the <see cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/> is added to this list
@@ -659,7 +761,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ReplaceList">
             <summary>
-                List of words and replacement values to automaticly replace
+                List of words and replacement values to automatically replace
             </summary>
             <remarks>
             	When <see cref="M:NetSpell.SpellChecker.Spelling.ReplaceAllWord"/> is clicked, the <see cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/> is added to this list
@@ -671,6 +773,12 @@
             </summary>
             <seealso cref="M:NetSpell.SpellChecker.Spelling.ReplaceAllWord"/>
             <seealso cref="M:NetSpell.SpellChecker.Spelling.ReplaceWord"/>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.ShowDialog">
+            <summary>
+                Determines if the spell checker should use its internal suggestions
+                and options dialogs.
+            </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.Suggestions">
             <summary>
@@ -750,6 +858,39 @@
         <member name="P:NetSpell.SpellChecker.WordEventArgs.WordIndex">
             <summary>
                 Word index of the WordEvent
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.SpellingForm">
+            <summary>
+            Summary description for SpellingForm.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.#ctor(NetSpell.SpellChecker.Spelling)">
+            <summary>
+                Default Constructor
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.AttachEvents">
+            <summary>
+                called by spell checker to enable this 
+                form to handle spell checker events
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.DetachEvents">
+            <summary>
+                called by spell checker to disable this 
+                form from handling spell checker events
             </summary>
         </member>
     </members>
