@@ -1055,6 +1055,24 @@
             	If the file does not exist, it will be created
             </remarks>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.VerifyAffixKey(System.String,System.Char)">
+            <summary>
+                Verifies the base word has the affix key
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    Base word to check
+                </para>
+            </param>
+            <param name="affixKey" type="string">
+                <para>
+                    Affix key to check 
+                </para>
+            </param>
+            <returns>
+                True if word contains affix key
+            </returns>
+        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.WordDictionary.Add(System.String)">
             <summary>
                 Adds a word to the user list
@@ -1426,6 +1444,10 @@
             <summary>
                 Deletes the CurrentWord from the Text Property
             </summary>
+            <remarks>
+            	Note, calling ReplaceWord with the ReplacementWord property set to 
+            	an empty string has the same behavior as DeleteWord.
+            </remarks>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.EditDistance(System.String,System.String,System.Boolean)">
             <summary>
@@ -1470,7 +1492,7 @@
                 The number of edits to make firstWord equal secondWord
             </returns>
             <remarks>
-            	This method automaticly gives priority to matching the first and last char
+            	This method automatically gives priority to matching the first and last char
             </remarks>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.IgnoreAllWord">
@@ -1528,7 +1550,6 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.Int32)">
             <summary>
@@ -1547,7 +1568,6 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.String)">
             <summary>
@@ -1566,7 +1586,6 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.String,System.Int32)">
             <summary>
@@ -1590,7 +1609,6 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.Suggest">
             <summary>
@@ -1706,7 +1724,7 @@
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.SuggestionMode">
             <summary>
-                The suggestion stratagy to use when generating suggestions
+                The suggestion strategy to use when generating suggestions
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.Suggestions">
@@ -1752,29 +1770,29 @@
         </member>
         <member name="T:NetSpell.SpellChecker.Spelling.SuggestionEnum">
             <summary>
-                The suggestion stratagy to use when generating suggestions
+                The suggestion strategy to use when generating suggestions
             </summary>
         </member>
         <member name="F:NetSpell.SpellChecker.Spelling.SuggestionEnum.PhoneticNearMiss">
             <summary>
-                Combines the phonetic and near miss stratagies
+                Combines the phonetic and near miss strategies
             </summary>
         </member>
         <member name="F:NetSpell.SpellChecker.Spelling.SuggestionEnum.Phonetic">
             <summary>
-                The phonetic stratagy generates suggestions by word sound
+                The phonetic strategy generates suggestions by word sound
             </summary>
             <remarks>
-            	This techneque was developed by the open source project ASpell.net
+            	This technique was developed by the open source project ASpell.net
             </remarks>
         </member>
         <member name="F:NetSpell.SpellChecker.Spelling.SuggestionEnum.NearMiss">
             <summary>
-                The near miss stratagy generates suggestion by replacing, 
+                The near miss strategy generates suggestion by replacing, 
                 removing, adding chars to make words
             </summary>
             <remarks>
-                This techneque was developed by the open source spell checker ISpell
+                This technique was developed by the open source spell checker ISpell
             </remarks>
         </member>
         <member name="T:NetSpell.SpellChecker.SpellingEventArgs">

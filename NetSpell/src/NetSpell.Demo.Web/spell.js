@@ -6,38 +6,35 @@ var pubURL = "";
    
 function checkSpelling(strBody, strURL) {
 	
-	if (navigator.appVersion.indexOf("MSIE 3")==-1) {
-		pubBody = strBody;
-		pubURL = strURL;
+	pubBody = strBody;
+	pubURL = strURL;
+	
+	var strTextArea = "";
+	var oElement = document.getElementById(pubBody);
+	if (oElement) strTextArea = oElement.value;
+	
+	var newWindow = window.open("","newWindow","height=320,width=400");
+	
+	newWindow.document.open()
+	newWindow.document.writeln("<HTML>")
+	newWindow.document.writeln("<HEAD>")
+	newWindow.document.writeln("	<TITLE>Spell Checker</TITLE>")
+	newWindow.document.writeln("</HEAD>")
+	newWindow.document.writeln("<BODY bgcolor=\"White\">")
+	newWindow.document.writeln("<font face=\"Arial Black\" size=\"+1\">Loading Spell Checker . . .</font>")
+	newWindow.document.writeln("<form action=\"\" method=\"POST\" name=\"Spell\">")
+	newWindow.document.writeln("	<input type=\"Hidden\" name=\"CurrentText\" value=\"\">")
+	newWindow.document.writeln("	<input type=\"Hidden\" name=\"SpellCheck\" value=\"true\">")
+	newWindow.document.writeln("</form>")
+	newWindow.document.writeln("</BODY>")
+	newWindow.document.writeln("</HTML>")
+	newWindow.document.close()
+	
+	newWindow.document.Spell.action=pubURL
+	newWindow.document.Spell.CurrentText.value=strTextArea;
+	newWindow.document.Spell.submit();
 		
-		var strTextArea = "";
-		var oElement = document.getElementById(pubBody);
-		if (oElement) strTextArea = oElement.value;
 		
-		var newWindow = window.open("","newWindow","height=320,width=400");
-		
-		newWindow.document.open()
-		newWindow.document.writeln("<HTML>")
-		newWindow.document.writeln("<HEAD>")
-		newWindow.document.writeln("	<TITLE>Speller</TITLE>")
-		newWindow.document.writeln("</HEAD>")
-		newWindow.document.writeln("<BODY bgcolor=\"White\">")
-		newWindow.document.writeln("<font face=\"Arial Black\" size=\"+1\">Loading Spell Checker . . .</font>")
-		newWindow.document.writeln("<form action=\"" + pubURL + "\" method=\"POST\" name=\"Spell\">")
-		newWindow.document.writeln("	<input type=\"Hidden\" name=\"CurrentText\" value=\"\">")
-		newWindow.document.writeln("	<input type=\"Hidden\" name=\"SpellCheck\" value=\"true\">")
-		newWindow.document.writeln("</form>")
-		newWindow.document.writeln("</BODY>")
-		newWindow.document.writeln("</HTML>")
-		newWindow.document.close()
-		
-		newWindow.document.Spell.CurrentText.value=strTextArea;
-		newWindow.document.Spell.submit();
-		
-		}
-	else {
-		alert("Spell Checker is not compatible with this browser.  Please upgrade to Netscape 3+ or IE 4.")
-		}
 }
 
 /***********************************************************
@@ -66,4 +63,8 @@ function changeWord(oElement)
 function updateCallingPage() {
     var strText = document.SpellingForm.CurrentText.value;
     if (top.opener) top.opener.updateForm(strText);     
+}
+
+function closeSpellChecker() {
+	if (top.opener) self.close();
 }

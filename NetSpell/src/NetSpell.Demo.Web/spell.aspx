@@ -26,9 +26,11 @@
 							<asp:Label id="CurrentWord" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label><BR>
 							<BR>
 							<I>Change To:</I><BR>
-							<asp:TextBox id="ReplacementWord" runat="server" Width="230px" Columns="30" EnableViewState="False"></asp:TextBox><BR>
+							<asp:TextBox id="ReplacementWord" runat="server" Width="230px" Columns="30" EnableViewState="False"
+								CssClass="suggestion"></asp:TextBox><BR>
 							<I>Suggestions:</I><BR>
-							<asp:ListBox id="Suggestions" runat="server" Width="230px" EnableViewState="False" Rows="8"></asp:ListBox></TD>
+							<asp:ListBox id="Suggestions" runat="server" Width="230px" EnableViewState="False" CssClass="suggestion"
+								Rows="8"></asp:ListBox></TD>
 						<TD class="highlight" vAlign="top" align="center" width="100">
 							<TABLE>
 								<TR>
@@ -67,7 +69,7 @@
 									</TD>
 								</TR>
 								<TR>
-									<TD><INPUT class="button" onclick="self.close();" type="button" value="Cancel" name="btnCancel"></TD>
+									<TD><INPUT class="button" onclick="closeSpellChecker()" type="button" value="Cancel" name="btnCancel"></TD>
 								</TR>
 								<TR>
 								</TR>
@@ -90,7 +92,7 @@
 						</TD>
 					</TR>
 					<TR>
-						<TD align="center"><INPUT class="button" onclick="self.close();" type="button" value="OK" name="btnCancel"></TD>
+						<TD align="center"><INPUT class="button" onclick="closeSpellChecker();" type="button" value="OK" name="btnCancel"></TD>
 					</TR>
 				</TABLE>
 			</asp:panel></form>
