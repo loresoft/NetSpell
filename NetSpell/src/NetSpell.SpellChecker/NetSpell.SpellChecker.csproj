@@ -129,6 +129,10 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Spelling.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Spelling.cs"
                     SubType = "Component"
                     BuildAction = "Compile"

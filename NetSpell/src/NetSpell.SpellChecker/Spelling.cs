@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms.Design;
+using System.Drawing;
 using System.Drawing.Design;
 
 namespace NetSpell.SpellChecker
@@ -29,6 +30,7 @@ namespace NetSpell.SpellChecker
 	///		The Spelling class encapsulates the functions necessary to check
 	///		the spelling of inputted text.
 	/// </summary>
+	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Spelling), "Spelling.bmp")]
 	public class Spelling : System.ComponentModel.Component
 	{
 
@@ -651,7 +653,7 @@ namespace NetSpell.SpellChecker
 
 			string lastWord = "";
 
-			for (int i = 0; i < tempSuggestion.Count && i < _MaxSuggestions; i++)
+			for (int i = 0; i < tempSuggestion.Count && _Suggestions.Count < _MaxSuggestions; i++)
 			{
 				if (((WordSuggestion)tempSuggestion[i]).Word != lastWord)
 				{
