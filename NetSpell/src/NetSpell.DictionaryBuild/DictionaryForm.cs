@@ -106,14 +106,14 @@ namespace NetSpell.DictionaryBuild
 
 			this.Cursor = Cursors.WaitCursor;
 
-			WordDictionary dict = new WordDictionary();
+			Lexicon dict = new Lexicon();
 			dict.DictionaryFile = this.FileName;
 			dict.Initialize();
 
 			string[] parts = _Words[(int)numUpDownWord.Value].ToString().Split('/');
 		
 			Word word = new Word();
-			word.Value = parts[0];
+			word.Text = parts[0];
 			if (parts.Length > 1) word.AffixKeys = parts[1];
 			if (parts.Length > 2) word.PhoneticCode = parts[2];
 
@@ -225,7 +225,7 @@ namespace NetSpell.DictionaryBuild
 
 			this.Cursor = Cursors.WaitCursor;
 			// load dictionary
-			WordDictionary dict = new WordDictionary();
+			Lexicon dict = new Lexicon();
 			dict.DictionaryFile = this.FileName;
 			dict.Initialize();
 			this.Cursor = Cursors.Default;

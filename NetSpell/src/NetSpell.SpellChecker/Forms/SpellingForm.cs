@@ -19,7 +19,7 @@ namespace NetSpell.SpellChecker.Forms
 	/// <summary>
 	/// The SpellingForm is used to display suggestions when there is a misspelled word
 	/// </summary>
-	public class SpellingForm : System.Windows.Forms.Form
+	public class SuggestionForm : System.Windows.Forms.Form
 	{
 		private System.Windows.Forms.Button AddButton;
 		private System.Windows.Forms.Button CancelBtn;
@@ -44,7 +44,7 @@ namespace NetSpell.SpellChecker.Forms
 		/// <summary>
 		///     Default Constructor
 		/// </summary>
-		public SpellingForm(Spelling spell)
+		public SuggestionForm(Spelling spell)
 		{
 			this.SpellChecker = spell;
 			this.AttachEvents();
@@ -141,14 +141,14 @@ namespace NetSpell.SpellChecker.Forms
 			base.Dispose( disposing );
 		}
 
-#region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SpellingForm));
+			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SuggestionForm));
 			this.SuggestionList = new System.Windows.Forms.ListBox();
 			this.ReplacementWord = new System.Windows.Forms.TextBox();
 			this.ReplaceLabel = new System.Windows.Forms.Label();
@@ -321,7 +321,7 @@ namespace NetSpell.SpellChecker.Forms
 			this.AddButton.Text = "&Add";
 			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
 			// 
-			// SpellingForm
+			// SuggestionForm
 			// 
 			this.AcceptButton = this.IgnoreButton;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -356,9 +356,9 @@ namespace NetSpell.SpellChecker.Forms
 			this.ResumeLayout(false);
 
 		}
-#endregion
+		#endregion
 
-#region Spelling Events
+		#region Spelling Events
 
 		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
 		{
@@ -468,7 +468,7 @@ namespace NetSpell.SpellChecker.Forms
 			SpellChecker.DoubledWord -= new Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
 			SpellChecker.EndOfText -= new Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
 		}
-#endregion
+		#endregion
 
 	}
 }

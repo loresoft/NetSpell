@@ -138,6 +138,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Controls\NativeMethods.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Controls\SpellRichTextBox.cs"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Dictionary\Dictionary.bmp"
                     BuildAction = "EmbeddedResource"
                 />

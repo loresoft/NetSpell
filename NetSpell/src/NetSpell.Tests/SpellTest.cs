@@ -21,7 +21,7 @@ namespace NetSpell.Tests
 	{
 		
 		PerformanceTimer _timer = new PerformanceTimer();
-		WordDictionary _dictionary = new WordDictionary();
+		Lexicon _dictionary = new Lexicon();
 
 		[SetUp]
 		public void Setup()
@@ -258,8 +258,21 @@ namespace NetSpell.Tests
 			
 		}
 
+		
+		[Test]
+		public void GetWordIndexFromTextIndex() 
+		{
+			Spelling _SpellChecker = NewSpellChecker();
 
-
+			_SpellChecker.Text = "This is a test ";
+			Assert.AreEqual(0, _SpellChecker.GetWordIndexFromTextIndex(1));
+			Assert.AreEqual(0, _SpellChecker.GetWordIndexFromTextIndex(4));
+			Assert.AreEqual(1, _SpellChecker.GetWordIndexFromTextIndex(5));
+			Assert.AreEqual(2, _SpellChecker.GetWordIndexFromTextIndex(9));
+			Assert.AreEqual(3, _SpellChecker.GetWordIndexFromTextIndex(12));
+			Assert.AreEqual(3, _SpellChecker.GetWordIndexFromTextIndex(15));
+			Assert.AreEqual(3, _SpellChecker.GetWordIndexFromTextIndex(20));
+		}
 
 	}
 }
