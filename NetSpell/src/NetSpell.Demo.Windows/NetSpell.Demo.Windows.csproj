@@ -141,6 +141,10 @@
                     DependentUpon = "MainForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
+                <File
+                    RelPath = "nant.config"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </CSHARP>

@@ -14,7 +14,8 @@
 	<body id="SpellingBody" runat="server">
 		<form id="SpellingForm" name="SpellingForm" method="post" runat="server">
 			<input id="WordIndex" type="hidden" name="WordIndex" runat="server"> <input id="CurrentText" type="hidden" name="CurrentText" runat="server">
-			<input id="IgnoreList" type="hidden" name="IgnoreList" runat="server"> <input id="ReplaceList" type="hidden" name="ReplaceList" runat="server">
+			<input id="IgnoreList" type="hidden" name="IgnoreList" runat="server"> <input id="ReplaceKeyList" type="hidden" name="ReplaceKeyList" runat="server">
+			<INPUT id="ReplaceValueList" type="hidden" name="ReplaceValueList" runat="server">
 			<asp:panel id="SuggestionForm" runat="server" Visible="False">
 				<TABLE cellSpacing="0" cellPadding="3" width="375" bgColor="#ffffff" border="1">
 					<TR>
@@ -27,7 +28,7 @@
 							<I>Change To:</I><BR>
 							<asp:TextBox id="ReplacementWord" runat="server" Width="230px" Columns="30" EnableViewState="False"></asp:TextBox><BR>
 							<I>Suggestions:</I><BR>
-							<asp:ListBox id="Suggestions" runat="server" Width="230px" Rows="8" EnableViewState="False"></asp:ListBox></TD>
+							<asp:ListBox id="Suggestions" runat="server" Width="230px" EnableViewState="False" Rows="8"></asp:ListBox></TD>
 						<TD class="highlight" vAlign="top" align="center" width="100">
 							<TABLE>
 								<TR>
@@ -37,6 +38,15 @@
 								<TR>
 									<TD>
 										<asp:Button id="IgnoreAllButton" runat="server" CssClass="button" Text="Ignore All"></asp:Button></TD>
+								</TR>
+								<TR>
+									<TD>
+										<P>&nbsp;</P>
+									</TD>
+								</TR>
+								<TR>
+									<TD>
+										<asp:Button id="AddButton" runat="server" CssClass="button" Text="Add"></asp:Button></TD>
 								</TR>
 								<TR>
 									<TD>
@@ -63,6 +73,11 @@
 								</TR>
 							</TABLE>
 						</TD>
+					</TR>
+					<TR>
+						<TD align="center" colSpan="2"><FONT face="Arial" size="1">Powered by
+								<asp:HyperLink id="NetSpellLink" runat="server" NavigateUrl="http://www.loresoft.com/netspell"
+									Font-Size="XX-Small" Target="_new">NetSpell</asp:HyperLink></FONT></TD>
 					</TR>
 				</TABLE>
 			</asp:panel><asp:panel id="SpellcheckComplete" runat="server">

@@ -875,6 +875,66 @@
                 Initializes a new instance of the class
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.Int32)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="value" type="string">
+                <para>
+                    The string for the base word
+                </para>
+            </param>
+            <param name="editDistance" type="int">
+                <para>
+                    The edit distance from the misspelled word
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="value" type="string">
+                <para>
+                    The string for the base word
+                </para>
+            </param>
+            <param name="affixKeys" type="string">
+                <para>
+                    The affix keys that can be applied to this base word
+                </para>
+            </param>
+            <param name="phoneticCode" type="string">
+                <para>
+                    The phonetic code for this word
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String,System.String)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="value" type="string">
+                <para>
+                    The string for the base word
+                </para>
+            </param>
+            <param name="affixKeys" type="string">
+                <para>
+                    The affix keys that can be applied to this base word
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Word.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="value" type="string">
+                <para>
+                    The string for the base word
+                </para>
+            </param>
+        </member>
         <member name="M:NetSpell.SpellChecker.Dictionary.Word.CompareTo(System.Object)">
             <summary>
                 Sorts a collection of words by EditDistance
@@ -888,6 +948,15 @@
                 The affix keys that can be applied to this base word
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Word.EditDistance">
+            <summary>
+                Used for sorting suggestions by its edit distance for 
+                the misspelled word
+            </summary>
+            <remarks>
+            	Internal use only
+            </remarks>
+        </member>
         <member name="P:NetSpell.SpellChecker.Dictionary.Word.PhoneticCode">
             <summary>
                 The phonetic code for this word
@@ -897,15 +966,6 @@
             <summary>
                 The string for the base word
             </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.Word.EditDistance">
-            <summary>
-                Used for sorting suggestions by its edit distance for 
-                the misspelled word
-            </summary>
-            <remarks>
-            	Internal use only
-            </remarks>
         </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.WordDictionary">
             <summary>
@@ -1285,6 +1345,30 @@
                 Deletes the CurrentWord from the Text Property
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.EditDistance(System.String,System.String,System.Boolean)">
+            <summary>
+                Calculates the minimum number of change, inserts or deletes
+                required to change firstWord into secondWord
+            </summary>
+            <param name="source" type="string">
+                <para>
+                    The first word to calculate
+                </para>
+            </param>
+            <param name="target" type="string">
+                <para>
+                    The second word to calculate
+                </para>
+            </param>
+            <param name="positionPriority" type="bool">
+                <para>
+                    set to true if the first and last char should have priority
+                </para>
+            </param>
+            <returns>
+                The number of edits to make firstWord equal secondWord
+            </returns>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.EditDistance(System.String,System.String)">
             <summary>
                 Calculates the minimum number of change, inserts or deletes
@@ -1303,6 +1387,9 @@
             <returns>
                 The number of edits to make firstWord equal secondWord
             </returns>
+            <remarks>
+            	This method automaticly gives priority to matching the first and last char
+            </remarks>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.IgnoreAllWord">
             <summary>
@@ -1507,6 +1594,11 @@
         <member name="P:NetSpell.SpellChecker.Spelling.MaxSuggestions">
             <summary>
                 The maximum number of suggestions to generate
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.PhoneticLevel">
+            <summary>
+                Determines how close the suggestion words need to sound
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ReplaceList">

@@ -41,7 +41,7 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\Dictionaries";
+			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\..\dic";
 			_SpellChecker.Dictionary.Initialize();
 			
 			_SpellChecker.ShowDialog = false;

@@ -1,49 +1,65 @@
 <?xml version="1.0"?>
 <project name="NetSpell" default="test">
   <property name="project.name" value="NetSpell" />
-  <property name="project.version" value="1.1.0" />
+  <property name="project.version" value="2.0.1" />
   <property name="project.config" value="release" />
   <property name="build.debug" value="false" />
   <property name="build.dir" value="${nant.project.basedir}\build\${project.name}-${project.version}" />
+  
   <target name="build" depends="clean" description="Builds NetSpell">
     <echo message="Build Directory is ${build.dir}" />
     <mkdir dir="${build.dir}\bin" />
     <mkdir dir="${build.dir}\doc" />
     <mkdir dir="${build.dir}\src" />
+    <mkdir dir="${build.dir}\dic" />
     <copy todir="${build.dir}\bin">
 	<fileset basedir="bin">
 	    <includes name="nunit.framework.dll" />
 	</fileset>
     </copy>
-    <copy todir="${build.dir}\bin">
-    	<fileset basedir="Dictionaries">
-    	    <includes name="us-en-md.dic" />
-    	    <includes name="user.dic" />
+    <copy todir="${build.dir}\dic">
+    	<fileset basedir="..\dic">
+    	    <includes name="*.dic" />
     	</fileset>
     </copy>
     <nant buildfile="NetSpell.SpellChecker\SpellChecker.build" target="compile" />
     <nant buildfile="NetSpell.Tests\Tests.build" target="compile" />
     <nant buildfile="NetSpell.Demo.Windows\demo.build" target="compile" />
+    <nant buildfile="NetSpell.DictionaryBuild\DictionaryBuild.build" target="compile" />
   </target>
+  
   <target name="clean" description="Cleans the build folder">
     <delete dir="${build.dir}" failonerror="false" />
   </target>
+  
   <target name="test" depends="build" description="Runs NUnit Tests">
 	<nunit2>
 		<test assemblyname="${build.dir}\bin\${project.name}.Tests.dll" type="Plain" />
 	</nunit2>
+	<delete>
+	    	<fileset>
+	    	    <includes name="${build.dir}\bin\*.dll" />
+	    	    <includes name="${build.dir}\bin\*.txt" />
+	    	    
+	    	    <excludes name="${build.dir}\bin\NetSpell.SpellChecker.dll" />
+	    	</fileset>
+    	</delete>
   </target>
+  
   <target name="package" depends="doc" description="Creates a deployment package">
     <!-- copy project files -->
     <copy todir="${build.dir}/src">
 	<fileset>
 	    <includes name="NetSpell.SpellChecker\**" />
+	    <includes name="NetSpell.DictionaryBuild\**" />
 	    <includes name="NetSpell.Tests\**" />
 	    <includes name="NetSpell.Demo.Windows\**" />
 	    <includes name="NetSpell.Demo.Web\**" />
+	    <includes name="*.sln" />
 	    <includes name="readme.txt" />
 	    <includes name="history.txt" />
 	    
+	    <excludes name="NetSpell.TraySpell.sln" />
 	    <!--Start "Exclude VS.Net stuff" -->
 	    <excludes name="**\*.suo" />
 	    <excludes name="**\*j.user" />
@@ -65,6 +81,7 @@
 	</fileset>
     </zip>
   </target>
+  
   <target name="doc" depends="test" description="Creates HTML Help file">
     <ndoc failonerror="false">
       <assemblies basedir="${build.dir}\bin">

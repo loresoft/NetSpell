@@ -32,15 +32,15 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_WordDictionary.DictionaryFolder = @"..\..\..\Dictionaries";
+			_WordDictionary.DictionaryFolder = @"..\..\..\..\dic";
 			_WordDictionary.Initialize();
 		}
 
 		[Test]
 		public void Contains() 
 		{
-			string validFile = @"..\..\..\Dictionaries\Test\ValidWords.txt";
-			string invalidFile = @"..\..\..\Dictionaries\Test\SuggestionTest.txt";
+			string validFile = @"ValidWords.txt";
+			string invalidFile = @"SuggestionTest.txt";
 			
 			// open file
 			FileStream fs = new FileStream(validFile, FileMode.Open, FileAccess.Read, FileShare.Read);

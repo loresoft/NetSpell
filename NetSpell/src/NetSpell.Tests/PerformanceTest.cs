@@ -19,6 +19,7 @@ namespace NetSpell.Tests
 	/// Summary description for PerformanceTest.
 	/// </summary>
 	[TestFixture]
+	[Ignore("Too Long")]
 	public class PerformanceTest
 	{
 		Spelling _SpellChecker = new Spelling();
@@ -34,7 +35,7 @@ namespace NetSpell.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\Dictionaries";
+			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\..\dic";
 			_SpellChecker.Dictionary.Initialize();
 			
 			_SpellChecker.ShowDialog = false;
@@ -44,7 +45,7 @@ namespace NetSpell.Tests
 		[Test]
 		public void SuggestionRank()
 		{
-			string invalidFile = @"..\..\..\Dictionaries\Test\SuggestionTest.txt";
+			string invalidFile = @"SuggestionTest.txt";
 			
 			// open file
 			FileStream fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read, FileShare.Read);

@@ -17,5 +17,7 @@
 				<includes name="${build.dir}\bin\nunit.framework.dll"/>
 			</references>
 		</csc>
+		<copy file="bin\Debug\SuggestionTest.txt" tofile="${build.dir}\bin\SuggestionTest.txt" />
+		<copy file="bin\Debug\ValidWords.txt" tofile="${build.dir}\bin\ValidWords.txt" />
 	</target>
 </project>

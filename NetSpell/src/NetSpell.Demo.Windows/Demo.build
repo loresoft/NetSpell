@@ -19,6 +19,6 @@
 				<includes name="${build.dir}\bin\NetSpell.SpellChecker.dll"/>
 			</references>
 		</csc>
-		<copy file="app.config" tofile="${build.dir}\bin\${project.name}.${output.name}.exe.config" />
+		<copy file="nant.config" tofile="${build.dir}\bin\${project.name}.${output.name}.exe.config" />
 	</target>
 </project>

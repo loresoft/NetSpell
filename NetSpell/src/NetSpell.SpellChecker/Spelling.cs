@@ -866,7 +866,6 @@ namespace NetSpell.SpellChecker
 		private ArrayList _IgnoreList = new ArrayList();
 		private bool _IgnoreWordsWithDigits = false;
 		private int _MaxSuggestions = 25;
-		private int _PhoneticLevel = 0;
 		private Hashtable _ReplaceList = new Hashtable();
 		private string _ReplacementWord = "";
 		private bool _ShowDialog = true;
@@ -992,19 +991,6 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     Determines how close the suggestion words need to sound
-		/// </summary>
-		[DefaultValue(2)]
-		[CategoryAttribute("Options")]
-		[Description("Determines how close the suggestion words need to sound")]
-		public int PhoneticLevel
-		{
-			get {return _PhoneticLevel;}
-			set {_PhoneticLevel = value;}
-		}
-
-
-		/// <summary>
 		///     List of words and replacement values to automatically replace
 		/// </summary>
 		/// <remarks>
@@ -1121,7 +1107,14 @@ namespace NetSpell.SpellChecker
 		public int WordIndex
 		{
 			get {return _WordIndex;}
-			set {_WordIndex = value;}
+			set 
+			{	
+				_WordIndex = value;
+				if (_words.Count > _WordIndex)
+				{
+					_CurrentWord = _words[_WordIndex].Value.ToString();
+				}
+			}
 		}
 
 #endregion

@@ -3,14 +3,30 @@ using System;
 namespace NetSpell.SpellChecker.Dictionary.Phonetic
 {
 	/// <summary>
-	/// Summary description for PhoneticUtility.
+	///		This class holds helper methods for phonetic encoding
 	/// </summary>
 	public class PhoneticUtility
 	{
+		/// <summary>
+		///     Initializes a new instance of the class
+		/// </summary>
 		public PhoneticUtility()
 		{
 		}
 
+		/// <summary>
+		///     Converts the rule text in to a PhoneticRule class
+		/// </summary>
+		/// <param name="ruleText" type="string">
+		///     <para>
+		///         The text to convert
+		///     </para>
+		/// </param>
+		/// <param name="rule" type="ref NetSpell.SpellChecker.Dictionary.Phonetic.PhoneticRule">
+		///     <para>
+		///         The object that will hold the conversion data
+		///     </para>
+		/// </param>
 		public static void EncodeRule(string ruleText, ref PhoneticRule rule)
 		{
 			// clear the conditions array
