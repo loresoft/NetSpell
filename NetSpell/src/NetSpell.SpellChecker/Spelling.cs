@@ -593,7 +593,6 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		/// <seealso cref="CurrentWord"/>
 		/// <seealso cref="WordIndex"/>
-		/// <seealso cref="Dictionaries"/>
 		public bool SpellCheck()
 		{
 			if (!this.Dictionary.Initialized)
@@ -666,7 +665,6 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		/// <seealso cref="CurrentWord"/>
 		/// <seealso cref="WordIndex"/>
-		/// <seealso cref="Dictionaries"/>
 		public bool SpellCheck(int startWordIndex)
 		{
 			_WordIndex = startWordIndex;
@@ -689,7 +687,6 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		/// <seealso cref="CurrentWord"/>
 		/// <seealso cref="WordIndex"/>
-		/// <seealso cref="Dictionaries"/>
 		public bool SpellCheck(string text)
 		{
 			this.Text = text;
@@ -717,7 +714,6 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		/// <seealso cref="CurrentWord"/>
 		/// <seealso cref="WordIndex"/>
-		/// <seealso cref="Dictionaries"/>
 		public bool SpellCheck(string text, int startWordIndex)
 		{
 			this.WordIndex = startWordIndex;
