@@ -395,7 +395,7 @@
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor">
             <summary>
-                Default constructor
+                Initializes a new instance of the SpellCheck class
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor(NetSpell.SpellChecker.Dictionary[])">
@@ -414,7 +414,7 @@
                 Initializes a new instance of the SpellCheck class with 
                 the specified dictionary object. 
             </summary>
-            <param name="dictionary" type="FreeSpell.Dictionary">
+            <param name="mainDictionary" type="FreeSpell.Dictionary">
                 <para>
                     The Dictionary object to use
                 </para>
@@ -434,27 +434,30 @@
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.String,System.String)">
             <summary>
                 Initializes a new instance of the SpellCheck class with 
-                the specified dictionary file and the text to speck check. 
+                the specified dictionary file. 
             </summary>
-            <param name="dictionaryFile" type="string">
+            <param name="mainDictionaryFile" type="string">
                 <para>
-                    The name of the dictionary file to load
+                    The main spell checker dictionary file name
                 </para>
             </param>
-            <param name="text" type="string">
+            <param name="userDictionaryFile" type="string">
                 <para>
-                    The text to spell check
+                    The user dictionary filename
                 </para>
             </param>
+            <returns>
+                A void value...
+            </returns>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.String)">
             <summary>
                 Initializes a new instance of the SpellCheck class with 
                 the specified dictionary file. 
             </summary>
-            <param name="dictionaryFile" type="string">
+            <param name="mainDictionaryFile" type="string">
                 <para>
-                    The name of the dictionary file to load
+                     The main spell checker dictionary file name
                 </para>
             </param>
         </member>
@@ -754,9 +757,14 @@
                 Ignore words with digits when spell checking
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.MainDictionary">
+            <summary>
+            	The file name for the main dictionary
+            </summary>
+        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.MaxSuggestions">
             <summary>
-                The maximum suggestions to generate
+                The maximum number of suggestions to generate
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.ReplaceList">
@@ -780,6 +788,11 @@
                 and options dialogs.
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.SpellingForm">
+            <summary>
+                The internal spelling suggestions dialog form
+            </summary>
+        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.Suggestions">
             <summary>
                 An array of word suggestions for the correct spelling of the misspelled word
@@ -792,6 +805,14 @@
             <summary>
                 The text to spell check
             </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.UserDictionary">
+            <summary>
+            	The file name of the current user dictionary
+            </summary>
+            <remarks>
+            	The user dictionary is where words get added by the user
+            </remarks>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.WordCount">
             <summary>
@@ -872,7 +893,7 @@
         </member>
         <member name="M:NetSpell.SpellChecker.SpellingForm.Dispose(System.Boolean)">
             <summary>
-            Clean up any resources being used.
+            	Clean up any resources being used.
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.SpellingForm.InitializeComponent">

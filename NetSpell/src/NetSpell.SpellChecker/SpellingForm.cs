@@ -31,6 +31,7 @@ namespace NetSpell.SpellChecker
 	/// </summary>
 	public class SpellingForm : System.Windows.Forms.Form
 	{
+		private System.Windows.Forms.Button AddButton;
 		private System.Windows.Forms.Button CancelBtn;
 		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.Button IgnoreAllButton;
@@ -40,6 +41,8 @@ namespace NetSpell.SpellChecker
 		private System.Windows.Forms.Button ReplaceButton;
 		private System.Windows.Forms.Label ReplaceLabel;
 		private System.Windows.Forms.TextBox ReplacementWord;
+		
+		private NetSpell.SpellChecker.Spelling SpellChecker;
 		private System.Windows.Forms.StatusBar spellStatus;
 		private System.Windows.Forms.StatusBarPanel statusPaneCount;
 		private System.Windows.Forms.StatusBarPanel statusPaneIndex;
@@ -48,15 +51,32 @@ namespace NetSpell.SpellChecker
 		private System.Windows.Forms.Label SuggestionsLabel;
 		private System.Windows.Forms.RichTextBox TextBeingChecked;
 		private System.Windows.Forms.Label TextLabel;
-		
-		private NetSpell.SpellChecker.Spelling SpellChecker;
 		/// <summary>
 		///     Default Constructor
 		/// </summary>
 		public SpellingForm(Spelling spell)
 		{
 			this.SpellChecker = spell;
+			this.AttachEvents();
 			InitializeComponent();			
+		}
+
+		private void AddButton_Click(object sender, System.EventArgs e)
+		{
+			if (this.SpellChecker.UserDictionary.Length > 0)
+			{
+				foreach (Dictionary dict in this.SpellChecker.Dictionaries)
+				{
+					if (dict.FileName == this.SpellChecker.UserDictionary)
+					{
+						dict.AddWord(this.SpellChecker.CurrentWord);
+						dict.Save();
+
+						this.SpellChecker.SpellCheck();
+						break;
+					}
+				}
+			}
 		}
 
 		private void CancelBtn_Click(object sender, System.EventArgs e)
@@ -101,6 +121,12 @@ namespace NetSpell.SpellChecker
 			this.SpellChecker.SpellCheck();
 		}
 
+		private void SpellingForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			e.Cancel = true;
+			this.Hide();
+		}
+
 		private void SpellingForm_Load(object sender, System.EventArgs e)
 		{
 			this.TextBeingChecked.Text = SpellChecker.Text;
@@ -109,6 +135,21 @@ namespace NetSpell.SpellChecker
 			this.statusPaneIndex.Text = "Index: 0";
 			this.SuggestionList.Items.Clear();
 			
+		}
+
+		private void SpellingForm_VisibleChanged(object sender, System.EventArgs e)
+		{
+			if (this.Visible) 
+			{
+				if (this.SpellChecker.UserDictionary.Length > 0)
+				{
+					this.AddButton.Enabled = true;
+				}
+				else 
+				{
+					this.AddButton.Enabled = false;
+				}
+			}
 		}
 
 		private void SuggestButton_Click(object sender, System.EventArgs e)
@@ -124,7 +165,7 @@ namespace NetSpell.SpellChecker
 				this.ReplacementWord.Text = this.SuggestionList.SelectedItem.ToString();
 		}
 		/// <summary>
-		/// Clean up any resources being used.
+		///		Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
 		{
@@ -164,6 +205,7 @@ namespace NetSpell.SpellChecker
 			this.statusPaneCount = new System.Windows.Forms.StatusBarPanel();
 			this.statusPaneIndex = new System.Windows.Forms.StatusBarPanel();
 			this.OptionsButton = new System.Windows.Forms.Button();
+			this.AddButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneWord)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneCount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneIndex)).BeginInit();
@@ -213,7 +255,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// ReplaceButton
 			// 
-			this.ReplaceButton.Location = new System.Drawing.Point(360, 104);
+			this.ReplaceButton.Location = new System.Drawing.Point(360, 136);
 			this.ReplaceButton.Name = "ReplaceButton";
 			this.ReplaceButton.TabIndex = 9;
 			this.ReplaceButton.Text = "&Replace";
@@ -221,7 +263,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// ReplaceAllButton
 			// 
-			this.ReplaceAllButton.Location = new System.Drawing.Point(360, 136);
+			this.ReplaceAllButton.Location = new System.Drawing.Point(360, 168);
 			this.ReplaceAllButton.Name = "ReplaceAllButton";
 			this.ReplaceAllButton.TabIndex = 10;
 			this.ReplaceAllButton.Text = "Replace A&ll";
@@ -292,11 +334,19 @@ namespace NetSpell.SpellChecker
 			// 
 			// OptionsButton
 			// 
-			this.OptionsButton.Location = new System.Drawing.Point(360, 192);
+			this.OptionsButton.Location = new System.Drawing.Point(360, 208);
 			this.OptionsButton.Name = "OptionsButton";
 			this.OptionsButton.TabIndex = 15;
 			this.OptionsButton.Text = "&Options";
 			this.OptionsButton.Click += new System.EventHandler(this.OptionsButton_Click);
+			// 
+			// AddButton
+			// 
+			this.AddButton.Location = new System.Drawing.Point(360, 96);
+			this.AddButton.Name = "AddButton";
+			this.AddButton.TabIndex = 16;
+			this.AddButton.Text = "&Add";
+			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
 			// 
 			// SpellingForm
 			// 
@@ -304,6 +354,7 @@ namespace NetSpell.SpellChecker
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.CancelBtn;
 			this.ClientSize = new System.Drawing.Size(450, 304);
+			this.Controls.Add(this.AddButton);
 			this.Controls.Add(this.OptionsButton);
 			this.Controls.Add(this.spellStatus);
 			this.Controls.Add(this.TextLabel);
@@ -326,6 +377,7 @@ namespace NetSpell.SpellChecker
 			this.Text = "Spell Check";
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.SpellingForm_Closing);
 			this.Load += new System.EventHandler(this.SpellingForm_Load);
+			this.VisibleChanged += new System.EventHandler(this.SpellingForm_VisibleChanged);
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneWord)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneCount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneIndex)).EndInit();
@@ -442,18 +494,6 @@ namespace NetSpell.SpellChecker
 			SpellChecker.EndOfText -= new Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
 		}
 #endregion
-
-		private void SpellingForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			e.Cancel = true;
-			this.Hide();
-
-		}
-
-
-
-
-
 
 	}
 }

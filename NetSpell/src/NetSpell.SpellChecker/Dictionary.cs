@@ -85,13 +85,16 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		public void Load()
 		{
-			FileStream fs = new FileStream(_FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-			StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+			if (_FileName.Length > 0) 
+			{
+				FileStream fs = new FileStream(_FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+				StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 
-			_WordList.AddRange(sr.ReadToEnd().Split());
+				_WordList.AddRange(sr.ReadToEnd().Split());
 			
-			sr.Close();
-			fs.Close();
+				sr.Close();
+				fs.Close();
+			}
 		}
 
 		/// <summary>

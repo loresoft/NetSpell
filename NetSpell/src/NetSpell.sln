@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Demo.Windows", "Ne
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Demo.Web", "http://localhost/NetSpell/NetSpell.Demo.Web.csproj", "{5164D9BB-C23F-409D-878B-46C4A0835E7A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -45,6 +49,10 @@ Global
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Debug.Build.0 = Debug|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Release.ActiveCfg = Release|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Release.Build.0 = Release|.NET
+		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Debug.ActiveCfg = Debug|.NET
+		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Debug.Build.0 = Debug|.NET
+		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Release.ActiveCfg = Release|.NET
+		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

@@ -14,51 +14,51 @@ namespace NetSpell.Demo.Windows
 	/// </summary>
 	public class TextForm : System.Windows.Forms.Form
 	{
+		private System.Windows.Forms.MenuItem aboutMenu;
+		private System.ComponentModel.IContainer components;
+		private System.Windows.Forms.ToolBarButton copyBarButton;
+		private System.Windows.Forms.MenuItem copyMenu;
+		private System.Windows.Forms.TextBox currentText;
+		private System.Windows.Forms.ToolBarButton cutBarButton;
+		private System.Windows.Forms.MenuItem cutMenu;
+
+		private bool DocumentChanged = false;
+		private System.Windows.Forms.MenuItem editMenu;
+		private System.Windows.Forms.ToolBar editToolBar;
+		private System.Windows.Forms.MenuItem exitMenu;
+		private System.Windows.Forms.MenuItem fileMenu;
+		private System.Windows.Forms.FontDialog fontDialog;
+		private System.Windows.Forms.MenuItem fontMenu;
+		private System.Windows.Forms.MenuItem formatMenu;
+		private System.Windows.Forms.MenuItem helpMenu;
+		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuItem11;
 		private System.Windows.Forms.MenuItem menuItem14;
 		private System.Windows.Forms.MenuItem menuItem18;
-		private System.Windows.Forms.MenuItem fileMenu;
-		private System.Windows.Forms.MenuItem editMenu;
-		private System.Windows.Forms.MenuItem formatMenu;
-		private System.Windows.Forms.MenuItem toolsMenu;
-		private System.Windows.Forms.MenuItem helpMenu;
-		private System.Windows.Forms.MenuItem aboutMenu;
+		private System.Windows.Forms.ToolBarButton newBarButton;
 		private System.Windows.Forms.MenuItem newMenu;
+		private System.Windows.Forms.ToolBarButton openBarButton;
+		private System.Windows.Forms.OpenFileDialog openDialog;
 		private System.Windows.Forms.MenuItem openMenu;
-		private System.Windows.Forms.MenuItem saveMenu;
-		private System.Windows.Forms.MenuItem saveAsMenu;
-		private System.Windows.Forms.MenuItem exitMenu;
-		private System.Windows.Forms.MenuItem undoMenu;
-		private System.Windows.Forms.MenuItem cutMenu;
-		private System.Windows.Forms.MenuItem copyMenu;
+		private System.Windows.Forms.ToolBarButton pasteBarButton;
 		private System.Windows.Forms.MenuItem pasteMenu;
+		private System.Windows.Forms.MenuItem saveAsMenu;
+		private System.Windows.Forms.ToolBarButton saveBarButton;
+		private System.Windows.Forms.SaveFileDialog saveDialog;
+		private System.Windows.Forms.MenuItem saveMenu;
 		private System.Windows.Forms.MenuItem selectAllMenu;
-		private System.Windows.Forms.MenuItem wordWrapMenu;
-		private System.Windows.Forms.MenuItem fontMenu;
+		private System.Windows.Forms.ToolBarButton spellBarButton;
+		private NetSpell.SpellChecker.Spelling spelling;
 		private System.Windows.Forms.MenuItem spellingMenu;
-		private System.Windows.Forms.ImageList toolBarImages;
+		private System.Windows.Forms.StatusBar statusBar;
+		private System.Windows.Forms.ToolBarButton toolBarButton11;
 		private System.Windows.Forms.ToolBarButton toolBarButton4;
 		private System.Windows.Forms.ToolBarButton toolBarButton8;
-		private System.Windows.Forms.ToolBarButton toolBarButton11;
-		private System.Windows.Forms.TextBox currentText;
-		private System.Windows.Forms.MainMenu mainMenu;
-		private System.Windows.Forms.ToolBar editToolBar;
-		private System.Windows.Forms.ToolBarButton newBarButton;
-		private System.Windows.Forms.ToolBarButton openBarButton;
-		private System.Windows.Forms.ToolBarButton saveBarButton;
-		private System.Windows.Forms.ToolBarButton cutBarButton;
-		private System.Windows.Forms.ToolBarButton copyBarButton;
-		private System.Windows.Forms.ToolBarButton pasteBarButton;
+		private System.Windows.Forms.ImageList toolBarImages;
+		private System.Windows.Forms.MenuItem toolsMenu;
 		private System.Windows.Forms.ToolBarButton undoBarButton;
-		private System.Windows.Forms.ToolBarButton spellBarButton;
-		private System.Windows.Forms.SaveFileDialog saveDialog;
-		private System.Windows.Forms.FontDialog fontDialog;
-		private System.Windows.Forms.OpenFileDialog openDialog;
-		private System.ComponentModel.IContainer components;
-		private System.Windows.Forms.StatusBar statusBar;
-		private NetSpell.SpellChecker.Spelling spelling;
-
-		private bool DocumentChanged = false;
+		private System.Windows.Forms.MenuItem undoMenu;
+		private System.Windows.Forms.MenuItem wordWrapMenu;
 		
 		public TextForm()
 		{
@@ -66,13 +66,191 @@ namespace NetSpell.Demo.Windows
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-			/*
-			spell.SpellChecker.Dictionaries.AddRange(new Dictionary[]{	new Dictionary("us-en.dic"), 
-																		new Dictionary("user.dic")});
-			*/
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
+		}
+
+		private void aboutMenu_Click(object sender, System.EventArgs e)
+		{
+			AboutForm about = new AboutForm();
+			about.ShowDialog(this);
+
+		}
+
+		private void copyMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.Copy();
+		}
+
+		private void currentText_TextChanged(object sender, System.EventArgs e)
+		{
+			if (!this.DocumentChanged) 
+			{
+				this.DocumentChanged = true;
+				this.statusBar.Text += "*";
+			}
+		}
+
+		private void cutMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.Cut();
+		}
+
+
+		private void editToolBar_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
+		{
+			switch (e.Button.ToolTipText)
+			{
+				case "New" :
+					this.newMenu_Click(sender, new EventArgs());
+					break;
+				case "Open" :
+					this.openMenu_Click(sender, new EventArgs());
+					break;
+				case "Save" :
+					this.saveMenu_Click(sender, new EventArgs());
+					break;
+				case "Cut" :
+					this.cutMenu_Click(sender, new EventArgs());
+					break;
+				case "Copy" :
+					this.copyMenu_Click(sender, new EventArgs());
+					break;
+				case "Paste" :
+					this.pasteMenu_Click(sender, new EventArgs());
+					break;
+				case "Undo" :
+					this.undoMenu_Click(sender, new EventArgs());
+					break;
+				case "Spelling" :
+					this.spellingMenu_Click(sender, new EventArgs());
+					break;
+			}
+		}
+
+		private void exitMenu_Click(object sender, System.EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void fontMenu_Click(object sender, System.EventArgs e)
+		{
+			this.fontDialog.Font = this.currentText.Font;
+			if (this.fontDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				this.currentText.Font = this.fontDialog.Font;
+			}
+		}
+
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		static void Main() 
+		{
+			Application.Run(new TextForm());
+		}
+
+		private void newMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.Clear();
+		}
+
+		private void openMenu_Click(object sender, System.EventArgs e)
+		{
+			if (this.openDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				FileInfo fi = new FileInfo(this.openDialog.FileName);
+				StreamReader sr = fi.OpenText();
+				this.currentText.Text = sr.ReadToEnd().ToString();
+				sr.Close();
+				this.DocumentChanged = false;
+				this.saveDialog.FileName = this.openDialog.FileName;
+				this.statusBar.Text = this.saveDialog.FileName;
+			}
+
+		}
+
+		private void pasteMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.Paste();
+		}
+
+		private void saveAsMenu_Click(object sender, System.EventArgs e)
+		{
+			if (this.saveDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				FileInfo fi = new FileInfo(this.saveDialog.FileName);
+				StreamWriter sr = fi.CreateText();
+				sr.WriteLine(this.currentText.Text);
+				sr.Close();
+				this.statusBar.Text = this.saveDialog.FileName;
+			}
+		}
+
+		private void saveMenu_Click(object sender, System.EventArgs e)
+		{
+			if (this.saveDialog.FileName.Length == 0 || this.saveDialog.FileName == "untitled") 
+			{
+				this.saveAsMenu_Click(sender, e);
+			}
+			else 
+			{
+				FileInfo fi = new FileInfo(this.saveDialog.FileName);
+				StreamWriter sr = fi.CreateText();
+				sr.WriteLine(this.currentText.Text);
+				sr.Close();
+				this.statusBar.Text = this.saveDialog.FileName;
+			}
+		}
+
+		private void selectAllMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.SelectAll();
+		}
+
+#region Spell Checker Events
+		private void spelling_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
+		{
+			this.currentText.Text = this.spelling.Text;
+		}
+
+		private void spelling_EndOfText(object sender, System.EventArgs args)
+		{
+			this.currentText.Text = this.spelling.Text;
+		}
+
+		private void spelling_MisspelledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
+		{
+			this.currentText.Text = this.spelling.Text;
+		}
+#endregion //Spell Checker Events
+
+		private void spellingMenu_Click(object sender, System.EventArgs e)
+		{
+			this.spelling.SpellCheck(this.currentText.Text);
+		}
+
+		private void TextForm_Load(object sender, System.EventArgs e)
+		{
+			// the following prevents the Spelling form from being hiden
+			this.spelling.SpellingForm.Owner = this;
+		}
+
+		private void undoMenu_Click(object sender, System.EventArgs e)
+		{
+			this.currentText.Undo();
+		}
+
+		private void wordWrapMenu_Click(object sender, System.EventArgs e)
+		{
+			if (wordWrapMenu.Checked) 
+				wordWrapMenu.Checked = false;
+			else 
+				wordWrapMenu.Checked = true;
+		
+			this.currentText.WordWrap = wordWrapMenu.Checked;
 		}
 
 		/// <summary>
@@ -90,7 +268,7 @@ namespace NetSpell.Demo.Windows
 			base.Dispose( disposing );
 		}
 
-		#region Windows Form Designer generated code
+#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -99,6 +277,7 @@ namespace NetSpell.Demo.Windows
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(TextForm));
+			System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
 			this.mainMenu = new System.Windows.Forms.MainMenu();
 			this.fileMenu = new System.Windows.Forms.MenuItem();
 			this.newMenu = new System.Windows.Forms.MenuItem();
@@ -421,7 +600,8 @@ namespace NetSpell.Demo.Windows
 			// 
 			// spelling
 			// 
-			this.spelling.ShowDialog = true;
+			this.spelling.MainDictionary = ((string)(configurationAppSettings.GetValue("spelling.MainDictionary", typeof(string))));
+			this.spelling.UserDictionary = ((string)(configurationAppSettings.GetValue("spelling.UserDictionary", typeof(string))));
 			this.spelling.MisspelledWord += new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.spelling_MisspelledWord);
 			this.spelling.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.spelling_EndOfText);
 			this.spelling.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.spelling_DoubledWord);
@@ -440,186 +620,7 @@ namespace NetSpell.Demo.Windows
 			this.ResumeLayout(false);
 
 		}
-		#endregion
-
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main() 
-		{
-			Application.Run(new TextForm());
-		}
-
-		private void newMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.Clear();
-		}
-
-		private void openMenu_Click(object sender, System.EventArgs e)
-		{
-			if (this.openDialog.ShowDialog(this) == DialogResult.OK)
-			{
-				FileInfo fi = new FileInfo(this.openDialog.FileName);
-				StreamReader sr = fi.OpenText();
-				this.currentText.Text = sr.ReadToEnd().ToString();
-				sr.Close();
-				this.DocumentChanged = false;
-				this.saveDialog.FileName = this.openDialog.FileName;
-				this.statusBar.Text = this.saveDialog.FileName;
-			}
-
-		}
-
-		private void saveMenu_Click(object sender, System.EventArgs e)
-		{
-			if (this.saveDialog.FileName.Length == 0 || this.saveDialog.FileName == "untitled") 
-			{
-				this.saveAsMenu_Click(sender, e);
-			}
-			else 
-			{
-				FileInfo fi = new FileInfo(this.saveDialog.FileName);
-				StreamWriter sr = fi.CreateText();
-				sr.WriteLine(this.currentText.Text);
-				sr.Close();
-				this.statusBar.Text = this.saveDialog.FileName;
-			}
-		}
-
-		private void saveAsMenu_Click(object sender, System.EventArgs e)
-		{
-			if (this.saveDialog.ShowDialog(this) == DialogResult.OK)
-			{
-				FileInfo fi = new FileInfo(this.saveDialog.FileName);
-				StreamWriter sr = fi.CreateText();
-				sr.WriteLine(this.currentText.Text);
-				sr.Close();
-				this.statusBar.Text = this.saveDialog.FileName;
-			}
-		}
-
-		private void exitMenu_Click(object sender, System.EventArgs e)
-		{
-			Application.Exit();
-		}
-
-		private void undoMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.Undo();
-		}
-
-		private void cutMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.Cut();
-		}
-
-		private void copyMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.Copy();
-		}
-
-		private void pasteMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.Paste();
-		}
-
-		private void selectAllMenu_Click(object sender, System.EventArgs e)
-		{
-			this.currentText.SelectAll();
-		}
-
-		private void wordWrapMenu_Click(object sender, System.EventArgs e)
-		{
-			if (wordWrapMenu.Checked) 
-				wordWrapMenu.Checked = false;
-			else 
-				wordWrapMenu.Checked = true;
-		
-			this.currentText.WordWrap = wordWrapMenu.Checked;
-		}
-
-		private void fontMenu_Click(object sender, System.EventArgs e)
-		{
-			this.fontDialog.Font = this.currentText.Font;
-			if (this.fontDialog.ShowDialog(this) == DialogResult.OK)
-			{
-				this.currentText.Font = this.fontDialog.Font;
-			}
-		}
-
-		private void spellingMenu_Click(object sender, System.EventArgs e)
-		{
-			this.spelling.SpellCheck(this.currentText.Text);
-		}
-
-
-		private void editToolBar_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e)
-		{
-			switch (e.Button.ToolTipText)
-			{
-				case "New" :
-					this.newMenu_Click(sender, new EventArgs());
-					break;
-				case "Open" :
-					this.openMenu_Click(sender, new EventArgs());
-					break;
-				case "Save" :
-					this.saveMenu_Click(sender, new EventArgs());
-					break;
-				case "Cut" :
-					this.cutMenu_Click(sender, new EventArgs());
-					break;
-				case "Copy" :
-					this.copyMenu_Click(sender, new EventArgs());
-					break;
-				case "Paste" :
-					this.pasteMenu_Click(sender, new EventArgs());
-					break;
-				case "Undo" :
-					this.undoMenu_Click(sender, new EventArgs());
-					break;
-				case "Spelling" :
-					this.spellingMenu_Click(sender, new EventArgs());
-					break;
-			}
-		}
-
-		private void currentText_TextChanged(object sender, System.EventArgs e)
-		{
-			if (!this.DocumentChanged) 
-			{
-				this.DocumentChanged = true;
-				this.statusBar.Text += "*";
-			}
-		}
-
-		private void TextForm_Load(object sender, System.EventArgs e)
-		{
-			this.spelling.Dictionaries.Add(new Dictionary("us-en-md.dic"));
-		}
-
-		private void spelling_EndOfText(object sender, System.EventArgs args)
-		{
-			this.currentText.Text = this.spelling.Text;
-		}
-
-		private void spelling_MisspelledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
-		{
-			this.currentText.Text = this.spelling.Text;
-		}
-
-		private void spelling_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
-		{
-			this.currentText.Text = this.spelling.Text;
-		}
-
-		private void aboutMenu_Click(object sender, System.EventArgs e)
-		{
-			AboutForm about = new AboutForm();
-			about.ShowDialog(this);
-
-		}
+#endregion
 
 
 	}

@@ -29,33 +29,36 @@ namespace NetSpell.SpellChecker
 	/// </summary>
 	public class Spelling : System.ComponentModel.Component
 	{
-		private bool _ShowDialog;
+
+
+		
+		// Regex are class scope and compiled to improve performance on reuse
+		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
+		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
+		private Regex _wordEx = new Regex("\\b\\w+\\b", RegexOptions.Compiled);
+		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
+
+		private MatchCollection _words;
+		private DoubleMetaphone _meta = new DoubleMetaphone();
+		private int _mainDictionaryId = -1;
+		private int _userDictionaryId = -1;
 
 		private string _CurrentWord = "";
 		private DictionaryCollection _Dictionaries = new DictionaryCollection();
-
-		// Regex are class scope and compiled to improve performance on reuse
-		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
-		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
-		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex("\\b\\w+\\b", RegexOptions.Compiled);
-		
 		private bool _IgnoreAllCapsWords = true;
 		private ArrayList _IgnoreList = new ArrayList();
 		private bool _IgnoreWordsWithDigits = false;
 		private int _MaxSuggestions = 25;
-
-		private DoubleMetaphone _meta = new DoubleMetaphone();
 		private Hashtable _ReplaceList = new Hashtable();
 		private string _ReplacementWord = "";
+		private bool _ShowDialog = true;
+		private SpellingForm _spellingForm;
 		private ArrayList _Suggestions = new ArrayList();
 		private StringBuilder _Text = new StringBuilder();
 		private int _WordCount = 0;
 		private int _WordIndex = 0;
 
-		private MatchCollection _words;
-		private SpellingForm _spellingForm;
-
+		
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -97,7 +100,7 @@ namespace NetSpell.SpellChecker
 		public delegate void MisspelledWordEventHandler(object sender, WordEventArgs args);
 
 		/// <summary>
-		///     Default constructor
+		///     Initializes a new instance of the SpellCheck class
 		/// </summary>
 		public Spelling()
 		{
@@ -125,14 +128,14 @@ namespace NetSpell.SpellChecker
 		///     Initializes a new instance of the SpellCheck class with 
 		///     the specified dictionary object. 
 		/// </summary>
-		/// <param name="dictionary" type="FreeSpell.Dictionary">
+		/// <param name="mainDictionary" type="FreeSpell.Dictionary">
 		///     <para>
 		///         The Dictionary object to use
 		///     </para>
 		/// </param>
-		public Spelling(Dictionary dictionary)
+		public Spelling(Dictionary mainDictionary)
 		{
-			_Dictionaries.Add(dictionary);
+			_mainDictionaryId = _Dictionaries.Add(mainDictionary);
 			_spellingForm = new SpellingForm(this);
 			InitializeComponent();
 		}
@@ -155,24 +158,28 @@ namespace NetSpell.SpellChecker
 			_spellingForm = new SpellingForm(this);
 			InitializeComponent();
 		}
+		
 		/// <summary>
 		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary file and the text to speck check. 
+		///     the specified dictionary file. 
 		/// </summary>
-		/// <param name="dictionaryFile" type="string">
+		/// <param name="mainDictionaryFile" type="string">
 		///     <para>
-		///         The name of the dictionary file to load
+		///         The main spell checker dictionary file name
 		///     </para>
 		/// </param>
-		/// <param name="text" type="string">
+		/// <param name="userDictionaryFile" type="string">
 		///     <para>
-		///         The text to spell check
+		///         The user dictionary filename
 		///     </para>
 		/// </param>
-		public Spelling(string dictionaryFile, string text)
+		/// <returns>
+		///     A void value...
+		/// </returns>
+		public Spelling(string mainDictionaryFile, string userDictionaryFile)
 		{
-			_Dictionaries.Add(new Dictionary(dictionaryFile));
-			this.Text = text;
+			_mainDictionaryId = _Dictionaries.Add(new Dictionary(mainDictionaryFile));
+			_userDictionaryId = _Dictionaries.Add(new Dictionary(userDictionaryFile));
 			_spellingForm = new SpellingForm(this);
 			InitializeComponent();
 		}
@@ -181,14 +188,14 @@ namespace NetSpell.SpellChecker
 		///     Initializes a new instance of the SpellCheck class with 
 		///     the specified dictionary file. 
 		/// </summary>
-		/// <param name="dictionaryFile" type="string">
+		/// <param name="mainDictionaryFile" type="string">
 		///     <para>
-		///         The name of the dictionary file to load
+		///          The main spell checker dictionary file name
 		///     </para>
 		/// </param>
-		public Spelling(string dictionaryFile)
+		public Spelling(string mainDictionaryFile)
 		{
-			_Dictionaries.Add(new Dictionary(dictionaryFile));
+			_mainDictionaryId = _Dictionaries.Add(new Dictionary(mainDictionaryFile));
 			_spellingForm = new SpellingForm(this);
 			InitializeComponent();
 		}
@@ -332,7 +339,7 @@ namespace NetSpell.SpellChecker
 			if (_ReplacementWord.Length > 0) 
 			{
 				// if first letter upper case, match case for replacement word
-				if (char.IsUpper(_CurrentWord, 0))
+				if (char.IsUpper(_words[_WordIndex].ToString(), 0))
 				{
 					_ReplacementWord = _ReplacementWord.Substring(0,1).ToUpper() 
 						+ _ReplacementWord.Substring(1);
@@ -744,7 +751,8 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     A collection of dictionaries to use when spell checking
 		/// </summary>
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DictionaryCollection Dictionaries
 		{
 			get {return _Dictionaries;}
@@ -754,6 +762,8 @@ namespace NetSpell.SpellChecker
 		///     Ignore words with all capital letters when spell checking
 		/// </summary>
 		[DefaultValue(true)]
+		[CategoryAttribute("Options")]
+		[Description("Ignore words with all capital letters when spell checking")]
 		public bool IgnoreAllCapsWords
 		{
 			get {return _IgnoreAllCapsWords;}
@@ -778,16 +788,45 @@ namespace NetSpell.SpellChecker
 		///     Ignore words with digits when spell checking
 		/// </summary>
 		[DefaultValue(false)]
+		[CategoryAttribute("Options")]
+		[Description("Ignore words with digits when spell checking")]
 		public bool IgnoreWordsWithDigits
 		{
 			get {return _IgnoreWordsWithDigits;}
 			set {_IgnoreWordsWithDigits = value;}
 		}
 
+
 		/// <summary>
-		///     The maximum suggestions to generate
+		///		The file name for the main dictionary
+		/// </summary>
+		[DefaultValue("")]
+		[CategoryAttribute("Dictionary")]
+		[Description("The file name for the main dictionary")]
+		public string MainDictionary
+		{
+			get 
+			{
+				if (_mainDictionaryId != -1)
+					return _Dictionaries[_mainDictionaryId].FileName;
+				else
+					return "";
+			}
+			set 
+			{
+				if (_mainDictionaryId == -1)
+					_mainDictionaryId = _Dictionaries.Add(new Dictionary(value));
+				else
+					_Dictionaries[_mainDictionaryId].Load(value);
+			}
+		}
+
+		/// <summary>
+		///     The maximum number of suggestions to generate
 		/// </summary>
 		[DefaultValue(25)]
+		[CategoryAttribute("Options")]
+		[Description("The maximum number of suggestions to generate")]
 		public int MaxSuggestions
 		{
 			get {return _MaxSuggestions;}
@@ -825,7 +864,9 @@ namespace NetSpell.SpellChecker
 		///     Determines if the spell checker should use its internal suggestions
 		///     and options dialogs.
 		/// </summary>
-		[DefaultValue(false)]
+		[DefaultValue(true)]
+		[CategoryAttribute("Options")]
+		[Description("Determines if the spell checker should use its internal dialogs")]
 		public bool ShowDialog
 		{
 			get {return _ShowDialog;}
@@ -835,6 +876,17 @@ namespace NetSpell.SpellChecker
 				if (_ShowDialog) _spellingForm.AttachEvents();
 				else _spellingForm.DetachEvents();
 			}
+		}
+
+
+		/// <summary>
+		///     The internal spelling suggestions dialog form
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public SpellingForm SpellingForm
+		{
+			get {return _spellingForm;}
 		}
 
 		/// <summary>
@@ -863,6 +915,33 @@ namespace NetSpell.SpellChecker
 				_Text = new StringBuilder(value);
 				this.CalculateWords();
 				this.Reset();
+			}
+		}
+
+		/// <summary>
+		///		The file name of the current user dictionary
+		/// </summary>
+		/// <remarks>
+		///		The user dictionary is where words get added by the user
+		/// </remarks>
+		[DefaultValue("")]
+		[CategoryAttribute("Dictionary")]
+		[Description("The file name for the user dictionary")]
+		public string UserDictionary
+		{
+			get 
+			{
+				if (_userDictionaryId != -1)
+					return _Dictionaries[_userDictionaryId].FileName;
+				else
+					return "";
+			}
+			set 
+			{
+				if (_userDictionaryId == -1)
+					_userDictionaryId = _Dictionaries.Add(new Dictionary(value));
+				else
+					_Dictionaries[_userDictionaryId].Load(value);
 			}
 		}
 
