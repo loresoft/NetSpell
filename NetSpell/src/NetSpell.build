@@ -12,11 +12,6 @@
     <mkdir dir="${build.dir}\doc" />
     <mkdir dir="${build.dir}\src" />
     <mkdir dir="${build.dir}\dic" />
-    <copy todir="${build.dir}\bin">
-	<fileset basedir="bin">
-	    <includes name="nunit.framework.dll" />
-	</fileset>
-    </copy>
     <copy todir="${build.dir}\dic">
     	<fileset basedir="..\dic">
     	    <includes name="*.dic" />
@@ -63,6 +58,7 @@
 	    <!--Start "Exclude VS.Net stuff" -->
 	    <excludes name="**\*.suo" />
 	    <excludes name="**\*j.user" />
+	    <excludes name="**\*.webinfo" />
 	    <excludes name="**\bin\**" />
 	    <excludes name="**\obj\**" />
 	    <excludes name="**\doc\**" />

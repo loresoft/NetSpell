@@ -1,10 +1,15 @@
-NetSpell 1.0 - Spell Checker for .net 
+NetSpell 2.0 - Spell Checker for .net 
 
 What is it? 
 -----------
-The NetSpell project is a spell checking engine written entirely in managed C# .net code. Package includes a medium sized English dictionaries. Suggestions for misspelled words are generated using phonetic (sounds like) matching and ranked by a typographical score (looks like).  Also supports "ignore all" and "replace all" misspelled-word handling. Project includes a dictionary build tool (separate download) to build custom dictionaries. 
+The NetSpell project is a spell checking engine written entirely in managed C# .net code. Package includes  an English dictionaries with dictionaries for other languages available for download on the project web site. NetSpell's suggestions for misspelled words are generated using phonetic (sounds like) matching and ranked by a typographical score (looks like).  Also supports "ignore all" and "replace all" misspelled-word handling. Project also includes a dictionary build tool to build custom dictionaries. 
 
 This project was built and compiled with Visual Studio .net 2003 and the .net 1.1 framework.
+
+
+Dictionaries
+------------
+NetSpell dictionaries are based on the OpenOffice dictionary format.  You can use the Dictionary build tool to convert OpenOffice dictionaries to the NetSpell format.  OpenOffice dictionaries can be downloaded at http://lingucomponent.openoffice.org/dictionary.html
 
 
 The Latest Version
@@ -20,9 +25,9 @@ Documentation is available in HTML format, in the doc/ directory.
 
 References and Credits
 ----------------------
+OpenOffice Lingucomponent http://lingucomponent.openoffice.org/dictionary.html
 Dictionary Wordlists		http://wordlist.sourceforge.net/
 Metaphone Algorithm 		http://aspell.net/metaphone/
-Poor Man's Spell Checker	http://www.kirchmeier.org/code/pmsc/
 
 
 License

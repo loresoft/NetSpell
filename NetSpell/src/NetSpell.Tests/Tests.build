@@ -2,6 +2,12 @@
 <project name="SpellChecker" default="compile">
 	<property name="output.name" value="Tests" />
 	<target name="compile" description="Compile project">
+		<copy todir="${build.dir}\bin">
+			<fileset basedir="C:\Program Files\NUnit V2.0\bin">
+					<includes name="nunit.framework.dll" />
+			</fileset>
+		</copy>
+
 		<csc target="library" warnaserror="false" debug="${build.debug}" output="${build.dir}\bin\${project.name}.${output.name}.dll" doc="">       
 			<sources>
 				<includes name="**\*.cs" />

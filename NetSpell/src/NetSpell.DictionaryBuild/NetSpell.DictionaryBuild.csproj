@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "App.ico"
+                ApplicationIcon = "BOOK01A.ICO"
                 AssemblyKeyContainerName = ""
                 AssemblyName = "NetSpell.DictionaryBuild"
                 AssemblyOriginatorKeyFile = ""
@@ -113,13 +113,13 @@
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "App.ico"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BOOK01A.ICO"
+                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "DictionaryForm.cs"

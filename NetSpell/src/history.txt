@@ -1,3 +1,13 @@
+NetSpell 2.0
+* Complete change to the dictionary
+  - Added international support
+  - Added Affix compression support
+  - Dictionary now based on OpenOffice dictionary format
+* Improved web demo
+  - web demo now supports Ignore All, Replace All and Add Word
+* Windows demo changed to a MDI text editor
+
+
 NetSpell 1.1
 * Added Html Ignore support
 * Changed license to BSD for more flexibility
