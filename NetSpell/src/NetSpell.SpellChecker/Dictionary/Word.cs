@@ -69,7 +69,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		public int CompareTo(object obj)
 		{
 			int result = this.EditDistance.CompareTo(((Word)obj).EditDistance);
-			return result * -1; // sorts desc order
+			return result; // * -1; // sorts desc order
 		}
 
 	}

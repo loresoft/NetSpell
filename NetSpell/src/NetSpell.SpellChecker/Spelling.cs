@@ -273,7 +273,7 @@ namespace NetSpell.SpellChecker
 		{
 			char[] tryme = this.Dictionary.TryCharacters.ToCharArray();
 				
-			for (int i = 0; i < _CurrentWord.Length; i++)
+			for (int i = 0; i <= _CurrentWord.Length; i++)
 			{
 				for (int x = 0; x < tryme.Length; x++)
 				{
@@ -394,12 +394,12 @@ namespace NetSpell.SpellChecker
 		///     Calculates the minimum number of change, inserts or deletes
 		///     required to change firstWord into secondWord
 		/// </summary>
-		/// <param name="firstWord" type="string">
+		/// <param name="source" type="string">
 		///     <para>
 		///         The first word to calculate
 		///     </para>
 		/// </param>
-		/// <param name="secondWord" type="string">
+		/// <param name="target" type="string">
 		///     <para>
 		///         The second word to calculate
 		///     </para>
@@ -407,47 +407,40 @@ namespace NetSpell.SpellChecker
 		/// <returns>
 		///     The number of edits to make firstWord equal secondWord
 		/// </returns>
-		public int EditDistance(string firstWord, string secondWord)
+		public int EditDistance(string source, string target)
 		{
-
+		
+			int n = source.Length; //length of source
+			int m = target.Length; //length of target
 			// i.e. 2-D array
-			Array matrix = Array.CreateInstance(typeof(int), firstWord.Length+1, secondWord.Length+1);
+			int[,] matrix = new int[n + 1, m + 1]; // matrix
 
-			// boundary conditions
-			matrix.SetValue(0, 0, 0); 
+			int cost; // cost
 
-			for(int j=1; j <= secondWord.Length; j++)
+			if(n == 0) return m;
+			if(m == 0) return n;
+
+			matrix[0, 0] = 0;
+
+			for(int i = 1; i <= n;i++) 
 			{
-				// boundary conditions
-				int val = (int)matrix.GetValue(0,j-1);
-				matrix.SetValue(val+1, 0, j);
+				for(int j = 1; j <= m;j++) 
+				{
+					cost = (target.Substring(j - 1, 1) == source.Substring(i - 1, 1) ? 0 : 1);
+
+					int above = matrix[i - 1, j] + 1;
+					int left = matrix[i, j - 1] + 1;
+					int diagonal = matrix[i - 1, j - 1] + cost;
+					matrix[i, j] = System.Math.Min(System.Math.Min(above, left),diagonal);
+				}
 			}
+			int val = matrix[n, m];
 
-			// outer loop
-			for(int i=1; i <= firstWord.Length; i++)                            
-			{ 
-				// boundary conditions
-				int val = (int)matrix.GetValue(i-1, 0);
-				matrix.SetValue(val+1, i, 0); 
+			// extra edit on first and last chars
+			if (source[0] != target[0]) val++;
+			if (source[source.Length-1] != target[target.Length-1]) val++;
 
-				// inner loop
-				for(int j=1; j <= secondWord.Length; j++)                         
-				{ 
-					int diag = (int)matrix.GetValue(i-1, j-1);
-					if(firstWord.Substring(i-1, 1) != secondWord.Substring(j-1, 1)) 
-					{
-						diag++;
-					}
-
-					int deletion = (int)matrix.GetValue(i-1, j);
-					int insertion = (int)matrix.GetValue(i, j-1);
-					int match = Math.Min(deletion+1, insertion+1);		
-					matrix.SetValue(Math.Min(diag, match), i, j);
-				}//for j
-			}//for i
-
-			return (int)matrix.GetValue(firstWord.Length, secondWord.Length);
-
+			return val;
 		}
 
 		/// <summary>
@@ -767,7 +760,15 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		public bool TestWord(string word)
 		{
-			return this.Dictionary.Contains(word);
+			if (this.Dictionary.Contains(word))
+			{
+				return true;
+			}
+			else if (this.Dictionary.Contains(word.ToLower()))
+			{
+				return true;
+			}
+			return false;
 		}
 
 #endregion

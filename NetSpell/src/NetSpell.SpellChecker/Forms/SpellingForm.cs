@@ -168,6 +168,7 @@ namespace NetSpell.SpellChecker.Forms
 		private void SpellingForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			e.Cancel = true;
+			if (this.Owner != null) this.Owner.Activate();
 			this.Hide();
 		}
 
@@ -488,6 +489,7 @@ namespace NetSpell.SpellChecker.Forms
 					"Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			this.Hide();
+			if (this.Owner != null) this.Owner.Activate();
 		}
 
 		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
