@@ -1030,8 +1030,14 @@ namespace NetSpell.SpellChecker
 			set 
 			{
 				_ShowDialog = value;
-				if (_ShowDialog) _spellingForm.AttachEvents();
-				else _spellingForm.DetachEvents();
+				if (_ShowDialog) 
+				{
+					_spellingForm.AttachEvents();
+				}
+				else 
+				{
+					_spellingForm.DetachEvents();
+				}
 			}
 		}
 

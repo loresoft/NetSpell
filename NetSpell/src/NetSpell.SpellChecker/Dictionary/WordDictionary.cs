@@ -25,11 +25,11 @@ namespace NetSpell.SpellChecker.Dictionary
 	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public class WordDictionary
 	{
-
 		private Hashtable _BaseWords = new Hashtable();
 		private string _Copyright = "";
 		private string _DictionaryFile = Thread.CurrentThread.CurrentCulture.Name + ".dic";
 		private string _DictionaryFolder = "";
+		private bool _EnableUserFile = true;
 		private bool _Initialized = false;
 		private PhoneticRuleCollection _PhoneticRules = new PhoneticRuleCollection();
 		private ArrayList _PossibleBaseWords = new ArrayList();
@@ -45,6 +45,76 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// </summary>
 		public WordDictionary()
 		{
+		}
+
+		/// <summary>
+		///     Loads the user dictionary file
+		/// </summary>
+		private void LoadUserFile()
+		{
+			// load user words
+			_UserWords.Clear();
+
+			// quit if user file is disabled
+			if(!this.EnableUserFile) return;
+
+			string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
+			string filePath = Path.Combine(userPath, _UserFile);
+
+			if (File.Exists(filePath)) 
+			{
+				//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
+				//fs = new IsolatedStorageFileStream(_UserFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, isf);
+				FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+				StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+
+				// read line by line
+				while (sr.Peek() >= 0) 
+				{
+					string tempLine = sr.ReadLine().Trim();
+					if (tempLine.Length > 0)
+					{
+						_UserWords.Add(tempLine, tempLine);
+					}
+				}
+
+				fs.Close();
+				sr.Close();
+				//isf.Close();
+			}
+		}
+
+		/// <summary>
+		///     Saves the user dictionary file
+		/// </summary>
+		/// <remarks>
+		///		If the file does not exist, it will be created
+		/// </remarks>
+		private void SaveUserFile()
+		{
+
+			// quit if user file is disabled
+			if(!this.EnableUserFile) return;
+
+			string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
+			if (!Directory.Exists(userPath)) Directory.CreateDirectory(userPath);
+
+			string filePath = Path.Combine(userPath, _UserFile);
+
+			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
+			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Create, FileAccess.Write, isf);
+			FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+			sw.NewLine = "\n";
+
+			foreach (string tempWord in _UserWords.Keys)
+			{
+				sw.WriteLine(tempWord);
+			}
+		
+			sw.Close();
+			fs.Close();
+			//isf.Close();
 		}
 
 		/// <summary>
@@ -66,18 +136,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		public void Add(string word)
 		{
 			_UserWords.Add(word, word);
-
-			// update file
-			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
-			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Append, FileAccess.Write, isf);
-			FileStream fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.Append, FileAccess.Write);
-			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-			sw.NewLine = "\n";
-
-			sw.WriteLine(word);
-			sw.Close();
-			fs.Close();
-			//isf.Close();
+			this.SaveUserFile();
 		}
 
 		/// <summary>
@@ -89,8 +148,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		public void Clear()
 		{
 			_UserWords.Clear();
-			// delelte file
-			if (File.Exists(Path.Combine(this.UserFolder, _UserFile))) File.Delete(Path.Combine(this.UserFolder, _UserFile));
+			this.SaveUserFile();
 		}
 
 		/// <summary>
@@ -385,27 +443,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			sr.Close();
 			fs.Close();
 
-			// load user words
-			_UserWords.Clear();
-
-			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
-			//fs = new IsolatedStorageFileStream(_UserFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, isf);
-			fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.OpenOrCreate, FileAccess.ReadWrite);
-			sr = new StreamReader(fs, Encoding.UTF8);
-
-			// read line by line
-			while (sr.Peek() >= 0) 
-			{
-				string tempLine = sr.ReadLine().Trim();
-				if (tempLine.Length > 0)
-				{
-					_UserWords.Add(tempLine, tempLine);
-				}
-			}
-
-			fs.Close();
-			sr.Close();
-			//isf.Close();
+			this.LoadUserFile();
 
 			this.Initialized = true;
 		}
@@ -500,22 +538,7 @@ namespace NetSpell.SpellChecker.Dictionary
 		public void Remove(string word)
 		{
 			_UserWords.Remove(word);
-			
-			// overwrite file
-			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
-			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Create, FileAccess.Write, isf);
-			FileStream fs = new FileStream(Path.Combine(this.UserFolder, _UserFile), FileMode.Create, FileAccess.Write);
-			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-			sw.NewLine = "\n";
-
-			foreach (string tempWord in _UserWords.Keys)
-			{
-				sw.WriteLine(tempWord);
-			}
-
-			sw.Close();
-			fs.Close();
-			//isf.Close();
+			this.SaveUserFile();
 		}
 
 		/// <summary>
@@ -573,6 +596,23 @@ namespace NetSpell.SpellChecker.Dictionary
 		{
 			get {return _DictionaryFolder;}
 			set {_DictionaryFolder = value;}
+		}
+
+		/// <summary>
+		///     Set this to true to automaticly create a user dictionary when
+		///     a word is added.
+		/// </summary>
+		/// <remarks>
+		///		This should be set to false in a web environment
+		/// </remarks>
+		[DefaultValue(true)]
+		[CategoryAttribute("Options")]
+		[Description("Set this to true to automaticly create a user dictionary")]
+		[NotifyParentProperty(true)]
+		public bool EnableUserFile
+		{
+			get {return _EnableUserFile;}
+			set {_EnableUserFile = value;}
 		}
 
 
@@ -658,22 +698,6 @@ namespace NetSpell.SpellChecker.Dictionary
 			set {_UserFile = value;}
 		}
 
-		/// <summary>
-		///     The folder where the User dictionary will be saved
-		/// </summary>
-		[Browsable(false)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public string UserFolder
-		{
-			get 
-			{
-				string userPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), "NetSpell");
-				if (!Directory.Exists(userPath)) Directory.CreateDirectory(userPath);
-
-				return userPath;
-			}
-		}
-		
 		/// <summary>
 		///     List of user entered words in this dictionary
 		/// </summary>

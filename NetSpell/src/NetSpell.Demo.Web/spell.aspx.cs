@@ -253,9 +253,15 @@ namespace NetSpell.Demo.Web
 		{    
 			this.components = new System.ComponentModel.Container();
 			this.SpellChecker = new NetSpell.SpellChecker.Spelling(this.components);
+			this.IgnoreButton.Click += new System.EventHandler(this.IgnoreButton_Click);
+			this.IgnoreAllButton.Click += new System.EventHandler(this.IgnoreAllButton_Click);
+			this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+			this.ReplaceButton.Click += new System.EventHandler(this.ReplaceButton_Click);
+			this.ReplaceAllButton.Click += new System.EventHandler(this.ReplaceAllButton_Click);
 			// 
 			// SpellChecker
 			// 
+			this.SpellChecker.Dictionary.EnableUserFile = false;
 			this.SpellChecker.ShowDialog = false;
 			this.SpellChecker.MisspelledWord += new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.SpellChecker_MisspelledWord);
 			this.SpellChecker.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
