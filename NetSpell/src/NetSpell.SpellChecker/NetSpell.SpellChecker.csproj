@@ -123,6 +123,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "TraceWriter.cs"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Controls\NativeMethods.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

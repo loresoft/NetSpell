@@ -4,6 +4,56 @@
         <name>NetSpell.SpellChecker</name>
     </assembly>
     <members>
+        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
+            <summary>
+            Summary description for NativeMethods.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox">
+            <summary>
+            Summary description for SpellTextBox.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Controls.SpellTextBox.#ctor">
+            <summary>
+            Summary description for SpellTextBox.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledColor">
+            <summary>
+                The Color to use to mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledStyle">
+            <summary>
+                The Underline style used to mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SelectionBackColor">
+            <summary>
+                Gets or sets the selections background color
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.AutoSpellCheck">
+            <summary>
+                Automatically mark misspelled words
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SpellChecker">
+            <summary>
+                The Spelling Object to use when checking words
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineColor">
+            <summary>
+            	Underline Colors
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineStyle">
+            <summary>
+            	Underline Styles
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
             <summary>
             	Rule Entry for expanding base words
@@ -1545,11 +1595,47 @@
                 </para>
             </param>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.GetWordIndexFromTextIndex(System.Int32)">
+            <summary>
+            	Gets the word index from the text index.  Use this method to 
+            	find a word based on the text position.
+            </summary>
+            <param name="textIndex">
+            	<para>
+                    The word to replace the CurrentWord with
+                </para>
+            </param>
+            <returns>
+            	The word index that the text index falls on
+            </returns>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck">
             <summary>
                 Spell checks the words in the <see cref="P:NetSpell.SpellChecker.Spelling.Text"/> property starting
-                at the <see cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/> position
+                at the <see cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/> position.
             </summary>
+            <returns>
+                Returns true if there is a word found in the text 
+                that is not in the dictionaries
+            </returns>
+            <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
+            <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.Int32,System.Int32)">
+            <summary>
+                Spell checks a range of words in the <see cref="P:NetSpell.SpellChecker.Spelling.Text"/> property starting
+                at the <see cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/> position and ending at endWordIndex. 
+            </summary>
+            <param name="startWordIndex" type="int">
+                <para>
+                    The index of the word to start checking from. 
+                </para>
+            </param>
+            <param name="endWordIndex" type="int">
+                <para>
+                    The index of the word to end checking with. 
+                </para>
+            </param>
             <returns>
                 Returns true if there is a word found in the text 
                 that is not in the dictionaries
@@ -1754,6 +1840,11 @@
                 The text to spell check
             </summary>
         </member>
+        <member name="P:NetSpell.SpellChecker.Spelling.TextIndex">
+            <summary>
+                TextIndex is the index of the current text being spell checked
+            </summary>
+        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.WordCount">
             <summary>
                 The number of words being spell checked
@@ -1841,54 +1932,9 @@
                 Word index of the WordEvent
             </summary>
         </member>
-        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox">
+        <member name="T:TraceWriter">
             <summary>
-            Summary description for SpellTextBox.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Controls.SpellTextBox.#ctor">
-            <summary>
-            Summary description for SpellTextBox.
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledColor">
-            <summary>
-                The Color to use to mark misspelled words
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.MisspelledStyle">
-            <summary>
-                The Underline style used to mark misspelled words
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SelectionBackColor">
-            <summary>
-                Gets or sets the selections background color
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.AutoSpellCheck">
-            <summary>
-                Automatically mark misspelled words
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Controls.SpellTextBox.SpellChecker">
-            <summary>
-                The Spelling Object to use when checking words
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineColor">
-            <summary>
-            	Underline Colors
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.SpellTextBox.UnderlineStyle">
-            <summary>
-            	Underline Styles
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
-            <summary>
-            Summary description for NativeMethods.
+            Summary description for TraceWriter.
             </summary>
         </member>
     </members>

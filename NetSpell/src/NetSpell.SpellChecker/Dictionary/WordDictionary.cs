@@ -63,6 +63,8 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			if (File.Exists(filePath)) 
 			{
+				TraceWriter.TraceInfo("Loading User Dictionary:{0}", filePath);
+
 				//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
 				//fs = new IsolatedStorageFileStream(_UserFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, isf);
 				FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
@@ -81,6 +83,8 @@ namespace NetSpell.SpellChecker.Dictionary
 				fs.Close();
 				sr.Close();
 				//isf.Close();
+
+				TraceWriter.TraceInfo("Loaded User Dictionary; Words:{0}", _UserWords.Count);
 			}
 		}
 
@@ -101,6 +105,8 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			string filePath = Path.Combine(userPath, _UserFile);
 
+			TraceWriter.TraceInfo("Saving User Dictionary:{0}", filePath);
+
 			//IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForAssembly();
 			//FileStream fs = new IsolatedStorageFileStream(_UserFile, FileMode.Create, FileAccess.Write, isf);
 			FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
@@ -115,6 +121,8 @@ namespace NetSpell.SpellChecker.Dictionary
 			sw.Close();
 			fs.Close();
 			//isf.Close();
+
+			TraceWriter.TraceInfo("Saved User Dictionary; Words:{0}", _UserWords.Count);
 		}
 
 		/// <summary>
@@ -355,9 +363,12 @@ namespace NetSpell.SpellChecker.Dictionary
 
 			string currentSection = "";
 			AffixRule currentRule = null;
+			string dictionaryPath = Path.Combine(_DictionaryFolder, _DictionaryFile);
+
+			TraceWriter.TraceInfo("Loading Dictionary:{0}", dictionaryPath);
 
 			// open dictionary file
-			FileStream fs = new FileStream(Path.Combine(_DictionaryFolder, _DictionaryFile), FileMode.Open, FileAccess.Read, FileShare.Read);
+			FileStream fs = new FileStream(dictionaryPath, FileMode.Open, FileAccess.Read, FileShare.Read);
 			StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 			
 			// read line by line
@@ -471,6 +482,9 @@ namespace NetSpell.SpellChecker.Dictionary
 			// close files
 			sr.Close();
 			fs.Close();
+
+			TraceWriter.TraceInfo("Dictionary Loaded; BaseWords:{0}; PrefixRules:{1}; SuffixRules:{2}; PhoneticRules:{3}",
+				this.BaseWords.Count, this.PrefixRules.Count, this.SuffixRules.Count, this.PhoneticRules.Count);
 
 			this.LoadUserFile();
 

@@ -13,13 +13,17 @@ namespace NetSpell.SpellChecker.Controls
 	/// </summary>
 	public class SpellTextBox : System.Windows.Forms.RichTextBox
 	{
+		
 		private Spelling _SpellChecker;
 		private bool _AutoSpellCheck = true;
 		private UnderlineColor _MisspelledColor = UnderlineColor.Red;
 		private UnderlineStyle _MisspelledStyle = UnderlineStyle.UnderlineWave;
-		private int _lastTextLength = 0;
-		private int _lastCharClass = 0;
+		
+		private int PreviousTextLength = 0;
+		private int UncheckedWordIndex = -1;
+		private int CurrentWordIndex = 0;
 
+			
 		/// <summary>
 		///		Underline Colors
 		/// </summary>
@@ -76,12 +80,12 @@ namespace NetSpell.SpellChecker.Controls
 
 		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
 		{
-			Console.WriteLine("Misspelled Word:{0}", args.Word);
+			TraceWriter.TraceVerbose("Misspelled Word:{0}", args.Word);
 			
 			int selectionStart = base.SelectionStart;
 			int selectionLength = base.SelectionLength;
 
-			base.Select(selectionStart + args.TextIndex, args.Word.Length);
+			base.Select(args.TextIndex, args.Word.Length);
 
 			NativeMethods.CHARFORMAT2 cf = new NativeMethods.CHARFORMAT2();
 			cf.cbSize = Marshal.SizeOf(cf);
@@ -196,67 +200,98 @@ namespace NetSpell.SpellChecker.Controls
 	
 		protected override void OnTextChanged(EventArgs e)
 		{
-			int changeRange = this.Text.Length - _lastTextLength;
-			_lastTextLength = this.Text.Length;
+			// get change size
+			int changeSize = this.Text.Length - PreviousTextLength;
+			PreviousTextLength = this.Text.Length;
 
-			if(_SpellChecker != null && _AutoSpellCheck && changeRange > 0)
-			{
-				
-				// get char flags for previous char
-				int charFlags = NativeMethods.SendMessage(this.Handle, 
-					NativeMethods.EM_FINDWORDBREAK, 
-					NativeMethods.WB_CLASSIFY, 
-					base.SelectionStart - 1);
+			// sync spell checker text with text box text
+			_SpellChecker.Text = base.Text;
 
-				int charClass = (charFlags & NativeMethods.WBF_CLASS);
-				bool isBreak = (charFlags & NativeMethods.WBF_BREAKLINE) == NativeMethods.WBF_BREAKLINE ? true : false;
-				bool isWhite = (charFlags & NativeMethods.WBF_ISWHITE) == NativeMethods.WBF_ISWHITE ? true : false;
+			int currentPosition = base.SelectionStart;
+
+			// get indexs
+			int previousWordIndex = _SpellChecker.GetWordIndexFromTextIndex(currentPosition - changeSize);
+			CurrentWordIndex = _SpellChecker.GetWordIndexFromTextIndex(currentPosition);
+
+			// set current word to spell check
+			_SpellChecker.WordIndex = previousWordIndex;
 			
-				if(((isBreak || isWhite)&& _lastCharClass == 0) || changeRange > 1)
-				{
-					int eventMask = NativeMethods.SendMessage(this.Handle, 
-						NativeMethods.EM_SETEVENTMASK, 0, 0);
-					NativeMethods.SendMessage(base.Handle, 
-						NativeMethods.WM_SETREDRAW, 0, 0);
+			// get the end index of previous word with out white space
+			int wordEndIndex = _SpellChecker.TextIndex + _SpellChecker.CurrentWord.Length;
 
-					
-					int	selectStart = base.SelectionStart;
-					int selectLength = base.SelectionLength;
-
-					int wordLeft = NativeMethods.SendMessage(this.Handle, 
-						NativeMethods.EM_FINDWORDBREAK, 
-						NativeMethods.WB_LEFT, 
-						selectStart - (changeRange + 1));
-										
-					base.Select(wordLeft, selectStart - wordLeft);
-					
-					bool dialog = this.SpellChecker.ShowDialog;
-					Console.WriteLine("Spell Check:{0}", base.SelectedText);
-
-					this.SpellChecker.Text = base.SelectedText;
-					this.SpellChecker.ShowDialog = false;
-					while (this.SpellChecker.SpellCheck()) 
-					{
-						this.SpellChecker.WordIndex += 1;
-					}
-
-					this.SpellChecker.ShowDialog = dialog;
-
-					base.Select(selectStart, selectLength);
-
-					eventMask = NativeMethods.SendMessage(this.Handle,
-						NativeMethods.EM_SETEVENTMASK, 0, eventMask);
-					NativeMethods.SendMessage(base.Handle, 
-						NativeMethods.WM_SETREDRAW, 1, 0);
-				}
-				_lastCharClass = charClass;
-			}
-			else
+			TraceWriter.TraceVerbose("ChangeSize:{0}; PreviousWord:{1}; CurrentWord:{2}; Position:{3}; WordEnd:{4};", 
+				changeSize, previousWordIndex, CurrentWordIndex, currentPosition, wordEndIndex);
+				
+			if (previousWordIndex != CurrentWordIndex || wordEndIndex < currentPosition)
 			{
-				// recheck current word if previously misspelled
-
+				// if word indexs not equal, spell check all words from previousWordIndex to CurrentWordIndex
+				// or if word indexs equal, spell check if caret in white space
+				this.MarkMisspelledWords(previousWordIndex, CurrentWordIndex);
+				UncheckedWordIndex = -1;
 			}
+			else 
+			{
+				UncheckedWordIndex = previousWordIndex;
+			}
+		
 			base.OnTextChanged (e);
+		}
+	
+		protected override void OnSelectionChanged(EventArgs e)
+		{
+			CurrentWordIndex = _SpellChecker.GetWordIndexFromTextIndex(base.SelectionStart);
+			if (UncheckedWordIndex != -1 && CurrentWordIndex != UncheckedWordIndex)
+			{
+				// if uncheck word index not equal current word index, spell check uncheck word
+				this.MarkMisspelledWords(UncheckedWordIndex, UncheckedWordIndex);
+				UncheckedWordIndex = -1;
+			}		
+			base.OnSelectionChanged (e);
+		}
+		
+		private void MarkMisspelledWords()
+		{
+			this.MarkMisspelledWords(0, _SpellChecker.WordCount-1);
+		}
+
+		private void MarkMisspelledWords(int startWordIndex, int endWordIndex)
+		{
+			TraceWriter.TraceVerbose("Mark Misspelled Words {0} to {1}", startWordIndex, endWordIndex);
+			
+			//optimize by disabling event messages
+			int eventMask = NativeMethods.SendMessage(this.Handle, 
+				NativeMethods.EM_SETEVENTMASK, 0, 0);
+			//optimize by disabling redraw
+			NativeMethods.SendMessage(base.Handle, 
+				NativeMethods.WM_SETREDRAW, 0, 0);
+
+			//save selection	
+			int	selectStart = base.SelectionStart;
+			int selectLength = base.SelectionLength;
+
+			//save show dialog value
+			bool dialog = this.SpellChecker.ShowDialog;
+			
+			//disable show dialog to prevent dialogs on spell check
+			this.SpellChecker.ShowDialog = false;
+
+			//spell check all words in range
+			while (this.SpellChecker.SpellCheck(startWordIndex, endWordIndex)) 
+			{
+				startWordIndex++;
+			}
+			//restore show dialog value
+			this.SpellChecker.ShowDialog = dialog;
+
+			//restore selection
+			base.Select(selectStart, selectLength);
+			
+			//restore event messages
+			eventMask = NativeMethods.SendMessage(this.Handle,
+				NativeMethods.EM_SETEVENTMASK, 0, eventMask);
+			//restore redraw
+			NativeMethods.SendMessage(base.Handle, 
+				NativeMethods.WM_SETREDRAW, 1, 0);
 		}
 	}
 }
