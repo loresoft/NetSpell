@@ -25,7 +25,7 @@
     <target name="clean" description="Cleans the build folder">
         <delete failonerror="false">
             <fileset>
-                <includes name="${build.dir}" />
+                <includes name="${build.dir}\*.*" />
                 <includes name="NetSpell.SpellChecker\bin\${project.config}" />
                 <includes name="NetSpell.Tests\bin\${project.config}" />
                 <includes name="NetSpell.DictionaryBuild\bin\${project.config}" />

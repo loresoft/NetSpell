@@ -64,47 +64,47 @@ namespace NetSpell.Demo.Web
 			this.SpellChecker.SpellCheck();
 		}
 	
-		private void Page_Load(object sender, System.EventArgs e)
-		{
-			
-			Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);");
-			SpellingBody.Attributes.Add("onLoad", "javascript: updateCallingPage();");
+private void Page_Load(object sender, System.EventArgs e)
+{
+	
+	Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);");
+	SpellingBody.Attributes.Add("onLoad", "javascript: updateCallingPage();");
 
-			// loading dictionary from cache
-			WordDictionary dic = (WordDictionary)HttpContext.Current.Cache["WordDictionary"];
-			
-			if (dic != null)
-			{
-				this.SpellChecker.Dictionary = dic;
-			}
+	// loading dictionary from cache
+	WordDictionary dic = (WordDictionary)HttpContext.Current.Cache["WordDictionary"];
+	
+	if (dic != null)
+	{
+		this.SpellChecker.Dictionary = dic;
+	}
 
-			if (dic == null || !this.SpellChecker.Dictionary.Initialized)
-			{
-				string fileName = ConfigurationSettings.AppSettings["DictionaryFile"];
-				string folderName = ConfigurationSettings.AppSettings["DictionaryFolder"];
-				folderName =  Server.MapPath(folderName);
+	if (dic == null || !this.SpellChecker.Dictionary.Initialized)
+	{
+		string fileName = ConfigurationSettings.AppSettings["DictionaryFile"];
+		string folderName = ConfigurationSettings.AppSettings["DictionaryFolder"];
+		folderName =  Server.MapPath(folderName);
 
-				this.SpellChecker.Dictionary.DictionaryFile = fileName;
-				this.SpellChecker.Dictionary.DictionaryFolder = folderName;
-				this.SpellChecker.Dictionary.Initialize();
+		this.SpellChecker.Dictionary.DictionaryFile = fileName;
+		this.SpellChecker.Dictionary.DictionaryFolder = folderName;
+		this.SpellChecker.Dictionary.Initialize();
 
-				// Store the Dictionary in cache
-				HttpContext.Current.Cache.Insert("WordDictionary", this.SpellChecker.Dictionary, 
-					new CacheDependency(Path.Combine(folderName, 
-					this.SpellChecker.Dictionary.DictionaryFile)));
+		// Store the Dictionary in cache
+		HttpContext.Current.Cache.Insert("WordDictionary", this.SpellChecker.Dictionary, 
+			new CacheDependency(Path.Combine(folderName, 
+			this.SpellChecker.Dictionary.DictionaryFile)));
 
-			}
+	}
 
-			
-			// start spell checking
-			this.LoadValues();
+	
+	// start spell checking
+	this.LoadValues();
 
-			if(Request.Params["SpellCheck"] != null)
-			{
-				this.SpellChecker.SpellCheck();
-			}
-			
-		}
+	if(Request.Params["SpellCheck"] != null)
+	{
+		this.SpellChecker.SpellCheck();
+	}
+	
+}
 
 		private void ReplaceAllButton_Click(object sender, System.EventArgs e)
 		{
@@ -120,129 +120,129 @@ namespace NetSpell.Demo.Web
 			this.SpellChecker.SpellCheck();
 		}
 
-		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+{
+	this.SaveValues();
+	this.CurrentWord.Text = this.SpellChecker.CurrentWord;
+
+	this.SuggestionForm.Visible = true;
+	this.SpellcheckComplete.Visible = false;
+
+	this.Suggestions.Items.Clear();
+	this.ReplacementWord.Text = string.Empty;
+}
+
+private void SpellChecker_EndOfText(object sender, System.EventArgs args)
+{
+	this.SaveValues();
+
+	this.SuggestionForm.Visible = false;
+	this.SpellcheckComplete.Visible = true;
+
+}
+
+private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+{
+	this.SaveValues();
+	this.CurrentWord.Text = this.SpellChecker.CurrentWord;
+
+	this.SuggestionForm.Visible = true;
+	this.SpellcheckComplete.Visible = false;
+
+	this.SpellChecker.Suggest();
+
+	this.Suggestions.DataSource = this.SpellChecker.Suggestions;
+	this.Suggestions.DataBind();
+
+	this.ReplacementWord.Text = string.Empty;
+}
+
+private void SaveValues()
+{
+	this.CurrentText.Value = this.SpellChecker.Text;
+	this.WordIndex.Value = this.SpellChecker.WordIndex.ToString();
+
+	// save ignore words
+	string[] ignore = (string[])this.SpellChecker.IgnoreList.ToArray(typeof(string));
+	this.IgnoreList.Value = String.Join("|", ignore);
+
+	// save replace words
+	ArrayList tempArray = new ArrayList(this.SpellChecker.ReplaceList.Keys);
+	string[] replaceKey = (string[])tempArray.ToArray(typeof(string));
+	this.ReplaceKeyList.Value = String.Join("|", replaceKey);
+
+	tempArray = new ArrayList(this.SpellChecker.ReplaceList.Values);
+	string[] replaceValue = (string[])tempArray.ToArray(typeof(string));
+	this.ReplaceValueList.Value = String.Join("|", replaceValue);
+
+	// saving user words
+	tempArray = new ArrayList(this.SpellChecker.Dictionary.UserWords.Keys);
+	string[] userWords = (string[])tempArray.ToArray(typeof(string));
+	Response.Cookies["UserWords"].Value = String.Join("|", userWords);;
+    Response.Cookies["UserWords"].Path = "/";
+    Response.Cookies["UserWords"].Expires = DateTime.Now.AddMonths(1);
+
+}
+
+private void LoadValues()
+{
+	if (Request.Params["CurrentText"] != null)
+	{
+		this.SpellChecker.Text = Request.Params["CurrentText"];
+	}
+
+	if (Request.Params["WordIndex"] != null)
+	{
+		this.SpellChecker.WordIndex = int.Parse(Request.Params["WordIndex"]);
+	}
+
+	string ignoreList;
+	string[] replaceKeys;
+	string[] replaceValues;
+	string[] userWords;
+
+	// restore ignore list
+	if (Request.Params["IgnoreList"] != null)
+	{
+		ignoreList = Request.Params["IgnoreList"];
+		this.SpellChecker.IgnoreList.Clear();
+		this.SpellChecker.IgnoreList.AddRange(ignoreList.Split('|'));
+	}
+
+	// restore replace list
+	if (Request.Params["ReplaceKeyList"] != null 
+		&& Request.Params["ReplaceValueList"] != null)
+	{
+		replaceKeys = Request.Params["ReplaceKeyList"].Split('|');
+		replaceValues = Request.Params["ReplaceValueList"].Split('|');
+
+		this.SpellChecker.ReplaceList.Clear();
+		if (replaceKeys.Length == replaceValues.Length)
 		{
-			this.SaveValues();
-			this.CurrentWord.Text = this.SpellChecker.CurrentWord;
-
-			this.SuggestionForm.Visible = true;
-			this.SpellcheckComplete.Visible = false;
-
-			this.Suggestions.Items.Clear();
-			this.ReplacementWord.Text = string.Empty;
-		}
-
-		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
-		{
-			this.SaveValues();
-
-			this.SuggestionForm.Visible = false;
-			this.SpellcheckComplete.Visible = true;
-
-		}
-
-		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
-		{
-			this.SaveValues();
-			this.CurrentWord.Text = this.SpellChecker.CurrentWord;
-
-			this.SuggestionForm.Visible = true;
-			this.SpellcheckComplete.Visible = false;
-
-			this.SpellChecker.Suggest();
-
-			this.Suggestions.DataSource = this.SpellChecker.Suggestions;
-			this.Suggestions.DataBind();
-
-			this.ReplacementWord.Text = string.Empty;
-		}
-
-		private void SaveValues()
-		{
-			this.CurrentText.Value = this.SpellChecker.Text;
-			this.WordIndex.Value = this.SpellChecker.WordIndex.ToString();
-
-			// save ignore words
-			string[] ignore = (string[])this.SpellChecker.IgnoreList.ToArray(typeof(string));
-			this.IgnoreList.Value = String.Join("|", ignore);
-
-			// save replace words
-			ArrayList tempArray = new ArrayList(this.SpellChecker.ReplaceList.Keys);
-			string[] replaceKey = (string[])tempArray.ToArray(typeof(string));
-			this.ReplaceKeyList.Value = String.Join("|", replaceKey);
-
-			tempArray = new ArrayList(this.SpellChecker.ReplaceList.Values);
-			string[] replaceValue = (string[])tempArray.ToArray(typeof(string));
-			this.ReplaceValueList.Value = String.Join("|", replaceValue);
-
-			// saving user words
-			tempArray = new ArrayList(this.SpellChecker.Dictionary.UserWords.Keys);
-			string[] userWords = (string[])tempArray.ToArray(typeof(string));
-			Response.Cookies["UserWords"].Value = String.Join("|", userWords);;
-            Response.Cookies["UserWords"].Path = "/";
-            Response.Cookies["UserWords"].Expires = DateTime.Now.AddMonths(1);
-
-		}
-
-		private void LoadValues()
-		{
-			if (Request.Params["CurrentText"] != null)
+			for (int i = 0; i < replaceKeys.Length; i++)
 			{
-				this.SpellChecker.Text = Request.Params["CurrentText"];
-			}
-
-			if (Request.Params["WordIndex"] != null)
-			{
-				this.SpellChecker.WordIndex = int.Parse(Request.Params["WordIndex"]);
-			}
-
-			string ignoreList;
-			string[] replaceKeys;
-			string[] replaceValues;
-			string[] userWords;
-
-			// restore ignore list
-			if (Request.Params["IgnoreList"] != null)
-			{
-				ignoreList = Request.Params["IgnoreList"];
-				this.SpellChecker.IgnoreList.Clear();
-				this.SpellChecker.IgnoreList.AddRange(ignoreList.Split('|'));
-			}
-
-			// restore replace list
-			if (Request.Params["ReplaceKeyList"] != null 
-				&& Request.Params["ReplaceValueList"] != null)
-			{
-				replaceKeys = Request.Params["ReplaceKeyList"].Split('|');
-				replaceValues = Request.Params["ReplaceValueList"].Split('|');
-
-				this.SpellChecker.ReplaceList.Clear();
-				if (replaceKeys.Length == replaceValues.Length)
+				if(replaceKeys[i].Length > 0)
 				{
-					for (int i = 0; i < replaceKeys.Length; i++)
-					{
-						if(replaceKeys[i].Length > 0)
-						{
-							this.SpellChecker.ReplaceList.Add(replaceKeys[i], replaceValues[i]);
-						}
-					}
-				}
-			}
-
-			// restore user words
-			this.SpellChecker.Dictionary.UserWords.Clear();
-			if (Request.Cookies["UserWords"] != null)
-			{
-				userWords = Request.Cookies["UserWords"].Value.Split('|');
-				for (int i = 0; i < userWords.Length; i++)
-				{
-					if(userWords[i].Length > 0) 
-					{
-						this.SpellChecker.Dictionary.UserWords.Add(userWords[i], userWords[i]);
-					}
+					this.SpellChecker.ReplaceList.Add(replaceKeys[i], replaceValues[i]);
 				}
 			}
 		}
+	}
+
+	// restore user words
+	this.SpellChecker.Dictionary.UserWords.Clear();
+	if (Request.Cookies["UserWords"] != null)
+	{
+		userWords = Request.Cookies["UserWords"].Value.Split('|');
+		for (int i = 0; i < userWords.Length; i++)
+		{
+			if(userWords[i].Length > 0) 
+			{
+				this.SpellChecker.Dictionary.UserWords.Add(userWords[i], userWords[i]);
+			}
+		}
+	}
+}
 		#region Web Form Designer generated code
 		
 		/// <summary>

@@ -227,6 +227,9 @@ namespace NetSpell.SpellChecker
 			// splits the text into words
 			_words = _wordEx.Matches(_Text.ToString());
 			_WordCount = _words.Count; // set word count
+			
+			// remark html
+			this.MarkHtml();
 		}
 
 		/// <summary>
@@ -706,6 +709,7 @@ namespace NetSpell.SpellChecker
 			_Text.Insert(index, _ReplacementWord);
 			
 			this.CalculateWords();
+
 			this.OnReplacedWord(new ReplaceWordEventArgs(
 				_ReplacementWord, 
 				_CurrentWord, 
@@ -1268,7 +1272,6 @@ namespace NetSpell.SpellChecker
 			{
 				_Text = new StringBuilder(value);
 				this.CalculateWords();
-				this.MarkHtml();
 				this.Reset();
 			}
 		}
