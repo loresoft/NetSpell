@@ -33,7 +33,7 @@ namespace NetSpell.Demo.Windows
 		internal System.Windows.Forms.Label lblTitle;
 		internal System.Windows.Forms.Label lblVersion;
 		private System.Windows.Forms.Button okButton;
-		private System.Windows.Forms.Label lblCompany;
+		private System.Windows.Forms.LinkLabel linkLabel1;
 		internal System.Windows.Forms.PictureBox pbIcon;
 
 		private void AboutForm_Load(object sender, System.EventArgs e)
@@ -55,7 +55,7 @@ namespace NetSpell.Demo.Windows
 				this.lblVersion.Text = String.Format("Version {0}", aInfo.Version);
 				this.lblCopyright.Text = aInfo.Copyright;
 				this.lblDescription.Text = aInfo.Description;
-				this.lblCompany.Text = aInfo.Company;
+				//this.lblCompany.Text = aInfo.Company;
 
 				assembliesListView.Items.Clear();
 
@@ -150,7 +150,7 @@ namespace NetSpell.Demo.Windows
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.pbIcon = new System.Windows.Forms.PictureBox();
-			this.lblCompany = new System.Windows.Forms.Label();
+			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.VersionGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -250,13 +250,15 @@ namespace NetSpell.Demo.Windows
 			this.pbIcon.TabIndex = 10;
 			this.pbIcon.TabStop = false;
 			// 
-			// lblCompany
+			// linkLabel1
 			// 
-			this.lblCompany.Location = new System.Drawing.Point(72, 112);
-			this.lblCompany.Name = "lblCompany";
-			this.lblCompany.Size = new System.Drawing.Size(328, 23);
-			this.lblCompany.TabIndex = 15;
-			this.lblCompany.Text = "Application Company";
+			this.linkLabel1.Location = new System.Drawing.Point(72, 112);
+			this.linkLabel1.Name = "linkLabel1";
+			this.linkLabel1.Size = new System.Drawing.Size(328, 23);
+			this.linkLabel1.TabIndex = 15;
+			this.linkLabel1.TabStop = true;
+			this.linkLabel1.Text = "http://www.loresoft.com";
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
 			// 
 			// AboutForm
 			// 
@@ -264,7 +266,7 @@ namespace NetSpell.Demo.Windows
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.okButton;
 			this.ClientSize = new System.Drawing.Size(418, 320);
-			this.Controls.Add(this.lblCompany);
+			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this.lblCopyright);
 			this.Controls.Add(this.lblDescription);
 			this.Controls.Add(this.lblVersion);
@@ -285,6 +287,11 @@ namespace NetSpell.Demo.Windows
 
 		}
 #endregion
+
+		private void linkLabel1_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start("http://www.loresoft.com");
+		}
 
 	}
 

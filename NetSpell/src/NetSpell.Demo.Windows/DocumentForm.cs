@@ -29,7 +29,7 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.MenuItem contextMenuPaste;
 		private System.Windows.Forms.MenuItem contextMenuSelectAll;
 		private System.Windows.Forms.MenuItem contextMenuUndo;
-		private System.Windows.Forms.RichTextBox Document;
+		internal System.Windows.Forms.RichTextBox Document;
 		private System.Windows.Forms.FontDialog fontDialog;
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuEdit;
@@ -390,15 +390,18 @@ namespace NetSpell.Demo.Windows
 
 		internal void SpellCheck()
 		{
-
+			if (this.MdiParent != null) 
+			{
+				MainForm main = (MainForm)this.MdiParent;
+				main.SpellChecker.Text = this.Document.Text;
+				main.SpellChecker.SpellCheck();
+			}
 		}
 
 		internal void Undo ()
 		{
 			this.Document.Undo();
 		}
-
-
 
 		internal bool Changed
 		{
@@ -419,7 +422,6 @@ namespace NetSpell.Demo.Windows
 				}
 			}
 		}
-
 
 		internal string FileName
 		{
@@ -706,7 +708,7 @@ namespace NetSpell.Demo.Windows
 			this.printPreviewDialog.Document = this.printDocument;
 			this.printPreviewDialog.Enabled = true;
 			this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
-			this.printPreviewDialog.Location = new System.Drawing.Point(547, 17);
+			this.printPreviewDialog.Location = new System.Drawing.Point(120, 17);
 			this.printPreviewDialog.MinimumSize = new System.Drawing.Size(375, 250);
 			this.printPreviewDialog.Name = "printPreviewDialog";
 			this.printPreviewDialog.TransparencyKey = System.Drawing.Color.Empty;

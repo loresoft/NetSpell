@@ -23,12 +23,14 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.ToolBar editToolBar;
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuFile;
+		private System.Windows.Forms.MenuItem menuFileDemo;
 		private System.Windows.Forms.MenuItem menuFileExit;
 		private System.Windows.Forms.MenuItem menuFileNew;
 		private System.Windows.Forms.MenuItem menuFileOpen;
 		private System.Windows.Forms.MenuItem menuHelp;
 		private System.Windows.Forms.MenuItem menuHelpAbout;
 		private System.Windows.Forms.MenuItem menuItem1;
+		private System.Windows.Forms.MenuItem menuItem2;
 		private System.Windows.Forms.MenuItem menuWindow;
 		private System.Windows.Forms.MenuItem menuWindowCascade;
 		private System.Windows.Forms.MenuItem menuWindowHorizontal;
@@ -47,8 +49,8 @@ namespace NetSpell.Demo.Windows
 		private System.Windows.Forms.ToolBarButton toolBarButton4;
 		private System.Windows.Forms.ToolBarButton toolBarButton8;
 		private System.Windows.Forms.ImageList toolBarImages;
-		private NetSpell.SpellChecker.Spelling spelling1;
 		private System.Windows.Forms.ToolBarButton undoBarButton;
+		internal NetSpell.SpellChecker.Spelling SpellChecker;
 		
 		public MainForm()
 		{
@@ -131,6 +133,30 @@ namespace NetSpell.Demo.Windows
 		private void MainForm_Load(object sender, System.EventArgs e)
 		{
 			this.DisableEditButtons();
+
+			// set dictionary paths
+			System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
+
+			string folder = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.DictionaryFolder", typeof(string))));
+			string dicFile = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.DictionaryFile", typeof(string))));
+			string userFile = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.UserFile", typeof(string))));
+
+			if (folder.Length > 0) this.SpellChecker.Dictionary.DictionaryFolder = folder;
+			if (dicFile.Length > 0) this.SpellChecker.Dictionary.DictionaryFile = dicFile;
+			if (userFile.Length > 0) this.SpellChecker.Dictionary.UserFile = userFile;
+			
+			// making the MainForm owner of the spell checker
+			this.SpellChecker.SpellingForm.Owner = this;
+
+		}
+
+		private void menuFileDemo_Click(object sender, System.EventArgs e)
+		{
+			DocumentForm newForm = new DocumentForm();
+			newForm.MdiParent = this;
+			newForm.Show();
+			newForm.Document.Text = "Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.";
+			this.EnableEditButtons();
 		}
 
 		private void menuFileExit_Click(object sender, System.EventArgs e)
@@ -176,6 +202,30 @@ namespace NetSpell.Demo.Windows
 		private void menuWindowVertical_Click(object sender, System.EventArgs e)
 		{
 			this.LayoutMdi(MdiLayout.TileVertical);
+		}
+
+		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+		{
+			if (this.ActiveMdiChild != null)
+			{
+				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
+			}
+		}
+
+		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
+		{
+			if (this.ActiveMdiChild != null)
+			{
+				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
+			}
+		}
+
+		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+		{
+			if (this.ActiveMdiChild != null)
+			{
+				((DocumentForm)this.ActiveMdiChild).Document.Text = this.SpellChecker.Text;
+			}
 		}
 
 		/// <summary>
@@ -244,12 +294,15 @@ namespace NetSpell.Demo.Windows
 		{
 			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
+			System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
 			this.statusBar = new System.Windows.Forms.StatusBar();
 			this.mainMenu = new System.Windows.Forms.MainMenu();
 			this.menuFile = new System.Windows.Forms.MenuItem();
 			this.menuFileNew = new System.Windows.Forms.MenuItem();
 			this.menuFileOpen = new System.Windows.Forms.MenuItem();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
+			this.menuFileDemo = new System.Windows.Forms.MenuItem();
+			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.menuFileExit = new System.Windows.Forms.MenuItem();
 			this.menuWindow = new System.Windows.Forms.MenuItem();
 			this.menuWindowHorizontal = new System.Windows.Forms.MenuItem();
@@ -274,7 +327,7 @@ namespace NetSpell.Demo.Windows
 			this.redoBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton11 = new System.Windows.Forms.ToolBarButton();
 			this.toolBarImages = new System.Windows.Forms.ImageList(this.components);
-			this.spelling1 = new NetSpell.SpellChecker.Spelling(this.components);
+			this.SpellChecker = new NetSpell.SpellChecker.Spelling(this.components);
 			this.SuspendLayout();
 			// 
 			// statusBar
@@ -298,6 +351,8 @@ namespace NetSpell.Demo.Windows
 																					 this.menuFileNew,
 																					 this.menuFileOpen,
 																					 this.menuItem1,
+																					 this.menuFileDemo,
+																					 this.menuItem2,
 																					 this.menuFileExit});
 			this.menuFile.MergeType = System.Windows.Forms.MenuMerge.MergeItems;
 			this.menuFile.Text = "File";
@@ -323,10 +378,23 @@ namespace NetSpell.Demo.Windows
 			this.menuItem1.MergeOrder = 12;
 			this.menuItem1.Text = "-";
 			// 
+			// menuFileDemo
+			// 
+			this.menuFileDemo.Index = 3;
+			this.menuFileDemo.MergeOrder = 13;
+			this.menuFileDemo.Text = "NetSpell Demo";
+			this.menuFileDemo.Click += new System.EventHandler(this.menuFileDemo_Click);
+			// 
+			// menuItem2
+			// 
+			this.menuItem2.Index = 4;
+			this.menuItem2.MergeOrder = 14;
+			this.menuItem2.Text = "-";
+			// 
 			// menuFileExit
 			// 
-			this.menuFileExit.Index = 3;
-			this.menuFileExit.MergeOrder = 13;
+			this.menuFileExit.Index = 5;
+			this.menuFileExit.MergeOrder = 15;
 			this.menuFileExit.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
 			this.menuFileExit.Text = "Exit";
 			this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
@@ -481,10 +549,15 @@ namespace NetSpell.Demo.Windows
 			this.toolBarImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toolBarImages.ImageStream")));
 			this.toolBarImages.TransparentColor = System.Drawing.Color.Transparent;
 			// 
-			// spelling1
+			// SpellChecker
 			// 
-			this.spelling1.Dictionary.DictionaryFile = "en-US.dic";
-			this.spelling1.Dictionary.DictionaryFolder = null;
+			this.SpellChecker.IgnoreAllCapsWords = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreAllCapsWords", typeof(bool))));
+			this.SpellChecker.IgnoreHtml = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreHtml", typeof(bool))));
+			this.SpellChecker.IgnoreWordsWithDigits = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreWordsWithDigits", typeof(bool))));
+			this.SpellChecker.MaxSuggestions = ((int)(configurationAppSettings.GetValue("SpellChecker.MaxSuggestions", typeof(int))));
+			this.SpellChecker.MisspelledWord += new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.SpellChecker_MisspelledWord);
+			this.SpellChecker.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
+			this.SpellChecker.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
 			// 
 			// MainForm
 			// 

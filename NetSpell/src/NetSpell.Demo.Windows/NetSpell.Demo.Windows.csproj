@@ -7,7 +7,7 @@
     >
         <Build>
             <Settings
-                ApplicationIcon = "App.ico"
+                ApplicationIcon = "C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\Graphics\icons\Writing\NOTE03.ICO"
                 AssemblyKeyContainerName = ""
                 AssemblyName = "NetSpell.Demo.Windows"
                 AssemblyOriginatorKeyFile = ""
@@ -20,7 +20,7 @@
                 PostBuildEvent = ""
                 RootNamespace = "NetSpell.Demo.Windows"
                 RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = ""
+                StartupObject = "NetSpell.Demo.Windows.MainForm"
             >
                 <Config
                     Name = "Debug"
