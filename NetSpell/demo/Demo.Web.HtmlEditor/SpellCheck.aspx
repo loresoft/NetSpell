@@ -336,8 +336,8 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <asp:Label id="StatusText" runat="Server" forecolor="DimGray" font-size="8pt">Loading
-                                            ...</asp:Label></td>
+                                            <asp:Label id="StatusText" runat="Server" forecolor="DimGray" font-size="8pt">Loading...</asp:Label>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

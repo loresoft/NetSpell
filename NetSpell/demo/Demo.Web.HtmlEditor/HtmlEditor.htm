@@ -1,0 +1,341 @@
+<html>
+	<head>
+		<title>Html Editor</title>
+		<link rel="STYLESHEET" type="text/css" href="HtmlEditor.css" />
+        <script language="JavaScript" src="spell.js" type="text/javascript"></script>
+        <script language="JavaScript" type="text/javascript">
+        <!--
+            function button_onmouseover(element) { element.className = "tbButtonMouseOverUp"; }
+    
+            function button_onmousedown(element) { element.className = "tbButtonMouseOverDown"; }
+            
+            function button_onmouseout(element) { element.className = "tbButton"; }
+            
+            function saveData()
+            {
+                if (document.all.chkHtmlSource.checked == false)
+                    document.all.tbSourceElement.value = tbContentElement.document.body.innerHTML;
+                else
+                    document.all.tbSourceElement.value = tbContentElement.document.body.innerText;
+            }
+            
+            function readData()
+            {
+                if (document.all.chkHtmlSource.checked == false)
+                    tbContentElement.document.body.innerHTML = document.all.tbSourceElement.value;
+                else
+                    tbContentElement.document.body.innerText = document.all.tbSourceElement.value;
+            }
+            
+            function doCommand(cmd,	opt)
+            {
+                if (document.all.chkHtmlSource.checked == false) 
+                {
+                    var display = false;
+                    if(cmd == "InsertImage") display = true;
+                    tbContentElement.document.execCommand(cmd, display, opt);
+                    tbContentElement.focus();	
+                } 
+            }
+            
+            function changeMode(element)
+            {
+                if (element.checked == true) {
+                    var temp = tbContentElement.document.body.innerHTML;
+                    tbContentElement.document.body.innerText = temp;
+                    document.all.toolbars.style.display = "none";
+                }
+                else {
+                    var temp = tbContentElement.document.body.innerText;
+                    tbContentElement.document.body.innerHTML = temp;
+                    document.all.toolbars.style.display = "block";
+                }
+            }
+            
+            function spellCheck()
+            {
+                var oElement = tbContentElement.document.body;
+                checkElementSpelling(oElement);
+            }
+        //-->
+        </script>
+	</head>
+	<body>
+		<form action="">
+			<table width="650" height="400" border="1" cellspacing="2" cellpadding="0" style="background-color: buttonface;">
+				<tbody>
+					<tr>
+						<td width="100%" height="*">
+							<!-- Toolbars -->
+							<div id="toolbars">
+								<span class="tbToolbar" id="FontToolbar">&nbsp;
+				                    <select unselectable="On" id="ParagraphStyle" class="tbGeneral" style="width: 90;" title="Paragraph Format" 
+                                        language="javascript" onchange="doCommand('FormatBlock',this.options[this.selectedIndex].value);this.selectedIndex=0;">
+										<option value="" selected="">Paragraph</option>
+										<option value="Normal">Normal</option>
+										<option value="Heading 1">Heading 1</option>
+										<option value="Heading 2">Heading 2</option>
+										<option value="Heading 3">Heading 3</option>
+										<option value="Heading 4">Heading 4</option>
+										<option value="Heading 5">Heading 5</option>
+										<option value="Heading 6">Heading 6</option>
+										<option value="Address">Address</option>
+										<option value="Formatted">Formatted</option>
+									</select>
+				                    <select unselectable="On" id="FontName" class="tbGeneral" style="width:125" title="Font Name"
+										language="javascript" onchange="doCommand('FontName',this.options[this.selectedIndex].value);this.selectedIndex=0;">
+										<option value="" selected="">Font</option>
+										<option value="Arial">Arial</option>
+										<option value="Tahoma">Tahoma</option>
+										<option value="Courier New">Courier New</option>
+										<option value="Times New Roman">Times New Roman</option>
+										<option value="Wingdings">Wingdings</option>
+									</select>
+                                    <select unselectable="On" id="FontSize" class="tbGeneral" style="width:55" title="Font Size"
+										language="javascript" onchange="doCommand('FontSize',this.options[this.selectedIndex].value);this.selectedIndex=0;">
+										<option value="" selected="">Size</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+									</select>
+				                    <select unselectable="On" id="ForeColor" class="tbGeneral" style="width:120" title="Font Size"
+										language="javascript" onchange="doCommand('ForeColor',this.options[this.selectedIndex].value);this.selectedIndex=0;">
+										<option value="" selected="">Font Color</option>
+										<option value="Black" style="background-color: black">Black</option>
+										<option value="Gray" style="background-color: gray">Gray</option>
+										<option value="DarkGray" style="background-color: darkgray">DarkGray</option>
+										<option value="LightGrey" style="background-color: lightgrey">LightGray</option>
+										<option value="White" style="background-color: white">White</option>
+										<option value="Aquamarine" style="background-color: aquamarine">Aquamarine</option>
+										<option value="Blue" style="background-color: blue">Blue</option>
+										<option value="Navy" style="background-color: navy">Navy</option>
+										<option value="Purple" style="background-color: purple">Purple</option>
+										<option value="DeepPink" style="background-color: deeppink">DeepPink</option>
+										<option value="Violet" style="background-color: violet">Violet</option>
+										<option value="Pink" style="background-color: pink">Pink</option>
+										<option value="DarkGreen" style="background-color: darkgreen">DarkGreen</option>
+										<option value="Green" style="background-color: green">Green</option>
+										<option value="YellowGreen" style="background-color: yellowgreen">YellowGreen</option>
+										<option value="Yellow" style="background-color: yellow">Yellow</option>
+										<option value="Orange" style="background-color: orange">Orange</option>
+										<option value="Red" style="background-color: red">Red</option>
+                                        <option value="Brown" style="background-color: brown">Brown</option>
+										<option value="BurlyWood" style="background-color: burlywood">BurlyWood</option>
+										<option value="Beige" style="background-color: beige">Beige</option>
+									</select>
+				                    <select unselectable="On" id="BackColor" class="tbGeneral" style="width:120" title="Font Size" 
+                                        language="javascript" onchange="doCommand('BackColor',this.options[this.selectedIndex].value);this.selectedIndex=0;">
+										<option value="" selected="">Background</option>
+										<option value="Black" style="background-color: black">Black</option>
+										<option value="Gray" style="background-color: gray">Gray</option>
+										<option value="DarkGray" style="background-color: darkgray">DarkGray</option>
+										<option value="LightGrey" style="background-color: lightgrey">LightGray</option>
+										<option value="White" style="background-color: white">White</option>
+										<option value="Aquamarine" style="background-color: aquamarine">Aquamarine</option>
+										<option value="Blue" style="background-color: blue">Blue</option>
+										<option value="Navy" style="background-color: navy">Navy</option>
+										<option value="Purple" style="background-color: purple">Purple</option>
+										<option value="DeepPink" style="background-color: deeppink">DeepPink</option>
+										<option value="Violet" style="background-color: violet">Violet</option>
+										<option value="Pink" style="background-color: pink">Pink</option>
+										<option value="DarkGreen" style="background-color: darkgreen">DarkGreen</option>
+										<option value="Green" style="background-color: green">Green</option>
+										<option value="YellowGreen" style="background-color: yellowgreen">YellowGreen</option>
+										<option value="Yellow" style="background-color: yellow">Yellow</option>
+										<option value="Orange" style="background-color: orange">Orange</option>
+										<option value="Red" style="background-color: red">Red</option>
+										<option value="Brown" style="background-color: brown">Brown</option>
+										<option value="BurlyWood" style="background-color: burlywood">BurlyWood</option>
+										<option value="Beige" style="background-color: beige">Beige</option>
+									</select> 
+                                </span><br />
+								<span class="tbToolbar" id="StandardToolbar">
+				                    <span class="tbButton" unselectable="On" id="DECMD_CUT" title="Cut" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Cut');">
+										<img src="images/cut.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_COPY" title="Copy" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Copy');">
+										<img src="images/copy.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_PASTE" title="Paste" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Paste');">
+										<img src="images/paste.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_UNDO" title="Undo" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Undo');">
+										<img src="images/undo.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_REDO" title="Redo" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Redo');">
+										<img src="images/redo.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_BOLD" title="Bold" language="javascript" 
+                                        onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Bold');">
+										<img src="images/bold.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_ITALIC" title="Italic" language="javascript" 
+                                        onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Italic');">
+										<img src="images/italic.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_UNDERLINE" title="Underline" 
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Underline');">
+										<img src="images/underline.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>                                    
+                                    <span class="tbButton" unselectable="On" id="DECMD_STRIKETHROUGH" title="Strikethrough" 
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('StrikeThrough');">
+										<img src="images/strikethrough.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_SUPERSCRIPT" title="Superscript" 
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Superscript');">
+										<img src="images/superscript.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_SUBSCRIPT" title="Subscript" 
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Subscript');">
+										<img src="images/subscript.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYLEFT" title="Align Left" 
+										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
+										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
+										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyLeft');">
+										<img src="images/justifyleft.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYCENTER" title="Center" 
+										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
+										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
+										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyCenter');">
+										<img src="images/justifycenter.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYRIGHT" title="Align Right" 
+										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
+										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
+										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyRight');">
+										<img src="images/justifyright.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>                                    
+                                    <span class="tbButton" unselectable="On" id="DECMD_JUSTIFYFULL" title="Justify" 
+										name="Justify" language="javascript" onmouseover="button_onmouseover(this)"
+										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
+										onmousedown="button_onmousedown(this)" onclick="doCommand('JustifyFull');">
+										<img src="images/justifyfull.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>                                    
+                                    <span class="tbSeparator"></span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_ORDERLIST" title="Numbered List" 
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('InsertOrderedList');">
+										<img src="images/numberedlist.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_UNORDERLIST" title="Bulletted List"
+										 language="javascript" onmouseover="button_onmouseover(this)"
+										onmouseup="button_onmouseover(this)" onmouseout="button_onmouseout(this)"
+										onmousedown="button_onmousedown(this)" onclick="doCommand('InsertUnorderedList');">
+										<img src="images/bullets.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_OUTDENT" title="Decrease Indent" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Outdent');">
+										<img src="images/outdent.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_INDENT" title="Increase Indent" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Indent');">
+										<img src="images/indent.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_IMAGE" title="Insert Image" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('InsertImage');">
+										<img src="images/insertimage.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_HYPERLINK" title="Link" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('CreateLink');">
+										<img src="images/createlink.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+
+                                     <span class="tbButton" unselectable="On" id="DECMD_UNLINK" title="Unlink" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('Unlink');">
+										<img src="images/unlink.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                     <span class="tbButton" unselectable="On" id="DECMD_REMOVEFORMAT" title="Remove Format" language="javascript"
+										onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('RemoveFormat');">
+										<img src="images/removeformat.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                    <span class="tbSeparator"></span>
+                                    <span class="tbButton" unselectable="On" id="DECMD_INSERTHORIZONTALRULE" title="Insert Horizontal Rule"
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="doCommand('InsertHorizontalRule');">
+                                        <img src="images/InsertRule.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">										
+									</span>
+				                    <span class="tbButton" unselectable="On" id="DECMD_SPELLCHECK" title="Spell Check"
+										language="javascript" onmouseover="button_onmouseover(this)" onmouseup="button_onmouseover(this)"
+										onmouseout="button_onmouseout(this)" onmousedown="button_onmousedown(this)"
+										onclick="spellCheck();">
+										<img src="images/spellcheck.gif" width="21" height="20" border="0" class="tbIcon" unselectable="On">
+									</span>
+                                </span><br />
+							</div>
+							<iframe id="tbContentElement" class="tbContentElement" width="100%" height="100%" onblur="saveData();"></iframe>
+							<input type="hidden" name="tbSourceElement" id="tbSourceElement" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="100%" height="10">
+							<font face="Arial,Helvetica,sans-serif" size="2">View Source</font> <input type="checkbox" name="chkHtmlSource" id="chkHtmlSource" value="true" onclick="changeMode(this)" />
+                        </td>
+					</tr>
+				</tbody>
+			</table>
+            <script language="JavaScript" type="text/javascript">    
+                function document.onreadystatechange()
+                {
+                    tbContentElement.document.designMode = "On";
+                    tbContentElement.document.open();
+                    tbContentElement.document.write("");
+                    tbContentElement.document.close();
+                    tbContentElement.document.contentEditable = "True";
+                	tbContentElement.focus();
+                }
+            </script>
+		</form>
+	</body>
+</html>

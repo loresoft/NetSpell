@@ -1,0 +1,95 @@
+.tbButton {
+	background-color: buttonface;
+	border-bottom: buttonface solid 1px;
+	border-left: buttonface solid 1px;
+	border-right: buttonface solid 1px;
+	border-top: buttonface solid 1px;
+	height: 20px;
+	top: 1px;
+	width: 21px;
+}
+
+.tbButtonDown {
+	background-color: #DCDCDC;
+	border-bottom: buttonhighlight solid 1px;
+	border-left: buttonshadow solid 1px;
+	border-right: buttonhighlight solid 1px;
+	border-top: buttonshadow solid 1px;
+	height: 20px;
+	top: 1px;
+	width: 21px;
+}
+
+.tbButtonMouseOverDown {
+	background-color: buttonface;
+	border-bottom: buttonhighlight solid 1px;
+	border-left: buttonshadow solid 1px;
+	border-right: buttonhighlight solid 1px;
+	border-top: buttonshadow solid 1px;
+	height: 20px;
+	top: 1px;
+	width: 21px;
+}
+
+.tbButtonMouseOverUp {
+	background-color: buttonface;
+	border-bottom: buttonshadow solid 1px;
+	border-left: buttonhighlight solid 1px;
+	border-right: buttonshadow solid 1px;
+	border-top: buttonhighlight solid 1px;
+	height: 20px;
+	top: 1px;
+	width: 21px;
+}
+
+.tbGeneral {
+	height: 22px;
+	top: 2;
+}
+
+.tbHandleDiv {
+	background-color: buttonface;
+	border-left: buttonhighlight solid 1px;
+	border-right: buttonshadow solid 1px;
+	border-top: buttonhighlight solid 1px;
+	font-size: 1px;
+	height: 22px;
+	top: 1px;
+	width: 3px;
+}
+
+.tbIcon {
+	left: -1;
+	top: -1;
+}
+
+.tbIconDown {
+	left: 0px;
+	top: 0px;
+}
+
+.tbIconDownPressed {
+	left: 1px;
+	top: 1px;
+}
+
+.tbSeparator {
+	border-left: buttonshadow solid 1px;
+	border-right: buttonhighlight solid 1px;
+	font-size: 0px;
+	height: 20px;
+	top: 1px;
+	width: 1px;
+}
+
+.tbToolbar {
+	background-color: buttonface;
+	border-bottom: buttonshadow solid 1px;
+	border-left: buttonhighlight solid 1px;
+	border-right: buttonshadow solid 1px;
+	border-top: buttonhighlight solid 1px;
+	height: 27px;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
