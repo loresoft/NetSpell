@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-7" ?>
+<root>
+	<!-- General -->
+	<resource name = "Yes">Si</resource>
+	<resource name = "No">No</resource>
+	<resource name = "0">0</resource>
+	<resource name = "1">1</resource>
+	<resource name = "2">2</resource>
+	<resource name = "3">3</resource>
+	<resource name = "4">4</resource>
+	<resource name = "5">5</resource>
+	<resource name = "6">6</resource>
+	<resource name = "7">7</resource>
+	<resource name = "8">8</resource>
+	<resource name = "9">9</resource>
+
+	<!-- Main FTB Stuff -->
+	<resource name = "DesignModeTab">Diseño</resource>
+	<resource name = "HtmlModeTab">HTML</resource>
+	
+	<!-- Buttons -->
+	<resource name = "Bold">Negrita</resource>
+	<resource name = "BulletedList">Lista de bala</resource>
+	<resource name = "Copy">Copiar</resource>
+	<resource name = "CreateLink">Insertar enlace</resource>
+	<resource name = "Cut">Cortar</resource>
+	<resource name = "Delete">Cancelación</resource>
+	<resource name = "Indent">Sangrar</resource>
+	<resource name = "InsertDate">Insertar le fecha actual</resource>
+	<resource name = "InsertImage">Insertar imagen</resource>
+	<resource name = "InsertRule">Insertar regala</resource>
+	<resource name = "InsertTime">Insertar el tiempo actua</resource>
+	<resource name = "Italic">En cursiva</resource>	
+	<resource name = "JustifyRight">Justificar a la izquierda</resource>	
+	<resource name = "JustifyCenter">Justificar</resource>	
+	<resource name = "JustifyFull">Justificar completamente</resource>	
+	<resource name = "JustifyLeft">Justificar a la derecha</resource>
+	<resource name = "NumberedList">Lista Numerada</resource>	
+	<resource name = "Outdent">Outdent</resource>	
+	<resource name = "Paste">Pegar</resource>	
+	<resource name = "Print">Imprimir</resource>	
+	<resource name = "Redo">Redo</resource>	
+	<resource name = "RemoveFormat">Sin formato</resource>	
+	<resource name = "StrikeThrough">Tachar</resource>
+	<resource name = "SuperScript">Superindice</resource>
+	<resource name = "SubScript">Subindice</resource>	
+	<resource name = "Underline">Subrayar</resource>	
+	<resource name = "Undo">Deshacer</resource>
+	<resource name = "Unlink">Unlink</resource>
+
+	<!-- DropDownLists -->
+	<resource name = "FontForeColorsMenu">Color</resource>
+	<resource name = "FontBackColorsMenu">Destacar</resource>
+	<resource name = "FontSizesMenu">Tamaño</resource>
+	<resource name = "ParagraphMenu">Párrafo</resource>
+	<resource name = "FontFacesMenu">Fuente</resource>
+
+</root>

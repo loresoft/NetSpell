@@ -1,0 +1,24 @@
+body, a, input, option, select, table, tr, td
+{
+	font-family: arial;
+	font-size: 10pt;
+}
+body {
+	background-color: #c3daf9;
+}
+
+input.suggestion, select.suggestion, select.suggestion option
+{
+	width: 230px;
+}
+
+input.button
+{
+	width: 100px;
+	cursor: hand;
+}
+td.highlight
+{
+	background-color: #DADADA;
+}
+
