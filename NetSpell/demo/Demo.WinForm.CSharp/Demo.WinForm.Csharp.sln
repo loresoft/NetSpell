@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCsharp", "SimpleCsharp.csproj", "{953B172F-6026-494E-BD97-111374606CFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.WinForm.Csharp", "Demo.WinForm.Csharp.csproj", "{953B172F-6026-494E-BD97-111374606CFD}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

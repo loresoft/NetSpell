@@ -1,4 +1,4 @@
-<%@ Page Language="C#" %>
+<%@ Page Language="C#" ClassName="PopUpSpell" %>
 <%@ import Namespace="System.IO" %>
 <%@ import Namespace="NetSpell.SpellChecker" %>
 <%@ import Namespace="NetSpell.SpellChecker.Dictionary" %>
@@ -6,6 +6,7 @@
 
     NetSpell.SpellChecker.Spelling SpellChecker;
     NetSpell.SpellChecker.Dictionary.WordDictionary WordDictionary;
+    
     void Page_Load(object sender, EventArgs e)
     {
          // if modal frame, quit
@@ -36,6 +37,7 @@
                  break;
          }
     }
+    
     void Page_Init(object sender, EventArgs e)
     {
          // show iframe for modal support
@@ -77,6 +79,7 @@
          this.SpellChecker.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
          this.SpellChecker.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
     }
+    
     void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
     {
          this.SaveValues();
@@ -86,6 +89,7 @@
          this.SpellMode.Value = "suggest";
          this.StatusText.Text = string.Format("Word: {0} of {1}", this.SpellChecker.WordIndex + 1, this.SpellChecker.WordCount);
     }
+    
     void SpellChecker_EndOfText(object sender, System.EventArgs e)
     {
          this.SaveValues();
@@ -93,6 +97,7 @@
          this.DisableButtons();
          this.StatusText.Text = string.Format("Word: {0} of {1}", this.SpellChecker.WordIndex + 1, this.SpellChecker.WordCount);
     }
+    
     void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
     {
          this.SaveValues();
@@ -104,6 +109,7 @@
          this.SpellMode.Value = "suggest";
          this.StatusText.Text = string.Format("Word: {0} of {1}", this.SpellChecker.WordIndex + 1, this.SpellChecker.WordCount);
     }
+    
     void EnableButtons()
     {
          this.IgnoreButton.Enabled = true;
@@ -114,6 +120,7 @@
          this.ReplacementWord.Enabled = true;
          this.Suggestions.Enabled = true;
     }
+    
     void DisableButtons()
     {
          this.IgnoreButton.Enabled = false;
@@ -124,6 +131,7 @@
          this.ReplacementWord.Enabled = false;
          this.Suggestions.Enabled = false;
     }
+    
     void SaveValues()
     {
          this.CurrentText.Value = this.SpellChecker.Text;
@@ -154,6 +162,7 @@
          Response.Cookies["UserWords"].Path = "/";
          Response.Cookies["UserWords"].Expires = DateTime.Now.AddMonths(1);
     }
+    
     void LoadValues()
     {
          if (this.CurrentText.Value.Length > 0)
@@ -199,27 +208,32 @@
              }
          }
     }
+    
     void IgnoreButton_Click(object sender, EventArgs e)
     {
          this.SpellChecker.IgnoreWord();
          this.SpellChecker.SpellCheck();
     }
+    
     void IgnoreAllButton_Click(object sender, EventArgs e)
     {
          this.SpellChecker.IgnoreAllWord();
          this.SpellChecker.SpellCheck();
     }
+    
     void AddButton_Click(object sender, EventArgs e)
     {
          this.SpellChecker.Dictionary.Add(this.SpellChecker.CurrentWord);
          this.SpellChecker.SpellCheck();
     }
+    
     void ReplaceButton_Click(object sender, EventArgs e)
     {
          this.SpellChecker.ReplaceWord(this.ReplacementWord.Text);
          this.CurrentText.Value = this.SpellChecker.Text;
          this.SpellChecker.SpellCheck();
     }
+    
     void ReplaceAllButton_Click(object sender, EventArgs e)
     {
          this.SpellChecker.ReplaceAllWord(this.ReplacementWord.Text);
@@ -244,10 +258,10 @@
         <input id="FormIndex" type="hidden" value="0" name="FormIndex" runat="server" />
         <input id="ElementIndex" type="hidden" value="-1" name="ElementIndex" runat="server" />
         <input id="SpellMode" type="hidden" value="load" name="SpellMode" runat="server" />
-        <asp:panel id="ModalFrame" runat="server" enableviewstate="False" visible="False">
+        <asp:panel id="ModalFrame" runat="server" visible="False" enableviewstate="False">
             <iframe id="SpellCheckFrame" hidefocus="hidefocus" name="SpellCheckFrame" src="SpellCheck.aspx" frameborder="0" width="100%" scrolling="no" height="100%" runat="server"></iframe>
         </asp:panel>
-        <asp:panel id="SuggestionForm" runat="server" enableviewstate="False" visible="true">
+        <asp:panel id="SuggestionForm" runat="server" visible="true" enableviewstate="False">
             <table cellspacing="0" cellpadding="5" width="100%">
                 <tbody>
                     <tr>
@@ -259,14 +273,14 @@
                                             <em>Word Not in Dictionary:</em> 
                                         </td>
                                         <td>
-                                            <asp:button id="IgnoreButton" onclick="IgnoreButton_Click" runat="server" enableviewstate="False" text="Ignore" cssclass="button" enabled="False"></asp:button>
+                                            <asp:button id="IgnoreButton" onclick="IgnoreButton_Click" runat="server" enableviewstate="False" enabled="False" cssclass="button" text="Ignore"></asp:button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:Label id="CurrentWord" runat="server" forecolor="Red" font-bold="True"></asp:Label></td>
+                                            <asp:Label id="CurrentWord" runat="server" font-bold="True" forecolor="Red"></asp:Label></td>
                                         <td>
-                                            <asp:button id="IgnoreAllButton" onclick="IgnoreAllButton_Click" runat="server" enableviewstate="False" text="Ignore All" cssclass="button" enabled="False"></asp:button>
+                                            <asp:button id="IgnoreAllButton" onclick="IgnoreAllButton_Click" runat="server" enableviewstate="False" enabled="False" cssclass="button" text="Ignore All"></asp:button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -279,10 +293,10 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:textbox id="ReplacementWord" runat="server" enableviewstate="False" cssclass="suggestion" enabled="False" width="230px" columns="30"></asp:textbox>
+                                            <asp:textbox id="ReplacementWord" runat="server" enableviewstate="False" enabled="False" cssclass="suggestion" columns="30" width="230px"></asp:textbox>
                                         </td>
                                         <td>
-                                            <asp:button id="AddButton" onclick="AddButton_Click" runat="server" enableviewstate="False" text="Add" cssclass="button" enabled="False"></asp:button>
+                                            <asp:button id="AddButton" onclick="AddButton_Click" runat="server" enableviewstate="False" enabled="False" cssclass="button" text="Add"></asp:button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -295,15 +309,15 @@
                                     </tr>
                                     <tr>
                                         <td rowspan="5">
-                                            <asp:listbox id="Suggestions" runat="server" enableviewstate="False" cssclass="suggestion" enabled="False" width="230px" rows="8"></asp:listbox>
+                                            <asp:listbox id="Suggestions" runat="server" enableviewstate="False" enabled="False" cssclass="suggestion" width="230px" rows="8"></asp:listbox>
                                         </td>
                                         <td>
-                                            <asp:button id="ReplaceButton" onclick="ReplaceButton_Click" runat="server" enableviewstate="False" text="Replace" cssclass="button" enabled="False"></asp:button>
+                                            <asp:button id="ReplaceButton" onclick="ReplaceButton_Click" runat="server" enableviewstate="False" enabled="False" cssclass="button" text="Replace"></asp:button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:button id="ReplaceAllButton" onclick="ReplaceAllButton_Click" runat="server" enableviewstate="False" text="Replace All" cssclass="button" enabled="False"></asp:button>
+                                            <asp:button id="ReplaceAllButton" onclick="ReplaceAllButton_Click" runat="server" enableviewstate="False" enabled="False" cssclass="button" text="Replace All"></asp:button>
                                         </td>
                                     </tr>
                                     <tr>

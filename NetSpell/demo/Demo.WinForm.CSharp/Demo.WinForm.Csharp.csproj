@@ -1,81 +1,93 @@
 <VisualStudioProject>
-    <VisualBasic
+    <CSHARP
         ProjectType = "Local"
         ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{EFB9B355-EC39-47D9-BC48-D613F9D76384}"
+        ProjectGuid = "{953B172F-6026-494E-BD97-111374606CFD}"
     >
         <Build>
             <Settings
-                ApplicationIcon = ""
+                ApplicationIcon = "App.ico"
                 AssemblyKeyContainerName = ""
-                AssemblyName = "SimpleVB"
+                AssemblyName = "Demo.WinForm.Csharp"
                 AssemblyOriginatorKeyFile = ""
-                AssemblyOriginatorKeyMode = "None"
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "WinExe"
-                OptionCompare = "Binary"
-                OptionExplicit = "On"
-                OptionStrict = "On"
-                RootNamespace = "SimpleVB"
-                StartupObject = "SimpleVB.DemoForm"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
+                RootNamespace = "Demo.WinForm.Csharp"
+                RunPostBuildEvent = "OnBuildSuccess"
+                StartupObject = ""
             >
                 <Config
                     Name = "Debug"
+                    AllowUnsafeBlocks = "false"
                     BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DefineDebug = "true"
-                    DefineTrace = "true"
+                    DefineConstants = "DEBUG;TRACE"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
-                    IncrementalBuild = "true"
+                    FileAlignment = "4096"
+                    IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "false"
-                    OutputPath = "bin\"
+                    OutputPath = "bin\Debug\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
-                    WarningLevel = "1"
+                    WarningLevel = "4"
                 />
                 <Config
                     Name = "Release"
+                    AllowUnsafeBlocks = "false"
                     BaseAddress = "285212672"
+                    CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
-                    DefineConstants = ""
-                    DefineDebug = "false"
-                    DefineTrace = "true"
+                    DefineConstants = "TRACE"
+                    DocumentationFile = ""
                     DebugSymbols = "false"
+                    FileAlignment = "4096"
                     IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "true"
-                    OutputPath = "bin\"
+                    OutputPath = "bin\Release\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
-                    WarningLevel = "1"
+                    WarningLevel = "4"
                 />
             </Settings>
             <References>
                 <Reference
                     Name = "System"
                     AssemblyName = "System"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll"
                 />
                 <Reference
                     Name = "System.Data"
                     AssemblyName = "System.Data"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll"
                 />
                 <Reference
                     Name = "System.Drawing"
                     AssemblyName = "System.Drawing"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll"
                 />
                 <Reference
                     Name = "System.Windows.Forms"
                     AssemblyName = "System.Windows.Forms"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll"
                 />
                 <Reference
                     Name = "System.XML"
                     AssemblyName = "System.Xml"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
                     Name = "netspell.spellchecker"
@@ -83,15 +95,6 @@
                     HintPath = "..\..\..\bin\netspell.spellchecker.dll"
                 />
             </References>
-            <Imports>
-                <Import Namespace = "Microsoft.VisualBasic" />
-                <Import Namespace = "System" />
-                <Import Namespace = "System.Collections" />
-                <Import Namespace = "System.Data" />
-                <Import Namespace = "System.Drawing" />
-                <Import Namespace = "System.Diagnostics" />
-                <Import Namespace = "System.Windows.Forms" />
-            </Imports>
         </Build>
         <Files>
             <Include>
@@ -100,26 +103,26 @@
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "AssemblyInfo.vb"
+                    RelPath = "App.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "DemoForm.vb"
+                    RelPath = "DemoForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "DemoForm.resx"
-                    DependentUpon = "DemoForm.vb"
+                    DependentUpon = "DemoForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>
-        <UserProperties
-            XMLCommentsOutputFile = ""
-            XMLCommentsActionBuild = "-1"
-        />
-    </VisualBasic>
+    </CSHARP>
 </VisualStudioProject>
 

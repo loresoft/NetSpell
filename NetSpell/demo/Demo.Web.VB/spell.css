@@ -3,14 +3,10 @@ body, a, input, option, select, table, tr, td
 	font-family: arial;
 	font-size: 10pt;
 }
-input
-{
-	border: #636E8B 1 solid;
+body {
+	background-color: #E0E0E0;
 }
-select
-{
-	color: #000000;
-}
+
 input.suggestion, select.suggestion, select.suggestion option
 {
 	width: 230px;

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 
-namespace SimpleCsharp
+namespace Demo.WinForm.Csharp
 {
 	/// <summary>
 	/// Summary description for Form1.
