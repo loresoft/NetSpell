@@ -277,37 +277,33 @@ namespace NetSpell.SpellChecker.Dictionary
 		public bool Contains(string word)
 		{
 			// Step 1 Search UserWords
-			if (_UserWords.Contains(word)) return true;
+			if (_UserWords.Contains(word)) 
+			{
+				return true;  // word found
+			}
 
 			// Step 2 Search BaseWords
-			if (_BaseWords.Contains(word)) return true;
+			if (_BaseWords.Contains(word)) 
+			{
+				return true; // word found
+			}
 
 			// Step 3 Remove Affix, Search BaseWords
 			foreach(AffixRule rule in SuffixRules.Values)
 			{	
 				foreach(AffixEntry entry in rule.AffixEntries)
 				{
-					int tempLength = word.Length - entry.AddCharacters.Length;
-					if ((tempLength > 0)  &&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount))
+					string tempWord = AffixUtility.RemoveSuffix(word, entry);
+					if(tempWord != word)
 					{
-						// word with out affix
-						string tempWord = word.Substring(0, tempLength);
-						// add back strip chars
-						tempWord += entry.StripCharacters;
-						// check that this is valid
-						int passCount = 0;
-						for (int i = 0;  i < entry.ConditionCount; i++) 
+						if (_BaseWords.Contains(tempWord))
 						{
-							int charCode = (int)tempWord[tempWord.Length - (entry.ConditionCount - i)];
-							// TODO: fix when more then one cond
-							if ((entry.Condition[charCode] & (1 << i)) == 1)
-							{
-								passCount++;
-							}
+							return true; // word found
 						}
-						if (passCount == entry.ConditionCount)
+						else if(rule.AllowCombine)
 						{
-							if (_BaseWords.Contains(tempWord)) return true;
+							// Step 3.1 Remove prefix if can combine
+
 						}
 					}
 				}

@@ -133,5 +133,31 @@ namespace NetSpell.SpellChecker.Dictionary.Affix
 
 		}
 
+		public static string RemoveSuffix(string word, AffixEntry entry)
+		{
+			int tempLength = word.Length - entry.AddCharacters.Length;
+			if ((tempLength > 0)  &&  (tempLength + entry.StripCharacters.Length >= entry.ConditionCount))
+			{
+				// word with out affix
+				string tempWord = word.Substring(0, tempLength);
+				// add back strip chars
+				tempWord += entry.StripCharacters;
+				// check that this is valid
+				int passCount = 0;
+				for (int i = 0;  i < entry.ConditionCount; i++) 
+				{
+					int charCode = (int)tempWord[tempWord.Length - (entry.ConditionCount - i)];
+					if ((entry.Condition[charCode] & (1 << i)) == (1 << i))
+					{
+						passCount++;
+					}
+				}
+				if (passCount == entry.ConditionCount)
+				{
+					return tempWord;
+				}
+			}
+			return word;
+		}
 	}
 }
