@@ -7,11 +7,11 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 	/// </summary>
 	public class PhoneticRule
 	{
-
+		private int _ConditionCount = 0;
+		private int[] _Condition = new int[256];
 		private bool _BeginningOnly;
 		private int _ConsumeCount;
 		private bool _EndOnly;
-		private string _MatchCharacters;
 		private int _Priority;
 		private string _ReplaceString;
 		private string _SearchString;
@@ -38,12 +38,6 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 			set {_EndOnly = value;}
 		}
 
-		public string MatchCharacters
-		{
-			get {return _MatchCharacters;}
-			set {_MatchCharacters = value;}
-		}
-
 		public int Priority
 		{
 			get {return _Priority;}
@@ -60,6 +54,19 @@ namespace NetSpell.SpellChecker.Dictionary.Phonetic
 		{
 			get {return _SearchString;}
 			set {_SearchString = value;}
+		}
+
+
+		public int[] Condition
+		{
+			get {return _Condition;}
+			set {_Condition = value;}
+		}
+
+		public int ConditionCount
+		{
+			get {return _ConditionCount;}
+			set {_ConditionCount = value;}
 		}
 
 	}
