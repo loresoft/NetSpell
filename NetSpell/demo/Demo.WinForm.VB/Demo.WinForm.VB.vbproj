@@ -80,7 +80,7 @@
                 <Reference
                     Name = "netspell.spellchecker"
                     AssemblyName = "netspell.spellchecker"
-                    HintPath = "..\..\..\bin\netspell.spellchecker.dll"
+                    HintPath = "..\..\bin\netspell.spellchecker.dll"
                 />
             </References>
             <Imports>

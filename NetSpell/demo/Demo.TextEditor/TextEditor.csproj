@@ -92,7 +92,7 @@
                 <Reference
                     Name = "NetSpell.SpellChecker"
                     AssemblyName = "NetSpell.SpellChecker"
-                    HintPath = "..\..\..\bin\NetSpell.SpellChecker.dll"
+                    HintPath = "..\..\bin\NetSpell.SpellChecker.dll"
                 />
             </References>
         </Build>
@@ -136,10 +136,6 @@
                     RelPath = "MainForm.resx"
                     DependentUpon = "MainForm.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "nant.config"
-                    BuildAction = "None"
                 />
                 <File
                     RelPath = "NOTE03.ICO"

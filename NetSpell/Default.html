@@ -1,13 +1,178 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
 <html>
+
 <head>
-	<title>NetSpell Demo</title>
+<title>NetSpell Demo</title>
 </head>
 
-<body>
+<body style="font-family: Arial; font-size: 10pt">
 
-
+<h2><b>NetSpell - Spell Checker for .net </b></h2>
+<ol>
+	<li><a href="#About">About NetSpell</a></li>
+	<li><a href="#Dictionaries">Dictionaries</a></li>
+	<li><a href="#LatestVersion">Latest Version</a></li>
+	<li><a href="#Documentation">Documentation</a></li>
+	<li><a href="#Demo">Demo Applications</a></li>
+	<li><a href="#References">References and Credits</a></li>
+	<li><a href="#History">History</a></li>
+	<li><a href="#License">License</a></li>
+</ol>
+<p><b><a name="About">What is it?</a> </b></p>
+<p>The NetSpell project is a spell checking engine written entirely in managed C# 
+.net code. NetSpell's suggestions for a misspelled word are generated using phonetic 
+(sounds like) matching and ranked by a typographical score (looks like). NetSpell 
+supports multiple languages and the dictionaries are based on the OpenOffice Affix 
+compression format. The library can be used in Windows or Web Form projects. The 
+download includes an English dictionary with dictionaries for other languages available 
+for download on the project web site. NetSpell also supports user added words and 
+automatic creation of user dictionaries. The package includes a dictionary build 
+tool to build custom dictionaries. </p>
+<p><b><a name="Dictionaries">Dictionaries</a></b><br />
+<br />
+NetSpell dictionaries are based on the OpenOffice dictionary format. You can use 
+the Dictionary build tool to convert OpenOffice dictionaries to the NetSpell format. 
+OpenOffice dictionaries can be downloaded at
+<a href="http://lingucomponent.openoffice.org/dictionary.html">http://lingucomponent.openoffice.org/dictionary.html</a></p>
+<p><b><a name="LatestVersion">The Latest Version</a></b><br />
+<br />
+Details of the latest version can be found on the project web site.
+<a href="http://www.loresoft.com/netspell">http://www.loresoft.com/netspell </a>
+<br />
+The project web site also contains the dictionary build tool which can be used to 
+build custom dictionaries.<br />
+<br />
+<b><a name="Documentation">Documentation</a></b><br />
+<br />
+Documentation is available in HTML format, in the doc/ directory.<br />
+<br />
+<b><a name="Demo">Demo Applications</a></b></p>
+<blockquote>
+	<p><b>Text Editor Application (C#)</b></p>
+	<p>The Text Editor application is an example of using NetSpell in an actual 
+	application.&nbsp; This application shows how NetSpell supports multiple document 
+	types.&nbsp; The application is also an example of how to use NetSpell in a 
+	MDI application while share only one instance of the dictionary among all the 
+	documents.</p>
+	<ul>
+		<li><a href="demo/Demo.TextEditor/TextEditor.sln">demo\Demo.TextEditor\TextEditor.sln</a></li>
+	</ul>
+	<p><b>Windows Form Demo (C# and Visual Basic)</b></p>
+	<p>The Windows Form Demo is a simple example of how to use NetSpell in a windows 
+	form application.</p>
+	<ul>
+		<li><a href="demo/Demo.WinForm.CSharp/Demo.WinForm.Csharp.sln">demo\Demo.WinForm.CSharp\Demo.WinForm.Csharp.sln</a></li>
+		<li><a href="demo/Demo.WinForm.VB/Demo.WinForm.VB.sln">demo\Demo.WinForm.VB\Demo.WinForm.VB.sln</a></li>
+	</ul>
+	<p><b>Asp.Net PopUp Spell Checker (C# and Visual Basic)</b></p>
+	<p>The Asp.Net PopUp Spell Checker application is an example of using NetSpell 
+	in a web environment.&nbsp; The application can check all the Input and TextArea 
+	tags of a html document.&nbsp; The application can also check a html element 
+	by id.</p>
+	<ul>
+		<li><a href="demo/Demo.Web.CSharp/default.htm">demo\Demo.Web.CSharp\default.htm</a></li>
+		<li><a href="demo/Demo.Web.VB/default.htm">demo\Demo.Web.VB\default.htm</a></li>
+	</ul>
+	<p><b>FreeTextBox HTML Editor Intergration (C#)</b></p>
+</blockquote>
+<p>&nbsp;</p>
+<p><b><a name="References">References and Credits</a></b><br />
+<br />
+OpenOffice Lingucomponent
+<a href="http://lingucomponent.openoffice.org/dictionary.html">http://lingucomponent.openoffice.org/dictionary.html</a><br />
+Dictionary Wordlists <a href="http://wordlist.sourceforge.net/">http://wordlist.sourceforge.net/</a><br />
+Metaphone Algorithm <a href="http://aspell.net/metaphone/">http://aspell.net/metaphone/</a></p>
+<p><b><a name="History">History</a></b></p>
+NetSpell 2.1<br />
+<ul>
+	<li>Implemented spell checking for a range of words</li>
+	<li>Added events for ReplacedWord, IgnoredWord, and DeletedWord</li>
+	<li>IgnoreList and ReplaceList no longer reset when the Text property is set</li>
+	<li>Spelling.Dictionary now lazy loads to make sharing the dictionary more efficient</li>
+	<li>WordDictionary is now a component to better support design time and dictionary 
+	sharing</li>
+	<li>Tracing as been added</li>
+	<li>Improved HTML, XML and RTF support</li>
+	<li>Added several new demos</li>
+</ul>
+NetSpell 2.0.3<br />
+<ul>
+	<li>Major bug fix in WordDictionary.Contains method</li>
+	<li>update ignore html routine</li>
+	<li>replace all bug fix</li>
+	<li>minor web demo bug fixes</li>
+</ul>
+NetSpell 2.0.2<br />
+<ul>
+	<li>web demo bug fixes</li>
+	<li>changes to user dictionary</li>
+</ul>
+NetSpell 2.0.1<br />
+<ul>
+	<li>Complete change to the dictionary</li>
+	<li>Added international support</li>
+	<li>Added Affix compression support</li>
+	<li>Dictionary now based on OpenOffice dictionary format</li>
+	<li>Improved web demo</li>
+	<li>web demo now supports Ignore All, Replace All and Add Word</li>
+	<li>Windows demo changed to a MDI text editor</li>
+</ul>
+NetSpell 1.1 <br />
+<ul>
+	<li>Added Html Ignore support</li>
+	<li>Changed license to BSD for more flexibility</li>
+</ul>
+NetSpell 1.0 Stable Release <br />
+<ul>
+	<li>More improvements to Visual Studio designer</li>
+	<li>Replace word bug fix</li>
+	<li>Improved suggestions by using Ispell's near miss strategy</li>
+	<li>Misc bug fixes</li>
+</ul>
+NetSpell beta 0.9 <br />
+<ul>
+	<li>Added MainDictionary property to spelling object</li>
+	<li>Added UserDictionary property to spelling object to make it easier to identify 
+	when there was a user dictionary</li>
+	<li>Changed constructor Spelling(string dictionaryFile, string text) to Spelling(string 
+	mainDictionaryFile, string userDictionaryFile)</li>
+	<li>Added SpellingForm property to expose the internal suggestion form</li>
+	<li>Added &quot;Add&quot; button to internal suggestion form</li>
+	<li>Improved Visual Studio designer support</li>
+	<li>Added Web Demo project to demonstrate using NetSpell in an Asp.Net project</li>
+	<li>Misc bug fixes</li>
+</ul>
+NetSpell beta 0.8 <br />
+<ul>
+	<li>First beta build</li>
+</ul>
+<p><b><a name="License">License</a></b><br />
+<br />
+Copyright (c) 2003, Paul Welter<br />
+All rights reserved.<br />
+<br />
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:<br />
+<br />
+1) Redistributions of source code must retain the above copyright notice, this list 
+of conditions and the following disclaimer. <br />
+2) Redistributions in binary form must reproduce the above copyright notice, this 
+list of conditions and the following disclaimer in the documentation and/or other 
+materials provided with the distribution. <br />
+3) Neither the name of the ORGANIZATION nor the names of its contributors may be 
+used to endorse or promote products derived from this software without specific 
+prior written permission. <br />
+<br />
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND 
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT 
+SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 
 </body>
+
 </html>
