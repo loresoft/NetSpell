@@ -4,8 +4,8 @@
 <%@ import Namespace="NetSpell.SpellChecker.Dictionary" %>
 <script runat="server">
 
-    Protected WithEvents SpellChecker As NetSpell.SpellChecker.Spelling
-    Protected WithEvents WordDictionary As NetSpell.SpellChecker.Dictionary.WordDictionary
+    Private SpellChecker As NetSpell.SpellChecker.Spelling
+    Private WordDictionary As NetSpell.SpellChecker.Dictionary.WordDictionary
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
          ' if modal frame, quit
@@ -14,8 +14,8 @@
          End If
 
          ' add client side events
-         Me.Suggestions.Attributes.Add("onChange", "")
-         Me.SpellingBody.Attributes.Add("onLoad", "")
+         Me.Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);")
+         Me.SpellingBody.Attributes.Add("onLoad", "javascript: initialize();")
 
          ' load spell checker settings
          Me.LoadValues()
@@ -65,9 +65,13 @@
          Me.SpellChecker.ShowDialog = False
          Me.SpellChecker.Dictionary = Me.WordDictionary
 
+        'adding events
+        AddHandler SpellChecker.MisspelledWord, AddressOf SpellChecker_MisspelledWord
+        AddHandler SpellChecker.DoubledWord, AddressOf SpellChecker_DoubledWord
+        AddHandler SpellChecker.EndOfText, AddressOf SpellChecker_EndOfText
     End Sub
 
-    Private Sub SpellChecker_DoubledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs) Handles SpellChecker.DoubledWord
+    Private Sub SpellChecker_DoubledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)
          Me.SaveValues()
          Me.CurrentWord.Text = Me.SpellChecker.CurrentWord
          Me.Suggestions.Items.Clear()
@@ -76,14 +80,14 @@
          Me.StatusText.Text = String.Format("Word: {0} of {1}", Me.SpellChecker.WordIndex + 1, Me.SpellChecker.WordCount)
     End Sub
 
-    Private Sub SpellChecker_EndOfText(ByVal sender As Object, ByVal e As System.EventArgs) Handles SpellChecker.EndOfText
+    Private Sub SpellChecker_EndOfText(ByVal sender As Object, ByVal e As System.EventArgs)
          Me.SaveValues()
          Me.SpellMode.Value = "end"
          Me.DisableButtons()
          Me.StatusText.Text = String.Format("Word: {0} of {1}", Me.SpellChecker.WordIndex + 1, Me.SpellChecker.WordCount)
     End Sub
 
-    Private Sub SpellChecker_MisspelledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)  Handles SpellChecker.MisspelledWord
+    Private Sub SpellChecker_MisspelledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)
          Me.SaveValues()
          Me.CurrentWord.Text = Me.SpellChecker.CurrentWord
          Me.SpellChecker.Suggest()
@@ -119,25 +123,25 @@
          Me.WordIndex.Value = Me.SpellChecker.WordIndex.ToString()
 
          ' save ignore words
-         Dim ignore() As String = CType(Me.SpellChecker.IgnoreList.ToArray(Type.GetType(String)), String())
+         Dim ignore() As String = CType(Me.SpellChecker.IgnoreList.ToArray(GetType(String)), String())
 
          Me.IgnoreList.Value = String.Join("|", ignore)
 
          ' save replace words
          Dim tempArray As ArrayList =  New ArrayList(Me.SpellChecker.ReplaceList.Keys)
-         Dim replaceKey() As String = CType(tempArray.ToArray(Type.GetType(String)), String())
+         Dim replaceKey() As String = CType(tempArray.ToArray(GetType(String)), String())
 
          Me.ReplaceKeyList.Value = String.Join("|", replaceKey)
          tempArray = New ArrayList(Me.SpellChecker.ReplaceList.Values)
 
-         Dim replaceValue() As String = CType(tempArray.ToArray(Type.GetType(String)), String())
+         Dim replaceValue() As String = CType(tempArray.ToArray(GetType(String)), String())
 
          Me.ReplaceValueList.Value = String.Join("|", replaceValue)
 
          ' saving user words
          tempArray = New ArrayList(Me.SpellChecker.Dictionary.UserWords.Keys)
 
-         Dim userWords() As String = CType(tempArray.ToArray(Type.GetType(String)), String())
+         Dim userWords() As String = CType(tempArray.ToArray(GetType(String)), String())
 
          Response.Cookies("UserWords").Value = String.Join("|", userWords)
          Response.Cookies("UserWords").Path = "/"
@@ -234,7 +238,7 @@
         <input id="ElementIndex" type="hidden" value="-1" name="ElementIndex" runat="server" />
         <input id="SpellMode" type="hidden" value="load" name="SpellMode" runat="server" />
         <asp:panel id="ModalFrame" runat="server" enableviewstate="False" visible="False">
-            <iframe id="SpellCheckFrame" hidefocus="hidefocus" name="SpellCheckFrame" src="SpellCheck.aspx" frameborder="0" width="100%" scrolling="yes" height="100%" runat="server"></iframe>
+            <iframe id="SpellCheckFrame" hidefocus="hidefocus" name="SpellCheckFrame" src="SpellCheck.aspx" frameborder="0" width="100%" scrolling="no" height="100%" runat="server"></iframe>
         </asp:panel>
         <asp:panel id="SuggestionForm" runat="server" enableviewstate="False" visible="true">
             <table cellspacing="0" cellpadding="5" width="100%">
@@ -263,7 +267,7 @@
                                             <em>Change To:</em>
                                         </td>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -279,7 +283,7 @@
                                             <em>Suggestions:</em>
                                         </td>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -297,12 +301,12 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>

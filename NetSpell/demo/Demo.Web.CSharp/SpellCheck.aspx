@@ -288,7 +288,7 @@
                                             <em>Change To:</em> 
                                         </td>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -304,7 +304,7 @@
                                             <em>Suggestions:</em> 
                                         </td>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -322,12 +322,12 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
