@@ -13,8 +13,8 @@
     <target name="build" depends="test" description="Builds NetSpell">
         <copy todir="${build.dir}" flatten="true">
             <fileset>
-                <includes name="NetSpell.SpellChecker\bin\${project.config}\NetSpell.SpellChecker.*" />
-                <includes name="NetSpell.DictionaryBuild\bin\${project.config}\NetSpell.DictionaryBuild.*" />
+                <include  name="NetSpell.SpellChecker\bin\${project.config}\NetSpell.SpellChecker.*" />
+                <include  name="NetSpell.DictionaryBuild\bin\${project.config}\NetSpell.DictionaryBuild.*" />
             </fileset>
         </copy>
         <copy file="${build.dir}\NetSpell.SpellChecker.dll" todir="${demo.dir}\Demo.Web.FreeTextBox\bin" />
@@ -29,10 +29,10 @@
     <target name="clean" description="Cleans the build folder">
         <delete failonerror="false">
             <fileset>
-                <includes name="${build.dir}\*.*" />
-                <includes name="NetSpell.SpellChecker\bin\${project.config}" />
-                <includes name="NetSpell.Tests\bin\${project.config}" />
-                <includes name="NetSpell.DictionaryBuild\bin\${project.config}" />
+                <include  name="${build.dir}\*.*" />
+                <include  name="NetSpell.SpellChecker\bin\${project.config}" />
+                <include  name="NetSpell.Tests\bin\${project.config}" />
+                <include  name="NetSpell.DictionaryBuild\bin\${project.config}" />
             </fileset>
         </delete>
         <mkdir dir="${build.dir}" />
@@ -41,7 +41,7 @@
     <target name="test" depends="compile" description="Runs NUnit Tests">
         <nunit2>
             <formatter type="Plain" />
-            <test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
+            <test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" />
         </nunit2>
     </target>
     
@@ -49,21 +49,21 @@
         <mkdir dir="..\package" />
         <zip zipfile="..\package\${project.name}.${project.version}.zip">
             <fileset basedir="..\">
-                <includes name="*" />
-                <includes name="bin\*.*" />
-                <includes name="dic\*.*" />
-                <includes name="demo\**" />
-                <includes name="doc\*.*" />
-                <includes name="lib\*.*" />
-                <includes name="src\**" />
+                <include  name="*" />
+                <include  name="bin\*.*" />
+                <include  name="dic\*.*" />
+                <include  name="demo\**" />
+                <include  name="doc\*.*" />
+                <include  name="lib\*.*" />
+                <include  name="src\**" />
         		<!--exclude VS.Net stuff -->
-                <excludes name="src\NetSpell.Setup\**" />
-                <excludes name="**\*.suo" />
-                <excludes name="**\*j.user" />
-                <excludes name="src\**\bin\**" />
-                <excludes name="demo\*WinForm*\bin\**" />
-                <excludes name="demo\*TextEditor*\bin\**" />
-                <excludes name="**\obj\**" />
+                <exclude  name="src\NetSpell.Setup\**" />
+                <exclude  name="**\*.suo" />
+                <exclude  name="**\*j.user" />
+                <exclude  name="src\**\bin\**" />
+                <exclude  name="demo\*WinForm*\bin\**" />
+                <exclude  name="demo\*TextEditor*\bin\**" />
+                <exclude  name="**\obj\**" />
             </fileset>
         </zip>
     </target>
@@ -81,7 +81,7 @@
     <target name="doc" depends="build" description="Creates HTML Help file">
         <ndoc failonerror="false">
             <assemblies basedir="${build.dir}">
-                <includes name="NetSpell.SpellChecker.dll" />
+                <include  name="NetSpell.SpellChecker.dll" />
             </assemblies>
             <documenters>
                 <documenter name="MSDN">
