@@ -20,7 +20,8 @@ internal sealed class TraceWriter
 	public static void TraceError(string value)
 	{
 		if (Switch.TraceError)
-			Trace.WriteLine(value, GetCallingMethod(new StackTrace(1)));		}
+			Trace.WriteLine(value, GetCallingMethod(new StackTrace(1)));		
+	}
 
 	public static void TraceInfo(string format, params object[] args)
 	{
@@ -31,7 +32,8 @@ internal sealed class TraceWriter
 	public static void TraceInfo(string value)
 	{
 		if (Switch.TraceInfo)
-			Trace.WriteLine(value, GetCallingMethod(new StackTrace(1)));		}
+			Trace.WriteLine(value, GetCallingMethod(new StackTrace(1)));		
+	}
 
 	public static void TraceWarning(string format, params object[] args)
 	{

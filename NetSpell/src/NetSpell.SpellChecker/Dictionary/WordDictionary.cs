@@ -799,7 +799,7 @@ namespace NetSpell.SpellChecker.Dictionary
 			components = new System.ComponentModel.Container();
 		}
 		#endregion
-	
+		
 	}
 
 }

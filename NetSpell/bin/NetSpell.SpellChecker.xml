@@ -341,6 +341,11 @@
                 Required for Windows.Forms Class Composition Designer support
             </summary>
         </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.CalculateWords">
             <summary>
                 Calculates the words from the Text property

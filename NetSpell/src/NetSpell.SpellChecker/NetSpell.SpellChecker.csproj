@@ -152,6 +152,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Dictionary\WordDictionary.resx"
+                    DependentUpon = "WordDictionary.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Dictionary\Affix\AffixEntry.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

@@ -19,35 +19,24 @@ namespace NetSpell.Tests
 	[TestFixture]
 	public class SpellTest
 	{
-		Spelling _SpellChecker = new Spelling();
-		PerformanceTimer _timer = new PerformanceTimer();
-		SpellingEventArgs _SpellingEventArgs;
 		
-		private void DoubleWord(object sender, SpellingEventArgs args)
-		{
-			_SpellingEventArgs = args;
-		}
-
-		private void EndOfText(object sender, EventArgs args)
-		{
-			
-		}
-
-		private void MisspelledWord(object sender, SpellingEventArgs args)
-		{
-			_SpellingEventArgs = args;
-		}
+		PerformanceTimer _timer = new PerformanceTimer();
+		WordDictionary _dictionary = new WordDictionary();
 
 		[SetUp]
-		public void SetUp()
+		public void Setup()
 		{
-			_SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\..\dic";
-			_SpellChecker.Dictionary.Initialize();
+			_dictionary.DictionaryFolder = @"..\..\..\..\dic";
+			_dictionary.Initialize();
+		}
+
+		private Spelling NewSpellChecker()
+		{
+			Spelling _SpellChecker = new Spelling();
+			_SpellChecker.Dictionary = _dictionary;
 			
 			_SpellChecker.ShowDialog = false;
-			_SpellChecker.MisspelledWord += new Spelling.MisspelledWordEventHandler(MisspelledWord);
-			_SpellChecker.DoubledWord += new Spelling.DoubledWordEventHandler(DoubleWord);
-			_SpellChecker.EndOfText += new Spelling.EndOfTextEventHandler(EndOfText);
+			return _SpellChecker;
 		}
 
 		/// <summary>
@@ -56,13 +45,48 @@ namespace NetSpell.Tests
 		[Test]
 		public void DeleteWord()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is is a test";
 			_SpellChecker.SpellCheck();
-			Assertion.AssertEquals("Incorrect WordOffset", 2, _SpellChecker.WordIndex);
-			Assertion.AssertEquals("Incorrect CurrentWord", "is", _SpellChecker.CurrentWord);
+			Assert.AreEqual(2, _SpellChecker.WordIndex, "Incorrect WordOffset");
+			Assert.AreEqual("is", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
 
 			_SpellChecker.DeleteWord();
-			Assertion.AssertEquals("Incorrect Text", "this is a test", _SpellChecker.Text);
+			Assert.AreEqual("this is a test", _SpellChecker.Text, "Incorrect Text");
+			
+		}
+
+		/// <summary>
+		///		NUnit Test Function for DeleteWord
+		/// </summary>
+		[Test]
+		public void NoText()
+		{
+			Spelling _SpellChecker = NewSpellChecker();
+			
+			Assert.AreEqual(string.Empty, _SpellChecker.CurrentWord, "Incorrect Current Word");
+			
+			_SpellChecker.WordIndex = 1;
+			Assert.AreEqual(0, _SpellChecker.WordIndex, "Incorrect Word Index");
+
+			Assert.AreEqual(0, _SpellChecker.WordCount, "Incorrect Word Count");
+
+			Assert.AreEqual(0, _SpellChecker.TextIndex, "Incorrect Text Index");
+
+			_SpellChecker.DeleteWord();
+			Assert.AreEqual(string.Empty, _SpellChecker.Text, "Incorrect Text");
+			
+			_SpellChecker.IgnoreWord();
+			Assert.AreEqual(string.Empty, _SpellChecker.Text, "Incorrect Text");
+
+			_SpellChecker.ReplaceWord("Test");
+			Assert.AreEqual(string.Empty, _SpellChecker.Text, "Incorrect Text");
+
+			Assert.IsFalse(_SpellChecker.SpellCheck(), "Spell Check not false");
+
+			_SpellChecker.Suggest();
+			Assert.AreEqual(0, _SpellChecker.Suggestions.Count, "Generated Suggestions with no text");
 			
 		}
 
@@ -72,6 +96,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void IgnoreWord()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is an errr tst";
 
 			_SpellChecker.SpellCheck();
@@ -91,6 +117,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void IgnoreAllWord()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is a tst of a tst errr";
 
 			_SpellChecker.SpellCheck();
@@ -110,6 +138,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void ReplaceWord()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "ths is an errr tst";
 			_SpellChecker.SpellCheck();
 			
@@ -128,6 +158,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void ReplaceAllWord()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is a tst of a tst errr";
 			_SpellChecker.IgnoreList.Clear();
 			_SpellChecker.ReplaceList.Clear();
@@ -152,6 +184,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void SpellCheck()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is an errr tst";
 
 			_SpellChecker.SpellCheck();
@@ -166,6 +200,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void HtmlSpellCheck()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.IgnoreHtml = true;
 			_SpellChecker.Text = "<a href=\"#\">this <span id=\"txt\">is</span> an errr tst</a>";
 
@@ -182,6 +218,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void Suggest()
 		{
+			Spelling _SpellChecker = NewSpellChecker();
+
 			_SpellChecker.Text = "this is tst";
 			_SpellChecker.SpellCheck();
 			Assertion.AssertEquals("Incorrect WordOffset", 2, _SpellChecker.WordIndex);
@@ -199,15 +237,11 @@ namespace NetSpell.Tests
 		[Test]
 		public void TestWord() 
 		{
-			if (!_SpellChecker.TestWord("test")) 
-			{
-				Assertion.Fail("Did not find test word");
-			}
-			
-			if (_SpellChecker.TestWord("tst"))
-			{
-				Assertion.Fail("Found tst word and shouldn't have");
-			}
+			Spelling _SpellChecker = NewSpellChecker();
+
+			Assert.IsTrue(_SpellChecker.TestWord("test"), "Did not find test word");
+			Assert.IsFalse(_SpellChecker.TestWord("tst"), "Found tst word and shouldn't have");
+
 		}
 
 		/// <summary>
@@ -216,7 +250,8 @@ namespace NetSpell.Tests
 		[Test]
 		public void EditDistance()
 		{
-			
+			Spelling _SpellChecker = NewSpellChecker();
+
 			Assertion.AssertEquals("Incorrect EditDistance", 1, _SpellChecker.EditDistance("test", "tst"));
 			Assertion.AssertEquals("Incorrect EditDistance", 2, _SpellChecker.EditDistance("test", "tes"));
 			Assertion.AssertEquals("Incorrect EditDistance", 0, _SpellChecker.EditDistance("test", "test"));
