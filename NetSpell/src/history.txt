@@ -1,3 +1,7 @@
+NetSpell 1.1
+* Added Html Ignore support
+* Changed license to BSD for more flexibility
+
 NetSpell 1.0 Stable Release 
 * More improvements to Visual Studio designer
 * Replace word bug fix
