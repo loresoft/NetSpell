@@ -4,6 +4,37 @@
         <name>NetSpell.SpellChecker</name>
     </assembly>
     <members>
+        <member name="T:NetSpell.SpellChecker.Controls.CheckAsYouType">
+            <summary>
+            Summary description for CheckAsYouType.
+            </summary>
+        </member>
+        <member name="F:NetSpell.SpellChecker.Controls.CheckAsYouType.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Controls.CheckAsYouType.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Controls.CheckAsYouType.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.CheckAsYouTypeState">
+            <summary>
+            Summary description for CheckAsYouTypeState.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
+            <summary>
+            Summary description for NativeMethods.
+            </summary>
+        </member>
         <member name="T:NetSpell.SpellChecker.Dictionary.Affix.AffixEntry">
             <summary>
             	Rule Entry for expanding base words
@@ -1975,35 +2006,9 @@
             Summary description for TraceWriter.
             </summary>
         </member>
-        <member name="T:NetSpell.SpellChecker.Controls.NativeMethods">
+        <member name="T:NetSpell.SpellChecker.Controls.SpellRichTextBox">
             <summary>
-            Summary description for NativeMethods.
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.CheckAsYouType">
-            <summary>
-            Summary description for CheckAsYouType.
-            </summary>
-        </member>
-        <member name="F:NetSpell.SpellChecker.Controls.CheckAsYouType.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Controls.CheckAsYouType.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Controls.CheckAsYouType.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.Controls.CheckAsYouTypeState">
-            <summary>
-            Summary description for CheckAsYouTypeState.
+            Summary description for SpellRichTextBox.
             </summary>
         </member>
     </members>

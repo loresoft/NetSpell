@@ -32,6 +32,7 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
 		NetSpell.build = NetSpell.build
+		..\doc\NetSpell.vsd = ..\doc\NetSpell.vsd
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
