@@ -27,7 +27,7 @@ namespace NetSpell.SpellChecker
 	public class Spelling : System.ComponentModel.Component
 	{
 
-#region Global Regex
+		#region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex(@"^\d", RegexOptions.Compiled);
 		private Regex _htmlRegex = new Regex(@"</[c-g\d]+>|</[i-o\d]+>|</[a\d]+>|</[q-z\d]+>|<[cg]+[^>]*>|<[i-o]+[^>]*>|<[q-z]+[^>]*>|<[a]+[^>]*>|<(\[^\]*\|'[^']*'|[^'\>])*>", RegexOptions.IgnoreCase & RegexOptions.Compiled);
@@ -36,13 +36,13 @@ namespace NetSpell.SpellChecker
 		private Regex _upperRegex = new Regex(@"[^A-Z]", RegexOptions.Compiled);
 		private Regex _wordEx = new Regex(@"\b[A-Za-z0-9_'À-ÿ]+\b", RegexOptions.Compiled);
 		private MatchCollection _words;
-#endregion
+		#endregion
 
-#region private variables
+		#region private variables
 		private System.ComponentModel.Container components = null;
-#endregion
+		#endregion
 
-#region Events
+		#region Events
 
 		/// <summary>
 		///     This event is fired when a word is deleted
@@ -64,6 +64,11 @@ namespace NetSpell.SpellChecker
 		public event EndOfTextEventHandler EndOfText;
 
 		/// <summary>
+		///     This event is fired when a word is skipped
+		/// </summary>
+		public event IgnoredWordEventHandler IgnoredWord;
+
+		/// <summary>
 		///     This event is fired when the spell checker finds a word that 
 		///     is not in the dictionaries
 		/// </summary>
@@ -76,11 +81,6 @@ namespace NetSpell.SpellChecker
 		///		Use this event to update the parent text
 		/// </remarks>
 		public event ReplacedWordEventHandler ReplacedWord;
-
-		/// <summary>
-		///     This event is fired when a word is skipped
-		/// </summary>
-		public event IgnoredWordEventHandler IgnoredWord;
 
 
 		/// <summary>
@@ -105,6 +105,12 @@ namespace NetSpell.SpellChecker
 		///     This represents the delegate method prototype that
 		///     event receivers must implement
 		/// </summary>
+		public delegate void IgnoredWordEventHandler(object sender, SpellingEventArgs e);
+
+		/// <summary>
+		///     This represents the delegate method prototype that
+		///     event receivers must implement
+		/// </summary>
 		public delegate void MisspelledWordEventHandler(object sender, SpellingEventArgs e);
 
 		/// <summary>
@@ -112,12 +118,6 @@ namespace NetSpell.SpellChecker
 		///     event receivers must implement
 		/// </summary>
 		public delegate void ReplacedWordEventHandler(object sender, ReplaceWordEventArgs e);
-
-		/// <summary>
-		///     This represents the delegate method prototype that
-		///     event receivers must implement
-		/// </summary>
-		public delegate void IgnoredWordEventHandler(object sender, SpellingEventArgs e);
 
 		/// <summary>
 		///     This is the method that is responsible for notifying
@@ -159,6 +159,18 @@ namespace NetSpell.SpellChecker
 		///     This is the method that is responsible for notifying
 		///     receivers that the event occurred
 		/// </summary>
+		protected virtual void OnIgnoredWord(SpellingEventArgs e)
+		{
+			if (IgnoredWord != null)
+			{
+				IgnoredWord(this, e);
+			}
+		}
+
+		/// <summary>
+		///     This is the method that is responsible for notifying
+		///     receivers that the event occurred
+		/// </summary>
 		protected virtual void OnMisspelledWord(SpellingEventArgs e)
 		{
 			if (MisspelledWord != null)
@@ -179,27 +191,16 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-		/// <summary>
-		///     This is the method that is responsible for notifying
-		///     receivers that the event occurred
-		/// </summary>
-		protected virtual void OnIgnoredWord(SpellingEventArgs e)
-		{
-			if (IgnoredWord != null)
-			{
-				IgnoredWord(this, e);
-			}
-		}
+		#endregion
 
-#endregion
-
-#region Constructors
+		#region Constructors
 		/// <summary>
 		///     Initializes a new instance of the SpellCheck class
 		/// </summary>
 		public Spelling()
 		{
 			_spellingForm = new SpellingForm(this);
+			
 			InitializeComponent();
 		}
 
@@ -214,9 +215,9 @@ namespace NetSpell.SpellChecker
 			InitializeComponent();
 		}
 
-#endregion
+		#endregion
 
-#region private methods
+		#region private methods
 
 		/// <summary>
 		///     Calculates the words from the Text property
@@ -267,6 +268,15 @@ namespace NetSpell.SpellChecker
 			}
 			return true;
 		}
+
+		private void Initialize()
+		{
+			if(_Dictionary == null)
+				_Dictionary = new WordDictionary();
+
+			if(!_Dictionary.Initialized)
+				_Dictionary.Initialize();
+		}
 		/// <summary>
 		///     Calculates the position of html tags in the Text property
 		/// </summary>
@@ -287,9 +297,9 @@ namespace NetSpell.SpellChecker
 			_Suggestions.Clear();
 		}
 
-#endregion
+		#endregion
 
-#region ISpell Near Miss Suggetion methods
+		#region ISpell Near Miss Suggetion methods
 
 		/// <summary>
 		///		swap out each char one by one and try all the tryme
@@ -449,9 +459,9 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-#endregion
+		#endregion
 
-#region public methods
+		#region public methods
 
 		/// <summary>
 		///     Deletes the CurrentWord from the Text Property
@@ -782,10 +792,7 @@ namespace NetSpell.SpellChecker
 				return false;
 			}
 
-			if (!this.Dictionary.Initialized)
-			{
-				this.Dictionary.Initialize();
-			}
+			this.Initialize();
 
 			string currentWord = "";
 			bool misspelledWord = false;
@@ -897,10 +904,7 @@ namespace NetSpell.SpellChecker
 		/// <seealso cref="TestWord"/>
 		public void Suggest()
 		{
-			if (!_Dictionary.Initialized)
-			{
-				_Dictionary.Initialize();
-			}
+			this.Initialize();
 
 			ArrayList tempSuggestion = new ArrayList();
 
@@ -1002,10 +1006,8 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		public bool TestWord(string word)
 		{
-			if (!this.Dictionary.Initialized)
-			{
-				this.Dictionary.Initialize();
-			}
+			this.Initialize();
+
 			TraceWriter.TraceVerbose("Testing Word: {0}" , word);
 
 			if (this.Dictionary.Contains(word))
@@ -1019,12 +1021,12 @@ namespace NetSpell.SpellChecker
 			return false;
 		}
 
-#endregion
+		#endregion
 
-#region public properties
+		#region public properties
 
 		private string _CurrentWord = "";
-		private WordDictionary _Dictionary = new WordDictionary();
+		private WordDictionary _Dictionary;
 		private bool _IgnoreAllCapsWords = true;
 		private bool _IgnoreHtml = true;
 		private ArrayList _IgnoreList = new ArrayList();
@@ -1084,10 +1086,15 @@ namespace NetSpell.SpellChecker
 		[Browsable(true)]
 		[CategoryAttribute("Dictionary")]
 		[Description("The WordDictionary object to use when spell checking")]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
 		public WordDictionary Dictionary
 		{
-			get {return _Dictionary;}
+			get 
+			{
+				if(!base.DesignMode && _Dictionary == null)
+					_Dictionary = new WordDictionary();
+
+				return _Dictionary;
+			}
 			set 
 			{
 				if (value != null)
@@ -1309,9 +1316,9 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-#endregion
+		#endregion
 
-#region Component Designer generated code
+		#region Component Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -1320,8 +1327,8 @@ namespace NetSpell.SpellChecker
 		{
 			components = new System.ComponentModel.Container();
 		}
-#endregion
 
+		#endregion
 
 
 	} 

@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace NetSpell.Demo.Windows
+namespace TextEditor
 {
 	/// <summary>
 	/// Summary description for AboutForm.

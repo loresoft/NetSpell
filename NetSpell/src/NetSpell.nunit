@@ -1,4 +1,4 @@
-<NUnitProject>
+﻿<NUnitProject>
   <Settings activeconfig="Debug" />
   <Config name="Debug" binpathtype="Auto">
     <assembly path="NetSpell.Tests\bin\Debug\NetSpell.Tests.dll" />

@@ -10,17 +10,26 @@ using System.Data;
 using System.IO;
 using NetSpell.SpellChecker;
 
-namespace NetSpell.Demo.Windows
+namespace TextEditor
 {
 	/// <summary>
 	/// Summary description for Form1.
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form
 	{
+
 		private System.ComponentModel.IContainer components;
+
+		private string DemoHtmlFile = System.Configuration.ConfigurationSettings.AppSettings["DemoHtmlFile"];
+		private string DemoRtfFile = System.Configuration.ConfigurationSettings.AppSettings["DemoRtfFile"];
+		private string DemoTxtFile = System.Configuration.ConfigurationSettings.AppSettings["DemoTxtFile"];
+		private string DemoXmlFile = System.Configuration.ConfigurationSettings.AppSettings["DemoXmlFile"];
 		private System.Windows.Forms.MainMenu mainMenu;
 		private System.Windows.Forms.MenuItem menuFile;
-		private System.Windows.Forms.MenuItem menuFileDemo;
+		private System.Windows.Forms.MenuItem menuFileDemoHtml;
+		private System.Windows.Forms.MenuItem menuFileDemoRtf;
+		private System.Windows.Forms.MenuItem menuFileDemoText;
+		private System.Windows.Forms.MenuItem menuFileDemoXml;
 		private System.Windows.Forms.MenuItem menuFileExit;
 		private System.Windows.Forms.MenuItem menuFileNew;
 		private System.Windows.Forms.MenuItem menuFileOpen;
@@ -42,7 +51,6 @@ namespace NetSpell.Demo.Windows
 		internal System.Windows.Forms.ToolBar editToolBar;
 		internal System.Windows.Forms.ToolBarButton fontBarButton;
 		internal System.Windows.Forms.ToolBarButton fontColorBarButton;
-		internal System.Windows.Forms.ToolBarButton highlightBarButton;
 		internal System.Windows.Forms.ToolBarButton italicBarButton;
 		internal System.Windows.Forms.ToolBarButton leftBarButton;
 		internal System.Windows.Forms.ToolBarButton newBarButton;
@@ -54,7 +62,6 @@ namespace NetSpell.Demo.Windows
 		internal System.Windows.Forms.ToolBarButton rightBarButton;
 		internal System.Windows.Forms.ToolBarButton saveBarButton;
 		internal System.Windows.Forms.ToolBarButton spellBarButton;
-		internal NetSpell.SpellChecker.Spelling SpellChecker;
 		internal System.Windows.Forms.ToolBarButton toolBarButton1;
 		internal System.Windows.Forms.ToolBarButton toolBarButton11;
 		internal System.Windows.Forms.ToolBarButton toolBarButton12;
@@ -66,6 +73,7 @@ namespace NetSpell.Demo.Windows
 		internal System.Windows.Forms.ToolBarButton toolBarButton8;
 		internal System.Windows.Forms.ToolBarButton underlineBarButton;
 		internal System.Windows.Forms.ToolBarButton undoBarButton;
+		internal NetSpell.SpellChecker.Dictionary.WordDictionary WordDictionary;
 		
 		public MainForm()
 		{
@@ -215,21 +223,6 @@ namespace NetSpell.Demo.Windows
 		private void MainForm_Load(object sender, System.EventArgs e)
 		{
 			this.DisableEditButtons();
-
-			// set dictionary paths
-			System.Configuration.AppSettingsReader configurationAppSettings = new System.Configuration.AppSettingsReader();
-
-			string folder = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.DictionaryFolder", typeof(string))));
-			string dicFile = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.DictionaryFile", typeof(string))));
-			string userFile = ((string)(configurationAppSettings.GetValue("SpellChecker.Dictionary.UserFile", typeof(string))));
-
-			if (folder.Length > 0) this.SpellChecker.Dictionary.DictionaryFolder = folder;
-			if (dicFile.Length > 0) this.SpellChecker.Dictionary.DictionaryFile = dicFile;
-			if (userFile.Length > 0) this.SpellChecker.Dictionary.UserFile = userFile;
-			
-			// making the MainForm owner of the spell checker
-			this.SpellChecker.SpellingForm.Owner = this;
-
 		}
 
 		private void menuFileDemo_Click(object sender, System.EventArgs e)
@@ -238,6 +231,46 @@ namespace NetSpell.Demo.Windows
 			newForm.MdiParent = this;
 			newForm.Show();
 			newForm.Document.Text = "Becuase people are realy bad spelers, ths produc was desinged to prevent speling erors in a text area like ths.";
+			this.EnableEditButtons();
+		}
+
+		private void menuFileDemoHtml_Click(object sender, System.EventArgs e)
+		{
+			DocumentForm newForm = new DocumentForm();
+			if(File.Exists(this.DemoHtmlFile))
+				newForm.Document.LoadFile(this.DemoHtmlFile, RichTextBoxStreamType.PlainText);
+			newForm.MdiParent = this;
+			newForm.Show();
+			this.EnableEditButtons();
+		}
+
+		private void menuFileDemoRtf_Click(object sender, System.EventArgs e)
+		{
+			DocumentForm newForm = new DocumentForm();
+			if(File.Exists(this.DemoRtfFile))
+				newForm.Document.LoadFile(this.DemoRtfFile, RichTextBoxStreamType.RichText);
+			newForm.MdiParent = this;
+			newForm.Show();
+			this.EnableEditButtons();
+		}
+
+		private void menuFileDemoText_Click(object sender, System.EventArgs e)
+		{
+			DocumentForm newForm = new DocumentForm();
+			if(File.Exists(this.DemoTxtFile))
+				newForm.Document.LoadFile(this.DemoTxtFile, RichTextBoxStreamType.PlainText);
+			newForm.MdiParent = this;
+			newForm.Show();
+			this.EnableEditButtons();
+		}
+
+		private void menuFileDemoXml_Click(object sender, System.EventArgs e)
+		{
+			DocumentForm newForm = new DocumentForm();
+			if(File.Exists(this.DemoXmlFile))
+				newForm.Document.LoadFile(this.DemoXmlFile, RichTextBoxStreamType.PlainText);
+			newForm.MdiParent = this;
+			newForm.Show();
 			this.EnableEditButtons();
 		}
 
@@ -332,7 +365,6 @@ namespace NetSpell.Demo.Windows
 			this.rightBarButton.Enabled = false;
 			this.bulletsBarButton.Enabled = false;
 			this.fontColorBarButton.Enabled = false;
-			this.highlightBarButton.Enabled = false;
 
 		}
 		
@@ -357,7 +389,6 @@ namespace NetSpell.Demo.Windows
 			this.rightBarButton.Enabled = true;
 			this.bulletsBarButton.Enabled = true;
 			this.fontColorBarButton.Enabled = true;
-			this.highlightBarButton.Enabled = true;
 		}
 
 		internal void SaveAll()
@@ -407,7 +438,8 @@ namespace NetSpell.Demo.Windows
 			}
 		}
 
-#region Windows Form Designer generated code
+
+		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -423,7 +455,7 @@ namespace NetSpell.Demo.Windows
 			this.menuFileNew = new System.Windows.Forms.MenuItem();
 			this.menuFileOpen = new System.Windows.Forms.MenuItem();
 			this.menuItem1 = new System.Windows.Forms.MenuItem();
-			this.menuFileDemo = new System.Windows.Forms.MenuItem();
+			this.menuFileDemoRtf = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.menuFileExit = new System.Windows.Forms.MenuItem();
 			this.menuWindow = new System.Windows.Forms.MenuItem();
@@ -462,9 +494,11 @@ namespace NetSpell.Demo.Windows
 			this.bulletsBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarButton3 = new System.Windows.Forms.ToolBarButton();
 			this.fontColorBarButton = new System.Windows.Forms.ToolBarButton();
-			this.highlightBarButton = new System.Windows.Forms.ToolBarButton();
 			this.toolBarImages = new System.Windows.Forms.ImageList(this.components);
-			this.SpellChecker = new NetSpell.SpellChecker.Spelling(this.components);
+			this.WordDictionary = new NetSpell.SpellChecker.Dictionary.WordDictionary(this.components);
+			this.menuFileDemoHtml = new System.Windows.Forms.MenuItem();
+			this.menuFileDemoXml = new System.Windows.Forms.MenuItem();
+			this.menuFileDemoText = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
 			// 
 			// statusBar
@@ -488,7 +522,10 @@ namespace NetSpell.Demo.Windows
 																					 this.menuFileNew,
 																					 this.menuFileOpen,
 																					 this.menuItem1,
-																					 this.menuFileDemo,
+																					 this.menuFileDemoRtf,
+																					 this.menuFileDemoHtml,
+																					 this.menuFileDemoXml,
+																					 this.menuFileDemoText,
 																					 this.menuItem2,
 																					 this.menuFileExit});
 			this.menuFile.MergeType = System.Windows.Forms.MenuMerge.MergeItems;
@@ -515,23 +552,23 @@ namespace NetSpell.Demo.Windows
 			this.menuItem1.MergeOrder = 12;
 			this.menuItem1.Text = "-";
 			// 
-			// menuFileDemo
+			// menuFileDemoRtf
 			// 
-			this.menuFileDemo.Index = 3;
-			this.menuFileDemo.MergeOrder = 13;
-			this.menuFileDemo.Text = "NetSpell Demo";
-			this.menuFileDemo.Click += new System.EventHandler(this.menuFileDemo_Click);
+			this.menuFileDemoRtf.Index = 3;
+			this.menuFileDemoRtf.MergeOrder = 13;
+			this.menuFileDemoRtf.Text = "Demo Rich Text File";
+			this.menuFileDemoRtf.Click += new System.EventHandler(this.menuFileDemoRtf_Click);
 			// 
 			// menuItem2
 			// 
-			this.menuItem2.Index = 4;
-			this.menuItem2.MergeOrder = 14;
+			this.menuItem2.Index = 7;
+			this.menuItem2.MergeOrder = 17;
 			this.menuItem2.Text = "-";
 			// 
 			// menuFileExit
 			// 
-			this.menuFileExit.Index = 5;
-			this.menuFileExit.MergeOrder = 15;
+			this.menuFileExit.Index = 8;
+			this.menuFileExit.MergeOrder = 18;
 			this.menuFileExit.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
 			this.menuFileExit.Text = "Exit";
 			this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
@@ -611,8 +648,7 @@ namespace NetSpell.Demo.Windows
 																						   this.toolBarButton12,
 																						   this.bulletsBarButton,
 																						   this.toolBarButton3,
-																						   this.fontColorBarButton,
-																						   this.highlightBarButton});
+																						   this.fontColorBarButton});
 			this.editToolBar.ButtonSize = new System.Drawing.Size(24, 24);
 			this.editToolBar.DropDownArrows = true;
 			this.editToolBar.ImageList = this.toolBarImages;
@@ -767,23 +803,38 @@ namespace NetSpell.Demo.Windows
 			this.fontColorBarButton.ImageIndex = 22;
 			this.fontColorBarButton.ToolTipText = "Font Color";
 			// 
-			// highlightBarButton
-			// 
-			this.highlightBarButton.ImageIndex = 23;
-			this.highlightBarButton.ToolTipText = "Highlight";
-			// 
 			// toolBarImages
 			// 
 			this.toolBarImages.ImageSize = new System.Drawing.Size(16, 16);
 			this.toolBarImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toolBarImages.ImageStream")));
 			this.toolBarImages.TransparentColor = System.Drawing.Color.Transparent;
 			// 
-			// SpellChecker
+			// WordDictionary
 			// 
-			this.SpellChecker.IgnoreAllCapsWords = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreAllCapsWords", typeof(bool))));
-			this.SpellChecker.IgnoreHtml = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreHtml", typeof(bool))));
-			this.SpellChecker.IgnoreWordsWithDigits = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreWordsWithDigits", typeof(bool))));
-			this.SpellChecker.MaxSuggestions = ((int)(configurationAppSettings.GetValue("SpellChecker.MaxSuggestions", typeof(int))));
+			this.WordDictionary.DictionaryFolder = ((string)(configurationAppSettings.GetValue("WordDictionary.DictionaryFolder", typeof(string))));
+			this.WordDictionary.EnableUserFile = ((bool)(configurationAppSettings.GetValue("WordDictionary.EnableUserFile", typeof(bool))));
+			this.WordDictionary.UserFile = ((string)(configurationAppSettings.GetValue("WordDictionary.UserFile", typeof(string))));
+			// 
+			// menuFileDemoHtml
+			// 
+			this.menuFileDemoHtml.Index = 4;
+			this.menuFileDemoHtml.MergeOrder = 14;
+			this.menuFileDemoHtml.Text = "Demo HTML File";
+			this.menuFileDemoHtml.Click += new System.EventHandler(this.menuFileDemoHtml_Click);
+			// 
+			// menuFileDemoXml
+			// 
+			this.menuFileDemoXml.Index = 5;
+			this.menuFileDemoXml.MergeOrder = 15;
+			this.menuFileDemoXml.Text = "Demo XML File";
+			this.menuFileDemoXml.Click += new System.EventHandler(this.menuFileDemoXml_Click);
+			// 
+			// menuFileDemoText
+			// 
+			this.menuFileDemoText.Index = 6;
+			this.menuFileDemoText.MergeOrder = 16;
+			this.menuFileDemoText.Text = "Demo Text File";
+			this.menuFileDemoText.Click += new System.EventHandler(this.menuFileDemoText_Click);
 			// 
 			// MainForm
 			// 
@@ -800,7 +851,7 @@ namespace NetSpell.Demo.Windows
 			this.ResumeLayout(false);
 
 		}
-#endregion
+		#endregion
 
 	}
 }

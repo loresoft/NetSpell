@@ -133,13 +133,17 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Dictionary\Dictionary.bmp"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Dictionary\Word.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Dictionary\WordDictionary.cs"
-                    SubType = "Code"
+                    SubType = "Component"
                     BuildAction = "Compile"
                 />
                 <File

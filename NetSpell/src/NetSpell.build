@@ -1,75 +1,80 @@
 <?xml version="1.0"?>
-<project name="NetSpell" default="test">
-  <property name="project.name" value="NetSpell" />
-  <property name="project.version" value="2.0.3" />
-  <property name="project.config" value="release" />
-  <property name="build.debug" value="false" />
-  <property name="build.dir" value="bin" />
-  
-  <target name="build" depends="clean" description="Builds NetSpell">
-    	<solution configuration="${project.config}" solutionfile="NetSpell.sln">
-    		<assemblyfolders basedir="lib" />
-    	</solution>
-    	<mkdir dir="${build.dir}" />
-    	<copy todir="${build.dir}">
-	    	<fileset basedir="src">
-	    	    <includes name="NetSpell.SpellChecker\bin\${project.config}\*.*" />
-	    	    <includes name="NetSpell.Tests\bin\${project.config}\*.*" />
-	    	    <includes name="NetSpell.DictionaryBuild\bin\${project.config}\*.*" />
-	    	</fileset>
-    	</copy>
-  </target>
-  
-  <target name="clean" description="Cleans the build folder">
-    	<delete failonerror="false">
-		<fileset>
-			<includes name="${build.dir}" />
-			<includes name="NetSpell.SpellChecker\bin\${project.config}" />
-			<includes name="NetSpell.Tests\bin\${project.config}" />
-	    	    	<includes name="NetSpell.DictionaryBuild\bin\${project.config}" />
-		</fileset>
-	</delete>
-  </target>
-  
-  <target name="test" depends="build" description="Runs NUnit Tests">
-		<nunit2>
-			<formatter type="Plain" />
-			<test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
-		</nunit2>
-  </target>
-  
-  <target name="package" depends="doc" description="Creates a deployment package">
-
-  </target>
-  
-  <target name="doc" depends="test" description="Creates HTML Help file">
-    <ndoc failonerror="false">
-      <assemblies basedir="${build.dir}">
-        	<includes name="NetSpell.SpellChecker.dll" />
-      </assemblies>
-      <documenters>
-        <documenter name="MSDN">
-          <property name="OutputDirectory" value="doc" />
-          <property name="HtmlHelpName" value="NetSpell" />
-          <property name="IncludeFavorites" value="False" />
-          <property name="Title" value="${project.name} Documentation - v.${project.version}" />
-          <property name="SplitTOCs" value="False" />
-          <property name="DefaulTOC" value="" />
-          <property name="ShowVisualBasic" value="True" />
-          <property name="ShowMissingSummaries" value="${build.debug}" />
-          <property name="ShowMissingRemarks" value="${build.debug}" />
-          <property name="ShowMissingParams" value="${build.debug}" />
-          <property name="ShowMissingReturns" value="${build.debug}" />
-          <property name="ShowMissingValues" value="${build.debug}" />
-          <property name="DocumentInternals" value="False" />
-          <property name="DocumentPrivates" value="False" />
-          <property name="DocumentProtected" value="True" />
-          <property name="DocumentEmptyNamespaces" value="False" />
-          <property name="IncludeAssemblyVersion" value="False" />
-          <property name="CopyrightText" value="Copyright (C) 2003 Paul Welter" />
-          <property name="CopyrightHref" value="http://www.loresoft.com/netspell" />
-        </documenter>
-      </documenters>
-    </ndoc>
-  </target>
+<!-- NAnt version 0.8.4 -->
+<project name="NetSpell" default="build">
+    <property name="project.name" value="NetSpell" />
+    <property name="project.version" value="2.1.4" />
+    <property name="project.config" value="Release" />
+    <property name="build.debug" value="false" />
+    <property name="build.dir" value="..\bin" />
+    
+    <target name="build" depends="test,init" description="Builds NetSpell">
+        <copy todir="${build.dir}" flatten="true">
+            <fileset>
+                <includes name="NetSpell.SpellChecker\bin\${project.config}\NetSpell.SpellChecker.*" />
+                <includes name="NetSpell.DictionaryBuild\bin\${project.config}\NetSpell.DictionaryBuild.*" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="compile" depends="clean" description="Compiles NetSpell">
+        <solution configuration="${project.config}" solutionfile="NetSpell.sln">
+            <assemblyfolders basedir="lib" />
+        </solution>
+    </target>
+    
+    <target name="clean" description="Cleans the build folder">
+        <delete failonerror="false">
+            <fileset>
+                <includes name="${build.dir}" />
+                <includes name="NetSpell.SpellChecker\bin\${project.config}" />
+                <includes name="NetSpell.Tests\bin\${project.config}" />
+                <includes name="NetSpell.DictionaryBuild\bin\${project.config}" />
+            </fileset>
+        </delete>
+    </target>
+    
+    <target name="init" description="Creates build folder">
+        <mkdir dir="${build.dir}" />
+    </target>
+    
+    <target name="test" depends="compile" description="Runs NUnit Tests">
+        <nunit2>
+            <formatter type="Plain" />
+            <test assemblyname="NetSpell.Tests\bin\${project.config}\${project.name}.Tests.dll" type="Plain" />
+        </nunit2>
+    </target>
+    
+    <target name="package" depends="doc" description="Creates a deployment package">
+    </target>
+    
+    <target name="doc" depends="test" description="Creates HTML Help file">
+        <ndoc failonerror="false">
+            <assemblies basedir="${build.dir}">
+                <includes name="NetSpell.SpellChecker.dll" />
+            </assemblies>
+            <documenters>
+                <documenter name="MSDN">
+                    <property name="OutputDirectory" value="doc" />
+                    <property name="HtmlHelpName" value="NetSpell" />
+                    <property name="IncludeFavorites" value="False" />
+                    <property name="Title" value="${project.name} Documentation - v.${project.version}" />
+                    <property name="SplitTOCs" value="False" />
+                    <property name="DefaulTOC" value="" />
+                    <property name="ShowVisualBasic" value="True" />
+                    <property name="ShowMissingSummaries" value="${build.debug}" />
+                    <property name="ShowMissingRemarks" value="${build.debug}" />
+                    <property name="ShowMissingParams" value="${build.debug}" />
+                    <property name="ShowMissingReturns" value="${build.debug}" />
+                    <property name="ShowMissingValues" value="${build.debug}" />
+                    <property name="DocumentInternals" value="False" />
+                    <property name="DocumentPrivates" value="False" />
+                    <property name="DocumentProtected" value="True" />
+                    <property name="DocumentEmptyNamespaces" value="False" />
+                    <property name="IncludeAssemblyVersion" value="False" />
+                    <property name="CopyrightText" value="Copyright (C) 2003 Paul Welter" />
+                    <property name="CopyrightHref" value="http://www.loresoft.com/netspell" />
+                </documenter>
+            </documenters>
+        </ndoc>
+    </target>
 </project>

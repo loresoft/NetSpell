@@ -8,7 +8,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Text;
 
-namespace NetSpell.Demo.Windows
+namespace TextEditor
 {
 	/// <summary>
 	/// Summary description for DocumentForm.
@@ -137,14 +137,14 @@ namespace NetSpell.Demo.Windows
 		private void DocumentForm_Load(object sender, System.EventArgs e)
 		{
 			this.menuFormatWrap.Checked = this.Document.WordWrap;
-			// share instance of spell checker
+			
 			if (this.MdiParent != null) 
 			{
 				MainForm main = (MainForm)this.MdiParent;
-				this.SpellChecker = main.SpellChecker;
-				this.SpellChecker.ReplacedWord += new NetSpell.SpellChecker.Spelling.ReplacedWordEventHandler(this.SpellChecker_ReplacedWord);
-				this.SpellChecker.DeletedWord += new NetSpell.SpellChecker.Spelling.DeletedWordEventHandler(this.SpellChecker_DeletedWord);
+				// share instance of spell checker dictionary
+				this.SpellChecker.Dictionary = main.WordDictionary;
 			}
+			this.SpellChecker.SpellingForm.Owner = this;
 		}
 
 		private void menuEditCopy_Click(object sender, System.EventArgs e)
@@ -885,10 +885,13 @@ namespace NetSpell.Demo.Windows
 			// 
 			// SpellChecker
 			// 
+			this.SpellChecker.Dictionary = null;
 			this.SpellChecker.IgnoreAllCapsWords = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreAllCapsWords", typeof(bool))));
 			this.SpellChecker.IgnoreHtml = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreHtml", typeof(bool))));
 			this.SpellChecker.IgnoreWordsWithDigits = ((bool)(configurationAppSettings.GetValue("SpellChecker.IgnoreWordsWithDigits", typeof(bool))));
 			this.SpellChecker.MaxSuggestions = ((int)(configurationAppSettings.GetValue("SpellChecker.MaxSuggestions", typeof(int))));
+			this.SpellChecker.ReplacedWord += new NetSpell.SpellChecker.Spelling.ReplacedWordEventHandler(this.SpellChecker_ReplacedWord);
+			this.SpellChecker.DeletedWord += new NetSpell.SpellChecker.Spelling.DeletedWordEventHandler(this.SpellChecker_DeletedWord);
 			// 
 			// saveDialog
 			// 

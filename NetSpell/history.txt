@@ -1,3 +1,13 @@
+NetSpell 2.1
+* Implemented spell checking for a range of words
+* Added events for ReplacedWord, IgnoredWord, and DeletedWord
+* IgnoreList and ReplaceList no longer reset when the Text property is set
+* Spelling.Dictionary now lazy loads to make sharing the dictionary more efficient
+* WordDictionary is now a component to better support design time and dictionary sharing
+* Tracing as been added
+* Improved HTML, XML and RTF support
+* Added several new demos
+
 NetSpell 2.0.3
 * Major bug fix in WordDictionary.Contains method
 * update ignore html routine

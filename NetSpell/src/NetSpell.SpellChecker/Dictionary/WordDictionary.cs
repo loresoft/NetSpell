@@ -23,8 +23,8 @@ namespace NetSpell.SpellChecker.Dictionary
 	/// <summary>
 	/// The WordDictionary class contains all the logic for managing the word list.
 	/// </summary>
-	[TypeConverter(typeof(ExpandableObjectConverter))]
-	public class WordDictionary
+	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Dictionary.WordDictionary), "Dictionary.bmp")]
+	public class WordDictionary : System.ComponentModel.Component
 	{
 		private Hashtable _BaseWords = new Hashtable();
 		private string _Copyright = "";
@@ -40,12 +40,23 @@ namespace NetSpell.SpellChecker.Dictionary
 		private string _TryCharacters = "";
 		private string _UserFile = "user.dic";
 		private Hashtable _UserWords = new Hashtable();
+		private System.ComponentModel.Container components = null;
 
 		/// <summary>
 		///     Initializes a new instance of the class
 		/// </summary>
 		public WordDictionary()
 		{
+			InitializeComponent();
+		}
+
+		/// <summary>
+		///     Initializes a new instance of the class
+		/// </summary>
+		public WordDictionary(System.ComponentModel.IContainer container)
+		{
+			container.Add(this);
+			InitializeComponent();
 		}
 
 		/// <summary>
@@ -156,11 +167,6 @@ namespace NetSpell.SpellChecker.Dictionary
 		/// <param name="word" type="string">
 		///     <para>
 		///         The word to add
-		///     </para>
-		/// </param>
-		/// <param name="value" type="NetSpell.SpellChecker.Dictionary.Word">
-		///     <para>
-		///         The word object to add
 		///     </para>
 		/// </param>
 		/// <remarks>
@@ -591,6 +597,21 @@ namespace NetSpell.SpellChecker.Dictionary
 			this.SaveUserFile();
 		}
 
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		protected override void Dispose( bool disposing )
+		{
+			if( disposing )
+			{
+				if(components != null)
+				{
+					components.Dispose();
+				}
+			}
+			base.Dispose( disposing );
+		}
+
 		/// <summary>
 		///     The collection of base words for the dictionary
 		/// </summary>
@@ -767,6 +788,18 @@ namespace NetSpell.SpellChecker.Dictionary
 			get {return _PossibleBaseWords;}
 		}
 
+
+		#region Component Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			components = new System.ComponentModel.Container();
+		}
+		#endregion
+	
 	}
 
 }

@@ -23,7 +23,7 @@ namespace NetSpell.SpellChecker.Forms
 	{
 		private System.Windows.Forms.Button AddButton;
 		private System.Windows.Forms.Button CancelBtn;
-		private System.ComponentModel.IContainer components;
+		private System.ComponentModel.Container components = null;
 		private System.Windows.Forms.Button IgnoreAllButton;
 		private System.Windows.Forms.Button IgnoreButton;
 		private System.Windows.Forms.Button OptionsButton;
