@@ -3,6 +3,10 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NetSpell.Setup", "NetSpell.
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerActions", "InstallerActions\InstallerActions.csproj", "{018BA054-7E49-4AF8-BFD8-43894F69C7A5}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -13,6 +17,10 @@ Global
 		{15A9988D-DC47-4480-97A1-4133DB16527C}.Debug.Build.0 = Debug
 		{15A9988D-DC47-4480-97A1-4133DB16527C}.Release.ActiveCfg = Release
 		{15A9988D-DC47-4480-97A1-4133DB16527C}.Release.Build.0 = Release
+		{018BA054-7E49-4AF8-BFD8-43894F69C7A5}.Debug.ActiveCfg = Debug|.NET
+		{018BA054-7E49-4AF8-BFD8-43894F69C7A5}.Debug.Build.0 = Debug|.NET
+		{018BA054-7E49-4AF8-BFD8-43894F69C7A5}.Release.ActiveCfg = Release|.NET
+		{018BA054-7E49-4AF8-BFD8-43894F69C7A5}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

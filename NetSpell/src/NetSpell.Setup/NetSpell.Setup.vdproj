@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_065531974FA04EE7B929077D0F03F636"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_085B18A12085448D9D9F8D85D7B61580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -166,12 +172,6 @@
         "Entry"
         {
         "MsmKey" = "8:_2CAD90CE7E7949C9A4C88E301BE07D29"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2CD237D317B94302A7E0FC9277747CBF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -369,12 +369,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_65B88308B1204E039F55AC9D2110CFF8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_67A39F00646C48D8A80F74873D7ED51F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -382,6 +376,12 @@
         "Entry"
         {
         "MsmKey" = "8:_686A53B8685E45D9999D1BF0523E75A8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -549,6 +549,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_93603D98A9674CBFBBA5AA66F37C60FC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9433B9394C44450D81040E003F5CD3D0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -652,12 +658,6 @@
         "Entry"
         {
         "MsmKey" = "8:_B36289C43F204F8EAD5E0AB49B8E73F5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B3C56864910E439B8576CF0C581F1065"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -789,6 +789,30 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E5E99FA1A5D14AF2A859E7083F00159B"
+        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E5E99FA1A5D14AF2A859E7083F00159B"
+        "OwnerKey" = "8:_6994D56D337F403AB20999882F1C7DD4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E5E99FA1A5D14AF2A859E7083F00159B"
+        "OwnerKey" = "8:_F42EAE68D9EA0303B772828A50BD12D0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E5E99FA1A5D14AF2A859E7083F00159B"
+        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E75A4570389B419FB9E016A76DE4364C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -803,24 +827,6 @@
         {
         "MsmKey" = "8:_E822F3D5A0304D9AA7368113637FE4EB"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E8D79F2BAE47419BA6B2C60B59D43A73"
-        "OwnerKey" = "8:_F42EAE68D9EA0303B772828A50BD12D0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E8D79F2BAE47419BA6B2C60B59D43A73"
-        "OwnerKey" = "8:_F3E099D359B940D597176BA1DB77210F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E8D79F2BAE47419BA6B2C60B59D43A73"
-        "OwnerKey" = "8:_4D2DB994AF994215AA17AEC9C0575DE5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -911,47 +917,47 @@
     {
         "CustomAction"
         {
-            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_1BCAC4341B1E4145AC25936588EFF581"
+            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_452A6D85BD5746DCAB301A938B2AC0EF"
             {
-            "Name" = "8:uninstall.js"
+            "Name" = "8:VirtualDirectoryInstaller"
             "Condition" = "8:"
-            "Object" = "8:_2CD237D317B94302A7E0FC9277747CBF"
-            "FileType" = "3:3"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_C8B57470_34B1_44C1_A932_D97C42094E0F"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
-            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_B1158E04B1CA4B338416ADBFCB39D1D8"
-            {
-            "Name" = "8:install.js"
-            "Condition" = "8:"
-            "Object" = "8:_65B88308B1204E039F55AC9D2110CFF8"
-            "FileType" = "3:3"
+            "Object" = "8:_6994D56D337F403AB20999882F1C7DD4"
+            "FileType" = "3:1"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_1CB76D1A_D3CF_4B73_A0B1_75C81F299891"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
+            "Identifier" = "8:_44F15FA1_42E6_4563_8D42_1C296A116D0B"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/VDIRNAME=[VDIR] /DIRPATH=\"[TARGETDIR]\\\" "
             }
-            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_EA95B3C323F54D4795C1F9DAA71B1FC7"
+            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_4DEC005B0D3D4E36B8E4FDE3ACED1FBF"
             {
-            "Name" = "8:uninstall.js"
+            "Name" = "8:VirtualDirectoryInstaller"
             "Condition" = "8:"
-            "Object" = "8:_2CD237D317B94302A7E0FC9277747CBF"
-            "FileType" = "3:3"
+            "Object" = "8:_6994D56D337F403AB20999882F1C7DD4"
+            "FileType" = "3:1"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_85C640BA_A93E_4DDB_B5F8_184D0A9D62E6"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/VDIRNAME=[VDIR] /DIRPATH=\"[TARGETDIR]\\\" "
+            }
+            "{0C9D821E-95BB-411F-BE03-2864360EBF94}:_CA511A7BC6D948388536D23A87868B7D"
+            {
+            "Name" = "8:VirtualDirectoryInstaller"
+            "Condition" = "8:"
+            "Object" = "8:_6994D56D337F403AB20999882F1C7DD4"
+            "FileType" = "3:1"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_D1E354C0_DB04_4F37_823E_DD1D84516345"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
+            "Identifier" = "8:_22296B66_3DC6_4236_A7AF_2EE64D5E4090"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/VDIRNAME=[VDIR] /DIRPATH=\"[TARGETDIR]\\\" "
             }
         }
         "DefaultFeature"
@@ -1044,6 +1050,26 @@
             "TargetName" = "8:SpellCheck.aspx"
             "Tag" = "8:"
             "Folder" = "8:_88C930CB90CA47259E3062A62456B963"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_065531974FA04EE7B929077D0F03F636"
+            {
+            "SourcePath" = "8:..\\..\\setup.bat"
+            "TargetName" = "8:setup.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_7B81BD39DB51442FB05DA3FFF9E7B25B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1484,26 +1510,6 @@
             "TargetName" = "8:app.config"
             "Tag" = "8:"
             "Folder" = "8:_80EAF33E002145479E72E0D776EADC06"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_2CD237D317B94302A7E0FC9277747CBF"
-            {
-            "SourcePath" = "8:..\\..\\uninstall.js"
-            "TargetName" = "8:uninstall.js"
-            "Tag" = "8:"
-            "Folder" = "8:_7B81BD39DB51442FB05DA3FFF9E7B25B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2169,26 +2175,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_65B88308B1204E039F55AC9D2110CFF8"
-            {
-            "SourcePath" = "8:..\\..\\install.js"
-            "TargetName" = "8:install.js"
-            "Tag" = "8:"
-            "Folder" = "8:_7B81BD39DB51442FB05DA3FFF9E7B25B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_67A39F00646C48D8A80F74873D7ED51F"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\Spelling.bmp"
@@ -2769,6 +2755,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_93603D98A9674CBFBBA5AA66F37C60FC"
+            {
+            "SourcePath" = "8:..\\..\\webdir.wsf"
+            "TargetName" = "8:webdir.wsf"
+            "Tag" = "8:"
+            "Folder" = "8:_7B81BD39DB51442FB05DA3FFF9E7B25B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{A582A373-4685-4296-BEFE-614B80A702C3}:_9433B9394C44450D81040E003F5CD3D0"
             {
             "SourcePath" = "8:..\\NetSpell.SpellChecker\\NetSpell.SpellChecker.csproj"
@@ -3115,26 +3121,6 @@
             "TargetName" = "8:Demo.WinForm.Csharp.sln"
             "Tag" = "8:"
             "Folder" = "8:_339A168FC3FB4A4B805CE835461DAA31"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{A582A373-4685-4296-BEFE-614B80A702C3}:_B3C56864910E439B8576CF0C581F1065"
-            {
-            "SourcePath" = "8:..\\..\\config.wsf"
-            "TargetName" = "8:config.wsf"
-            "Tag" = "8:"
-            "Folder" = "8:_7B81BD39DB51442FB05DA3FFF9E7B25B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4128,7 +4114,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:NetSpell"
         "ProductCode" = "8:{C0E2C644-F015-4356-9D37-A20356A70033}"
-        "PackageCode" = "8:{49F719A2-7077-4479-9266-104DBE401D73}"
+        "PackageCode" = "8:{502EF89E-D228-462B-BDF2-C5F169C330A0}"
         "UpgradeCode" = "8:{E30E2359-6E76-4A86-9723-851D719D55B0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -4881,7 +4867,7 @@
         }
         "MergeModule"
         {
-            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_E8D79F2BAE47419BA6B2C60B59D43A73"
+            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_E5E99FA1A5D14AF2A859E7083F00159B"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -4898,6 +4884,34 @@
         }
         "ProjectOutput"
         {
+            "{8062640A-2EEE-46E9-AB67-688E9A886E9F}:_6994D56D337F403AB20999882F1C7DD4"
+            {
+            "SourcePath" = "8:InstallerActions\\obj\\Debug\\InstallerActions.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_EFB35135F37847908736C5CC27DC4741"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{018BA054-7E49-4AF8-BFD8-43894F69C7A5}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
         }
         "VJSharpPlugin"
         {

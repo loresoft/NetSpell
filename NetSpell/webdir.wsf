@@ -1,0 +1,95 @@
+<job id="webdir">
+	<?job debug="true"?>
+	<runtime>
+		<description>This script creates an IIS virtual directory.</description>
+		<named
+			name="vdir"
+			helpstring="Name of the virtual directory."
+			type="string"
+			required="true"
+		/>
+		<named
+			name="path"
+			helpstring="Local path to virutal directory. Default is location of this script."
+			type="string"
+			required="false"
+		/>
+		<named
+			name="computer"
+			helpstring="Computer the directory will be created.  Default is localhost."
+			type="string"
+			required="false"
+		/>
+		<named
+			name="delete"
+			helpstring="Delete the virtual directory."
+			type="simple"
+			required="false"
+		/>
+	</runtime>
+
+	<script language="JScript">		
+		var sVirDir, sPath, sComputer
+
+		//check required
+		if (WScript.Arguments.Named.Exists("vdir"))
+			sVirDir = WScript.Arguments.Named.Item("vdir");
+		else
+		{
+		   WScript.Arguments.ShowUsage();
+		   WScript.Quit();
+		}
+
+		if (WScript.Arguments.Named.Exists("path"))
+			sPath = WScript.Arguments.Named.Item("path");	
+		else
+		{
+			sPath = WScript.ScriptFullName;
+			sPath = sPath.substring(0, sPath.lastIndexOf(WScript.ScriptName)-1);
+		}
+
+		if (WScript.Arguments.Named.Exists("computer"))
+			sComputer = WScript.Arguments.Named.Item("computer");	
+		else
+			sComputer = "localhost";
+
+		try
+		{
+			var oWebRoot = GetObject("IIS://"+ sComputer + "/W3SVC/1/Root");
+			var oVirDir;
+
+			if (WScript.Arguments.Named.Exists("delete"))
+			{
+				try { oVirDir = oWebRoot.Delete("IISWebVirtualDir", sVirDir) }
+				catch (e) {}
+				WScript.Quit();
+			}
+
+			try 
+			{
+				oVirDir = oWebRoot.GetObject("IISWebVirtualDir", sVirDir)
+			}
+			catch (e)
+			{				
+				oVirDir = oWebRoot.Create("IISWebVirtualDir", sVirDir)				
+			}
+
+			//Set the new virtual directory path
+			oVirDir.AccessRead = true;
+			oVirDir.AccessScript = true
+			oVirDir.Path = sPath;				
+			oVirDir.SetInfo();
+
+			oVirDir.AppCreate(true);
+			oVirDir.SetInfo();		
+			WScript.Echo("IIS Virtual Folder http://localhost/" + sVirDir + "/ Created Successfully.");
+		}
+		catch (e)
+		{
+			WScript.Echo("Failed to create virtual folder " + sVirDir);
+		}
+
+	</script>
+</job>
+
+
