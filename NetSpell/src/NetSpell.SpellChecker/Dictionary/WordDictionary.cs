@@ -144,6 +144,11 @@ namespace NetSpell.SpellChecker.Dictionary
 							// saving word to check if it is a word after prefix is removed
 							suffixWords.Add(tempWord);
 						}
+						else 
+						{
+							// saving possible base words for use in generating suggestions
+							_PossibleBaseWords.Add(tempWord);
+						}
 					}
 				}
 			}
