@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.SpellChecker", "NetSpell.SpellChecker\NetSpell.SpellChecker.csproj", "{A426EE0B-E52E-4D74-AF24-06797142D7B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild", "NetSpell.DictionaryBuild\NetSpell.DictionaryBuild.csproj", "{1A1420D4-99BA-4755-9D54-F920BA435D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Tests", "NetSpell.Tests\NetSpell.Tests.csproj", "{FA92DDBE-81AD-4F8A-9941-300839C15727}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.TraySpell", "NetSpell.TraySpell\NetSpell.TraySpell.csproj", "{16D8A4A3-17EF-4C60-8CF7-16B50938420A}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.ActiveCfg = Debug|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.Build.0 = Debug|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.ActiveCfg = Release|.NET
+		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.Build.0 = Release|.NET
+		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.ActiveCfg = Debug|.NET
+		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.Build.0 = Debug|.NET
+		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.ActiveCfg = Release|.NET
+		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.Build.0 = Release|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.ActiveCfg = Debug|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.Build.0 = Debug|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.ActiveCfg = Release|.NET
+		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.Build.0 = Release|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.ActiveCfg = Debug|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.Build.0 = Debug|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.ActiveCfg = Release|.NET
+		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
