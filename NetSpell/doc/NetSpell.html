@@ -37,24 +37,24 @@ SubSection   General
 <p>The NetSpell project is a spell checking engine written entirely in managed 
 C# .net code.&nbsp; NetSpell&#39;s suggestions 
 for a misspelled word are generated using phonetic (sounds like) matching and ranked 
-by a typographical score (looks like).&nbsp; NetSpell supports multiple 
+by a typographical (looks like) score.&nbsp; NetSpell supports multiple 
 languages and the dictionaries are based on the OpenOffice Affix compression 
 format. The library can be used in Windows or Web Form projects. The download 
 includes an English dictionary with dictionaries for other languages available 
 for download on the project web site. NetSpell also supports user added words 
-and automatic creation of user dictionaries. The package includes a dictionary 
+and automatic creation of user dictionaries. It also includes a dictionary 
 build tool to build custom dictionaries. </p>
 <h2>The Dictionary</h2>
 <p>The root of all spell checkers is a word list, aka the dictionary.&nbsp; The 
-dictionary contains a list of all possible correctly spelled words for a 
+dictionary contains a list of common words for a 
 language.&nbsp; For example, the US English dictionary that comes with this 
 package contains 162,573 words.</p>
 <p>When designing the dictionary for NetSpell I wanted the dictionary to be a 
 single file, be 
 as small as possible and load extremely fast. I experimented with many different 
-ways to save and load the large word lists.&nbsp; Some techniques I tried 
-were everything from a saved dataset to a binary serialized collection, all of 
-wish proved to be too slow. I ended up using the good old UTF8 text file. 
+ways to save and load the large word lists.&nbsp; Techniques I tried 
+ranged from a saved dataset to a binary serialized collection, all of 
+which proved to be too slow. I ended up using the good old UTF8 text file. 
 Loading and parsing a text file proved to be extremely fast.</p>
 <h2>Affix Compression</h2>
 <p>The first issue I wanted to tackle was the file size.&nbsp; Any compression 
@@ -72,15 +72,14 @@ Read the following <a href="http://lingucomponent.openoffice.org/affix.readme">
 link</a> to better understand Affix Compression format.</p>
 <p>As a result of using the OpenOffice dictionary format, NetSpell dictionaries 
 are easily created from OpenOffice dictionaries.&nbsp; This allows NetSpell to 
-easily support additionally languages.&nbsp; The NetSpell package includes a 
+easily support additional languages.&nbsp; The NetSpell download includes a 
 dictionary build tool that allows you to create new dictionaries.&nbsp; The 
 build tool also allows you to import OpenOffice dictionaries and save them to 
 the NetSpell format.</p>
 <h2>Dictionary Sections</h2>
 <p>To satisfy the goal of making the dictionary a single file, I needed a way to 
-separate different sections of the file to store different types of data as a 
-word list was not the only data need to be stored.&nbsp; I decided to use the 
-INI section format. I thought about using XML but XML carries a large weight in 
+separate different sections of the file. This would allow for storing different types of data as a 
+word list was not the only data need to be stored.&nbsp; I decided to use the INI section format. I thought about using XML but XML carries a large weight in 
 terms of file size because of the use of tags.&nbsp; I ended up with the 
 following sections in the file.</p>
 <p><b>[Copyright]</b><br>
@@ -90,13 +89,13 @@ the particular dictionary. </p>
 The try section contains a sequence of letters that are used to try to make a 
 correct word out of a misspelled word. They should be listed on a single line in 
 order of character frequency (highest to lowest).&nbsp; This section is used by 
-the Near Miss Strategy discussed letter.</p>
+the Near Miss Strategy discussed later.</p>
 <p><b>[Replace]</b> <br>
 The replace section contains a sequence of letter combinations that are often 
 misspelled, for example ei and ie.&nbsp; The data is entered in this section in 
 a <i>search characters</i> space <i>replace characters</i> format.&nbsp; The ei, 
 ie example would look like this in the dictionary, &quot;ei ie&quot;. This section is used 
-by the Near Miss Strategy discussed letter.</p>
+by the Near Miss Strategy discussed later.</p>
 <p><b>[Prefix]</b><br>
 The prefix section is used to define a set of affix rules for prefixes that can 
 be attached to the beginning of a base word to form other words.&nbsp; The 
@@ -110,7 +109,7 @@ suffix rules follows the same format as OpenOffice's affix files except the SFX
 is removed. You can read more about the OpenOffice affix format
 <a href="http://lingucomponent.openoffice.org/affix.readme">here</a></p>
 <p><b>[Phonetic]</b><br>
-The phonetic section is optional and it contains a set of rule that define how 
+The phonetic section is optional and it contains a set of rules that define how 
 to generate a phonetic code for a character or set of characters.&nbsp; The 
 phonetic code is generated using Lawrence Philips' Metaphone Algorithm that has 
 been adapted to a table format by the ASpell project.&nbsp; The NetSpell 
@@ -119,30 +118,30 @@ be used directly by NetSpell.&nbsp; See the following
 <a href="http://savannah.gnu.org/download/aspell/manual/user/7_Adding.html#SECTION00830000000000000000">
 link</a> to learn more about the ASpell phonetic code.</p>
 <p><b>[Words]</b><br>
-The words section is the list of base words for this dictionary.&nbsp; The 
+The words section is the list of base words for the dictionary.&nbsp; The 
 format for this section is <i>word/affix keys/phonetic code</i>.&nbsp; The affix 
 keys and phonetic code portions are optional.&nbsp; The affix keys portion 
 indicates which affix rules apply to this word.&nbsp; The phonetic code portion 
 is a cache of the phonetic code for this word and is used by the phonetic 
-suggestion strategy&nbsp; </p>
-<p>Another important thing to know about dictionaries is that they are named to 
+suggestion strategy.&nbsp; </p>
+<p>Another important thing to know about dictionaries are that they are named to 
 match the .net framework CultureInfo.Name property.&nbsp; For example the US 
 English dictionary is named &quot;en-US.dic&quot;.&nbsp; The en-US match the 
 CultureInfo.Name property.&nbsp; This allows the NetSpell library to default to 
-the dictionary corresponding to the computers regional settings.</p>
+the dictionary that corresponds to the computer's regional settings.</p>
 <h2>Spell Checking Text</h2>
-<p>Spell checking is normally done by searching the dictionary for the given 
+<p>Spell checking is normally performed by searching the dictionary for the given 
 word.&nbsp; Now that we've implemented affix compression, searching for the word 
-become more complicated.&nbsp; We have to create base words out of the given 
+became more complicated.&nbsp; We have to create base words out of the given 
 word. The process goes like this, first the base word list is searched for the 
-given word.&nbsp; If the word is not found in the base word like, the suffix 
+given word.&nbsp; If the word is not found in the base word list, the suffix 
 rules are removed from the word.&nbsp; After a suffix is removed, then the new 
 word is checked to see if it is in the base word list.&nbsp; If the word is 
 still not found, the same process is repeated for the prefixes. If the word 
 can't be found after removing the suffixes and prefixes, then the word is not 
-found in this dictionary and is most likely misspelled.</p>
+found in the dictionary and is most likely misspelled.</p>
 <h2>Generating Suggestions</h2>
-<p>Once its been determined that the word is misspell, we need to generate 
+<p>Once it has been determined that the word is misspell, we need to generate 
 suggestions for the correct spelling of that word.&nbsp; This is where the magic 
 of a spell checker happens. NetSpell uses two different techniques to generate 
 suggestions.&nbsp; The first was developed by Geoff Kuenning for ISpell and is 
@@ -151,8 +150,8 @@ Metaphone Algorithm which returns a code that is a rough approximation of how an
 English word sounds.</p>
 <h2>Near Miss Strategy</h2>
 <p>The near miss strategy is a fairly simple way to generate suggestions.&nbsp; 
-Near miss takes the approach&nbsp; that the user didn't necessarily misspell the 
-word but rather that they mistyped it.&nbsp; Two words are considered near if 
+Near miss takes the approach&nbsp;that the user didn't necessarily misspell the 
+word but rather they mistyped it.&nbsp; Two words are considered near if 
 they can be made identical by either inserting a blank space, interchanging two 
 adjacent letter, changing one letter, deleting one letter or adding one letter. 
 If a valid word is generated using these techniques, then it is added to the 
@@ -186,7 +185,7 @@ So, we expand the base word that matched by applying all the affix rules to get
 a list of all the possible words from that base word. We then add that list to 
 the suggestion list.</p>
 <h2>Ranking Suggestions</h2>
-<p>Now that we have a list of suggestions, we need some way to rank them by the 
+<p>Once we have a list of suggestions, we need some way to rank them by the 
 most likely to be the correct spelling. My research into the best way to go 
 about this turned up the Edit Distance Algorithm.&nbsp; The edit distance is 
 defined as the smallest number of insertions, deletions, and substitutions 
@@ -241,7 +240,7 @@ SpellChecker.Text = this.Document.Text;
 SpellChecker.SpellCheck();
 
 </pre>
-<p lang="cs">The project download includes two example implementaion of the 
+<p lang="cs">The project download includes two example application for the 
 NetSpell Library.&nbsp; The first is a Windows forms text editor.&nbsp; The 
 second is a web project that demonstrats using the library in a web enviroment.</p>
 
@@ -252,7 +251,7 @@ feature that I'm currently working on is real time spell checking, like MS Word.
 Please feel free to contact me with any suggestions, bug reports and feature 
 request.</p>
 <p>Paul Welter<br>
-<a href="mailto:pwelter@loresoft.com">pwelter@loresoft.com</a></p>
+<a href="http://www.loresoft.com">http://www.loresoft.com</a></p>
 
 <h2>References and Credits</h2>
 <ul>
