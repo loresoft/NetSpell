@@ -47,17 +47,19 @@
 		<zip zipfile="..\package\${project.name}.${project.version}.zip">
 			<fileset basedir="..\">
 				<includes name="*"/>
-				<includes name="bin\*.*"/>
-				<includes name="dic\*.*"/>
-				<includes name="demo\**"/>
-				<includes name="doc\*.*"/>
-				<includes name="lib\*.*"/>
-				<includes name="src\**"/>				
+				<includes name="bin\*.*" />
+				<includes name="dic\*.*" />
+				<includes name="demo\**" />
+				<includes name="doc\*.*" />
+				<includes name="lib\*.*" />
+				<includes name="src\**" />				
                 <!--exclude VS.Net stuff -->
-                <excludes name="**/*.suo" />
-                <excludes name="**/*j.user" />
-                <excludes name="**/bin/**" />
-                <excludes name="**/obj/**" />
+                <excludes name="src\NetSpell.Setup\**" />
+                <excludes name="**\*.suo" />
+                <excludes name="**\*j.user" />
+                <excludes name="src\**\bin\**" />
+                <excludes name="demo\**\bin\**" />
+                <excludes name="**\obj\**" />
 			</fileset>
 		</zip>
     </target>
