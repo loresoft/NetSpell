@@ -313,12 +313,12 @@ namespace TextEditor
 
 		}
 
-		private void SpellChecker_DeletedWord(object sender, NetSpell.SpellChecker.SpellingEventArgs args)
+		private void SpellChecker_DeletedWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
 		{
 			int start = this.Document.SelectionStart;
 			int length = this.Document.SelectionLength;
 
-			this.Document.Select(args.TextIndex, args.Word.Length);
+			this.Document.Select(e.TextIndex, e.Word.Length);
 			this.Document.SelectedText = "";
 
 			if(start > this.Document.Text.Length)
@@ -330,13 +330,13 @@ namespace TextEditor
 			this.Document.Select(start, length);
 		}
 
-		private void SpellChecker_ReplacedWord(object sender, NetSpell.SpellChecker.ReplaceWordEventArgs args)
+		private void SpellChecker_ReplacedWord(object sender, NetSpell.SpellChecker.ReplaceWordEventArgs e)
 		{
 			int start = this.Document.SelectionStart;
 			int length = this.Document.SelectionLength;
 
-			this.Document.Select(args.TextIndex, args.Word.Length);
-			this.Document.SelectedText = args.ReplacementWord;
+			this.Document.Select(e.TextIndex, e.Word.Length);
+			this.Document.SelectedText = e.ReplacementWord;
 
 			if(start > this.Document.Text.Length)
 				start = this.Document.Text.Length;
