@@ -1,4 +1,4 @@
-<%@ Page Language="C#" %>
+<%@ Page Language="C#" Trace="True" %>
 <%@ import Namespace="System.IO" %>
 <%@ import Namespace="NetSpell.SpellChecker" %>
 <%@ import Namespace="NetSpell.SpellChecker.Dictionary" %>
@@ -6,13 +6,25 @@
 
     NetSpell.SpellChecker.Spelling SpellChecker;
     NetSpell.SpellChecker.Dictionary.WordDictionary WordDictionary;
-    
+
     void Page_Load(object sender, EventArgs e) {
-    
+
+        Page.Trace.Write("Page_Load");
+        // add client side events
+           Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);");
+        SpellingBody.Attributes.Add("onLoad", "javascript: updateCallingPage();");
+
+        // start spell checking
+        this.LoadValues();
+
+        if(Request.Params["SpellCheck"] != null)
+        {
+            this.SpellChecker.SpellCheck();
+        }
     }
-    
+
     void Page_Init(object sender, EventArgs e) {
-    
+
         // get dictionary from cache
         this.WordDictionary = (WordDictionary)HttpContext.Current.Cache["WordDictionary"];
         if (this.WordDictionary == null)
@@ -23,17 +35,16 @@
             //getting folder for dictionaries
             string folderName = ConfigurationSettings.AppSettings["DictionaryFolder"];
             folderName =  this.MapPath(Path.Combine(Request.ApplicationPath, folderName));
-    
+
             this.WordDictionary.DictionaryFolder = folderName;
             //load and initialize the dictionary
             this.WordDictionary.Initialize();
-    
+
             // Store the Dictionary in cache
             HttpContext.Current.Cache.Insert("WordDictionary", this.WordDictionary,
-                new CacheDependency(Path.Combine(folderName,
-                this.WordDictionary.DictionaryFile)));
+                new CacheDependency(Path.Combine(folderName, this.WordDictionary.DictionaryFile)));
         }
-    
+        // create spell checker
         this.SpellChecker = new NetSpell.SpellChecker.Spelling();
         this.SpellChecker.ShowDialog = false;
         this.SpellChecker.Dictionary = this.WordDictionary;
@@ -42,87 +53,90 @@
         this.SpellChecker.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
         this.SpellChecker.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.SpellChecker_DoubledWord);
     }
-    
+
     void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
     {
         this.SaveValues();
         this.CurrentWord.Text = this.SpellChecker.CurrentWord;
-    
+
         this.SuggestionForm.Visible = true;
         this.SpellcheckComplete.Visible = false;
-    
+
         this.Suggestions.Items.Clear();
         this.ReplacementWord.Text = string.Empty;
     }
-    
+
     void SpellChecker_EndOfText(object sender, System.EventArgs e)
     {
+        Page.Trace.Write("SpellChecker_EndOfText");
+
         this.SaveValues();
-    
+
         this.SuggestionForm.Visible = false;
         this.SpellcheckComplete.Visible = true;
     }
-    
+
     void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.SpellingEventArgs e)
     {
+        Page.Trace.Write("SpellChecker_MisspelledWord");
         this.SaveValues();
         this.CurrentWord.Text = this.SpellChecker.CurrentWord;
-    
+
         this.SuggestionForm.Visible = true;
         this.SpellcheckComplete.Visible = false;
-    
+
         this.SpellChecker.Suggest();
-    
+
         this.Suggestions.DataSource = this.SpellChecker.Suggestions;
         this.Suggestions.DataBind();
-    
+
         this.ReplacementWord.Text = string.Empty;
     }
-    
+
     void SaveValues()
     {
         this.CurrentText.Value = this.SpellChecker.Text;
         this.WordIndex.Value = this.SpellChecker.WordIndex.ToString();
-    
+
         // save ignore words
         string[] ignore = (string[])this.SpellChecker.IgnoreList.ToArray(typeof(string));
         this.IgnoreList.Value = String.Join("|", ignore);
-    
+
         // save replace words
         ArrayList tempArray = new ArrayList(this.SpellChecker.ReplaceList.Keys);
         string[] replaceKey = (string[])tempArray.ToArray(typeof(string));
         this.ReplaceKeyList.Value = String.Join("|", replaceKey);
-    
+
         tempArray = new ArrayList(this.SpellChecker.ReplaceList.Values);
         string[] replaceValue = (string[])tempArray.ToArray(typeof(string));
         this.ReplaceValueList.Value = String.Join("|", replaceValue);
-    
+
         // saving user words
         tempArray = new ArrayList(this.SpellChecker.Dictionary.UserWords.Keys);
         string[] userWords = (string[])tempArray.ToArray(typeof(string));
         Response.Cookies["UserWords"].Value = String.Join("|", userWords);;
         Response.Cookies["UserWords"].Path = "/";
         Response.Cookies["UserWords"].Expires = DateTime.Now.AddMonths(1);
-    
+
     }
-    
+
     void LoadValues()
     {
         if (Request.Params["CurrentText"] != null)
         {
             this.SpellChecker.Text = Request.Params["CurrentText"];
         }
-    
+
         if (Request.Params["WordIndex"] != null)
         {
             this.SpellChecker.WordIndex = int.Parse(Request.Params["WordIndex"]);
         }
-    
+
         string ignoreList;
         string[] replaceKeys;
         string[] replaceValues;
         string[] userWords;
-    
+
         // restore ignore list
         if (Request.Params["IgnoreList"] != null)
         {
@@ -130,14 +144,14 @@
             this.SpellChecker.IgnoreList.Clear();
             this.SpellChecker.IgnoreList.AddRange(ignoreList.Split('|'));
         }
-    
+
         // restore replace list
         if (Request.Params["ReplaceKeyList"] != null
             && Request.Params["ReplaceValueList"] != null)
         {
             replaceKeys = Request.Params["ReplaceKeyList"].Split('|');
             replaceValues = Request.Params["ReplaceValueList"].Split('|');
-    
+
             this.SpellChecker.ReplaceList.Clear();
             if (replaceKeys.Length == replaceValues.Length)
             {
@@ -150,7 +164,7 @@
                 }
             }
         }
-    
+
         // restore user words
         this.SpellChecker.Dictionary.UserWords.Clear();
         if (Request.Cookies["UserWords"] != null)
@@ -165,26 +179,30 @@
             }
         }
     }
-    
+
     void IgnoreButton_Click(object sender, EventArgs e) {
         this.SpellChecker.IgnoreWord();
         this.SpellChecker.SpellCheck();
     }
-    
+
     void IgnoreAllButton_Click(object sender, EventArgs e) {
         this.SpellChecker.IgnoreAllWord();
         this.SpellChecker.SpellCheck();
     }
-    
+
     void AddButton_Click(object sender, EventArgs e) {
         this.SpellChecker.Dictionary.Add(this.SpellChecker.CurrentWord);
         this.SpellChecker.SpellCheck();
     }
-    
+
     void ReplaceButton_Click(object sender, EventArgs e) {
-    
+        Page.Trace.Write("ReplaceButton_Click");
+
+        this.SpellChecker.ReplaceWord(this.ReplacementWord.Text);
+        this.CurrentText.Value = this.SpellChecker.Text;
+        this.SpellChecker.SpellCheck();
     }
-    
+
     void ReplaceAllButton_Click(object sender, EventArgs e) {
         this.SpellChecker.ReplaceAllWord(this.ReplacementWord.Text);
         this.CurrentText.Value = this.SpellChecker.Text;
@@ -194,54 +212,10 @@
 </script>
 <html>
 <head>
-    <style type="text/css">BODY {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-A {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-INPUT {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-OPTION {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-SELECT {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-TABLE {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-TR {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-TD {
-	FONT-SIZE: 10pt; FONT-FAMILY: arial
-}
-INPUT {
-	BORDER-RIGHT: #636e8b 1px solid; BORDER-TOP: #636e8b 1px solid; BORDER-LEFT: #636e8b 1px solid; BORDER-BOTTOM: #636e8b 1px solid
-}
-SELECT {
-	COLOR: #000000
-}
-INPUT.suggestion {
-	WIDTH: 230px
-}
-SELECT.suggestion {
-	WIDTH: 230px
-}
-SELECT.suggestion OPTION {
-	WIDTH: 230px
-}
-INPUT.button {
-	BORDER-RIGHT: #636e8b 1px solid; BORDER-TOP: #636e8b 1px solid; BORDER-LEFT: #636e8b 1px solid; WIDTH: 100px; CURSOR: hand; BORDER-BOTTOM: #636e8b 1px solid; BACKGROUND-COLOR: #f3f0f0
-}
-TD.highlight {
-	BACKGROUND-COLOR: #dadada
-}
-</style>
+    <link href="spell.css" type="text/css" rel="stylesheet" />
+    <script language="JavaScript" src="spell.js"></script>
 </head>
-<body>
+<body id="SpellingBody" runat="server">
     <form id="SpellingForm" name="SpellingForm" method="post" runat="server">
         <input id="WordIndex" type="hidden" name="WordIndex" runat="server" />
         <input id="CurrentText" type="hidden" name="CurrentText" runat="server" />
@@ -257,40 +231,30 @@ TD.highlight {
                     </tr>
                     <tr>
                         <td valign="top" width="275">
-                            <i>Word Not in Dictionary:</i> 
+                            <i>Word Not in Dictionary:</i>
                             <br />
-                            <asp:Label id="CurrentWord" runat="server" forecolor="Red" font-bold="True"></asp:Label>
+                            <asp:Label id="CurrentWord" runat="server" font-bold="True" forecolor="Red"></asp:Label>
                             <br />
                             <br />
-                            <i>Change To:</i> 
+                            <i>Change To:</i>
                             <br />
-                            <asp:TextBox id="ReplacementWord" runat="server" Width="230px" Columns="30" EnableViewState="False" CssClass="suggestion"></asp:TextBox>
+                            <asp:TextBox id="ReplacementWord" runat="server" EnableViewState="False" CssClass="suggestion" Columns="30" Width="230px"></asp:TextBox>
                             <br />
-                            <i>Suggestions:</i> 
+                            <i>Suggestions:</i>
                             <br />
-                            <asp:ListBox id="Suggestions" runat="server" Width="230px" EnableViewState="False" CssClass="suggestion" Rows="8"></asp:ListBox>
+                            <asp:ListBox id="Suggestions" runat="server" EnableViewState="False" CssClass="suggestion" Width="230px" Rows="8"></asp:ListBox>
                         </td>
                         <td class="highlight" valign="top" align="middle" width="100">
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <asp:Button id="IgnoreButton" onclick="IgnoreButton_Click" runat="server" CssClass="button" Text="Ignore"></asp:Button>
+                                            <asp:Button id="IgnoreButton" onclick="IgnoreButton_Click" runat="server" EnableViewState="False" CssClass="button" Text="Ignore"></asp:Button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:Button id="IgnoreAllButton" onclick="IgnoreAllButton_Click" runat="server" CssClass="button" Text="Ignore All"></asp:Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Button id="AddButton" onclick="AddButton_Click" runat="server" CssClass="button" Text="Add"></asp:Button>
+                                            <asp:Button id="IgnoreAllButton" onclick="IgnoreAllButton_Click" runat="server" EnableViewState="False" CssClass="button" Text="Ignore All"></asp:Button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -300,12 +264,22 @@ TD.highlight {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:Button id="ReplaceButton" onclick="ReplaceButton_Click" runat="server" CssClass="button" Text="Replace"></asp:Button>
+                                            <asp:Button id="AddButton" onclick="AddButton_Click" runat="server" EnableViewState="False" CssClass="button" Text="Add"></asp:Button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:Button id="ReplaceAllButton" onclick="ReplaceAllButton_Click" runat="server" CssClass="button" Text="Replace All"></asp:Button>
+                                            <p></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Button id="ReplaceButton" onclick="ReplaceButton_Click" runat="server" EnableViewState="False" CssClass="button" Text="Replace"></asp:Button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Button id="ReplaceAllButton" onclick="ReplaceAllButton_Click" runat="server" EnableViewState="False" CssClass="button" Text="Replace All"></asp:Button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -324,14 +298,14 @@ TD.highlight {
                     </tr>
                     <tr>
                         <td align="middle" colspan="2">
-                            <font face="Arial" size="1">Powered by 
-                            <asp:HyperLink id="NetSpellLink" runat="server" NavigateUrl="http://www.loresoft.com/netspell" Font-Size="XX-Small" Target="_new">NetSpell</asp:HyperLink>
+                            <font face="Arial" size="1">Powered by
+                            <asp:HyperLink id="NetSpellLink" runat="server" Target="_new" Font-Size="XX-Small" NavigateUrl="http://www.loresoft.com/netspell">NetSpell</asp:HyperLink>
                             </font></td>
                     </tr>
                 </tbody>
             </table>
         </asp:panel>
-        <asp:panel id="SpellcheckComplete" runat="server" Visible="False" EnableViewState="False">
+        <asp:panel id="SpellcheckComplete" runat="server" EnableViewState="False" Visible="False">
             <table width="375">
                 <tbody>
                     <tr>
@@ -340,7 +314,7 @@ TD.highlight {
                                 <font face="Arial Black"></font>
                             </p>
                             <p>
-                                <font face="Arial Black" size="3">Spell Check Complete.</font> 
+                                <font face="Arial Black" size="3">Spell Check Complete.</font>
                             </p>
                             <p></p>
                         </td>

@@ -13,7 +13,7 @@ function checkSpelling(strBody, strURL) {
 	var oElement = document.getElementById(pubBody);
 	if (oElement) strTextArea = oElement.value;
 
-	var newWindow = window.open("","newWindow","height=320,width=400,scrollbars=1,resizable=1");
+	var newWindow = window.open("","newWindow","height=320,width=400,scrollbars=1,resizable=1,toolbars=1");
 
 	newWindow.document.open()
 	newWindow.document.writeln("<HTML>")
