@@ -104,21 +104,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Dictionary.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "OptionsForm.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "OptionsForm.resx"
-                    DependentUpon = "OptionsForm.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
                     RelPath = "Spelling.bmp"
                     BuildAction = "EmbeddedResource"
                 />
@@ -133,59 +118,99 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "SpellingForm.cs"
+                    RelPath = "SpellingEventArgs.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Word.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\WordDictionary.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\WordEnumerator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixEntry.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixEntryCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixEntryEnumerator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixRuleEnumerator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Affix\AffixUtility.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Phonetic\PhoneticRule.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Phonetic\PhoneticRuleCollection.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Phonetic\PhoneticRuleEnumerator.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Dictionary\Phonetic\PhoneticUtility.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Forms\OptionsForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "SpellingForm.resx"
-                    DependentUpon = "SpellingForm.cs"
+                    RelPath = "Forms\OptionsForm.resx"
+                    DependentUpon = "OptionsForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File
-                    RelPath = "WordEventArgs.cs"
-                    SubType = "Code"
+                    RelPath = "Forms\SpellingForm.cs"
+                    SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Affix\AffixEntry.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Affix\AffixEntryCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Affix\AffixRule.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Affix\AffixRuleCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Phonetic\PhoneticRule.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Phonetic\PhoneticRuleCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "WordList\Word.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "WordList\WordCollection.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
+                    RelPath = "Forms\SpellingForm.resx"
+                    DependentUpon = "SpellingForm.cs"
+                    BuildAction = "EmbeddedResource"
                 />
             </Include>
         </Files>

@@ -10,8 +10,11 @@ using System.Diagnostics;
 using System.Windows.Forms.Design;
 using System.Drawing;
 using System.Drawing.Design;
-using NetSpell.SpellChecker.Affix;
-using NetSpell.SpellChecker.Phonetic;
+
+using NetSpell.SpellChecker.Forms;
+using NetSpell.SpellChecker.Dictionary;
+using NetSpell.SpellChecker.Dictionary.Affix;
+using NetSpell.SpellChecker.Dictionary.Phonetic;
 
 namespace NetSpell.SpellChecker
 {
@@ -23,7 +26,7 @@ namespace NetSpell.SpellChecker
 	public class Spelling : System.ComponentModel.Component
 	{
 
-		#region Global Regex
+#region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
 		private Regex _htmlRegex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>", RegexOptions.Compiled);
@@ -33,13 +36,13 @@ namespace NetSpell.SpellChecker
 		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
 		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
 		private MatchCollection _words;
-		#endregion
+#endregion
 
-		#region private variables
+#region private variables
 		private System.ComponentModel.Container components = null;
-		#endregion
+#endregion
 
-		#region Events
+#region Events
 		/// <summary>
 		///     This event is fired when word is detected two times in a row
 		/// </summary>
@@ -61,7 +64,7 @@ namespace NetSpell.SpellChecker
 		///     This represents the delegate method prototype that
 		///     event receivers must implement
 		/// </summary>
-		public delegate void DoubledWordEventHandler(object sender, WordEventArgs args);
+		public delegate void DoubledWordEventHandler(object sender, SpellingEventArgs args);
 
 		/// <summary>
 		///     This represents the delegate method prototype that
@@ -73,13 +76,13 @@ namespace NetSpell.SpellChecker
 		///     This represents the delegate method prototype that
 		///     event receivers must implement
 		/// </summary>
-		public delegate void MisspelledWordEventHandler(object sender, WordEventArgs args);
+		public delegate void MisspelledWordEventHandler(object sender, SpellingEventArgs args);
 
 		/// <summary>
 		///     This is the method that is responsible for notifying
 		///     receivers that the event occurred
 		/// </summary>
-		protected virtual void OnDoubledWord(WordEventArgs e)
+		protected virtual void OnDoubledWord(SpellingEventArgs e)
 		{
 			if (DoubledWord != null)
 			{
@@ -103,7 +106,7 @@ namespace NetSpell.SpellChecker
 		///     This is the method that is responsible for notifying
 		///     receivers that the event occurred
 		/// </summary>
-		protected virtual void OnMisspelledWord(WordEventArgs e)
+		protected virtual void OnMisspelledWord(SpellingEventArgs e)
 		{
 			if (MisspelledWord != null)
 			{
@@ -111,9 +114,9 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region Constructors
+#region Constructors
 		/// <summary>
 		///     Initializes a new instance of the SpellCheck class
 		/// </summary>
@@ -134,17 +137,9 @@ namespace NetSpell.SpellChecker
 			InitializeComponent();
 		}
 
-		#endregion
+#endregion
 
-		#region private methods
-		/// <summary>
-		///     Calculates the position of html tags in the Text property
-		/// </summary>
-		private void CalculateHtml()
-		{
-			// splits the text into words
-			_htmlTags = _htmlRegex.Matches(_Text.ToString());
-		}
+#region private methods
 
 		/// <summary>
 		///     Calculates the words from the Text property
@@ -195,6 +190,14 @@ namespace NetSpell.SpellChecker
 			}
 			return true;
 		}
+		/// <summary>
+		///     Calculates the position of html tags in the Text property
+		/// </summary>
+		private void MarkHtml()
+		{
+			// splits the text into words
+			_htmlTags = _htmlRegex.Matches(_Text.ToString());
+		}
 
 		/// <summary>
 		///     Resets the public properties
@@ -209,9 +212,34 @@ namespace NetSpell.SpellChecker
 			_Suggestions.Clear();
 		}
 
-		#endregion
+#endregion
 
-		#region ISpell Suggetion methods
+#region ISpell Near Miss Suggetion methods
+
+		/// <summary>
+		///		swap out each char one by one and try all the tryme
+		///		chars in its place to see if that makes a good word
+		/// </summary>
+		private void BadChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				char[] tryme = this.Dictionary.TryCharacters.ToCharArray();
+				for (int x = 0; x < tryme.Length; x++)
+				{
+					tempWord[i] = tryme[x];
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						Word ws = new Word();
+						ws.Value = tempWord.ToString().ToLower();
+						ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
+				
+						tempSuggestion.Add(ws);
+					}
+				}			 
+			}
+		}
 
 		/// <summary>
 		///     try omitting one char of word at a time
@@ -227,8 +255,9 @@ namespace NetSpell.SpellChecker
 
 					if (this.TestWord(tempWord.ToString())) 
 					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
+						Word ws = new Word();
+						ws.Value = tempWord.ToString().ToLower();
+						ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
 				
 						tempSuggestion.Add(ws);
 					}
@@ -242,22 +271,24 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		private void ForgotChar(ref ArrayList tempSuggestion)
 		{
-			//TODO: Fix
+			char[] tryme = this.Dictionary.TryCharacters.ToCharArray();
+				
 			for (int i = 0; i < _CurrentWord.Length; i++)
 			{
-				/*for (int x = 0; x < tryme.Length; x++)
+				for (int x = 0; x < tryme.Length; x++)
 				{
 					StringBuilder tempWord = new StringBuilder(_CurrentWord);
 				
 					tempWord.Insert(i, tryme[x]);
 					if (this.TestWord(tempWord.ToString())) 
 					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-					
+						Word ws = new Word();
+						ws.Value = tempWord.ToString().ToLower();
+						ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
+				
 						tempSuggestion.Add(ws);
 					}
-				}	*/			 
+				}			 
 			}
 		}
 
@@ -267,12 +298,12 @@ namespace NetSpell.SpellChecker
 		/// </summary>
 		private void ReplaceChars(ref ArrayList tempSuggestion)
 		{
-			//TODO: Fix
-			/*for (int i = 0; i < replacementChars.Length; i++)
+			ArrayList replacementChars = this.Dictionary.ReplaceCharacters;
+			for (int i = 0; i < replacementChars.Count; i++)
 			{
-				int split = replacementChars[i].IndexOf(' ');
-				string key = replacementChars[i].Substring(0, split);
-				string replacement = replacementChars[i].Substring(split+1);
+				int split = ((string)replacementChars[i]).IndexOf(' ');
+				string key = ((string)replacementChars[i]).Substring(0, split);
+				string replacement = ((string)replacementChars[i]).Substring(split+1);
 
 				int pos = _CurrentWord.IndexOf(key);
 				while (pos > -1)
@@ -283,14 +314,15 @@ namespace NetSpell.SpellChecker
 
 					if (this.TestWord(tempWord))
 					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord));
-					
+						Word ws = new Word();
+						ws.Value = tempWord.ToString().ToLower();
+						ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
+				
 						tempSuggestion.Add(ws);
 					}
 					pos = _CurrentWord.IndexOf(key, pos+1);
 				}
-			}*/
+			}
 		}
 
 		/// <summary>
@@ -308,8 +340,10 @@ namespace NetSpell.SpellChecker
 
 				if (this.TestWord(tempWord.ToString())) 
 				{
-					WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-						WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+					Word ws = new Word();
+					ws.Value = tempWord.ToString().ToLower();
+					ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
 				
 					tempSuggestion.Add(ws);
 				}	 
@@ -330,41 +364,20 @@ namespace NetSpell.SpellChecker
 				if (this.TestWord(firstWord) && this.TestWord(secondWord)) 
 				{
 					string tempWord = firstWord + " " + secondWord;
-					WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
-						WordSimilarity(_CurrentWord, tempWord));
+					
+					Word ws = new Word();
+					ws.Value = tempWord.ToString().ToLower();
+					ws.EditDistance = this.EditDistance(_CurrentWord, tempWord.ToString());
 				
 					tempSuggestion.Add(ws);
 				}	 
 			}
 		}
 
-		/// <summary>
-		///		swap out each char one by one and try all the tryme
-		///		chars in its place to see if that makes a good word
-		/// </summary>
-		public void BadChar(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < _CurrentWord.Length; i++)
-			{
-				StringBuilder tempWord = new StringBuilder(_CurrentWord);
-				//TODO: fix
-				/*for (int x = 0; x < tryme.Length; x++)
-				{
-					tempWord[i] = tryme[x];
-					if (this.TestWord(tempWord.ToString())) 
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-					
-						tempSuggestion.Add(ws);
-					}
-				}*/				 
-			}
-		}
+#endregion
 
-		#endregion
+#region public methods
 
-		#region public methods
 		/// <summary>
 		///     Deletes the CurrentWord from the Text Property
 		/// </summary>
@@ -375,6 +388,66 @@ namespace NetSpell.SpellChecker
 
 			_Text.Remove(index, length);
 			this.CalculateWords();
+		}
+		
+		/// <summary>
+		///     Calculates the minimum number of change, inserts or deletes
+		///     required to change firstWord into secondWord
+		/// </summary>
+		/// <param name="firstWord" type="string">
+		///     <para>
+		///         The first word to calculate
+		///     </para>
+		/// </param>
+		/// <param name="secondWord" type="string">
+		///     <para>
+		///         The second word to calculate
+		///     </para>
+		/// </param>
+		/// <returns>
+		///     The number of edits to make firstWord equal secondWord
+		/// </returns>
+		public int EditDistance(string firstWord, string secondWord)
+		{
+
+			// i.e. 2-D array
+			Array matrix = Array.CreateInstance(typeof(int), firstWord.Length+1, secondWord.Length+1);
+
+			// boundary conditions
+			matrix.SetValue(0, 0, 0); 
+
+			for(int j=1; j <= secondWord.Length; j++)
+			{
+				// boundary conditions
+				int val = (int)matrix.GetValue(0,j-1);
+				matrix.SetValue(val+1, 0, j);
+			}
+
+			// outer loop
+			for(int i=1; i <= firstWord.Length; i++)                            
+			{ 
+				// boundary conditions
+				int val = (int)matrix.GetValue(i-1, 0);
+				matrix.SetValue(val+1, i, 0); 
+
+				// inner loop
+				for(int j=1; j <= secondWord.Length; j++)                         
+				{ 
+					int diag = (int)matrix.GetValue(i-1, j-1);
+					if(firstWord.Substring(i-1, 1) != secondWord.Substring(j-1, 1)) 
+					{
+						diag++;
+					}
+
+					int deletion = (int)matrix.GetValue(i-1, j);
+					int insertion = (int)matrix.GetValue(i, j-1);
+					int match = Math.Min(deletion+1, insertion+1);		
+					matrix.SetValue(Math.Min(diag, match), i, j);
+				}//for j
+			}//for i
+
+			return (int)matrix.GetValue(firstWord.Length, secondWord.Length);
+
 		}
 
 		/// <summary>
@@ -471,79 +544,6 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
-		///     A code that represents how the word sounds phonetically
-		///     based on the way that it's spelled
-		/// </summary>
-		/// <param name="word" type="string">
-		///     <para>
-		///         The word to generate soundex code on
-		///     </para>
-		/// </param>
-		/// <remarks>
-		///		* Made obsolete by DoubleMetaphone class. This method is
-		///		no longer used.
-		///		
-		///		This function is based off the Poor Man's Spell Checker
-		///		by Sam Kirchmeier.  
-		///		
-		///		http://www.kirchmeier.org/code/pmsc/
-		/// </remarks>
-		/// <returns>
-		///     The soundex code for the word
-		/// </returns>
-		public string Soundex(string word)
-		{
-			StringBuilder sb = new StringBuilder();
-			//add first letter
-			sb.Append(word.Substring(0,1).ToUpper()); 
-			// loop through chars assigning code
-			for (int i = 1; i < word.Length; i++) 
-			{
-				switch (word.Substring(i,1).ToUpper())
-				{
-					case "B": 
-					case "P":
-						sb.Append("1");
-						break;
-					case "F": 
-					case "V":
-						sb.Append("2");
-						break;
-					case "C": 
-					case "K": 
-					case "S":
-						sb.Append("3");
-						break;
-					case "G": 
-					case "J":
-						sb.Append("4");
-						break;
-					case "Q": 
-					case "X": 
-					case "Z":
-						sb.Append("5");
-						break;
-					case "D": 
-					case "T":
-						sb.Append("6");
-						break;
-					case "L":
-						sb.Append("7");
-						break;
-					case "M": 
-					case "N":
-						sb.Append("8");
-						break;
-					case "R":
-						sb.Append("9");
-						break;
-				}
-			}
-			return sb.ToString();
-		}
-
-		
-		/// <summary>
 		///     Spell checks the words in the <see cref="Text"/> property starting
 		///     at the <see cref="WordIndex"/> position
 		/// </summary>
@@ -579,7 +579,7 @@ namespace NetSpell.SpellChecker
 							else if(!_IgnoreList.Contains(currentWord))
 							{
 								misspelledWord = true;
-								this.OnMisspelledWord(new WordEventArgs(currentWord, i, _words[i].Index));		//raise event
+								this.OnMisspelledWord(new SpellingEventArgs(currentWord, i, _words[i].Index));		//raise event
 								break;
 							}
 						}
@@ -588,7 +588,7 @@ namespace NetSpell.SpellChecker
 							if(_words[i-1].Value.ToString() == currentWord) 
 							{
 								misspelledWord = true;
-								this.OnDoubledWord(new WordEventArgs(currentWord, i, _words[i].Index));		//raise event
+								this.OnDoubledWord(new SpellingEventArgs(currentWord, i, _words[i].Index));		//raise event
 								break;
 							}
 						}
@@ -689,46 +689,52 @@ namespace NetSpell.SpellChecker
 		public void Suggest()
 		{
 			ArrayList tempSuggestion = new ArrayList();
-			//TODO: fix
-			/*_meta.GenerateMetaphone(_CurrentWord);
-
-			string priSearch = string.Concat("|", _meta.PrimaryCode, "|");
-			string sndSearch = string.Concat("|", _meta.SecondaryCode, "|");
-
-			// get suggestions by sound
-			foreach (Dictionary dic in _Dictionaries)
+			if (this.SuggestionMode == SuggestionEnum.PhoneticNearMiss || this.SuggestionMode == SuggestionEnum.Phonetic)
 			{
-				foreach (string word in dic.WordList)
+				//TODO: fix
+				/*_meta.GenerateMetaphone(_CurrentWord);
+
+				string priSearch = string.Concat("|", _meta.PrimaryCode, "|");
+				string sndSearch = string.Concat("|", _meta.SecondaryCode, "|");
+
+				// get suggestions by sound
+				foreach (Dictionary dic in _Dictionaries)
 				{
-					if(word.IndexOf(priSearch) > -1 || word.IndexOf(sndSearch) > -1)
+					foreach (string word in dic.WordList)
 					{
-						string tempWord = word.Substring(0, word.IndexOf("|"));
-						tempSuggestion.Add(new WordSuggestion(tempWord, 
-							WordSimilarity(_CurrentWord, tempWord)));
-					}
+						if(word.IndexOf(priSearch) > -1 || word.IndexOf(sndSearch) > -1)
+						{
+							string tempWord = word.Substring(0, word.IndexOf("|"));
+							tempSuggestion.Add(new WordSuggestion(tempWord, 
+								WordSimilarity(_CurrentWord, tempWord)));
+						}
+					} 
 				} 
-			} 
-			*/
-			// suggestions for a typical fault of spelling, that
-			// differs with more, than 1 letter from the right form.
-			this.ReplaceChars(ref tempSuggestion);
+				*/
+			}
+			if (this.SuggestionMode == SuggestionEnum.PhoneticNearMiss || this.SuggestionMode == SuggestionEnum.NearMiss)
+			{
+				// suggestions for a typical fault of spelling, that
+				// differs with more, than 1 letter from the right form.
+				this.ReplaceChars(ref tempSuggestion);
 
-			// swap out each char one by one and try all the tryme
-			// chars in its place to see if that makes a good word
-			this.BadChar(ref tempSuggestion);
+				// swap out each char one by one and try all the tryme
+				// chars in its place to see if that makes a good word
+				this.BadChar(ref tempSuggestion);
 
-			// try omitting one char of word at a time
-			this.ExtraChar(ref tempSuggestion);
+				// try omitting one char of word at a time
+				this.ExtraChar(ref tempSuggestion);
 
-			// try inserting a tryme character before every letter
-			this.ForgotChar(ref tempSuggestion);
+				// try inserting a tryme character before every letter
+				this.ForgotChar(ref tempSuggestion);
 
-			// split the string into two pieces after every char
-			// if both pieces are good words make them a suggestion
-			this.TwoWords(ref tempSuggestion);
+				// split the string into two pieces after every char
+				// if both pieces are good words make them a suggestion
+				this.TwoWords(ref tempSuggestion);
 
-			// try swapping adjacent chars one by one
-			this.SwapChar(ref tempSuggestion);
+				// try swapping adjacent chars one by one
+				this.SwapChar(ref tempSuggestion);
+			}
 
 			tempSuggestion.Sort();  // sorts by word sim score
 			_Suggestions.Clear(); 
@@ -737,11 +743,13 @@ namespace NetSpell.SpellChecker
 
 			for (int i = 0; i < tempSuggestion.Count && _Suggestions.Count < _MaxSuggestions; i++)
 			{
-				if (((WordSuggestion)tempSuggestion[i]).Word != lastWord)
+				// looking for duplicates
+				if (((Word)tempSuggestion[i]).Value != lastWord)
 				{
-					_Suggestions.Add(((WordSuggestion)tempSuggestion[i]).Word);
+					// populating the suggestion list
+					_Suggestions.Add(((Word)tempSuggestion[i]).Value);
 				}
-				lastWord = ((WordSuggestion)tempSuggestion[i]).Word;
+				lastWord = ((Word)tempSuggestion[i]).Value;
 			}
 
 		} // suggest
@@ -759,84 +767,15 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		public bool TestWord(string word)
 		{
-			// TODO: fix
-			/*_meta.GenerateMetaphone(word);
-			string tempWord = string.Format("{0}|{1}|{2}|", 
-				word, _meta.PrimaryCode, _meta.SecondaryCode);
-
-			// search lower case 
-			string lowerWord = string.Format("{0}|{1}|{2}|", 
-				word.ToLower(), _meta.PrimaryCode, _meta.SecondaryCode);
-				
-
-			foreach (Dictionary dict in _Dictionaries)
-			{
-				if (dict.WordList.BinarySearch(tempWord) >= 0) return true;
-				if (dict.WordList.BinarySearch(lowerWord) >= 0) return true;
-			}
-			*/
-			return false;
+			return this.Dictionary.Contains(word);
 		}
 
-		/// <summary>
-		///     Rates the words similarity based on two criteria: length, and letter content. 
-		///     SimilarWord is awarded some points if it is about the same length as the word. 
-		///     It is also awarded one point for each letter that they share. 
-		/// </summary>
-		/// <param name="word" type="string">
-		///     <para>
-		///         The base word to compare SimilarWord to 
-		///     </para>
-		/// </param>
-		/// <param name="similarWord" type="string">
-		///     <para>
-		///         The word to rate similarity with
-		///     </para>
-		/// </param>
-		/// <remarks>
-		///		This function is based off the Poor Man's Spell Checker
-		///		by Sam Kirchmeier.  
-		///		
-		///		http://www.kirchmeier.org/code/pmsc/
-		/// </remarks>
-		/// <returns>
-		///     The score of how similar the words are
-		/// </returns>
-		public float WordSimilarity(string word, string similarWord)
-		{
-			
-			float maxScore = 3F;
-			float perfectScore = word.Length + word.Length + maxScore;
-			// score for length
-			float simScore = maxScore - Math.Abs(word.Length - similarWord.Length);
+#endregion
 
-			for (int i = 0; i < word.Length; i++)
-			{
-				if(i < similarWord.Length) 
-				{
-					// score for same letter starting from front
-					if(word.Substring(i,1).ToLower() 
-						== similarWord.Substring(i,1).ToLower()) 
-					{
-						simScore++;
-					}
-					// score for same letter starting from back
-					if(word.Substring(word.Length-1-i,1).ToLower() 
-						== similarWord.Substring(similarWord.Length-1-i,1).ToLower()) 
-					{
-						simScore++;
-					}
-				}
-			}
-			return simScore/perfectScore;
-		}
-
-		#endregion
-
-		#region public properties
+#region public properties
 
 		private string _CurrentWord = "";
-		private Dictionary _Dictionary = new Dictionary();
+		private WordDictionary _Dictionary = new WordDictionary();
 		private bool _IgnoreAllCapsWords = true;
 		private bool _IgnoreHtml = true;
 		private ArrayList _IgnoreList = new ArrayList();
@@ -846,12 +785,38 @@ namespace NetSpell.SpellChecker
 		private string _ReplacementWord = "";
 		private bool _ShowDialog = true;
 		private SpellingForm _spellingForm;
+		private SuggestionEnum _SuggestionMode = SuggestionEnum.PhoneticNearMiss;
 		private ArrayList _Suggestions = new ArrayList();
 		private StringBuilder _Text = new StringBuilder();
-		private Dictionary _UserDictionary = new Dictionary();
 		private int _WordCount = 0;
 		private int _WordIndex = 0;
 
+
+		/// <summary>
+		///     The suggestion stratagy to use when generating suggestions
+		/// </summary>
+		public enum SuggestionEnum
+		{
+			/// <summary>
+			///     Combines the phonetic and near miss stratagies
+			/// </summary>
+			PhoneticNearMiss,
+			/// <summary>
+			///     The phonetic stratagy generates suggestions by word sound
+			/// </summary>
+			/// <remarks>
+			///		This techneque was developed by the open source project ASpell.net
+			/// </remarks>
+			Phonetic,
+			/// <summary>
+			///     The near miss stratagy generates suggestion by replacing, 
+			///     removing, adding chars to make words
+			/// </summary>
+			/// <remarks>
+			///     This techneque was developed by the open source spell checker ISpell
+			/// </remarks>
+			NearMiss
+		}
 
 
 		/// <summary>
@@ -864,7 +829,10 @@ namespace NetSpell.SpellChecker
 			get	{return _CurrentWord;}
 		}
 
-		public Dictionary Dictionary
+		/// <summary>
+		///     The WordDictionary object to use when spell checking
+		/// </summary>
+		public WordDictionary Dictionary
 		{
 			get {return _Dictionary;}
 			set {_Dictionary = value;}
@@ -991,6 +959,15 @@ namespace NetSpell.SpellChecker
 		}
 
 		/// <summary>
+		///     The suggestion stratagy to use when generating suggestions
+		/// </summary>
+		public SuggestionEnum SuggestionMode
+		{
+			get {return _SuggestionMode;}
+			set {_SuggestionMode = value;}
+		}
+
+		/// <summary>
 		///     An array of word suggestions for the correct spelling of the misspelled word
 		/// </summary>
 		/// <seealso cref="Suggest"/>
@@ -1015,16 +992,9 @@ namespace NetSpell.SpellChecker
 			{
 				_Text = new StringBuilder(value);
 				this.CalculateWords();
-				this.CalculateHtml();
+				this.MarkHtml();
 				this.Reset();
 			}
-		}
-
-
-		public Dictionary UserDictionary
-		{
-			get {return _UserDictionary;}
-			set {_UserDictionary = value;}
 		}
 
 
@@ -1049,50 +1019,9 @@ namespace NetSpell.SpellChecker
 			set {_WordIndex = value;}
 		}
 
-		#endregion
+#endregion
 
-		#region private class
-		/// <summary>
-		///     This class is used to sort suggestions
-		/// </summary>
-		private class WordSuggestion : IComparable 
-		{
-			private float _SimilarScore;
-			private string _Word;
-
-			public WordSuggestion(string word, float similarScore)
-			{
-				_Word = word;
-				_SimilarScore = similarScore;
-			}
-
-			/// <summary>
-			///     Method inherited from the IComparable interface
-			/// </summary>
-			/// <remarks>
-			///		Note: the compare sorts in desc order, largest score first
-			/// </remarks>
-			public int CompareTo(object obj)
-			{
-				int result = this.SimilarScore.CompareTo(((WordSuggestion)obj).SimilarScore);
-				return result * -1; // sorts desc order
-			}
-			public float SimilarScore
-			{
-				get {return _SimilarScore;}
-				set {_SimilarScore = value;}
-			}
-			public string Word
-			{
-				get {return _Word;}
-				set {_Word = value;}
-			}
-
-		}
-		#endregion
-
-
-		#region Component Designer generated code
+#region Component Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -1101,12 +1030,7 @@ namespace NetSpell.SpellChecker
 		{
 			components = new System.ComponentModel.Container();
 		}
-		#endregion
-
-
-
-
-
+#endregion
 
 	} 
 }

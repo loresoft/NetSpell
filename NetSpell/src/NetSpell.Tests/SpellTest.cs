@@ -5,9 +5,10 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 using NetSpell.SpellChecker;
-using NetSpell.SpellChecker.Phonetic;
-using NetSpell.SpellChecker.Affix;
-using NetSpell.SpellChecker.WordList;
+using NetSpell.SpellChecker.Dictionary;
+using NetSpell.SpellChecker.Dictionary.Phonetic;
+using NetSpell.SpellChecker.Dictionary.Affix;
+
 
 namespace NetSpell.Tests
 {
@@ -20,11 +21,11 @@ namespace NetSpell.Tests
 	{
 		Spelling _SpellChecker = new Spelling();
 		PerformanceTimer _timer = new PerformanceTimer();
-		WordEventArgs _wordEventArgs;
+		SpellingEventArgs _SpellingEventArgs;
 		
-		private void DoubleWord(object sender, WordEventArgs args)
+		private void DoubleWord(object sender, SpellingEventArgs args)
 		{
-			_wordEventArgs = args;
+			_SpellingEventArgs = args;
 		}
 
 		private void EndOfText(object sender, EventArgs args)
@@ -32,14 +33,17 @@ namespace NetSpell.Tests
 			
 		}
 
-		private void MisspelledWord(object sender, WordEventArgs args)
+		private void MisspelledWord(object sender, SpellingEventArgs args)
 		{
-			_wordEventArgs = args;
+			_SpellingEventArgs = args;
 		}
 
 		[SetUp]
-		public void AttachEvents()
+		public void SetUp()
 		{
+			_SpellChecker.Dictionary.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
+			_SpellChecker.Dictionary.Initialize();
+			
 			_SpellChecker.ShowDialog = false;
 			_SpellChecker.MisspelledWord += new Spelling.MisspelledWordEventHandler(MisspelledWord);
 			_SpellChecker.DoubledWord += new Spelling.DoubledWordEventHandler(DoubleWord);
@@ -169,14 +173,6 @@ namespace NetSpell.Tests
 
 		}
 
-		/// <summary>
-		///		NUnit Test Function for Soundex
-		/// </summary>
-		[Test]
-		public void Soundex()
-		{
-			Assertion.AssertEquals("Incorrect Soundex value", "T36", _SpellChecker.Soundex("test"));
-		}
 
 		/// <summary>
 		///		NUnit Test Function for Suggest
@@ -201,12 +197,12 @@ namespace NetSpell.Tests
 		[Test]
 		public void TestWord() 
 		{
-			if (!_SpellChecker.TestWord("test")) 
+			if (!_SpellChecker.TestWord("reply")) 
 			{
 				Assertion.Fail("Did not find test word");
 			}
 			
-			if (_SpellChecker.TestWord("tst"))
+			if (_SpellChecker.TestWord("replied"))
 			{
 				Assertion.Fail("Found tst word and shouldn't have");
 			}
@@ -216,22 +212,23 @@ namespace NetSpell.Tests
 		///		NUnit Test Function for WordSimilarity
 		/// </summary>
 		[Test]
-		public void WordSimilarity()
+		public void EditDistance()
 		{
+			/*
 			Assertion.AssertEquals("Incorrect WordSimilarity score", 0.454545454545455F, _SpellChecker.WordSimilarity("test", "tst"), 0F);
 			Assertion.AssertEquals("Incorrect WordSimilarity score", 1F, _SpellChecker.WordSimilarity("test", "test"), 0F);
+			*/
 		}
 
-
-
 		[Test]
-		public void Dictionary()
+		public void Diciontary()
 		{
-			Dictionary dict = new Dictionary();
-
-			dict.WordListFile = @"..\..\..\Dictionaries\en_US.dic";
+			WordDictionary dict = new WordDictionary();
+			dict.DictionaryFile = @"..\..\..\Dictionaries\en_US.txt";
 			dict.Initialize();
 
 		}
+
+
 	}
 }

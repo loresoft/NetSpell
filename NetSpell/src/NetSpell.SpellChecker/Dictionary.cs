@@ -6,7 +6,6 @@ using System.IO;
 
 using NetSpell.SpellChecker.Affix;
 using NetSpell.SpellChecker.Phonetic;
-using NetSpell.SpellChecker.WordList;
 
 namespace NetSpell.SpellChecker
 {
@@ -18,7 +17,7 @@ namespace NetSpell.SpellChecker
 
 		private string _AffixFile = "";
 		private AffixRuleCollection _AffixRules = new AffixRuleCollection();
-		private WordCollection _BaseWords = new WordCollection();
+		private Hashtable _BaseWords = new Hashtable();
 		private bool _Initialized = false;
 		private string _PhoneticFile = "";
 		private PhoneticRuleCollection _PhoneticRules = new PhoneticRuleCollection();
@@ -335,7 +334,7 @@ namespace NetSpell.SpellChecker
 		/// <summary>
 		///     The base words for the dictionary
 		/// </summary>
-		public WordCollection BaseWords
+		public Hashtable BaseWords
 		{
 			get {return _BaseWords;}
 			set {_BaseWords = value;}
