@@ -9,7 +9,7 @@
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "Demo.WinForm.VB"
+                AssemblyName = "Demo.WinForm.VBnet"
                 AssemblyOriginatorKeyFile = ""
                 AssemblyOriginatorKeyMode = "None"
                 DefaultClientScript = "JScript"
@@ -20,8 +20,8 @@
                 OptionCompare = "Binary"
                 OptionExplicit = "On"
                 OptionStrict = "On"
-                RootNamespace = "Demo.WinForm.VB"
-                StartupObject = "Demo.WinForm.VB.DemoForm"
+                RootNamespace = "Demo.WinForm.VBnet"
+                StartupObject = "Demo.WinForm.VBnet.DemoForm"
             >
                 <Config
                     Name = "Debug"
@@ -79,7 +79,7 @@
                 />
                 <Reference
                     Name = "netspell.spellchecker"
-                    AssemblyName = "netspell.spellchecker"
+                    AssemblyName = "NetSpell.SpellChecker"
                     HintPath = "..\..\bin\netspell.spellchecker.dll"
                 />
             </References>
@@ -117,8 +117,8 @@
             </Include>
         </Files>
         <UserProperties
-            XMLCommentsActionBuild = "-1"
             XMLCommentsOutputFile = ""
+            XMLCommentsActionBuild = "-1"
         />
     </VisualBasic>
 </VisualStudioProject>
