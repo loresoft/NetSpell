@@ -4,8 +4,8 @@
 <%@ import Namespace="NetSpell.SpellChecker.Dictionary" %>
 <script runat="server">
 
-    Dim SpellChecker As NetSpell.SpellChecker.Spelling
-    Dim WordDictionary As NetSpell.SpellChecker.Dictionary.WordDictionary
+    Protected WithEvents SpellChecker As NetSpell.SpellChecker.Spelling
+    Protected WithEvents WordDictionary As NetSpell.SpellChecker.Dictionary.WordDictionary
 
     Private Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
          ' if modal frame, quit
@@ -65,13 +65,9 @@
          Me.SpellChecker.ShowDialog = False
          Me.SpellChecker.Dictionary = Me.WordDictionary
 
-         ' adding events
-         Me.SpellChecker.MisspelledWord += New NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(Me.SpellChecker_MisspelledWord)
-         Me.SpellChecker.EndOfText += New NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(Me.SpellChecker_EndOfText)
-         Me.SpellChecker.DoubledWord += New NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(Me.SpellChecker_DoubledWord)
     End Sub
 
-    Private Sub SpellChecker_DoubledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)
+    Private Sub SpellChecker_DoubledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs) Handles SpellChecker.DoubledWord
          Me.SaveValues()
          Me.CurrentWord.Text = Me.SpellChecker.CurrentWord
          Me.Suggestions.Items.Clear()
@@ -80,14 +76,14 @@
          Me.StatusText.Text = String.Format("Word: {0} of {1}", Me.SpellChecker.WordIndex + 1, Me.SpellChecker.WordCount)
     End Sub
 
-    Private Sub SpellChecker_EndOfText(ByVal sender As Object, ByVal e As System.EventArgs)
+    Private Sub SpellChecker_EndOfText(ByVal sender As Object, ByVal e As System.EventArgs) Handles SpellChecker.EndOfText
          Me.SaveValues()
          Me.SpellMode.Value = "end"
          Me.DisableButtons()
          Me.StatusText.Text = String.Format("Word: {0} of {1}", Me.SpellChecker.WordIndex + 1, Me.SpellChecker.WordCount)
     End Sub
 
-    Private Sub SpellChecker_MisspelledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)
+    Private Sub SpellChecker_MisspelledWord(ByVal sender As Object, ByVal e As NetSpell.SpellChecker.SpellingEventArgs)  Handles SpellChecker.MisspelledWord
          Me.SaveValues()
          Me.CurrentWord.Text = Me.SpellChecker.CurrentWord
          Me.SpellChecker.Suggest()
@@ -238,7 +234,7 @@
         <input id="ElementIndex" type="hidden" value="-1" name="ElementIndex" runat="server" />
         <input id="SpellMode" type="hidden" value="load" name="SpellMode" runat="server" />
         <asp:panel id="ModalFrame" runat="server" enableviewstate="False" visible="False">
-            <iframe id="SpellCheckFrame" hidefocus="hidefocus" name="SpellCheckFrame" src="SpellCheck.aspx" frameborder="0" width="100%" scrolling="no" height="100%" runat="server"></iframe>
+            <iframe id="SpellCheckFrame" hidefocus="hidefocus" name="SpellCheckFrame" src="SpellCheck.aspx" frameborder="0" width="100%" scrolling="yes" height="100%" runat="server"></iframe>
         </asp:panel>
         <asp:panel id="SuggestionForm" runat="server" enableviewstate="False" visible="true">
             <table cellspacing="0" cellpadding="5" width="100%">
