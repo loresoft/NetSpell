@@ -316,7 +316,7 @@
             Required designer variable.
             </summary>
         </member>
-        <member name="M:NetSpell.SpellChecker.OptionForm.#ctor(NetSpell.SpellChecker.Spelling)">
+        <member name="M:NetSpell.SpellChecker.OptionForm.#ctor(NetSpell.SpellChecker.Spelling@)">
             <summary>
             	Default Constroctor
             </summary>
@@ -330,6 +330,56 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.AssemblyInfo">
+            <summary>
+            Summary description 
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.CodeBase">
+            <summary>
+            CodeBase of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Company">
+            <summary>
+            Company of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Copyright">
+            <summary>
+            Copyright of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Description">
+            <summary>
+            Description of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.FullName">
+            <summary>
+            	FullName of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Name">
+            <summary>
+            Name of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Product">
+            <summary>
+            Product of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Title">
+            <summary>
+            Title of Assembly
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.AssemblyInfo.Version">
+            <summary>
+            Version of Assembly
             </summary>
         </member>
         <member name="T:NetSpell.SpellChecker.Spelling">
@@ -829,6 +879,18 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.AttachEvents">
+            <summary>
+                called by spell checker to enable this 
+                form to handle spell checker events
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.SpellingForm.DetachEvents">
+            <summary>
+                called by spell checker to disable this 
+                form from handling spell checker events
             </summary>
         </member>
     </members>

@@ -44,7 +44,6 @@ namespace NetSpell.SpellChecker
 		private System.Windows.Forms.StatusBarPanel statusPaneCount;
 		private System.Windows.Forms.StatusBarPanel statusPaneIndex;
 		private System.Windows.Forms.StatusBarPanel statusPaneWord;
-		private System.Windows.Forms.Button SuggestButton;
 		private System.Windows.Forms.ListBox SuggestionList;
 		private System.Windows.Forms.Label SuggestionsLabel;
 		private System.Windows.Forms.RichTextBox TextBeingChecked;
@@ -79,8 +78,12 @@ namespace NetSpell.SpellChecker
 
 		private void OptionsButton_Click(object sender, System.EventArgs e)
 		{
-			OptionForm options = new OptionForm(this.SpellChecker);
+			OptionForm options = new OptionForm(ref this.SpellChecker);
 			options.ShowDialog(this);
+			if (options.DialogResult == DialogResult.OK) 
+			{
+				this.SpellChecker.SpellCheck();
+			}
 
 		}
 
@@ -96,15 +99,6 @@ namespace NetSpell.SpellChecker
 			this.SpellChecker.ReplaceWord(this.ReplacementWord.Text);
 			this.TextBeingChecked.Text = this.SpellChecker.Text;
 			this.SpellChecker.SpellCheck();
-		}
-
-		private void SpellingForm_Activated(object sender, System.EventArgs e)
-		{
-			this.TextBeingChecked.Text = SpellChecker.Text;
-			this.statusPaneWord.Text = "";
-			this.statusPaneCount.Text = "Word: 0 of 0";
-			this.statusPaneIndex.Text = "Index: 0";
-			this.SuggestionList.Items.Clear();
 		}
 
 		private void SpellingForm_Load(object sender, System.EventArgs e)
@@ -162,7 +156,6 @@ namespace NetSpell.SpellChecker
 			this.ReplaceButton = new System.Windows.Forms.Button();
 			this.ReplaceAllButton = new System.Windows.Forms.Button();
 			this.IgnoreAllButton = new System.Windows.Forms.Button();
-			this.SuggestButton = new System.Windows.Forms.Button();
 			this.CancelBtn = new System.Windows.Forms.Button();
 			this.TextBeingChecked = new System.Windows.Forms.RichTextBox();
 			this.TextLabel = new System.Windows.Forms.Label();
@@ -220,7 +213,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// ReplaceButton
 			// 
-			this.ReplaceButton.Location = new System.Drawing.Point(360, 96);
+			this.ReplaceButton.Location = new System.Drawing.Point(360, 104);
 			this.ReplaceButton.Name = "ReplaceButton";
 			this.ReplaceButton.TabIndex = 9;
 			this.ReplaceButton.Text = "&Replace";
@@ -228,7 +221,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// ReplaceAllButton
 			// 
-			this.ReplaceAllButton.Location = new System.Drawing.Point(360, 128);
+			this.ReplaceAllButton.Location = new System.Drawing.Point(360, 136);
 			this.ReplaceAllButton.Name = "ReplaceAllButton";
 			this.ReplaceAllButton.TabIndex = 10;
 			this.ReplaceAllButton.Text = "Replace A&ll";
@@ -241,14 +234,6 @@ namespace NetSpell.SpellChecker
 			this.IgnoreAllButton.TabIndex = 7;
 			this.IgnoreAllButton.Text = "I&gnore All";
 			this.IgnoreAllButton.Click += new System.EventHandler(this.IgnoreAllButton_Click);
-			// 
-			// SuggestButton
-			// 
-			this.SuggestButton.Location = new System.Drawing.Point(360, 168);
-			this.SuggestButton.Name = "SuggestButton";
-			this.SuggestButton.TabIndex = 11;
-			this.SuggestButton.Text = "&Suggest";
-			this.SuggestButton.Click += new System.EventHandler(this.SuggestButton_Click);
 			// 
 			// CancelBtn
 			// 
@@ -307,7 +292,7 @@ namespace NetSpell.SpellChecker
 			// 
 			// OptionsButton
 			// 
-			this.OptionsButton.Location = new System.Drawing.Point(360, 200);
+			this.OptionsButton.Location = new System.Drawing.Point(360, 192);
 			this.OptionsButton.Name = "OptionsButton";
 			this.OptionsButton.TabIndex = 15;
 			this.OptionsButton.Text = "&Options";
@@ -327,7 +312,6 @@ namespace NetSpell.SpellChecker
 			this.Controls.Add(this.ReplacementWord);
 			this.Controls.Add(this.TextBeingChecked);
 			this.Controls.Add(this.CancelBtn);
-			this.Controls.Add(this.SuggestButton);
 			this.Controls.Add(this.ReplaceAllButton);
 			this.Controls.Add(this.IgnoreAllButton);
 			this.Controls.Add(this.ReplaceButton);
@@ -340,8 +324,8 @@ namespace NetSpell.SpellChecker
 			this.Name = "SpellingForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Spell Check";
+			this.Closing += new System.ComponentModel.CancelEventHandler(this.SpellingForm_Closing);
 			this.Load += new System.EventHandler(this.SpellingForm_Load);
-			this.Activated += new System.EventHandler(this.SpellingForm_Activated);
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneWord)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneCount)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusPaneIndex)).EndInit();
@@ -354,7 +338,39 @@ namespace NetSpell.SpellChecker
 
 		private void SpellChecker_DoubledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
 		{
-		
+			//display form
+			if (!this.Visible) this.Show();
+
+			this.TextBeingChecked.Text = SpellChecker.Text;
+			//turn off ignore all option on double word
+			this.IgnoreAllButton.Enabled = false;
+			this.ReplaceAllButton.Enabled = false;
+
+			//reset text to black
+			this.TextBeingChecked.SelectAll();
+			this.TextBeingChecked.SelectionColor = Color.Black;
+			//highlight current word
+			this.TextBeingChecked.Select(args.TextIndex, args.Word.Length);
+			this.TextBeingChecked.SelectionColor = Color.Red;
+			//set caret and scroll window
+			this.TextBeingChecked.Select(args.TextIndex, 0);
+			this.TextBeingChecked.Focus();
+			this.TextBeingChecked.ScrollToCaret();
+			//update status bar
+			this.statusPaneWord.Text = args.Word;
+			this.statusPaneCount.Text = string.Format("Word: {0} of {1}", 
+				args.WordIndex.ToString(),SpellChecker.WordCount.ToString());
+			this.statusPaneIndex.Text = string.Format("Index: {0}", 
+				args.TextIndex.ToString());
+			
+			//display suggestions
+			this.SuggestionList.BeginUpdate();
+			this.SuggestionList.SelectedIndex = -1;
+			this.SuggestionList.Items.Clear();
+			this.SuggestionList.EndUpdate();
+			//reset replacement word
+			this.ReplacementWord.Text = string.Empty;
+			this.ReplacementWord.Focus();
 		}
 
 		private void SpellChecker_EndOfText(object sender, System.EventArgs args)
@@ -366,10 +382,18 @@ namespace NetSpell.SpellChecker
 		private void SpellChecker_MisspelledWord(object sender, NetSpell.SpellChecker.WordEventArgs args)
 		{
 			//display form
-			this.Show();
+			//this.Show();
+			if (!this.Visible) this.Show();
+			
+			this.TextBeingChecked.Text = SpellChecker.Text;
+			//turn on ignore all option
+			this.IgnoreAllButton.Enabled = true;
+			this.ReplaceAllButton.Enabled = true;
+
 			//reset text to black
 			this.TextBeingChecked.SelectAll();
 			this.TextBeingChecked.SelectionColor = Color.Black;
+
 			//highlight current word
 			this.TextBeingChecked.Select(args.TextIndex, args.Word.Length);
 			this.TextBeingChecked.SelectionColor = Color.Red;
@@ -418,6 +442,13 @@ namespace NetSpell.SpellChecker
 			SpellChecker.EndOfText -= new Spelling.EndOfTextEventHandler(this.SpellChecker_EndOfText);
 		}
 #endregion
+
+		private void SpellingForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			e.Cancel = true;
+			this.Hide();
+
+		}
 
 
 

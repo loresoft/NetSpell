@@ -7,11 +7,11 @@ using System.Runtime.CompilerServices;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("NetSpell.SpellChecker")]
-[assembly: AssemblyDescription("Free .net Spell Checker")]
+[assembly: AssemblyDescription("NetSpell is a spell checking engine written entirely in managed C# .net code")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LoreSoft")]
+[assembly: AssemblyCompany("http://www.loresoft.com")]
 [assembly: AssemblyProduct("NetSpell")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Copyright © 2003 Paul Welter.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("0.8.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 

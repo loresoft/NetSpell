@@ -28,7 +28,7 @@ namespace NetSpell.Tests
 	public class SpellTest
 	{
 		bool _endOfText = false;
-		Spelling _SpellChecker = new Spelling("D:\\My Documents\\Projects\\LoreSoft\\NetSpell\\src\\NetSpell.DictionaryBuild\\Dictionaries\\us-en-md.dic");
+		Spelling _SpellChecker = new Spelling("..\\..\\..\\NetSpell.DictionaryBuild\\Dictionaries\\us-en-md.dic");
 		WordEventArgs _wordEventArgs;
 		
 		private void DoubleWord(object sender, WordEventArgs args)
@@ -209,7 +209,7 @@ namespace NetSpell.Tests
 			Assertion.AssertEquals("Incorrect CurrentWord", "tst", _SpellChecker.CurrentWord);
 
 			_SpellChecker.Suggest();
-			Assertion.AssertEquals("Incorrect Suggestion Count", 10, _SpellChecker.Suggestions.Count);
+			Assertion.AssertEquals("Incorrect Suggestion Count", 25, _SpellChecker.Suggestions.Count);
 			Assertion.AssertEquals("Could not find 'test' in suggestions", true, _SpellChecker.Suggestions.Contains("test"));
 			
 		}

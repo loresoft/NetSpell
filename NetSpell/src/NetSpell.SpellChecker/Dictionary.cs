@@ -152,6 +152,7 @@ namespace NetSpell.SpellChecker
 		///     The list of words in this dictionary
 		/// </summary>
 		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public ArrayList WordList
 		{
 			get {return _WordList;}

@@ -406,8 +406,8 @@ namespace NetSpell.Demo.Windows
 			this.currentText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.currentText.Size = new System.Drawing.Size(608, 345);
 			this.currentText.TabIndex = 1;
-			this.currentText.Text = "Becuase people are realy bad spelers, ths produc was desinged to prevent speling " +
-				"erors in a text area like ths.";
+			this.currentText.Text = "Becuase people are realy bad spelers, ths produc was was desinged to prevent spel" +
+				"ing erors in a text area like ths.";
 			this.currentText.TextChanged += new System.EventHandler(this.currentText_TextChanged);
 			// 
 			// statusBar

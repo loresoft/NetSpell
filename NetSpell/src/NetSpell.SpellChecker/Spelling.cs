@@ -327,9 +327,23 @@ namespace NetSpell.SpellChecker
 		{
 			int index = _words[_WordIndex].Index;
 			int length = _words[_WordIndex].Length;
-
+			
 			_Text.Remove(index, length);
-			_Text.Insert(index, _ReplacementWord);
+			if (_ReplacementWord.Length > 0) 
+			{
+				// if first letter upper case, match case for replacement word
+				if (char.IsUpper(_CurrentWord, 0))
+				{
+					_ReplacementWord = _ReplacementWord.Substring(0,1).ToUpper() 
+						+ _ReplacementWord.Substring(1);
+				}
+				_Text.Insert(index, _ReplacementWord);
+			}
+			else if (_Text.ToString().Substring(index-1, 2) == "  ")
+			{
+				//removing double space
+				_Text.Remove(index, 1);
+			}
 
 			this.CalculateWords();
 		}
@@ -612,14 +626,13 @@ namespace NetSpell.SpellChecker
 		{
 			// dictionary stores words in 'word|PrimaryCode|SecondaryCode|' format
 			_meta.GenerateMetaphone(word);
-			string tempWord = string.Concat(word, "|", 
-											_meta.PrimaryCode, "|", 
-											_meta.SecondaryCode, "|");
+			string tempWord = string.Format("{0}|{1}|{2}|", 
+				word, _meta.PrimaryCode, _meta.SecondaryCode);
 
 			// search lower case 
-			string lowerWord = string.Concat(word.ToLower(), "|", 
-											_meta.PrimaryCode, "|", 
-											_meta.SecondaryCode, "|");
+			string lowerWord = string.Format("{0}|{1}|{2}|", 
+				word.ToLower(), _meta.PrimaryCode, _meta.SecondaryCode);
+				
 
 			foreach (Dictionary dict in _Dictionaries)
 			{
