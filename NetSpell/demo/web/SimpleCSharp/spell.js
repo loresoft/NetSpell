@@ -1,50 +1,85 @@
 /***********************************************************
  * launches the spell checker
  ***********************************************************/
-var pubBody = "";
-var pubURL = "";
 
-function checkSpelling(strBody, strURL) {
+var spellURL = "SpellCheck.aspx";
 
-	pubBody = strBody;
-	pubURL = strURL;
+var spellElements = new Array();
+var spellElementsCount = 0;
+var spellCheckCurrentElement = 0;
 
-	var strTextArea = "";
-	var oElement = document.getElementById(pubBody);
-	if (oElement) strTextArea = oElement.value;
+function resetElements()
+{
+    spellElements = new Array();
+    spellElementsCount = 0;
+    checkCurrentElement = 0;
+}
 
-	var newWindow = window.open("","newWindow","height=320,width=400,scrollbars=1,resizable=1,toolbars=1");
+function defineForm(oForm)
+{
+    for(var x = 0; x < oForm.elements.length; x++)
+    {
+        switch (oForm.elements[x].tagName)
+        {
+            case "INPUT" :
+                if (oForm.elements[x].type == "text")
+                    defineElement(oForm.elements[x])
+                break;
+            case "TEXTAREA" :
+                defineElement(oForm.elements[x])
+                break;
+        }
+    }
+}
 
-	newWindow.document.open()
-	newWindow.document.writeln("<HTML>")
-	newWindow.document.writeln("<HEAD>")
-	newWindow.document.writeln("	<TITLE>Spell Checker</TITLE>")
-	newWindow.document.writeln("</HEAD>")
-	newWindow.document.writeln("<BODY bgcolor=\"White\">")
-	newWindow.document.writeln("<font face=\"Arial Black\" size=\"+1\">Loading Spell Checker . . .</font>")
-	newWindow.document.writeln("<form action=\"\" method=\"POST\" name=\"Spell\">")
-	newWindow.document.writeln("	<input type=\"Hidden\" name=\"CurrentText\" value=\"\">")
-	newWindow.document.writeln("	<input type=\"Hidden\" name=\"SpellCheck\" value=\"true\">")
-	newWindow.document.writeln("</form>")
-	newWindow.document.writeln("</BODY>")
-	newWindow.document.writeln("</HTML>")
-	newWindow.document.close()
+function defineElement(oElement)
+{
+    spellElements[spellElementsCount++] = oElement;
+}
 
-	newWindow.document.Spell.action=pubURL
-	newWindow.document.Spell.CurrentText.value=strTextArea;
-	newWindow.document.Spell.submit();
+function checkDocument()
+{
+    resetElements();
+    for (var i = 0; i < document.forms.length; i++)
+        defineForm(document.forms[i]);
+    
+    checkSpelling();
+}
 
+function checkForm(oForm)
+{
+    resetElements();
+    defineForm(oForm);
+    checkSpelling();
+}
 
+function checkSpelling() 
+{
+    if (window.showModalDialog) 
+    {
+        var result = window.showModalDialog(spellURL, window, "dialogHeight:320px; dialogWidth:400px; edge:Raised; center:Yes; help:No; resizable:Yes; status:No; scroll: No");    
+    }
+    else
+    {
+        var newWindow = window.open(spellURL, "newWindow", "height=320,width=400,scrollbars=0,resizable=0,toolbars=0");
+    }
 }
 
 /***********************************************************
  * Called from spellchecker to update form text
  ***********************************************************/
-function updateForm(strReturnText)
+function getElementText(spellElementIndex)
 {
-	var oElement = document.getElementById(pubBody);
-	if (oElement) oElement.value = strReturnText;
+    return spellElements[spellElementIndex].value;
 }
+function setCurrentElementText(spellElementIndex, spellElementText)
+{
+    spellElements[spellElementIndex].value = spellElementText;
+}
+
+
+
+
 
 /***********************************************************
 * Changes the replace word when user selects word from list
@@ -66,5 +101,33 @@ function updateCallingPage() {
 }
 
 function closeSpellChecker() {
-	if (top.opener) self.close();
+	if (top.opener || parent.window.dialogArguments) self.close();
+}
+
+
+function initializeSpellChecker(spellMode)
+{
+    var parentWindow;
+    if (top.opener)
+        parentWindow = top.opener;
+    else if(parent.window.dialogArguments)
+        parentWindow = parent.window.dialogArguments;
+        
+        
+    switch (spellMode)
+    {
+        case "load" :
+            
+            break;
+        case "start" :
+            this.SpellChecker.SpellCheck();
+            break;
+        case "checking" :
+        
+            break;
+        case "end" :
+
+            break;
+    }
+
 }

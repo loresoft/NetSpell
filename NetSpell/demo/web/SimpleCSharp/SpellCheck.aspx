@@ -6,21 +6,37 @@
 
     NetSpell.SpellChecker.Spelling SpellChecker;
     NetSpell.SpellChecker.Dictionary.WordDictionary WordDictionary;
+    string spellMode = "load";
 
     void Page_Load(object sender, EventArgs e) {
 
         Page.Trace.Write("Page_Load");
         // add client side events
-           Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);");
-        SpellingBody.Attributes.Add("onLoad", "javascript: updateCallingPage();");
+        Suggestions.Attributes.Add("onChange", "javascript: changeWord(this);");
+
+
 
         // start spell checking
         this.LoadValues();
 
-        if(Request.Params["SpellCheck"] != null)
+        switch (spellMode)
         {
-            this.SpellChecker.SpellCheck();
+            case "load" :
+
+                break;
+            case "start" :
+                this.SpellChecker.SpellCheck();
+                break;
+            case "checking" :
+
+                break;
+            case "end" :
+
+                break;
         }
+
+        SpellingBody.Attributes.Add("onLoad", "javascript: updateCallingPage();");
+
     }
 
     void Page_Init(object sender, EventArgs e) {
@@ -122,6 +138,12 @@
 
     void LoadValues()
     {
+
+        if (Request.Params["SpellMode"] != null)
+        {
+            spellMode = Request.Params["SpellMode"];
+        }
+
         if (Request.Params["CurrentText"] != null)
         {
             this.SpellChecker.Text = Request.Params["CurrentText"];
@@ -212,6 +234,7 @@
 </script>
 <html>
 <head>
+    <title>Spell Check</title>
     <link href="spell.css" type="text/css" rel="stylesheet" />
     <script language="JavaScript" src="spell.js"></script>
 </head>
@@ -222,29 +245,29 @@
         <input id="IgnoreList" type="hidden" name="IgnoreList" runat="server" />
         <input id="ReplaceKeyList" type="hidden" name="ReplaceKeyList" runat="server" />
         <input id="ReplaceValueList" type="hidden" name="ReplaceValueList" runat="server" />
-        <asp:panel id="SuggestionForm" runat="server" EnableViewState="False">
-            <table cellspacing="0" cellpadding="3" width="375" bgcolor="#ffffff" border="1">
+        <input id="SpellMode" type="hidden" name="SpellChecking" value="load" runat="server" />
+        <asp:panel id="LoadingForm" runat="server" EnableViewState="False" Visible="True">
+            <font face="Arial Black" size="+1">Loading Spell Checker . . .</font>
+        </asp:panel>
+        <asp:panel id="SuggestionForm" runat="server" EnableViewState="False" Visible="False">
+            <table cellspacing="0" cellpadding="5" width="100%" border="0">
                 <tbody>
-                    <tr>
-                        <td class="highlight" colspan="2">
-                            <font face="Arial Black">Spell Checking</font></td>
-                    </tr>
                     <tr>
                         <td valign="top" width="275">
                             <i>Word Not in Dictionary:</i>
                             <br />
-                            <asp:Label id="CurrentWord" runat="server" font-bold="True" forecolor="Red"></asp:Label>
+                            <asp:Label id="CurrentWord" runat="server" forecolor="Red" font-bold="True"></asp:Label>
                             <br />
                             <br />
                             <i>Change To:</i>
                             <br />
-                            <asp:TextBox id="ReplacementWord" runat="server" EnableViewState="False" CssClass="suggestion" Columns="30" Width="230px"></asp:TextBox>
+                            <asp:TextBox id="ReplacementWord" runat="server" EnableViewState="False" Width="230px" Columns="30" CssClass="suggestion"></asp:TextBox>
                             <br />
                             <i>Suggestions:</i>
                             <br />
-                            <asp:ListBox id="Suggestions" runat="server" EnableViewState="False" CssClass="suggestion" Width="230px" Rows="8"></asp:ListBox>
+                            <asp:ListBox id="Suggestions" runat="server" EnableViewState="False" Width="230px" CssClass="suggestion" Rows="8"></asp:ListBox>
                         </td>
-                        <td class="highlight" valign="top" align="middle" width="100">
+                        <td valign="top" align="middle" width="100">
                             <table>
                                 <tbody>
                                     <tr>
@@ -259,7 +282,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -269,7 +292,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -284,7 +307,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p></p>
+                                            <p>&nbsp;</p>
                                         </td>
                                     </tr>
                                     <tr>
@@ -295,12 +318,6 @@
                                 </tbody>
                             </table>
                         </td>
-                    </tr>
-                    <tr>
-                        <td align="middle" colspan="2">
-                            <font face="Arial" size="1">Powered by
-                            <asp:HyperLink id="NetSpellLink" runat="server" Target="_new" Font-Size="XX-Small" NavigateUrl="http://www.loresoft.com/netspell">NetSpell</asp:HyperLink>
-                            </font></td>
                     </tr>
                 </tbody>
             </table>
