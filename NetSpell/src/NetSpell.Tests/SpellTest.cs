@@ -16,7 +16,7 @@ namespace NetSpell.Tests
 	public class SpellTest
 	{
 		bool _endOfText = false;
-		Spelling _SpellChecker = new Spelling("..\\..\\..\\Dictionaries\\us-en-md.dic");
+		Spelling _SpellChecker = new Spelling("us-en-md.dic");
 		WordEventArgs _wordEventArgs;
 		
 		private void DoubleWord(object sender, WordEventArgs args)

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<project name="NetSpell" default="test">
+  <property name="project.name" value="NetSpell" />
+  <property name="project.version" value="1.1.0" />
+  <property name="project.config" value="release" />
+  <property name="build.debug" value="false" />
+  <property name="build.dir" value="${nant.project.basedir}\build\${project.name}-${project.version}" />
+  <target name="build" depends="clean" description="Builds NetSpell">
+    <echo message="Build Directory is ${build.dir}" />
+    <mkdir dir="${build.dir}\bin" />
+    <mkdir dir="${build.dir}\doc" />
+    <mkdir dir="${build.dir}\src" />
+    <copy todir="${build.dir}\bin">
+	<fileset basedir="bin">
+	    <includes name="nunit.framework.dll" />
+	</fileset>
+    </copy>
+    <copy todir="${build.dir}\bin">
+    	<fileset basedir="Dictionaries">
+    	    <includes name="us-en-md.dic" />
+    	    <includes name="user.dic" />
+    	</fileset>
+    </copy>
+    <nant buildfile="NetSpell.SpellChecker\SpellChecker.build" target="compile" />
+    <nant buildfile="NetSpell.Tests\Tests.build" target="compile" />
+    <nant buildfile="NetSpell.Demo.Windows\demo.build" target="compile" />
+  </target>
+  <target name="clean" description="Cleans the build folder">
+    <delete dir="${build.dir}" failonerror="false" />
+  </target>
+  <target name="test" depends="build" description="Runs NUnit Tests">
+	<nunit2>
+		<test assemblyname="${build.dir}\bin\${project.name}.Tests.dll" type="Plain" />
+	</nunit2>
+  </target>
+  <target name="package" depends="doc" description="Creates a deployment package">
+    <!-- copy project files -->
+    <copy todir="${build.dir}/src">
+	<fileset>
+	    <includes name="NetSpell.SpellChecker\**" />
+	    <includes name="NetSpell.Tests\**" />
+	    <includes name="NetSpell.Demo.Windows\**" />
+	    <includes name="NetSpell.Demo.Web\**" />
+	    <includes name="readme.txt" />
+	    <includes name="history.txt" />
+	    
+	    <!--Start "Exclude VS.Net stuff" -->
+	    <excludes name="**\*.suo" />
+	    <excludes name="**\*j.user" />
+	    <excludes name="**\bin\**" />
+	    <excludes name="**\obj\**" />
+	    <excludes name="**\doc\**" />
+	    <excludes name="**\_vti*\**" />
+	    <!--End "Exclude VS.Net stuff"-->
+	</fileset>
+    </copy>
+    <!-- create zip file -->
+    <property name="project.zip-path" value="${nant.project.basedir}\build\${project.name}-${project.version}.zip" />
+    <zip zipfile="${project.zip-path}">
+	<fileset basedir="${build.dir}">
+	    <includes name="**/*" />
+
+	    <excludes name="**/cache/**"/>
+	    <excludes name="**/_*/**"/>
+	</fileset>
+    </zip>
+  </target>
+  <target name="doc" depends="test" description="Creates HTML Help file">
+    <ndoc failonerror="false">
+      <assemblies basedir="${build.dir}\bin">
+        <includes name="NetSpell.SpellChecker.dll" />
+      </assemblies>
+      <documenters>
+        <documenter name="MSDN">
+          <property name="OutputDirectory" value="${build.dir}\doc" />
+          <property name="HtmlHelpName" value="NetSpell" />
+          <property name="IncludeFavorites" value="False" />
+          <property name="Title" value="NetSpell Documentation - v.${project.version}" />
+          <property name="SplitTOCs" value="False" />
+          <property name="DefaulTOC" value="" />
+          <property name="ShowVisualBasic" value="True" />
+          <property name="ShowMissingSummaries" value="${build.debug}" />
+          <property name="ShowMissingRemarks" value="${build.debug}" />
+          <property name="ShowMissingParams" value="${build.debug}" />
+          <property name="ShowMissingReturns" value="${build.debug}" />
+          <property name="ShowMissingValues" value="${build.debug}" />
+          <property name="DocumentInternals" value="False" />
+          <property name="DocumentPrivates" value="False" />
+          <property name="DocumentProtected" value="True" />
+          <property name="DocumentEmptyNamespaces" value="False" />
+          <property name="IncludeAssemblyVersion" value="False" />
+          <property name="CopyrightText" value="Copyright (C) 2003 Paul Welter" />
+          <property name="CopyrightHref" value="http://www.loresoft.com/netspell" />
+        </documenter>
+      </documenters>
+    </ndoc>
+    <delete>
+    	<fileset>
+    	    <includes name="${build.dir}\doc\*.*" />
+    	    <excludes name="${build.dir}\doc\*.chm" />
+    	</fileset>
+    </delete>
+  </target>
+</project>
