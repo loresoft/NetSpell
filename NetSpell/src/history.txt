@@ -1,4 +1,14 @@
-NetSpell 2.0
+NetSpell 2.0.3
+* Major bug fix in WordDictionary.Contains method
+* update ignore html routine
+* replace all bug fix
+* minor web demo bug fixes
+
+NetSpell 2.0.2
+* web demo bug fixes
+* changes to user dictionary
+
+NetSpell 2.0.1
 * Complete change to the dictionary
   - Added international support
   - Added Affix compression support
