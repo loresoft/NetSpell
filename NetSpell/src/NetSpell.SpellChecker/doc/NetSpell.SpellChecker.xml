@@ -59,308 +59,6 @@
             Version of Assembly
             </summary>
         </member>
-        <member name="T:NetSpell.SpellChecker.Dictionary">
-            <summary>
-            	The Dictionary class encapsulates all functions associated 
-            	with the word dictionary.
-            </summary>
-            <remarks>
-            	When adding or removing words, you must call save before
-            	using the dictionary because the word list must be sorted.
-            </remarks>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.#ctor">
-            <summary>
-                Dictionary default constructor
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.#ctor(System.String)">
-            <summary>
-                Dictionary constructor that takes in a file name
-                to automatically load the dictionary from
-            </summary>
-            <param name="fileName" type="string">
-                <para>
-                    The name of the dictionary file to load
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.AddWord(System.String)">
-            <summary>
-                Adds a word to the dictionary
-            </summary>
-            <remarks>
-            	You must call save before using the dictionary
-            	because the word list must be sorted.
-            </remarks>
-            <param name="word" type="string">
-                <para>
-                    The word to add to the dictionary
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Load">
-            <summary>
-                Loads the Dictionary Word List from the FileName
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Load(System.String)">
-            <summary>
-                Loads the Dictionary Word List from the FileName
-            </summary>
-            <param name="fileName" type="string">
-                <para>
-                    The name of the dictionary file to load
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Save">
-            <summary>
-                Saves the Dictionary Word List to a file
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Dictionary.Save(System.String)">
-            <summary>
-                Saves the Dictionary Word List to a file
-            </summary>
-            <param name="fileName" type="string">
-                <para>
-                    The name of the dictionary file to save
-                </para>
-            </param>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.FileName">
-            <summary>
-                The file name and path of the dictionary file
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Dictionary.WordList">
-            <summary>
-                The list of words in this dictionary
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.DictionaryCollection">
-            <summary>
-                A collection that stores 'Dictionary' objects.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor">
-            <summary>
-                Initializes a new instance of 'DictionaryCollection'.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor(NetSpell.SpellChecker.Dictionary[])">
-            <summary>
-                Initializes a new instance of 'DictionaryCollection' with an array of 'Dictionary' objects.
-            </summary>
-            <param name='dicValue'>
-                An array of 'Dictionary' objects with which to initialize the collection
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.#ctor(NetSpell.SpellChecker.DictionaryCollection)">
-            <summary>
-                Initializes a new instance of 'DictionaryCollection' based on an already existing instance.
-            </summary>
-            <param name='dicValue'>
-                A 'DictionaryCollection' from which the contents is copied
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.Add(NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Adds a 'Dictionary' item with the specified value to the 'DictionaryCollection'
-            </summary>
-            <param name='dicValue'>
-                The 'Dictionary' to add.
-            </param>
-            <returns>
-                The index at which the new element was inserted.
-            </returns>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.AddRange(NetSpell.SpellChecker.Dictionary[])">
-            <summary>
-                Copies the elements of an array at the end of this instance of 'DictionaryCollection'.
-            </summary>
-            <param name='dicValue'>
-                An array of 'Dictionary' objects to add to the collection.
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.AddRange(NetSpell.SpellChecker.DictionaryCollection)">
-            <summary>
-                Adds the contents of another 'DictionaryCollection' at the end of this instance.
-            </summary>
-            <param name='dicValue'>
-                A 'DictionaryCollection' containing the objects to add to the collection.
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.Contains(NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Gets a value indicating whether the 'DictionaryCollection' contains the specified value.
-            </summary>
-            <param name='dicValue'>
-                The item to locate.
-            </param>
-            <returns>
-                True if the item exists in the collection; false otherwise.
-            </returns>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.CopyTo(NetSpell.SpellChecker.Dictionary[],System.Int32)">
-            <summary>
-                Copies the 'DictionaryCollection' values to a one-dimensional System.Array
-                instance starting at the specified array index.
-            </summary>
-            <param name='dicArray'>
-                The one-dimensional System.Array that represents the copy destination.
-            </param>
-            <param name='intIndex'>
-                The index in the array where copying begins.
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.GetEnumerator">
-            <summary>
-                Returns an enumerator that can be used to iterate through
-                the 'DictionaryCollection'.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.IndexOf(NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Returns the index of a 'Dictionary' object in the collection.
-            </summary>
-            <param name='dicValue'>
-                The 'Dictionary' object whose index will be retrieved.
-            </param>
-            <returns>
-                If found, the index of the value; otherwise, -1.
-            </returns>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.Insert(System.Int32,NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Inserts an existing 'Dictionary' into the collection at the specified index.
-            </summary>
-            <param name='intIndex'>
-                The zero-based index where the new item should be inserted.
-            </param>
-            <param name='dicValue'>
-                The item to insert.
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.Remove(NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Removes a specific item from the 'DictionaryCollection'.
-            </summary>
-            <param name='dicValue'>
-                The item to remove from the 'DictionaryCollection'.
-            </param>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DictionaryCollection.Item(System.Int32)">
-            <summary>
-                Represents the 'Dictionary' item at the specified index position.
-            </summary>
-            <param name='intIndex'>
-                The zero-based index of the entry to locate in the collection.
-            </param>
-            <value>
-                The entry at the specified index of the collection.
-            </value>
-        </member>
-        <member name="T:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator">
-            <summary>
-                A strongly typed enumerator for 'DictionaryCollection'
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.#ctor(NetSpell.SpellChecker.DictionaryCollection)">
-            <summary>
-                Enumerator constructor
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#MoveNext">
-            <summary>
-                Advances the enumerator to the next element of the collection
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Reset">
-            <summary>
-                Sets the enumerator to the first element in the collection
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.MoveNext">
-            <summary>
-                Advances the enumerator to the next element of the collection
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.Reset">
-            <summary>
-                Sets the enumerator to the first element in the collection
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.System#Collections#IEnumerator#Current">
-            <summary>
-                Gets the current element from the collection
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DictionaryCollection.DictionaryEnumerator.Current">
-            <summary>
-                Gets the current element from the collection (strongly typed)
-            </summary>
-        </member>
-        <member name="T:NetSpell.SpellChecker.DoubleMetaphone">
-            <summary>
-            	The double metaphone class is used to generate a code
-            	for what the word sounds like
-            </summary>
-            <remarks>
-            	Double Metaphone (c) 1998, 1999 by Lawrence Philips
-            
-            	Slightly modified by Kevin Atkinson to fix several bugs and 
-            	to allow it to give back more than 4 characters.
-            	
-            	Converted to C# by Paul Welter
-            </remarks>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DoubleMetaphone.#ctor">
-            <summary>
-                DoubleMetaphone Default Constructor
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DoubleMetaphone.#ctor(System.String)">
-            <summary>
-                DoubleMetaphone Constructor
-            </summary>
-            <param name="word" type="string">
-                <para>
-                    word to generate the metaphone code on
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DoubleMetaphone.GenerateMetaphone">
-            <summary>
-                Generates the Primary and Secondary Metaphone codes
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.DoubleMetaphone.GenerateMetaphone(System.String)">
-            <summary>
-                Generates the Primary and Secondary Metaphone codes
-            </summary>
-            <param name="word" type="string">
-                <para>
-                    word to generate the metaphone code on
-                </para>
-            </param>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DoubleMetaphone.CurrentWord">
-            <summary>
-            	Word that the metaphone code was generated from
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DoubleMetaphone.PrimaryCode">
-            <summary>
-            	Primary Metaphone code
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.DoubleMetaphone.SecondaryCode">
-            <summary>
-            	Secondary Metaphone code
-            </summary>
-        </member>
         <member name="T:NetSpell.SpellChecker.OptionForm">
             <summary>
             	The OptionForm is an internal form for setting the spell checker options
@@ -388,78 +86,28 @@
             	the spelling of inputted text.
             </summary>
         </member>
-        <member name="F:NetSpell.SpellChecker.Spelling.components">
+        <member name="M:NetSpell.SpellChecker.Spelling.OnDoubledWord(NetSpell.SpellChecker.WordEventArgs)">
             <summary>
-            Required designer variable.
+                This is the method that is responsible for notifying
+                receivers that the event occurred
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.OnEndOfText(System.EventArgs)">
+            <summary>
+                This is the method that is responsible for notifying
+                receivers that the event occurred
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.OnMisspelledWord(NetSpell.SpellChecker.WordEventArgs)">
+            <summary>
+                This is the method that is responsible for notifying
+                receivers that the event occurred
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor">
             <summary>
                 Initializes a new instance of the SpellCheck class
             </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(NetSpell.SpellChecker.Dictionary[])">
-            <summary>
-                Initializes a new instance of the SpellCheck class with 
-                the specified dictionary object. 
-            </summary>
-            <param name="dictionaries" type="FreeSpell.Dictionary">
-                <para>
-                    The Dictionary object to use
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(NetSpell.SpellChecker.Dictionary)">
-            <summary>
-                Initializes a new instance of the SpellCheck class with 
-                the specified dictionary object. 
-            </summary>
-            <param name="mainDictionary" type="FreeSpell.Dictionary">
-                <para>
-                    The Dictionary object to use
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.String[])">
-            <summary>
-                Initializes a new instance of the SpellCheck class with 
-                the specified dictionary file. 
-            </summary>
-            <param name="dictionaryFiles" type="string">
-                <para>
-                    The name of the dictionary file to load
-                </para>
-            </param>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.String,System.String)">
-            <summary>
-                Initializes a new instance of the SpellCheck class with 
-                the specified dictionary file. 
-            </summary>
-            <param name="mainDictionaryFile" type="string">
-                <para>
-                    The main spell checker dictionary file name
-                </para>
-            </param>
-            <param name="userDictionaryFile" type="string">
-                <para>
-                    The user dictionary filename
-                </para>
-            </param>
-            <returns>
-                A void value...
-            </returns>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.String)">
-            <summary>
-                Initializes a new instance of the SpellCheck class with 
-                the specified dictionary file. 
-            </summary>
-            <param name="mainDictionaryFile" type="string">
-                <para>
-                     The main spell checker dictionary file name
-                </para>
-            </param>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.#ctor(System.ComponentModel.IContainer)">
             <summary>
@@ -492,6 +140,39 @@
         <member name="M:NetSpell.SpellChecker.Spelling.Reset">
             <summary>
                 Resets the public properties
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ExtraChar(System.Collections.ArrayList@)">
+            <summary>
+                try omitting one char of word at a time
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ForgotChar(System.Collections.ArrayList@)">
+            <summary>
+                try inserting a tryme character before every letter
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.ReplaceChars(System.Collections.ArrayList@)">
+            <summary>
+                suggestions for a typical fault of spelling, that
+            	differs with more, than 1 letter from the right form.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.SwapChar(System.Collections.ArrayList@)">
+            <summary>
+                try swapping adjacent chars one by one
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.TwoWords(System.Collections.ArrayList@)">
+            <summary>
+                split the string into two pieces after every char
+            	if both pieces are good words make them a suggestion
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Spelling.BadChar(System.Collections.ArrayList@)">
+            <summary>
+            	swap out each char one by one and try all the tryme
+            	chars in its place to see if that makes a good word
             </summary>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.DeleteWord">
@@ -577,7 +258,7 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="P:NetSpell.SpellChecker.Spelling.Dictionaries"/>
+            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.Int32)">
             <summary>
@@ -596,7 +277,7 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="P:NetSpell.SpellChecker.Spelling.Dictionaries"/>
+            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.String)">
             <summary>
@@ -615,7 +296,7 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="P:NetSpell.SpellChecker.Spelling.Dictionaries"/>
+            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.SpellCheck(System.String,System.Int32)">
             <summary>
@@ -639,7 +320,7 @@
             </returns>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.CurrentWord"/>
             <seealso cref="P:NetSpell.SpellChecker.Spelling.WordIndex"/>
-            <seealso cref="P:NetSpell.SpellChecker.Spelling.Dictionaries"/>
+            <seealso cref="!:Dictionaries"/>
         </member>
         <member name="M:NetSpell.SpellChecker.Spelling.Suggest">
             <summary>
@@ -688,57 +369,6 @@
                 The score of how similar the words are
             </returns>
         </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.OnDoubledWord(NetSpell.SpellChecker.WordEventArgs)">
-            <summary>
-                This is the method that is responsible for notifying
-                receivers that the event occurred
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.OnEndOfText(System.EventArgs)">
-            <summary>
-                This is the method that is responsible for notifying
-                receivers that the event occurred
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.OnMisspelledWord(NetSpell.SpellChecker.WordEventArgs)">
-            <summary>
-                This is the method that is responsible for notifying
-                receivers that the event occurred
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.ExtraChar(System.Collections.ArrayList@)">
-            <summary>
-                try omitting one char of word at a time
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.ForgotChar(System.Collections.ArrayList@)">
-            <summary>
-                try inserting a tryme character before every letter
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.ReplaceChars(System.Collections.ArrayList@)">
-            <summary>
-                suggestions for a typical fault of spelling, that
-            	differs with more, than 1 letter from the right form.
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.SwapChar(System.Collections.ArrayList@)">
-            <summary>
-                try swapping adjacent chars one by one
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.TwoWords(System.Collections.ArrayList@)">
-            <summary>
-                split the string into two pieces after every char
-            	if both pieces are good words make them a suggestion
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.Spelling.BadChar(System.Collections.ArrayList@)">
-            <summary>
-            	swap out each char one by one and try all the tryme
-            	chars in its place to see if that makes a good word
-            </summary>
-        </member>
         <member name="M:NetSpell.SpellChecker.Spelling.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
@@ -767,11 +397,6 @@
                 The current word being spell checked from the text property
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Spelling.Dictionaries">
-            <summary>
-                A collection of dictionaries to use when spell checking
-            </summary>
-        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreAllCapsWords">
             <summary>
                 Ignore words with all capital letters when spell checking
@@ -793,11 +418,6 @@
         <member name="P:NetSpell.SpellChecker.Spelling.IgnoreWordsWithDigits">
             <summary>
                 Ignore words with digits when spell checking
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.Spelling.MainDictionary">
-            <summary>
-            	The file name for the main dictionary
             </summary>
         </member>
         <member name="P:NetSpell.SpellChecker.Spelling.MaxSuggestions">
@@ -844,14 +464,6 @@
                 The text to spell check
             </summary>
         </member>
-        <member name="P:NetSpell.SpellChecker.Spelling.UserDictionary">
-            <summary>
-            	The file name of the current user dictionary
-            </summary>
-            <remarks>
-            	The user dictionary is where words get added by the user
-            </remarks>
-        </member>
         <member name="P:NetSpell.SpellChecker.Spelling.WordCount">
             <summary>
                 The number of words being spell checked
@@ -893,32 +505,6 @@
             	Note: the compare sorts in desc order, largest score first
             </remarks>
         </member>
-        <member name="T:NetSpell.SpellChecker.WordEventArgs">
-            <summary>
-                Class sent to the event handler when the DoubleWord or 
-                MisspelledWord event occurs
-            </summary>
-        </member>
-        <member name="M:NetSpell.SpellChecker.WordEventArgs.#ctor(System.String,System.Int32,System.Int32)">
-            <summary>
-                Constructor used to pass in properties
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.WordEventArgs.TextIndex">
-            <summary>
-                Text index of the WordEvent
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.WordEventArgs.Word">
-            <summary>
-                Word that caused the WordEvent
-            </summary>
-        </member>
-        <member name="P:NetSpell.SpellChecker.WordEventArgs.WordIndex">
-            <summary>
-                Word index of the WordEvent
-            </summary>
-        </member>
         <member name="T:NetSpell.SpellChecker.SpellingForm">
             <summary>
             The SpellingForm is used to display suggestions when there is a misspelled word
@@ -950,6 +536,1338 @@
             <summary>
                 called by spell checker to disable this 
                 form from handling spell checker events
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.WordEventArgs">
+            <summary>
+                Class sent to the event handler when the DoubleWord or 
+                MisspelledWord event occurs
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordEventArgs.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+                Constructor used to pass in properties
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordEventArgs.TextIndex">
+            <summary>
+                Text index of the WordEvent
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordEventArgs.Word">
+            <summary>
+                Word that caused the WordEvent
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordEventArgs.WordIndex">
+            <summary>
+                Word index of the WordEvent
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Dictionary">
+            <summary>
+            Summary description for Dictionary.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.#ctor(System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="wordFile" type="string">
+                <para>
+                    The file to use as the word list
+                </para>
+            </param>
+            <param name="affixFile" type="string">
+                <para>
+                    The file containing the affix rules
+                </para>
+            </param>
+            <param name="phoneticFile" type="string">
+                <para>
+                    The file containing the phonetic rules
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.#ctor(System.String,System.String)">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="wordFile" type="string">
+                <para>
+                    The file to use as the word list
+                </para>
+            </param>
+            <param name="affixFile" type="string">
+                <para>
+                    The file containing the affix rules
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.ExpandWord(System.String)">
+            <summary>
+                Expands an affix compressed word
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to expand
+                </para>
+            </param>
+            <returns>
+                An array of words expanded from the compressed word
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.Initialize">
+            <summary>
+                Loads the files needed for the dictonary
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.WordSound(System.String)">
+            <summary>
+                Uses the PhoneticRules to generate a code for how a word sounds
+            </summary>
+            <param name="word" type="string">
+                <para>
+                    The word to generate the code for
+                </para>
+            </param>
+            <returns>
+                The code for how the word sounds
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.LoadAffix">
+            <summary>
+                Loads and parses the affix file
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.LoadPhonetic">
+            <summary>
+                loads and parses the phonetic file
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Dictionary.LoadWords">
+            <summary>
+                Loads the word list file
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.AffixFile">
+            <summary>
+                The file name for the affix file
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.AffixRules">
+            <summary>
+                A collection of affix rules
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.BaseWords">
+            <summary>
+                The base words for the dictionary
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.Initialized">
+            <summary>
+                True if the dictionary files are loaded
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.PhoneticFile">
+            <summary>
+                The file name for the phonetic rules
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.PhoneticRules">
+            <summary>
+                A collection of phonetic rules
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.ReplaceCharacters">
+            <summary>
+                The characters to interchange when trying to generate suggestions
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.TryCharacters">
+            <summary>
+                The characters to use when swapping characters to generate suggestions
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Dictionary.WordListFile">
+            <summary>
+                The file that contains the base word list
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixRule">
+            <summary>
+            	Rule for expanding base words
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRule.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRule.#ctor(System.String[])">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+            <param name="entryText" type="string[]">
+                <para>
+                    the entry records to parse
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRule.LoadEntries(System.String[])">
+            <summary>
+                Parses the entry records and populates the EntryCollection
+            </summary>
+            <param name="entryText" type="string[]">
+                <para>
+                    the entry records to parse
+                </para>
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRule.AllowPrefix">
+            <summary>
+                Allow a prefix and a suffix
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRule.Entries">
+            <summary>
+                Collection of text entries that make up this rule
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRule.IsPrefix">
+            <summary>
+                True if this rule is a prefix
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRule.Name">
+            <summary>
+                Name of the Affix rule
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixEntry">
+            <summary>
+            	Rule Entry for expanding base words
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntry.#ctor">
+            <summary>
+                Initializes a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntry.#ctor(System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the class while setting its properties
+            </summary>
+            <param name="addChars" type="string">
+                <para>
+                    The characters to add to the string
+                </para>
+            </param>
+            <param name="stripChars" type="string">
+                <para>
+                    The characters to remove before adding characters
+                </para>
+            </param>
+            <param name="condition" type="string">
+                <para>
+                    The condition to be met in order to add characters
+                </para>
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntry.AddCharacters">
+            <summary>
+                The characters to add to the string
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntry.Condition">
+            <summary>
+                The condition to be met in order to add characters
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntry.ConditionRegex">
+            <summary>
+                Regular Expresion to evaluate the condition
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntry.StripCharacters">
+            <summary>
+                The characters to remove before adding characters
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Phonetic.PhoneticRule">
+            <summary>
+            Summary description for Rule.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixEntryCollection">
+            <summary>
+                A collection that stores 'AffixEntry' objects.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.#ctor">
+            <summary>
+                Initializes a new instance of 'AffixEntryCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.#ctor(NetSpell.SpellChecker.Affix.AffixEntryCollection)">
+            <summary>
+                Initializes a new instance of 'AffixEntryCollection' based on an already existing instance.
+            </summary>
+            <param name='Value'>
+                A 'AffixEntryCollection' from which the contents is copied
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.#ctor(NetSpell.SpellChecker.Affix.AffixEntry[])">
+            <summary>
+                Initializes a new instance of 'AffixEntryCollection' with an array of 'AffixEntry' objects.
+            </summary>
+            <param name='Value'>
+                An array of 'AffixEntry' objects with which to initialize the collection
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.Add(NetSpell.SpellChecker.Affix.AffixEntry)">
+            <summary>
+                Adds a 'AffixEntry' item with the specified value to the 'AffixEntryCollection'
+            </summary>
+            <param name='Value'>
+                The 'AffixEntry' to add.
+            </param>
+            <returns>
+                The index at which the new element was inserted.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.AddRange(NetSpell.SpellChecker.Affix.AffixEntry[])">
+            <summary>
+                Copies the elements of an array at the end of this instance of 'AffixEntryCollection'.
+            </summary>
+            <param name='Value'>
+                An array of 'AffixEntry' objects to add to the collection.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.AddRange(NetSpell.SpellChecker.Affix.AffixEntryCollection)">
+            <summary>
+                Adds the contents of another 'AffixEntryCollection' at the end of this instance.
+            </summary>
+            <param name='Value'>
+                A 'AffixEntryCollection' containing the objects to add to the collection.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.Contains(NetSpell.SpellChecker.Affix.AffixEntry)">
+            <summary>
+                Gets a value indicating whether the 'AffixEntryCollection' contains the specified value.
+            </summary>
+            <param name='Value'>
+                The item to locate.
+            </param>
+            <returns>
+                True if the item exists in the collection; false otherwise.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.CopyTo(NetSpell.SpellChecker.Affix.AffixEntry[],System.Int32)">
+            <summary>
+                Copies the 'AffixEntryCollection' values to a one-dimensional System.Array
+                instance starting at the specified array index.
+            </summary>
+            <param name='Array'>
+                The one-dimensional System.Array that represents the copy destination.
+            </param>
+            <param name='Index'>
+                The index in the array where copying begins.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.IndexOf(NetSpell.SpellChecker.Affix.AffixEntry)">
+            <summary>
+                Returns the index of a 'AffixEntry' object in the collection.
+            </summary>
+            <param name='Value'>
+                The 'AffixEntry' object whose index will be retrieved.
+            </param>
+            <returns>
+                If found, the index of the value; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.Insert(System.Int32,NetSpell.SpellChecker.Affix.AffixEntry)">
+            <summary>
+                Inserts an existing 'AffixEntry' into the collection at the specified index.
+            </summary>
+            <param name='Index'>
+                The zero-based index where the new item should be inserted.
+            </param>
+            <param name='Value'>
+                The item to insert.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.GetEnumerator">
+            <summary>
+                Returns an enumerator that can be used to iterate through
+                the 'AffixEntryCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryCollection.Remove(NetSpell.SpellChecker.Affix.AffixEntry)">
+            <summary>
+                Removes a specific item from the 'AffixEntryCollection'.
+            </summary>
+            <param name='Value'>
+                The item to remove from the 'AffixEntryCollection'.
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntryCollection.Item(System.Int32)">
+            <summary>
+                Represents the 'AffixEntry' item at the specified index position.
+            </summary>
+            <param name='Index'>
+                The zero-based index of the entry to locate in the collection.
+            </param>
+            <value>
+                The entry at the specified index of the collection.
+            </value>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixEntryEnumerator">
+            <summary>
+                A strongly typed enumerator for 'AffixEntryCollection'
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.#ctor(NetSpell.SpellChecker.Affix.AffixEntryCollection)">
+            <summary>
+                Enumerator constructor
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.System#Collections#IEnumerator#MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.System#Collections#IEnumerator#Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.Current">
+            <summary>
+                Gets the current element from the collection (strongly typed)
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixEntryEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+                Gets the current element from the collection
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection">
+            <summary>
+                A collection that stores 'PhoneticRule' objects.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.#ctor">
+            <summary>
+                Initializes a new instance of 'PhoneticRuleCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.#ctor(NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection)">
+            <summary>
+                Initializes a new instance of 'PhoneticRuleCollection' based on an already existing instance.
+            </summary>
+            <param name='Value'>
+                A 'PhoneticRuleCollection' from which the contents is copied
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.#ctor(NetSpell.SpellChecker.Phonetic.PhoneticRule[])">
+            <summary>
+                Initializes a new instance of 'PhoneticRuleCollection' with an array of 'PhoneticRule' objects.
+            </summary>
+            <param name='Value'>
+                An array of 'PhoneticRule' objects with which to initialize the collection
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.Add(NetSpell.SpellChecker.Phonetic.PhoneticRule)">
+            <summary>
+                Adds a 'PhoneticRule' item with the specified value to the 'PhoneticRuleCollection'
+            </summary>
+            <param name='Value'>
+                The 'PhoneticRule' to add.
+            </param>
+            <returns>
+                The index at which the new element was inserted.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.AddRange(NetSpell.SpellChecker.Phonetic.PhoneticRule[])">
+            <summary>
+                Copies the elements of an array at the end of this instance of 'PhoneticRuleCollection'.
+            </summary>
+            <param name='Value'>
+                An array of 'PhoneticRule' objects to add to the collection.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.AddRange(NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection)">
+            <summary>
+                Adds the contents of another 'PhoneticRuleCollection' at the end of this instance.
+            </summary>
+            <param name='Value'>
+                A 'PhoneticRuleCollection' containing the objects to add to the collection.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.Contains(NetSpell.SpellChecker.Phonetic.PhoneticRule)">
+            <summary>
+                Gets a value indicating whether the 'PhoneticRuleCollection' contains the specified value.
+            </summary>
+            <param name='Value'>
+                The item to locate.
+            </param>
+            <returns>
+                True if the item exists in the collection; false otherwise.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.CopyTo(NetSpell.SpellChecker.Phonetic.PhoneticRule[],System.Int32)">
+            <summary>
+                Copies the 'PhoneticRuleCollection' values to a one-dimensional System.Array
+                instance starting at the specified array index.
+            </summary>
+            <param name='Array'>
+                The one-dimensional System.Array that represents the copy destination.
+            </param>
+            <param name='Index'>
+                The index in the array where copying begins.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.IndexOf(NetSpell.SpellChecker.Phonetic.PhoneticRule)">
+            <summary>
+                Returns the index of a 'PhoneticRule' object in the collection.
+            </summary>
+            <param name='Value'>
+                The 'PhoneticRule' object whose index will be retrieved.
+            </param>
+            <returns>
+                If found, the index of the value; otherwise, -1.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.Insert(System.Int32,NetSpell.SpellChecker.Phonetic.PhoneticRule)">
+            <summary>
+                Inserts an existing 'PhoneticRule' into the collection at the specified index.
+            </summary>
+            <param name='Index'>
+                The zero-based index where the new item should be inserted.
+            </param>
+            <param name='Value'>
+                The item to insert.
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.GetEnumerator">
+            <summary>
+                Returns an enumerator that can be used to iterate through
+                the 'PhoneticRuleCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.Remove(NetSpell.SpellChecker.Phonetic.PhoneticRule)">
+            <summary>
+                Removes a specific item from the 'PhoneticRuleCollection'.
+            </summary>
+            <param name='Value'>
+                The item to remove from the 'PhoneticRuleCollection'.
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection.Item(System.Int32)">
+            <summary>
+                Represents the 'PhoneticRule' item at the specified index position.
+            </summary>
+            <param name='Index'>
+                The zero-based index of the entry to locate in the collection.
+            </param>
+            <value>
+                The entry at the specified index of the collection.
+            </value>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator">
+            <summary>
+                A strongly typed enumerator for 'PhoneticRuleCollection'
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.#ctor(NetSpell.SpellChecker.Phonetic.PhoneticRuleCollection)">
+            <summary>
+                Enumerator constructor
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.System#Collections#IEnumerator#MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.System#Collections#IEnumerator#Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.Current">
+            <summary>
+                Gets the current element from the collection (strongly typed)
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Phonetic.PhoneticRuleEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+                Gets the current element from the collection
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixRuleCollection">
+            <summary>
+                A dictionary collection that stores 'AffixRule' objects.
+            </summary>	
+        </member>
+        <member name="F:NetSpell.SpellChecker.Affix.AffixRuleCollection.innerHash">
+            <summary>
+                Internal Hashtable
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(NetSpell.SpellChecker.Affix.AffixRuleCollection)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="original" type="AffixRuleCollection">
+                <para>
+                    A 'AffixRuleCollection' from which the contents is copied
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Collections.IDictionary)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'AffixRuleCollection'.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'AffixRuleCollection' can initially contain.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Collections.IDictionary,System.Single)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'AffixRuleCollection' can initially contain.
+                </para>
+            </param>
+            <param name="loadFactor" type="int">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Collections.IDictionary,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Int32,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'AffixRuleCollection' can initially contain.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>		
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Collections.IDictionary,System.Single,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.#ctor(System.Int32,System.Single,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'AffixRuleCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'AffixRuleCollection' can initially contain. 
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'AffixRuleCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal. 
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.GetEnumerator">
+            <summary>
+                Returns an enumerator that can be used to iterate through the 'AffixRuleCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Remove(System.String)">
+            <summary>
+                Removes the element with the specified key from the AffixRuleCollection.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key of the element to remove
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Contains(System.String)">
+            <summary>
+                Determines whether the AffixRuleCollection contains an element with the specified key.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key to locate in the AffixRuleCollection.
+                </para>
+            </param>
+            <returns>
+                true if the AffixRuleCollection contains an element with the key; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Clear">
+            <summary>
+                removes all elements from the AffixRuleCollection.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Add(System.String,NetSpell.SpellChecker.Affix.AffixRule)">
+            <summary>
+                adds an element with the provided key and value to the AffixRuleCollection.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The string Object to use as the key of the element to add.
+                </para>
+            </param>
+            <param name="value" type="AffixRule">
+                <para>
+                    The AffixRule Object to use as the value of the element to add.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+                copies the elements of the AffixRuleCollection to an Array, starting at a particular Array index.
+            </summary>
+            <param name="array" type="System.Array">
+                <para>
+                    The one-dimensional Array that is the destination of the elements copied from AffixRuleCollection. The Array must have zero-based indexing. 
+                </para>
+            </param>
+            <param name="index" type="int">
+                <para>
+                    The zero-based index in array at which copying begins. 
+                </para>
+            </param>		
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Clone">
+            <summary>
+                Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+                A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.ContainsKey(System.String)">
+            <summary>
+                Determines whether the AffixRuleCollection contains a specific key.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key to locate in the AffixRuleCollection.
+                </para>
+            </param>
+            <returns>
+                true if the AffixRuleCollection contains an element with the specified key; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.ContainsValue(NetSpell.SpellChecker.Affix.AffixRule)">
+            <summary>
+                Determines whether the AffixRuleCollection contains a specific value.
+            </summary>
+            <param name="value" type="AffixRule">
+                <para>
+                    The value to locate in the AffixRuleCollection. The value can be a null reference (Nothing in Visual Basic).
+                </para>
+            </param>
+            <returns>
+                true if the AffixRuleCollection contains an element with the specified value; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleCollection.Synchronized(NetSpell.SpellChecker.Affix.AffixRuleCollection)">
+            <summary>
+                Returns a synchronized (thread-safe) wrapper for the AffixRuleCollection.
+            </summary>
+            <param name="nonSync" type="AffixRuleCollection">
+                <para>
+                    The AffixRuleCollection to synchronize.
+                </para>
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.IsReadOnly">
+            <summary>
+                gets a value indicating whether the AffixRuleCollection is read-only.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.Item(System.String)">
+            <summary>
+                Gets or sets the element with the specified key.
+            </summary>
+            <value>
+                <para>
+                    The key of the element to get or set.
+                </para>
+            </value>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.Values">
+            <summary>
+                gets an ICollection containing the values in the AffixRuleCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.Keys">
+            <summary>
+                gets an ICollection containing the keys of the AffixRuleCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.IsFixedSize">
+            <summary>
+                gets a value indicating whether the AffixRuleCollection has a fixed size.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.IsSynchronized">
+            <summary>
+                Gets a value indicating whether access to the AffixRuleCollection is synchronized (thread-safe).
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.Count">
+            <summary>
+                Gets the number of elements contained in the AffixRuleCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleCollection.SyncRoot">
+            <summary>
+                Gets an object that can be used to synchronize access to the AffixRuleCollection.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.Affix.AffixRuleEnumerator">
+            <summary>
+                A strongly typed enumerator for 'AffixRuleCollection'
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.Key">
+            <summary>
+                 gets the key of the current AffixRuleCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.Value">
+            <summary>
+                gets the value of the current AffixRuleCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.Entry">
+            <summary>
+                 gets both the key and the value of the current AffixRuleCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.Affix.AffixRuleEnumerator.Current">
+            <summary>
+                Gets the current element from the collection
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.WordList.Word">
+            <summary>
+            Summary description for WordItem.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.WordList.WordCollection">
+            <summary>
+                A dictionary collection that stores 'Word' objects.
+            </summary>	
+        </member>
+        <member name="F:NetSpell.SpellChecker.WordList.WordCollection.innerHash">
+            <summary>
+                Internal Hashtable
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(NetSpell.SpellChecker.WordList.WordCollection)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="original" type="WordCollection">
+                <para>
+                    A 'WordCollection' from which the contents is copied
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Collections.IDictionary)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'WordCollection'.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'WordCollection' can initially contain.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Collections.IDictionary,System.Single)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'WordCollection'.
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'WordCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Int32,System.Int32)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'WordCollection' can initially contain.
+                </para>
+            </param>
+            <param name="loadFactor" type="int">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Collections.IDictionary,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'WordCollection'.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'WordCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Int32,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'WordCollection' can initially contain.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'WordCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>		
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Collections.IDictionary,System.Single,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="dictionary" type="System.Collections.IDictionary">
+                <para>
+                    The IDictionary to copy to a new 'WordCollection'.
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'WordCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.#ctor(System.Int32,System.Single,System.Collections.IHashCodeProvider,System.Collections.IComparer)">
+            <summary>
+                Initializes a new instance of 'WordCollection'.
+            </summary>
+            <param name="capacity" type="int">
+                <para>
+                    The approximate number of elements that the 'WordCollection' can initially contain. 
+                </para>
+            </param>
+            <param name="loadFactor" type="float">
+                <para>
+                    A number in the range from 0.1 through 1.0 indicating the maximum ratio of elements to buckets.
+                </para>
+            </param>
+            <param name="codeProvider" type="System.Collections.IHashCodeProvider">
+                <para>
+                    The IHashCodeProvider that supplies the hash codes for all keys in the 'WordCollection'.
+                </para>
+            </param>
+            <param name="comparer" type="System.Collections.IComparer">
+                <para>
+                    The IComparer to use to determine whether two keys are equal. 
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.GetEnumerator">
+            <summary>
+                Returns an enumerator that can be used to iterate through the 'WordCollection'.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Remove(System.String)">
+            <summary>
+                Removes the element with the specified key from the WordCollection.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key of the element to remove
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Contains(System.String)">
+            <summary>
+                Determines whether the WordCollection contains an element with the specified key.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key to locate in the WordCollection.
+                </para>
+            </param>
+            <returns>
+                true if the WordCollection contains an element with the key; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Clear">
+            <summary>
+                removes all elements from the WordCollection.
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Add(System.String,NetSpell.SpellChecker.WordList.Word)">
+            <summary>
+                adds an element with the provided key and value to the WordCollection.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The string Object to use as the key of the element to add.
+                </para>
+            </param>
+            <param name="value" type="Word">
+                <para>
+                    The Word Object to use as the value of the element to add.
+                </para>
+            </param>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+                copies the elements of the WordCollection to an Array, starting at a particular Array index.
+            </summary>
+            <param name="array" type="System.Array">
+                <para>
+                    The one-dimensional Array that is the destination of the elements copied from WordCollection. The Array must have zero-based indexing. 
+                </para>
+            </param>
+            <param name="index" type="int">
+                <para>
+                    The zero-based index in array at which copying begins. 
+                </para>
+            </param>		
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Clone">
+            <summary>
+                Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+                A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.ContainsKey(System.String)">
+            <summary>
+                Determines whether the WordCollection contains a specific key.
+            </summary>
+            <param name="key" type="string">
+                <para>
+                    The key to locate in the WordCollection.
+                </para>
+            </param>
+            <returns>
+                true if the WordCollection contains an element with the specified key; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.ContainsValue(NetSpell.SpellChecker.WordList.Word)">
+            <summary>
+                Determines whether the WordCollection contains a specific value.
+            </summary>
+            <param name="value" type="Word">
+                <para>
+                    The value to locate in the WordCollection. The value can be a null reference (Nothing in Visual Basic).
+                </para>
+            </param>
+            <returns>
+                true if the WordCollection contains an element with the specified value; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollection.Synchronized(NetSpell.SpellChecker.WordList.WordCollection)">
+            <summary>
+                Returns a synchronized (thread-safe) wrapper for the WordCollection.
+            </summary>
+            <param name="nonSync" type="WordCollection">
+                <para>
+                    The WordCollection to synchronize.
+                </para>
+            </param>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.IsReadOnly">
+            <summary>
+                gets a value indicating whether the WordCollection is read-only.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.Item(System.String)">
+            <summary>
+                Gets or sets the element with the specified key.
+            </summary>
+            <value>
+                <para>
+                    The key of the element to get or set.
+                </para>
+            </value>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.Values">
+            <summary>
+                gets an ICollection containing the values in the WordCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.Keys">
+            <summary>
+                gets an ICollection containing the keys of the WordCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.IsFixedSize">
+            <summary>
+                gets a value indicating whether the WordCollection has a fixed size.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.IsSynchronized">
+            <summary>
+                Gets a value indicating whether access to the WordCollection is synchronized (thread-safe).
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.Count">
+            <summary>
+                Gets the number of elements contained in the WordCollection.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollection.SyncRoot">
+            <summary>
+                Gets an object that can be used to synchronize access to the WordCollection.
+            </summary>
+        </member>
+        <member name="T:NetSpell.SpellChecker.WordList.WordCollectionEnumerator">
+            <summary>
+                A strongly typed enumerator for 'WordCollection'
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.Reset">
+            <summary>
+                Sets the enumerator to the first element in the collection
+            </summary>
+        </member>
+        <member name="M:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.MoveNext">
+            <summary>
+                Advances the enumerator to the next element of the collection
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.Key">
+            <summary>
+                 gets the key of the current WordCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.Value">
+            <summary>
+                gets the value of the current WordCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.Entry">
+            <summary>
+                 gets both the key and the value of the current WordCollection entry.
+            </summary>
+        </member>
+        <member name="P:NetSpell.SpellChecker.WordList.WordCollectionEnumerator.Current">
+            <summary>
+                Gets the current element from the collection
             </summary>
         </member>
     </members>

@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.Windows.Forms.Design;
 using System.Drawing;
 using System.Drawing.Design;
+using NetSpell.SpellChecker.Affix;
+using NetSpell.SpellChecker.Phonetic;
 
 namespace NetSpell.SpellChecker
 {
@@ -20,62 +22,24 @@ namespace NetSpell.SpellChecker
 	[ToolboxBitmap(typeof(NetSpell.SpellChecker.Spelling), "Spelling.bmp")]
 	public class Spelling : System.ComponentModel.Component
 	{
-		
+
+		#region Global Regex
 		// Regex are class scope and compiled to improve performance on reuse
 		private Regex _digitRegex = new Regex("^\\d", RegexOptions.Compiled);
 		private Regex _htmlRegex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>", RegexOptions.Compiled);
-		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
+
+		private MatchCollection _htmlTags;
 		private Regex _letterRegex = new Regex("\\D", RegexOptions.Compiled);
 		private Regex _upperRegex = new Regex("[^A-Z]", RegexOptions.Compiled);
-		
+		private Regex _wordEx = new Regex("\\b[\\w']+\\b", RegexOptions.Compiled);
 		private MatchCollection _words;
-		private MatchCollection _htmlTags;
+		#endregion
 
-		private string _CurrentWord = "";
-		private DictionaryCollection _Dictionaries = new DictionaryCollection();
-		private bool _IgnoreAllCapsWords = true;
-		private bool _IgnoreHtml = true;
-		private ArrayList _IgnoreList = new ArrayList();
-		private bool _IgnoreWordsWithDigits = false;
-		private int _mainDictionaryId = -1;
-		private int _MaxSuggestions = 25;
-		private DoubleMetaphone _meta = new DoubleMetaphone();
-		private Hashtable _ReplaceList = new Hashtable();
-		private string _ReplacementWord = "";
-		private bool _ShowDialog = true;
-		private SpellingForm _spellingForm;
-		private ArrayList _Suggestions = new ArrayList();
-		private StringBuilder _Text = new StringBuilder();
-		private int _userDictionaryId = -1;
-		private int _WordCount = 0;
-		private int _WordIndex = 0;
-
-		
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
+		#region private variables
 		private System.ComponentModel.Container components = null;
-		
-		// common spelling errors
-		private string[] replacementChars = new string[] {"a ei", "ei a", "a ey", "ey a", 
-															 "ai ie", "ie ai", "are air", "are ear", "are eir", "air are", "air ere", 
-															 "ere air", "ere ear", "ere eir", "ear are", "ear air", "ear ere", 
-															 "eir are", "eir ere", "ch te", "te ch", "ch ti", "ti ch", "ch tu", 
-															 "tu ch", "ch s", "s ch", "ch k", "k ch", "f ph", "ph f", "gh f", 
-															 "f gh", "i igh", "igh i", "i uy", "uy i", "i ee", "ee i", "j di", 
-															 "di j", "j gg", "gg j", "j ge", "ge j", "s ti", "ti s", "s ci", 
-															 "ci s", "k cc", "cc k", "k qu", "qu k", "kw qu", "o eau", "eau o", 
-															 "o ew", "ew o", "oo ew", "ew oo", "ew ui", "ui ew", "oo ui", "ui oo", 
-															 "ew u", "u ew", "oo u", "u oo", "u oe", "oe u", "u ieu", "ieu u", 
-															 "ue ew", "ew ue", "uff ough", "oo ieu", "ieu oo", "ier ear", "ear ier", 
-															 "ear air", "air ear", "w qu", "qu w", "z ss", "ss z", "shun tion", 
-															 "shun sion", "shun cion"};
+		#endregion
 
-		// subsitution chars for suggetions
-		private char[] tryme = new char[] {'e', 's', 'i', 'a', 'n', 'r', 't', 'o', 'l',
-											  'c', 'd', 'u', 'g', 'm', 'p', 'h', 'b', 'y', 'f', 'v', 'k', 'w'};
-
-
+		#region Events
 		/// <summary>
 		///     This event is fired when word is detected two times in a row
 		/// </summary>
@@ -112,6 +76,45 @@ namespace NetSpell.SpellChecker
 		public delegate void MisspelledWordEventHandler(object sender, WordEventArgs args);
 
 		/// <summary>
+		///     This is the method that is responsible for notifying
+		///     receivers that the event occurred
+		/// </summary>
+		protected virtual void OnDoubledWord(WordEventArgs e)
+		{
+			if (DoubledWord != null)
+			{
+				DoubledWord(this, e);
+			}
+		}
+
+		/// <summary>
+		///     This is the method that is responsible for notifying
+		///     receivers that the event occurred
+		/// </summary>
+		protected virtual void OnEndOfText(System.EventArgs e)
+		{
+			if (EndOfText != null)
+			{
+				EndOfText(this, e);
+			}
+		}
+
+		/// <summary>
+		///     This is the method that is responsible for notifying
+		///     receivers that the event occurred
+		/// </summary>
+		protected virtual void OnMisspelledWord(WordEventArgs e)
+		{
+			if (MisspelledWord != null)
+			{
+				MisspelledWord(this, e);
+			}
+		}
+
+		#endregion
+
+		#region Constructors
+		/// <summary>
 		///     Initializes a new instance of the SpellCheck class
 		/// </summary>
 		public Spelling()
@@ -120,97 +123,6 @@ namespace NetSpell.SpellChecker
 			InitializeComponent();
 		}
 
-		/// <summary>
-		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary object. 
-		/// </summary>
-		/// <param name="dictionaries" type="FreeSpell.Dictionary">
-		///     <para>
-		///         The Dictionary object to use
-		///     </para>
-		/// </param>
-		public Spelling(Dictionary[] dictionaries)
-		{
-			_Dictionaries.AddRange(dictionaries);
-			_spellingForm = new SpellingForm(this);
-			InitializeComponent();
-		}
-
-		/// <summary>
-		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary object. 
-		/// </summary>
-		/// <param name="mainDictionary" type="FreeSpell.Dictionary">
-		///     <para>
-		///         The Dictionary object to use
-		///     </para>
-		/// </param>
-		public Spelling(Dictionary mainDictionary)
-		{
-			_mainDictionaryId = _Dictionaries.Add(mainDictionary);
-			_spellingForm = new SpellingForm(this);
-			InitializeComponent();
-		}
-
-		/// <summary>
-		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary file. 
-		/// </summary>
-		/// <param name="dictionaryFiles" type="string">
-		///     <para>
-		///         The name of the dictionary file to load
-		///     </para>
-		/// </param>
-		public Spelling(string[] dictionaryFiles)
-		{
-			foreach (string file in dictionaryFiles)
-			{
-				_Dictionaries.Add(new Dictionary(file));
-			}
-			_spellingForm = new SpellingForm(this);
-			InitializeComponent();
-		}
-		
-		/// <summary>
-		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary file. 
-		/// </summary>
-		/// <param name="mainDictionaryFile" type="string">
-		///     <para>
-		///         The main spell checker dictionary file name
-		///     </para>
-		/// </param>
-		/// <param name="userDictionaryFile" type="string">
-		///     <para>
-		///         The user dictionary filename
-		///     </para>
-		/// </param>
-		/// <returns>
-		///     A void value...
-		/// </returns>
-		public Spelling(string mainDictionaryFile, string userDictionaryFile)
-		{
-			_mainDictionaryId = _Dictionaries.Add(new Dictionary(mainDictionaryFile));
-			_userDictionaryId = _Dictionaries.Add(new Dictionary(userDictionaryFile));
-			_spellingForm = new SpellingForm(this);
-			InitializeComponent();
-		}
-
-		/// <summary>
-		///     Initializes a new instance of the SpellCheck class with 
-		///     the specified dictionary file. 
-		/// </summary>
-		/// <param name="mainDictionaryFile" type="string">
-		///     <para>
-		///          The main spell checker dictionary file name
-		///     </para>
-		/// </param>
-		public Spelling(string mainDictionaryFile)
-		{
-			_mainDictionaryId = _Dictionaries.Add(new Dictionary(mainDictionaryFile));
-			_spellingForm = new SpellingForm(this);
-			InitializeComponent();
-		}
 
 		/// <summary>
 		///     Required for Windows.Forms Class Composition Designer support
@@ -222,6 +134,9 @@ namespace NetSpell.SpellChecker
 			InitializeComponent();
 		}
 
+		#endregion
+
+		#region private methods
 		/// <summary>
 		///     Calculates the position of html tags in the Text property
 		/// </summary>
@@ -294,6 +209,162 @@ namespace NetSpell.SpellChecker
 			_Suggestions.Clear();
 		}
 
+		#endregion
+
+		#region ISpell Suggetion methods
+
+		/// <summary>
+		///     try omitting one char of word at a time
+		/// </summary>
+		private void ExtraChar(ref ArrayList tempSuggestion)
+		{
+			if (_CurrentWord.Length > 1) 
+			{
+				for (int i = 0; i < _CurrentWord.Length; i++)
+				{
+					StringBuilder tempWord = new StringBuilder(_CurrentWord);
+					tempWord.Remove(i, 1);
+
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+				
+						tempSuggestion.Add(ws);
+					}
+								 
+				}
+			}
+		}
+
+		/// <summary>
+		///     try inserting a tryme character before every letter
+		/// </summary>
+		private void ForgotChar(ref ArrayList tempSuggestion)
+		{
+			//TODO: Fix
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				/*for (int x = 0; x < tryme.Length; x++)
+				{
+					StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				
+					tempWord.Insert(i, tryme[x]);
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+						tempSuggestion.Add(ws);
+					}
+				}	*/			 
+			}
+		}
+
+		/// <summary>
+		///     suggestions for a typical fault of spelling, that
+		///		differs with more, than 1 letter from the right form.
+		/// </summary>
+		private void ReplaceChars(ref ArrayList tempSuggestion)
+		{
+			//TODO: Fix
+			/*for (int i = 0; i < replacementChars.Length; i++)
+			{
+				int split = replacementChars[i].IndexOf(' ');
+				string key = replacementChars[i].Substring(0, split);
+				string replacement = replacementChars[i].Substring(split+1);
+
+				int pos = _CurrentWord.IndexOf(key);
+				while (pos > -1)
+				{
+					string tempWord = _CurrentWord.Substring(0, pos);
+					tempWord += replacement;
+					tempWord += _CurrentWord.Substring(pos + key.Length);
+
+					if (this.TestWord(tempWord))
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord));
+					
+						tempSuggestion.Add(ws);
+					}
+					pos = _CurrentWord.IndexOf(key, pos+1);
+				}
+			}*/
+		}
+
+		/// <summary>
+		///     try swapping adjacent chars one by one
+		/// </summary>
+		private void SwapChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length - 1; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				
+				char swap = tempWord[i];
+				tempWord[i] = tempWord[i+1];
+				tempWord[i+1] = swap;
+
+				if (this.TestWord(tempWord.ToString())) 
+				{
+					WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+						WordSimilarity(_CurrentWord, tempWord.ToString()));
+				
+					tempSuggestion.Add(ws);
+				}	 
+			}
+		}
+		
+		/// <summary>
+		///     split the string into two pieces after every char
+		///		if both pieces are good words make them a suggestion
+		/// </summary>
+		private void TwoWords(ref ArrayList tempSuggestion)
+		{
+			for (int i = 1; i < _CurrentWord.Length - 1; i++)
+			{
+				string firstWord = _CurrentWord.Substring(0,i);
+				string secondWord = _CurrentWord.Substring(i);
+				
+				if (this.TestWord(firstWord) && this.TestWord(secondWord)) 
+				{
+					string tempWord = firstWord + " " + secondWord;
+					WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
+						WordSimilarity(_CurrentWord, tempWord));
+				
+					tempSuggestion.Add(ws);
+				}	 
+			}
+		}
+
+		/// <summary>
+		///		swap out each char one by one and try all the tryme
+		///		chars in its place to see if that makes a good word
+		/// </summary>
+		public void BadChar(ref ArrayList tempSuggestion)
+		{
+			for (int i = 0; i < _CurrentWord.Length; i++)
+			{
+				StringBuilder tempWord = new StringBuilder(_CurrentWord);
+				//TODO: fix
+				/*for (int x = 0; x < tryme.Length; x++)
+				{
+					tempWord[i] = tryme[x];
+					if (this.TestWord(tempWord.ToString())) 
+					{
+						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
+							WordSimilarity(_CurrentWord, tempWord.ToString()));
+					
+						tempSuggestion.Add(ws);
+					}
+				}*/				 
+			}
+		}
+
+		#endregion
+
+		#region public methods
 		/// <summary>
 		///     Deletes the CurrentWord from the Text Property
 		/// </summary>
@@ -618,8 +689,8 @@ namespace NetSpell.SpellChecker
 		public void Suggest()
 		{
 			ArrayList tempSuggestion = new ArrayList();
-
-			_meta.GenerateMetaphone(_CurrentWord);
+			//TODO: fix
+			/*_meta.GenerateMetaphone(_CurrentWord);
 
 			string priSearch = string.Concat("|", _meta.PrimaryCode, "|");
 			string sndSearch = string.Concat("|", _meta.SecondaryCode, "|");
@@ -637,7 +708,7 @@ namespace NetSpell.SpellChecker
 					}
 				} 
 			} 
-			
+			*/
 			// suggestions for a typical fault of spelling, that
 			// differs with more, than 1 letter from the right form.
 			this.ReplaceChars(ref tempSuggestion);
@@ -688,8 +759,8 @@ namespace NetSpell.SpellChecker
 		/// </returns>
 		public bool TestWord(string word)
 		{
-			// dictionary stores words in 'word|PrimaryCode|SecondaryCode|' format
-			_meta.GenerateMetaphone(word);
+			// TODO: fix
+			/*_meta.GenerateMetaphone(word);
 			string tempWord = string.Format("{0}|{1}|{2}|", 
 				word, _meta.PrimaryCode, _meta.SecondaryCode);
 
@@ -703,6 +774,7 @@ namespace NetSpell.SpellChecker
 				if (dict.WordList.BinarySearch(tempWord) >= 0) return true;
 				if (dict.WordList.BinarySearch(lowerWord) >= 0) return true;
 			}
+			*/
 			return false;
 		}
 
@@ -759,41 +831,28 @@ namespace NetSpell.SpellChecker
 			return simScore/perfectScore;
 		}
 
-		/// <summary>
-		///     This is the method that is responsible for notifying
-		///     receivers that the event occurred
-		/// </summary>
-		protected virtual void OnDoubledWord(WordEventArgs e)
-		{
-			if (DoubledWord != null)
-			{
-				DoubledWord(this, e);
-			}
-		}
+		#endregion
 
-		/// <summary>
-		///     This is the method that is responsible for notifying
-		///     receivers that the event occurred
-		/// </summary>
-		protected virtual void OnEndOfText(System.EventArgs e)
-		{
-			if (EndOfText != null)
-			{
-				EndOfText(this, e);
-			}
-		}
+		#region public properties
 
-		/// <summary>
-		///     This is the method that is responsible for notifying
-		///     receivers that the event occurred
-		/// </summary>
-		protected virtual void OnMisspelledWord(WordEventArgs e)
-		{
-			if (MisspelledWord != null)
-			{
-				MisspelledWord(this, e);
-			}
-		}
+		private string _CurrentWord = "";
+		private Dictionary _Dictionary = new Dictionary();
+		private bool _IgnoreAllCapsWords = true;
+		private bool _IgnoreHtml = true;
+		private ArrayList _IgnoreList = new ArrayList();
+		private bool _IgnoreWordsWithDigits = false;
+		private int _MaxSuggestions = 25;
+		private Hashtable _ReplaceList = new Hashtable();
+		private string _ReplacementWord = "";
+		private bool _ShowDialog = true;
+		private SpellingForm _spellingForm;
+		private ArrayList _Suggestions = new ArrayList();
+		private StringBuilder _Text = new StringBuilder();
+		private Dictionary _UserDictionary = new Dictionary();
+		private int _WordCount = 0;
+		private int _WordIndex = 0;
+
+
 
 		/// <summary>
 		///     The current word being spell checked from the text property
@@ -805,15 +864,12 @@ namespace NetSpell.SpellChecker
 			get	{return _CurrentWord;}
 		}
 
-		/// <summary>
-		///     A collection of dictionaries to use when spell checking
-		/// </summary>
-		[Browsable(false)]
-		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public DictionaryCollection Dictionaries
+		public Dictionary Dictionary
 		{
-			get {return _Dictionaries;}
+			get {return _Dictionary;}
+			set {_Dictionary = value;}
 		}
+
 
 		/// <summary>
 		///     Ignore words with all capital letters when spell checking
@@ -865,32 +921,6 @@ namespace NetSpell.SpellChecker
 			set {_IgnoreWordsWithDigits = value;}
 		}
 
-
-		/// <summary>
-		///		The file name for the main dictionary
-		/// </summary>
-		[DefaultValue("")]
-		[CategoryAttribute("Dictionary")]
-		[Description("The file name for the main dictionary")]
-		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-		public string MainDictionary
-		{
-			get 
-			{
-				if (_mainDictionaryId != -1)
-					return _Dictionaries[_mainDictionaryId].FileName;
-				else
-					return "";
-			}
-			set 
-			{
-				if (_mainDictionaryId == -1)
-					_mainDictionaryId = _Dictionaries.Add(new Dictionary(value));
-				else
-					_Dictionaries[_mainDictionaryId].Load(value);
-			}
-		}
-
 		/// <summary>
 		///     The maximum number of suggestions to generate
 		/// </summary>
@@ -902,6 +932,7 @@ namespace NetSpell.SpellChecker
 			get {return _MaxSuggestions;}
 			set {_MaxSuggestions = value;}
 		}
+
 
 		/// <summary>
 		///     List of words and replacement values to automatically replace
@@ -989,33 +1020,13 @@ namespace NetSpell.SpellChecker
 			}
 		}
 
-		/// <summary>
-		///		The file name of the current user dictionary
-		/// </summary>
-		/// <remarks>
-		///		The user dictionary is where words get added by the user
-		/// </remarks>
-		[DefaultValue("")]
-		[CategoryAttribute("Dictionary")]
-		[Description("The file name for the user dictionary")]
-		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-		public string UserDictionary
+
+		public Dictionary UserDictionary
 		{
-			get 
-			{
-				if (_userDictionaryId != -1)
-					return _Dictionaries[_userDictionaryId].FileName;
-				else
-					return "";
-			}
-			set 
-			{
-				if (_userDictionaryId == -1)
-					_userDictionaryId = _Dictionaries.Add(new Dictionary(value));
-				else
-					_Dictionaries[_userDictionaryId].Load(value);
-			}
+			get {return _UserDictionary;}
+			set {_UserDictionary = value;}
 		}
+
 
 		/// <summary>
 		///     The number of words being spell checked
@@ -1038,6 +1049,9 @@ namespace NetSpell.SpellChecker
 			set {_WordIndex = value;}
 		}
 
+		#endregion
+
+		#region private class
 		/// <summary>
 		///     This class is used to sort suggestions
 		/// </summary>
@@ -1075,155 +1089,8 @@ namespace NetSpell.SpellChecker
 			}
 
 		}
-		#region ISpell Suggetion Helper functions
-
-		/// <summary>
-		///     try omitting one char of word at a time
-		/// </summary>
-		private void ExtraChar(ref ArrayList tempSuggestion)
-		{
-			if (_CurrentWord.Length > 1) 
-			{
-				for (int i = 0; i < _CurrentWord.Length; i++)
-				{
-					StringBuilder tempWord = new StringBuilder(_CurrentWord);
-					tempWord.Remove(i, 1);
-
-					if (this.TestWord(tempWord.ToString())) 
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-				
-						tempSuggestion.Add(ws);
-					}
-								 
-				}
-			}
-		}
-
-		/// <summary>
-		///     try inserting a tryme character before every letter
-		/// </summary>
-		private void ForgotChar(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < _CurrentWord.Length; i++)
-			{
-				for (int x = 0; x < tryme.Length; x++)
-				{
-					StringBuilder tempWord = new StringBuilder(_CurrentWord);
-				
-					tempWord.Insert(i, tryme[x]);
-					if (this.TestWord(tempWord.ToString())) 
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-					
-						tempSuggestion.Add(ws);
-					}
-				}				 
-			}
-		}
-
-		/// <summary>
-		///     suggestions for a typical fault of spelling, that
-		///		differs with more, than 1 letter from the right form.
-		/// </summary>
-		private void ReplaceChars(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < replacementChars.Length; i++)
-			{
-				int split = replacementChars[i].IndexOf(' ');
-				string key = replacementChars[i].Substring(0, split);
-				string replacement = replacementChars[i].Substring(split+1);
-
-				int pos = _CurrentWord.IndexOf(key);
-				while (pos > -1)
-				{
-					string tempWord = _CurrentWord.Substring(0, pos);
-					tempWord += replacement;
-					tempWord += _CurrentWord.Substring(pos + key.Length);
-
-					if (this.TestWord(tempWord))
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord));
-					
-						tempSuggestion.Add(ws);
-					}
-					pos = _CurrentWord.IndexOf(key, pos+1);
-				}
-			}
-		}
-
-		/// <summary>
-		///     try swapping adjacent chars one by one
-		/// </summary>
-		private void SwapChar(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < _CurrentWord.Length - 1; i++)
-			{
-				StringBuilder tempWord = new StringBuilder(_CurrentWord);
-				
-				char swap = tempWord[i];
-				tempWord[i] = tempWord[i+1];
-				tempWord[i+1] = swap;
-
-				if (this.TestWord(tempWord.ToString())) 
-				{
-					WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-						WordSimilarity(_CurrentWord, tempWord.ToString()));
-				
-					tempSuggestion.Add(ws);
-				}	 
-			}
-		}
-		
-		/// <summary>
-		///     split the string into two pieces after every char
-		///		if both pieces are good words make them a suggestion
-		/// </summary>
-		private void TwoWords(ref ArrayList tempSuggestion)
-		{
-			for (int i = 1; i < _CurrentWord.Length - 1; i++)
-			{
-				string firstWord = _CurrentWord.Substring(0,i);
-				string secondWord = _CurrentWord.Substring(i);
-				
-				if (this.TestWord(firstWord) && this.TestWord(secondWord)) 
-				{
-					string tempWord = firstWord + " " + secondWord;
-					WordSuggestion ws = new WordSuggestion(tempWord.ToLower(), 
-						WordSimilarity(_CurrentWord, tempWord));
-				
-					tempSuggestion.Add(ws);
-				}	 
-			}
-		}
-
-		/// <summary>
-		///		swap out each char one by one and try all the tryme
-		///		chars in its place to see if that makes a good word
-		/// </summary>
-		public void BadChar(ref ArrayList tempSuggestion)
-		{
-			for (int i = 0; i < _CurrentWord.Length; i++)
-			{
-				StringBuilder tempWord = new StringBuilder(_CurrentWord);
-				for (int x = 0; x < tryme.Length; x++)
-				{
-					tempWord[i] = tryme[x];
-					if (this.TestWord(tempWord.ToString())) 
-					{
-						WordSuggestion ws = new WordSuggestion(tempWord.ToString().ToLower(), 
-							WordSimilarity(_CurrentWord, tempWord.ToString()));
-					
-						tempSuggestion.Add(ws);
-					}
-				}				 
-			}
-		}
-
 		#endregion
+
 
 		#region Component Designer generated code
 		/// <summary>
@@ -1236,53 +1103,10 @@ namespace NetSpell.SpellChecker
 		}
 		#endregion
 
-	} // Class SpellChecker
-
-	/// <summary>
-	///     Class sent to the event handler when the DoubleWord or 
-	///     MisspelledWord event occurs
-	/// </summary>
-	public class WordEventArgs : EventArgs 
-	{
-		private int _TextIndex;
-		private string _Word;
-		private int _WordIndex;
-
-		/// <summary>
-		///     Constructor used to pass in properties
-		/// </summary>
-		public WordEventArgs(string word, int wordIndex, int textIndex)
-		{
-			_Word = word;
-			_WordIndex = wordIndex;
-			_TextIndex = textIndex;
-		}
-
-		/// <summary>
-		///     Text index of the WordEvent
-		/// </summary>
-		public int TextIndex
-		{
-			get {return _TextIndex;}
-		}
-
-		/// <summary>
-		///     Word that caused the WordEvent
-		/// </summary>
-		public string Word
-		{
-			get {return _Word;}
-		}
-
-		/// <summary>
-		///     Word index of the WordEvent
-		/// </summary>
-		public int WordIndex
-		{
-			get {return _WordIndex;}
-		}
-
-	} // Class WordEventArgs
 
 
+
+
+
+	} 
 }

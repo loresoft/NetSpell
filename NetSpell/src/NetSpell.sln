@@ -3,27 +3,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.SpellChecker", "Ne
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild", "NetSpell.DictionaryBuild\NetSpell.DictionaryBuild.csproj", "{1A1420D4-99BA-4755-9D54-F920BA435D64}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Tests", "NetSpell.Tests\NetSpell.Tests.csproj", "{FA92DDBE-81AD-4F8A-9941-300839C15727}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.TraySpell", "NetSpell.TraySpell\NetSpell.TraySpell.csproj", "{16D8A4A3-17EF-4C60-8CF7-16B50938420A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Demo.Windows", "NetSpell.Demo.Windows\NetSpell.Demo.Windows.csproj", "{6462AA1F-4132-4CB5-941C-C342C79B8433}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.Demo.Web", "http://localhost/NetSpell/NetSpell.Demo.Web.csproj", "{5164D9BB-C23F-409D-878B-46C4A0835E7A}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NetSpell.TraySpell.Setup", "NetSpell.TraySpell.Setup\NetSpell.TraySpell.Setup.vdproj", "{C93A5169-1F97-4134-8F59-4CED95AFC80C}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -37,28 +21,14 @@ Global
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Debug.Build.0 = Debug|.NET
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.ActiveCfg = Release|.NET
 		{A426EE0B-E52E-4D74-AF24-06797142D7B2}.Release.Build.0 = Release|.NET
-		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.ActiveCfg = Debug|.NET
-		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Debug.Build.0 = Debug|.NET
-		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.ActiveCfg = Release|.NET
-		{1A1420D4-99BA-4755-9D54-F920BA435D64}.Release.Build.0 = Release|.NET
 		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.ActiveCfg = Debug|.NET
 		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Debug.Build.0 = Debug|.NET
 		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.ActiveCfg = Release|.NET
 		{FA92DDBE-81AD-4F8A-9941-300839C15727}.Release.Build.0 = Release|.NET
-		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.ActiveCfg = Debug|.NET
-		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Debug.Build.0 = Debug|.NET
-		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.ActiveCfg = Release|.NET
-		{16D8A4A3-17EF-4C60-8CF7-16B50938420A}.Release.Build.0 = Release|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Debug.ActiveCfg = Debug|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Debug.Build.0 = Debug|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Release.ActiveCfg = Release|.NET
 		{6462AA1F-4132-4CB5-941C-C342C79B8433}.Release.Build.0 = Release|.NET
-		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Debug.ActiveCfg = Debug|.NET
-		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Debug.Build.0 = Debug|.NET
-		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Release.ActiveCfg = Release|.NET
-		{5164D9BB-C23F-409D-878B-46C4A0835E7A}.Release.Build.0 = Release|.NET
-		{C93A5169-1F97-4134-8F59-4CED95AFC80C}.Debug.ActiveCfg = Debug
-		{C93A5169-1F97-4134-8F59-4CED95AFC80C}.Release.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

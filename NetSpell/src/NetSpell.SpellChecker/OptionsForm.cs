@@ -82,13 +82,14 @@ namespace NetSpell.SpellChecker
 				this.MaxSuggestions.Text = this.SpellChecker.MaxSuggestions.ToString();
 
 				// set dictionary info
-				foreach (Dictionary dic in this.SpellChecker.Dictionaries)
+				// TODO: Fix this ...
+				/*foreach (Dictionary dic in this.SpellChecker.Dictionaries)
 				{
 					ListViewItem item = new ListViewItem();
 					item.Text = dic.FileName;
 					item.SubItems.Add(dic.WordList.Count.ToString());
 					DictionaryList.Items.Add(item);
-				}
+				}*/
 
 				// set about info
 				this.pbIcon.Image = this.Owner.Icon.ToBitmap();

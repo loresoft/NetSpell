@@ -5,6 +5,9 @@ using System;
 using System.Collections;
 using NUnit.Framework;
 using NetSpell.SpellChecker;
+using NetSpell.SpellChecker.Phonetic;
+using NetSpell.SpellChecker.Affix;
+using NetSpell.SpellChecker.WordList;
 
 namespace NetSpell.Tests
 {
@@ -15,8 +18,8 @@ namespace NetSpell.Tests
 	[TestFixture]
 	public class SpellTest
 	{
-		bool _endOfText = false;
-		Spelling _SpellChecker = new Spelling("us-en-md.dic");
+		Spelling _SpellChecker = new Spelling();
+		PerformanceTimer _timer = new PerformanceTimer();
 		WordEventArgs _wordEventArgs;
 		
 		private void DoubleWord(object sender, WordEventArgs args)
@@ -26,7 +29,7 @@ namespace NetSpell.Tests
 
 		private void EndOfText(object sender, EventArgs args)
 		{
-			_endOfText = true;
+			
 		}
 
 		private void MisspelledWord(object sender, WordEventArgs args)
@@ -176,32 +179,6 @@ namespace NetSpell.Tests
 		}
 
 		/// <summary>
-		///		NUnit Test Function for DoubleMetaphone
-		/// </summary>
-		[Test]
-		public void DoubleMetaphoneTest()
-		{
-			DoubleMetaphone metaPhone = new DoubleMetaphone();
-
-			metaPhone.GenerateMetaphone("occasionally");
-			Assertion.AssertEquals("Incorrect Metaphone code", "AKSN", metaPhone.PrimaryCode);
-			Assertion.AssertEquals("Incorrect Metaphone code", "AKXN", metaPhone.SecondaryCode);
-
-			metaPhone.GenerateMetaphone("leisure");
-			Assertion.AssertEquals("Incorrect Metaphone code", "LSR", metaPhone.PrimaryCode);
-			Assertion.AssertEquals("Incorrect Metaphone code", "LSR", metaPhone.SecondaryCode);
-
-			metaPhone.GenerateMetaphone("congratulations");
-			Assertion.AssertEquals("Incorrect Metaphone code", "KNKR", metaPhone.PrimaryCode);
-			Assertion.AssertEquals("Incorrect Metaphone code", "KNKR", metaPhone.SecondaryCode);
-			
-			metaPhone.GenerateMetaphone("simplicity");
-			Assertion.AssertEquals("Incorrect Metaphone code", "SMPL", metaPhone.PrimaryCode);
-			Assertion.AssertEquals("Incorrect Metaphone code", "SMPL", metaPhone.SecondaryCode);
-
-		}
-
-		/// <summary>
 		///		NUnit Test Function for Suggest
 		/// </summary>
 		[Test]
@@ -243,6 +220,18 @@ namespace NetSpell.Tests
 		{
 			Assertion.AssertEquals("Incorrect WordSimilarity score", 0.454545454545455F, _SpellChecker.WordSimilarity("test", "tst"), 0F);
 			Assertion.AssertEquals("Incorrect WordSimilarity score", 1F, _SpellChecker.WordSimilarity("test", "test"), 0F);
+		}
+
+
+
+		[Test]
+		public void Dictionary()
+		{
+			Dictionary dict = new Dictionary();
+
+			dict.WordListFile = @"..\..\..\Dictionaries\en_US.dic";
+			dict.Initialize();
+
 		}
 	}
 }

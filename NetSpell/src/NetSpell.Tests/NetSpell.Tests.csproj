@@ -110,6 +110,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "PerformanceTimer.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "SpellTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

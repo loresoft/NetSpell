@@ -122,13 +122,13 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "frmDictionary.cs"
+                    RelPath = "DictionaryForm.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "frmDictionary.resx"
-                    DependentUpon = "frmDictionary.cs"
+                    RelPath = "DictionaryForm.resx"
+                    DependentUpon = "DictionaryForm.cs"
                     BuildAction = "EmbeddedResource"
                 />
                 <File

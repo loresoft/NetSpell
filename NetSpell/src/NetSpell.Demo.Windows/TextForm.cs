@@ -608,8 +608,6 @@ namespace NetSpell.Demo.Windows
 			// 
 			// spelling
 			// 
-			this.spelling.MainDictionary = ((string)(configurationAppSettings.GetValue("spelling.MainDictionary", typeof(string))));
-			this.spelling.UserDictionary = ((string)(configurationAppSettings.GetValue("spelling.UserDictionary", typeof(string))));
 			this.spelling.MisspelledWord += new NetSpell.SpellChecker.Spelling.MisspelledWordEventHandler(this.spelling_MisspelledWord);
 			this.spelling.EndOfText += new NetSpell.SpellChecker.Spelling.EndOfTextEventHandler(this.spelling_EndOfText);
 			this.spelling.DoubledWord += new NetSpell.SpellChecker.Spelling.DoubledWordEventHandler(this.spelling_DoubledWord);

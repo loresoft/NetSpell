@@ -52,7 +52,8 @@ namespace NetSpell.SpellChecker
 		{
 			try
 			{
-
+				// TODO: fix
+				/*
 				if (this.SpellChecker.UserDictionary.Length > 0)
 				{
 					foreach (Dictionary dict in this.SpellChecker.Dictionaries)
@@ -67,6 +68,7 @@ namespace NetSpell.SpellChecker
 						}
 					}
 				}
+				*/
 			}
 			catch (Exception ex)
 			{
@@ -194,6 +196,8 @@ namespace NetSpell.SpellChecker
 
 				if (this.Visible) 
 				{
+					// TODO: fix
+					/*
 					if (this.SpellChecker.UserDictionary.Length > 0)
 					{
 						this.AddButton.Enabled = true;
@@ -202,6 +206,7 @@ namespace NetSpell.SpellChecker
 					{
 						this.AddButton.Enabled = false;
 					}
+					*/
 				}
 			}
 			catch (Exception ex)
@@ -515,15 +520,16 @@ namespace NetSpell.SpellChecker
 			this.Activate();
 
 			//add button
-			if (this.SpellChecker.UserDictionary.Length > 0)
+			//TODO: fix
+			/*if (this.SpellChecker.UserDictionary.Length > 0)
 			{
 				this.AddButton.Enabled = true;
 			}
 			else 
 			{
 				this.AddButton.Enabled = false;
-			}
-
+			}*/
+			
 			//set text context
 			this.TextBeingChecked.ResetText();
 			this.TextBeingChecked.SelectionColor = Color.Black;
